@@ -1,0 +1,32 @@
+
+<!-- search result area -->
+<div class="col-sm-4" id="search-result-manual">
+	<div class="column-title">
+		マニュアル検索結果
+	</div>
+	<ul ng-repeat="manual in searchResultManuals">
+		<li>{{manual.title}}</li>
+	</ul>
+</div>
+<div class="col-sm-4" id="search-result-faq">
+	<div class="column-title">
+		FAQ検索結果[{{searchResultFAQs.length}}件]
+	</div>
+	<ul ng-repeat="faq in searchResultFAQs">
+		<li>
+			<a ng-click="open(faq)">{{faq.title}}</a>
+			<p>{{faq.content | abbreviate:100}}</p>
+		</li>
+	</ul>
+</div>
+<div class="col-sm-4" id="search-result-notification">
+	<div class="column-title">
+		お知らせ検索結果[{{searchResultNotifications.length}}件]
+	</div>
+	<ul ng-repeat="notification in searchResultNotifications">
+		<li>
+			<a ng-click="open(notification)">{{notification.title}}</a>
+			<p>{{notification.content | abbreviate:100}}</p>
+		</li>
+	</ul>
+</div>

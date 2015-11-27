@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="indexModule">
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+	<title>Newton</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="app/styles/index.css"/>
+</head>
+<body ng-controller="MainController as main" >
+	<!-- navigationBar-->
+	<nav class="navbar navbar-default navbar-fixed-top">
+	    <div class="container-fluid nav-container">
+			<div ng-include="'app/views/navbar.html'" scope="" onload=""></div>
+	    </div>
+	</nav>
+
+	<!--mainContent-->
+	<div class="container-fluid main-container" id="wrapper">
+		<div class="row">
+			<div ui-view></div>					
+		</div>
+	</div>
+
+    <!-- 外部スクリプト -->    
+   	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.2/ui-bootstrap-tpls.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-sanitize.js"></script>
+	<!-- アプリケーションスクリプト -->    
+	<script src="app/scripts/app.js"></script>
+	<script src="app/scripts/routes.js"></script>
+	<script src="app/scripts/controller/MainController.js"></script>
+	<script src="app/scripts/controller/NavController.js"></script>
+	<script src="app/scripts/controller/ManualController.js"></script>
+	<script src="app/scripts/controller/FAQController.js"></script>
+	<script src="app/scripts/controller/NotificationController.js"></script>
+	<script src="app/scripts/controller/ModalController.js"></script>
+	<script src="app/scripts/controller/PopOverController.js"></script>	
+	<script src="app/scripts/controller/CreateNotificationController.js"></script>
+	<script src="app/scripts/Filters/wordfilter.js"></script>
+	<script src="app/scripts/controller/CreateArticleController.js"></script>
+	<script src="app/scripts/controller/CreateNotificationController.js"></script>
+	<script src="app/scripts/controller/SetTargetSkillModalController.js"></script>
+	<script src="app/scripts/factory/SharedStateService.js"></script>
+	<script src="app/scripts/service/connectApiService.js"></script>
+	<script src="app/scripts/service/constValueService.js"></script>
+	<script src="app/scripts/service/ModalService.js"></script>
+	<script src="app/scripts/service/UserService.js"></script>
+	<script src="app/scripts/controller/SearchResultController.js"></script>
+</body>
+</html>

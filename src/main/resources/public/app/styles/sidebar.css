@@ -1,0 +1,13 @@
+
+#sidebar{
+	min-height: 100vh;
+	left: -300px;
+	background-color: #000000;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.sidebar-content{
+	position: absolute;
+	width: 100%;
+}

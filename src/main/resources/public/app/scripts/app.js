@@ -1,0 +1,4 @@
+
+'use strict';
+
+angular.module('indexModule',['ui.bootstrap','ui.router','ngSanitize']);

@@ -1,0 +1,54 @@
+
+/***index.htmlに使用するcss***/
+@charset "UTF-8";
+@import "navbarset.css";
+@import "faq.css";
+@import "sidebar.css";
+@import "timeline.css";
+@import "popover.css";
+@import "createViewSet.css"
+
+body{
+	position: ralative;
+	overflow-x: hidden;
+	height:100vh;
+}
+
+#wrapper{
+	position: relative;
+	margin-top: 59px;
+	padding: 0;
+}
+
+.glyphicon{
+	font-size: 24px;
+}
+
+.question{
+	margin-bottom: 10px;
+}
+
+.column-title{
+	background-color: #ffffff;
+	margin-top: 10px;
+	color: #878787;
+	width: 100%;
+	font-size: 21px;
+	display: inline-block;
+}
+
+.column-title button{
+	margin-right: 10px;
+}
+
+.coulum-title .glyphicon{
+	font-size: 16px;
+}
+
+.column-title-manual{
+	background-color: #000000;
+	margin-top: 10px;
+	color: #878787;
+	font-size: 21px;
+	display: inline-block;
+}
