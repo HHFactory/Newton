@@ -1,0 +1,30 @@
+
+<!--FAQ crate view -->
+<div class="create-view col-sm-12" ng-controller="CreateArticleController">
+	<form ng-submit="submit(faq)">
+		<!--タイトルフォーム-->
+		<div class="row">
+			<div class="col-sm-12 faq-title">
+				<input type="text" class="form-control" placeholder="FAQタイトルを入力してください" ng-model="faq.title"/>				
+			</div>		
+		</div>
+		<!--入力フォーム-->
+		<div class="row-fluid　form-area">
+			<div class="col-sm-7">
+				<textarea class="form-control" rows="24" ng-change="parseMarkDown()" ng-model="faq.content" placeholder="FAQ本文を入力してください"></textarea>		
+			</div>	
+			<!--markdownプレビュー-->
+			<div class="col-sm-5 input-text-area" ng-bind-html="parsedMarkdown"></div>
+		</div>
+		<!--投稿ボタン-->
+		<div class="row">
+			<div class="create-view-footer col-sm-12">
+				<input type="hidden" ng-model="faq.create_user" ng-init="faq.create_user='user1'" />
+				<input type="hidden" ng-model="faq.update_user" ng-init="faq.update_user='user1'"/>
+				<input type="hidden" ng-model="faq.status" ng-init="faq.status='valid'"/>
+				<button class="btn btn-default" ng-click="cancel()">キャンセル</button>	
+				<button class="btn btn-primary" ng-click="post(faq)" type="submit">作成</button>		
+			</div>			
+		</div>
+	</form>
+</div>

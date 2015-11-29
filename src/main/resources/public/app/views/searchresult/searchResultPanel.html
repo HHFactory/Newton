@@ -1,0 +1,37 @@
+
+<!--search result panel-->
+<div class="search-results-container">
+	<div class="container">
+		<div class="search-results-frame">
+		    <!--manual result-->
+			<div class="search-results-group col-group-manual">
+				<h4 class="search-result-group-heading">マニュアル</h4>
+				<div class="search-results">
+					<div ng-repeat="content in searchRestults" class="search-result ng-scope">
+						<a ng-click="" ng-href="{{}}" class="ng-binding">{{content.title}}</a>
+					</div>
+				</div>
+			</div>
+			<!--faq result-->
+			<div ng-repeat="" class="search-results-group col-group-faq">
+				<h4 class="search-result-group-heading">FAQ</h4>
+				<div class="search-results">
+					<div ng-repeat="" class="search-result ng-scope">
+						<a ng-click="" ng-href="{{}}" class="ng-binding"></a>
+					</div>
+				</div>				
+			</div>
+			<!--notification result-->
+			<div ng-repeat="" class="search-results-group col-group-notification">
+				<h4 class="search-result-group-heading">お知らせ</h4>
+				<div class="search-results">
+					<div ng-repeat="" class="search-result ng-scope">
+						<a ng-click="" ng-href="{{}}" class="ng-binding"></a>
+					</div>
+				</div>			
+			</div>
+			<!--閉じるボタン-->
+			<a ng-click="hideResults()" class="search-close"><span class="glyphion glyphicon-remove search-close-icon">閉じる</span></a>
+		</div>
+	</div>
+</div>

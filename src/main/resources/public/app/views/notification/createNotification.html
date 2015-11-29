@@ -1,0 +1,60 @@
+
+<!--notification crate view -->
+<div class="create-view col-sm-12" ng-controller="CreateNotificationController">
+	<form ng-submit="submit(notification)">
+		<!--タイトルフォーム-->
+		<div class="row">
+			<input type="text" class="faq-title form-control span12" placeholder="タイトルを入力してください" ng-model="notification.title"/>			
+		</div>
+		<!--重要度ボタン＆対象スキルボタン-->
+		<div class="row">
+			<div class="col-sm-12">
+				<span class="label label-default">重要度</span>
+				<label><input type="radio" ng-model="notification.importance" ng-value="1">高</label>
+				<label><input type="radio" ng-model="notification.importance" ng-value="2">中</label>
+				<label><input type="radio" ng-model="notification.importance" ng-value="3">低</label>
+			</div>
+<!-- 			<div class="col-sm-2">
+				<button class="btn btn-success" ng-click="openSkillSetModal()" type="button">お知らせ対象スキル</button>
+			</div> -->
+		</div>
+		<!--入力フォーム-->
+		<div class="row　form-area">	
+			<div class="col-sm-7 input-text-area">
+				<textarea class="form-control" rows="24" ng-change="parseMarkDown()" ng-model="notification.content" placeholder="お知らせ本文を入力してください"></textarea>				
+			</div>
+			<!-- <div class="col-sm-5 input-text-area" ng-bind-html="parsedMarkdown"></div> -->
+			
+			<!--お知らせ対象スキル選択エリア-->
+			<div class="col-sm-5">
+				<div class="search-skill">
+					<h5>お知らせ対象先スキルを選んでください</h5>
+				    <input type="text" class="form-control" placeholder="スキル名で検索できます" ng-model="searchSkill" />
+				</div>
+				<div class="skill-list-area">
+				    <table class="table table-hover">
+				        <tbody>
+				            <tr ng-repeat="targetSkill in targetSkills|filter:searchSkill">
+				                <td>
+				                    <label>
+				                     	<input type="checkbox" ng-model="targetSkill.checked" value="{{targetskill.skill}}" ng-checked="selection.indexOf(targetSkill) > -1" ng-click="toggleSelection(targetSkill)" />
+				                     	{{targetSkill.skill}}
+				                     </label>
+				                </td>
+				            </tr>
+				        </tbody>
+				    </table>
+				</div><!-- end.skill-list-area-->
+			</div>
+		</div>
+		<!--投稿ボタン-->
+		<div class="row">
+			<div class="create-view-footer col-sm-12">				
+				<input type="hidden" ng-model="notification.create_user" ng-init="notification.create_user='user1'" />
+				<input type="hidden" ng-model="notification.update_user" ng-init="notification.update_user='user1'"/>
+				<button class="btn btn-default" ng-click="cancel()">キャンセル</button>
+				<button class="btn btn-primary" type="submit">作成</button>		
+			</div>			
+		</div>
+	</form>
+</div>
