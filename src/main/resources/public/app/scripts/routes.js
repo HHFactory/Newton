@@ -10,12 +10,12 @@ angular.module('indexModule')
 			})
 			.state('create',{
 				url:"/create",
-				templateUrl:"app/views/createView.html",
+				templateUrl:"app/views/faq/createFAQ.html",
 				controller:"CreateArticleController"
 			})
 			.state('createNotification',{
 				url:"/createNotification",
-				templateUrl:"app/views/createNotificationView.html",
+				templateUrl:"app/views/notification/createNotification.html",
 				controller:"CreateNotificationController"
 			})
 			.state('searchResult',{
@@ -23,7 +23,7 @@ angular.module('indexModule')
 				params:{
 					searchWord:null
 				},
-				templateUrl:"app/views/searchResultView.html",
+				templateUrl:"app/views/searchresult/searchResultView.html",
 				controller:"SearchResultController"
 			});
 	});

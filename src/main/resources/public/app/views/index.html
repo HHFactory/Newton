@@ -12,7 +12,7 @@
 	<!-- navigationBar-->
 	<nav class="navbar navbar-default navbar-fixed-top">
 	    <div class="container-fluid nav-container">
-			<div ng-include="'app/views/navbar.html'" scope="" onload=""></div>
+			<div ng-include="'app/views/navigation/navbar.html'" scope="" onload=""></div>
 	    </div>
 	</nav>
 
@@ -34,22 +34,20 @@
 	<script src="app/scripts/app.js"></script>
 	<script src="app/scripts/routes.js"></script>
 	<script src="app/scripts/controller/MainController.js"></script>
-	<script src="app/scripts/controller/NavController.js"></script>
-	<script src="app/scripts/controller/ManualController.js"></script>
-	<script src="app/scripts/controller/FAQController.js"></script>
-	<script src="app/scripts/controller/NotificationController.js"></script>
-	<script src="app/scripts/controller/ModalController.js"></script>
-	<script src="app/scripts/controller/PopOverController.js"></script>	
-	<script src="app/scripts/controller/CreateNotificationController.js"></script>
-	<script src="app/scripts/Filters/wordfilter.js"></script>
-	<script src="app/scripts/controller/CreateArticleController.js"></script>
-	<script src="app/scripts/controller/CreateNotificationController.js"></script>
-	<script src="app/scripts/controller/SetTargetSkillModalController.js"></script>
-	<script src="app/scripts/factory/SharedStateService.js"></script>
+	<script src="app/scripts/controller/navigation/NavController.js"></script>
+	<script src="app/scripts/controller/manual/ManualController.js"></script>
+	<script src="app/scripts/controller/faq/FAQController.js"></script>
+	<script src="app/scripts/controller/faq/CreateArticleController.js"></script>
+	<script src="app/scripts/controller/notification/NotificationController.js"></script>
+	<script src="app/scripts/controller/notification/PopOverController.js"></script>	
+	<script src="app/scripts/controller/notification/CreateNotificationController.js"></script>
+	<script src="app/scripts/controller/notification/SetTargetSkillModalController.js"></script>
+	<script src="app/scripts/controller/modal/ModalController.js"></script>
+	<script src="app/scripts/controller/searchresult/SearchResultController.js"></script>
+	<script src="app/scripts/filters/wordfilter.js"></script>
 	<script src="app/scripts/service/connectApiService.js"></script>
 	<script src="app/scripts/service/constValueService.js"></script>
 	<script src="app/scripts/service/ModalService.js"></script>
 	<script src="app/scripts/service/UserService.js"></script>
-	<script src="app/scripts/controller/SearchResultController.js"></script>
 </body>
 </html>
