@@ -6,6 +6,7 @@
 	function NavCtrl($scope,$state){
 		$scope.showList = true;
 		$scope.showHome = false;
+
 		/**
 		 * 検索結果画面に遷移する 
 		 */
@@ -15,7 +16,10 @@
 		 	$state.go('searchResult',{searchWord:query});		 	
 		 }
 
-		 //メイン画面に戻る
+		 /**
+		  * ホームアイコンボタン押下処理
+		  * @return {[type]} [description]
+		  */
 		 $scope.home = function(){
 		 	$scope.showList = true;
 		 	$scope.showHome = false;

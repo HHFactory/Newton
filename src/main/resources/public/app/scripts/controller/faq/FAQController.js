@@ -7,7 +7,7 @@
 
 	function FAQCtrl($scope,$state,connectApiService,constURI,modalService){
 	 	/**
-	 	 * FAQ取得APIをServiceを通して呼び出す 
+	 	 * FAQ取得処理
 	 	 * @param  {[type]}
 	 	 * @return {[type]}
 	 	 */
@@ -25,10 +25,10 @@
 	    };
 	    
 	    /**
-	     * 新規登録用モーダルを開く 
+	     * 新規登録画面を開く 
 	     */
 		$scope.create = function(){
-			$state.go('create');
+			$state.go('createFAQ');
 		};		
 	}
 

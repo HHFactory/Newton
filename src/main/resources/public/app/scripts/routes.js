@@ -8,10 +8,10 @@ angular.module('indexModule')
 				templateUrl:"app/views/mainView.html",
 				controller:"MainController"
 			})
-			.state('create',{
+			.state('createFAQ',{
 				url:"/create",
 				templateUrl:"app/views/faq/createFAQ.html",
-				controller:"CreateArticleController"
+				controller:"CreateFAQController"
 			})
 			.state('createNotification',{
 				url:"/createNotification",

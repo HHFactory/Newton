@@ -9,12 +9,20 @@
 			$scope.selection.push(targetSkill.skill);
 		};	
 
-		//スキルリストの取得
+		/**
+		 * スキルリストの取得
+		 * @param  {[type]} resultAPI){			$scope.targetSkills [description]
+		 * @return {[type]}                                    [description]
+		 */
 		connectApiService.get(constURI.getSkill).then(function(resultAPI){
 			$scope.targetSkills = resultAPI.data;
 		});
 
-		//チェックしたスキルをselctionに格納する
+		/**
+		 * チェックしたスキルをselctionに格納する
+		 * @param  {[type]} targetSkill [description]
+		 * @return {[type]}             [description]
+		 */
 		$scope.toggleSelection = function toggleSelection(targetSkill) {
 		    var idx = $scope.selection.indexOf(targetSkill.skill);
 		    console.log('index:'+idx);
@@ -27,12 +35,18 @@
 		    }
 		};
 
-		//決定ボタン押下処理
+		/**
+		 * 決定ボタン押下処理
+		 * @return {[type]} [description]
+		 */
 		$scope.decision = function(){
 			$modalInstance.close($scope.selection);
 		};
 
-		//キャンセルボタン押下処理
+		/**
+		 * キャンセルボタン押下処理
+		 * @return {[type]} [description]
+		 */
 		$scope.cancel = function(){
 			$modalInstance.dismiss('cancel');
 		};		

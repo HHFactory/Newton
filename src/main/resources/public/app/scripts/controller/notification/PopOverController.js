@@ -1,15 +1,12 @@
+
+(function(){
 'use strict';
-
-//お知らせの既読、未読者リストパネル用コントローラ
-angular.module('indexModule')
-	.controller('PopOverCtrl',function($scope,$http){
-		//既読、未読者リストを取得する
-		//todo:それ用のapiを作る
-
+	
+	function PopOverCtrl($scope,connectApiService,constURI){
 		var contentList = []
 		contentList.push($scope.notification.readMemberList);
 		contentList.push($scope.notification.unreadMemberList);
-
+		
 		//既読者リストをpopover表示
 		$scope.readMemberList={
 			content:$scope.notification.readMemberList,
@@ -22,6 +19,7 @@ angular.module('indexModule')
 			templateUrl:'app/views/notification/popover.html'
 		};
 
+	}
 
-
-	});	
+	angular.module('indexModule').controller('PopOverController',PopOverCtrl);
+})();

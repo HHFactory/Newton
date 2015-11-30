@@ -9,30 +9,25 @@
 		$scope.title= argdata.title;
 		$scope.content = marked(argdata.content);
 
-		//役に立ったボタン押下処理
+		/**
+		 * 役に立ったボタン押下処理
+		 * @return {[type]} [description]
+		 */
 		$scope.useful = function(){
 			connectApiService.put(constURI.putFAQuseful+argdata.id,argdata).then(function(){
 				$modalInstance.close();
 			});
 		};
 
-		//閉じるボタン押下処理
+		/**
+		 * 閉じるボタン押下処理
+		 * @return {[type]} [description]
+		 */
 		$scope.cancel = function(){
 			$modalInstance.dismiss();
 		};
 	}
 
-	//新規作成用ページコントローラ
-	function CreateModalCtrl($scope,$modalInstance,$http,connectApiService,constURI){
-		//FAQ新規登録
-		$scope.post = function(faq){
-			connectApiService.post(constURI.postFAQ,faq).then(function(){
-				$modalInstance.close();
-			});
-		};
-	}
-	
 	//moduleへ登録
 	angular.module('indexModule').controller('ModalController',ModalCtrl);
-	angular.module('indexModule').controller('CreateModalController',CreateModalCtrl);
 })();
