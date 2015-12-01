@@ -1,24 +1,24 @@
 
-<!-- navigationBar-->
-<div ng-controller="NavController">
+<!-- ナビゲーションバー -->
+<div ng-controller="NavController as NavCtrl">
+    <!-- スライドメニュー開閉アイコン -->
     <div class="navbar-header" ng-show="showList">
         <a class="navbar-brand" id="slideButton"><span class="glyphicon glyphicon-listglyphicon glyphicon-list"></span></a>
     </div>
+    <!-- ホームアイコン -->
     <div class="navbar-header" ng-show="showHome">
         <a class="navbar-brand" ng-click="home()"><span class="glyphicon glyphicon-home"></span></a>
     </div>
-
-    <!--globalsearch-->
+    <!--　検索フォーム　-->
     <form class="navbar-form navbar-left" role="search" ng-submit="search(query)">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="マニュアル、FAQ、お知らせを検索" ng-model="query"/><i class="glyphicon glyphicon-search form-control-feedback"></i>           
+            <input type="text" class="form-control" placeholder="マニュアル、FAQ、お知らせを検索できます" ng-model="query"/><i class="glyphicon glyphicon-search form-control-feedback"></i>           
         </div>
     </form>
-
-    <!--link,logoutbutton-->
+    <!--　ナビゲーション右アイコン　-->
     <div class="collapse navbar-collapse target">
         <ul class="nav navbar-nav navbar-right">
-            <!--リンク集-->
+            <!--　リンク集　-->
             <li class="dropdown">
                 <a class="dropdown-toggle" id="dropdownMenu" data-toggle="dropdown"><span class="glyphicon glyphicon-link"></span></a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
@@ -26,7 +26,7 @@
                     <li><a href="http://www.google.co.jp" title="" target="_blank">google</a></li>
                 </ul>
             </li>
-            <!--ログアウトボタン-->
+            <!--　ログアウトボタン　-->
             <li><a class="icon" ><span class="glyphicon glyphicon-off"></span></a></li>
         </ul>
     </div>    
