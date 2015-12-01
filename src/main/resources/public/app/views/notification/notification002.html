@@ -1,0 +1,38 @@
+
+<!-- お知らせ参照画面 -->
+<div ng-controller="NotificationController" >
+	<!-- パネルヘッダエリア -->
+	<div class="column-title">お知らせ
+		<!-- <a class="icon" ng-click="create()"><span class="glyphicon glyphicon-pencil"></span></a> -->
+		<button class="btn btn-success" ng-click="create()">新規登録</button>
+		<span class="btn btn-group">
+			<button type="button" class="btn btn-default">全て</button>
+			<button type="button" class="btn btn-default" ng-click="link=true">既読</button>
+			<button type="button" class="btn btn-default" ng-click="link=false">未読<span class="badge">10</span></button>
+		</span>
+	</div>
+	<!-- コンテンツ表示エリア -->
+	<div class="panel panel-success" ng-repeat="notification in notifications">
+		<!-- ヘッダ -->
+		<div class="panel-heading">
+			<h3 class="panel-title">{{notification.title}}</h3>
+		</div>
+		<!-- コンテンツ -->
+		<div class="panel-body notification-content">
+			<a ng-click="open(notification)"><!--お知らせ本文全体をリンクにする-->
+				{{notification.content|abbreviate:150}}
+			</a>
+		</div>
+		<!-- フッター -->
+		<div class="panel-footer">
+			<div ng-controller="PopOverCtrl">
+				<div class="read-member">
+					<a uib-popover-template="dynamicPopOver.templateUrl" popover-placement="top">
+						既読<span class="bagde">{{notification.readMemberList.length}}</span>							
+						未読<span class="bagde">{{notification.unreadMemberList.length}}</span>	
+					</a>
+				</div>				
+			</div>		
+		</div>
+	</div><!--end panel-->	
+</div>
