@@ -2,7 +2,8 @@
 (function(){
 	'use strict';
 	
-	function MainCtrl(){		
+	function MainCtrl(){	
+		console.log('mainCtrl loaded');	
 		var duration = 300,
 		    menu = $('#sidebar'),
 		    button = $('#slideButton'),

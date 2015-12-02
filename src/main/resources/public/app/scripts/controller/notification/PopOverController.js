@@ -2,7 +2,7 @@
 (function(){
 'use strict';
 	
-	function PopOverCtrl($scope,connectApiService,constURI){
+	function PopOverCtrl($scope){
 		var contentList = []
 		contentList.push($scope.notification.readMemberList);
 		contentList.push($scope.notification.unreadMemberList);

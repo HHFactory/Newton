@@ -4,19 +4,20 @@
 'use strict';
 	
 	function UserService(){
+		var readMemberList = [];
+		var unreadMemberList =[];
 		var userService = {
-
 			/**
 			 * 既読者・未読者リストを作成する
 			 * @param  {[type]}
 			 * @return {[type]}
 			 */
 			createReadUserList:function(argData){
-				var readMemberList = [];
-				var unreadMemberList =[];
+				if( !argData )
+					return false;
 				for(var i=0; i<argData.length; ++i){
 					var notification = argData[i]
-					if(!notification.notificationTargetRoles.length > 0)
+					if( !notification.notificationTargetRoles )
 						return false;
 					var targetUserList = notification.notificationTargetRoles;
 					for(var j=0; j<targetUserList.length; ++j){
