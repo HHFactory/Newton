@@ -10,13 +10,13 @@
 		//既読者リストをpopover表示
 		$scope.readMemberList={
 			content:$scope.notification.readMemberList,
-			templateUrl:'app/views/notification/notification003.html'
+			templateUrl:'../../app/views/notification/notification003.html'
 		};
 
 		//未読者リストをpopover表示
 		$scope.dynamicPopOver = {
 			content:$scope.notification.unreadMemberList,
-			templateUrl:'app/views/notification/notification003.html'
+			templateUrl:'../../app/views/notification/notification003.html'
 		};
 
 	}

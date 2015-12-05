@@ -1,7 +1,7 @@
 
 (function(){
 'use strict';
-	
+
 	function CreateFAQCtrl($scope,$state,connectApiService,constURI){
 
 		/**
@@ -19,7 +19,7 @@
 		 * 入力内容プレビュー処理 
 		 * @return {[type]}
 		 */
-		$scope.parseMarkdown = function(){
+		$scope.parseMarkDown = function(){
 			$scope.parsedMarkdown = marked($scope.faq.content);
 		};
 
@@ -37,17 +37,7 @@
 	angular.module('indexModule').controller('CreateFAQController',CreateFAQCtrl);
 })();
 
-		// //makedjsのオプション設定
-		// marked.setOptions({
-		//   renderer: new marked.Renderer(),
-		//   gfm: true,
-		//   tables: true,
-		//   breaks: false,
-		//   pedantic: false,
-		//   sanitize: true,
-		//   smartLists: true,
-		//   smartypants: false
-		// });
+
 
 // //FAQ登録コントローラ
 // angular.module('indexModule')

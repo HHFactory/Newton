@@ -3,11 +3,13 @@
 <div class="create-view col-sm-12" ng-controller="CreateNotificationController">
 	<form ng-submit="submit(notification)">
 		<!-- タイトルフォーム -->
-		<div class="row">
-			<input type="text" class="faq-title form-control span12" placeholder="タイトルを入力してください" ng-model="notification.title"/>			
+		<div class="row-fluid">
+			<div class="col-sm-12">
+				<input type="text" class="form-control input-title-area" placeholder="タイトルを入力してください" ng-model="notification.title"/>	
+			</div>					
 		</div>
 		<!-- ページ上部ボタンエリア -->
-		<div class="row">
+		<div class="row-fluid">
 			<div class="col-sm-12">
 				<span class="label label-default">重要度</span>
 				<label><input type="radio" ng-model="notification.importance" ng-value="1">高</label>
@@ -16,7 +18,7 @@
 			</div>
 		</div>
 		<!-- 入力エリア -->
-		<div class="row　form-area">	
+		<div class="row-fluid　form-area">	
 			<div class="col-sm-7 input-text-area">
 				<textarea class="form-control" rows="24" ng-change="parseMarkDown()" ng-model="notification.content" placeholder="お知らせ本文を入力してください"></textarea>				
 			</div>
@@ -47,7 +49,7 @@
 			</div>
 		</div>
 		<!-- ページ下部ボタンエリア -->
-		<div class="row">
+		<div class="row-fluid">
 			<div class="create-view-footer col-sm-12">				
 				<input type="hidden" ng-model="notification.create_user" ng-init="notification.create_user='user1'" />
 				<input type="hidden" ng-model="notification.update_user" ng-init="notification.update_user='user1'"/>

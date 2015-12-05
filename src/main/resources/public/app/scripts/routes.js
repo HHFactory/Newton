@@ -5,17 +5,17 @@ angular.module('indexModule')
 		$stateProvider
 			.state('main',{
 				url:"/main",
-				templateUrl:"app/views/mainView.html",
+				templateUrl:"../../app/views/mainView.html",
 				controller:"MainController"
 			})
 			.state('createFAQ',{
 				url:"/create",
-				templateUrl:"app/views/faq/faq001.html",
+				templateUrl:"../../app/views/faq/faq001.html",
 				controller:"CreateFAQController"
 			})
 			.state('createNotification',{
 				url:"/createNotification",
-				templateUrl:"app/views/notification/notification001.html",
+				templateUrl:"../../app/views/notification/notification001.html",
 				controller:"CreateNotificationController"
 			})
 			.state('searchResult',{
@@ -23,7 +23,7 @@ angular.module('indexModule')
 				params:{
 					searchWord:null
 				},
-				templateUrl:"app/views/searchresult/searchresult.html",
+				templateUrl:"../../app/views/searchresult/searchresult.html",
 				controller:"SearchResultController"
 			});
 	});
