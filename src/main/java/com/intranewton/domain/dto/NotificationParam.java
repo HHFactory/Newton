@@ -1,19 +1,17 @@
 package com.intranewton.domain.dto;
-/**
- * 登録時にクライアントから渡されるお知らせDAO
- * 当クラスをnotification entityに変換し、DBに登録する
- * @author hide
- *
- */
 
 import java.util.List;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 登録時にクライアントから渡されるお知らせパラメータクラス
+ * 当クラスをnotification entityに変換し、DBに登録する
+ */
 @Data
 @NoArgsConstructor
-public class NotificationDAO {
+public class NotificationParam {
 	private String title;
 	private String content;
 	private String create_user;

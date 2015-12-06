@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -12,13 +14,14 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
 
-import com.intranewton.domain.common.AbstractEntity;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * m_userテーブルエンティティ
+ */
 @Data
 @EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
@@ -26,11 +29,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="m_user")
 @Where(clause="status='valid'")
-public class User extends AbstractEntity implements Serializable{
-	private static final long serialVersionUID = -1754743975900173029L;
+public class User implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue
+	private Integer id;
+	private String status;
 	private String name;
 	private String password;
-	
+	private String mail_address;
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
 			name="m_user_has_m_role",

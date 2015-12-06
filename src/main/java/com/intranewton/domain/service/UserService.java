@@ -18,45 +18,49 @@ public class UserService {
 	UserRepository userRepository;
 	@Autowired
 	RoleRepository roleRepository;
-	
+
 	/**
 	 * user entityの取得
-	 * @return　user.class
+	 * 
+	 * @return user.class
 	 */
-	public List<User> getAllUsers(){
+	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
-	
+
 	/**
 	 * role entityの取得
-	 * @return　role.class
-	 */	
-	public List<Role> getAllRoles(){
+	 * 
+	 * @return role.class
+	 */
+	public List<Role> getAllRoles() {
 		return roleRepository.findAll();
 	}
-	
+
 	/**
 	 * 渡したスキル名リストから、roleリストを返却
+	 * 
 	 * @param targetSkillList
-	 * @return　role list
+	 * @return role list
 	 */
-	public List<Role> getTargetRolesbySkills(List<String> targetSkillList){
-		return roleRepository. findBySkillList(targetSkillList);
+	public List<Role> getTargetRolesbySkills( List<String> targetSkillList ) {
+		return roleRepository.findBySkillList(targetSkillList);
 	}
-	
-	/** 
+
+	/**
 	 * 渡されたスキル名リストから、対象ユーザを取得する
+	 * 
 	 * @param targetSkillList
-	 * @return　user名リスト
+	 * @return user名リスト
 	 */
-	public List<String> getTargetUsersbySkills(List<String> targetSkillList){		
+	public List<String> getTargetUsersbySkills( List<String> targetSkillList ) {
 		List<Role> roleList = roleRepository.findBySkillList(targetSkillList);
 		List<String> targetUserList = new ArrayList<>();
-		for(Role targetRole:roleList){	
+		for ( Role targetRole : roleList ) {
 			String userName = userRepository.findbyTargetRole(targetRole);
 			targetUserList.add(userName);
 		}
-		//重複削除して返却する
+		// 重複削除して返却する
 		return targetUserList.stream().distinct().collect(Collectors.toList());
 	}
 

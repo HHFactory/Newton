@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.intranewton.domain.dto.NotificationDAO;
+import com.intranewton.domain.dto.NotificationParam;
 import com.intranewton.domain.dto.NotificationDTO;
 import com.intranewton.domain.entity.Notification;
 import com.intranewton.domain.service.NotificationService;
@@ -30,7 +30,7 @@ public class NotificationRestController {
 	 */
 	@RequestMapping(value="/api/v1/notification",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	Integer postNotification(@RequestBody NotificationDAO notificationDAO){
+	Integer postNotification(@RequestBody NotificationParam notificationDAO){
 		notificationService.createNotification(notificationDAO);
 		return 200;
 	}

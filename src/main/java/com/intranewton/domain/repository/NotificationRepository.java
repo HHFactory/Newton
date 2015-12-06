@@ -9,8 +9,11 @@ import org.springframework.data.repository.query.Param;
 import com.intranewton.domain.entity.Notification;
 import com.intranewton.domain.entity.NotificationTargetRole;
 
+/**
+ * m_notificationテーブルリポジトリ
+ */
 public interface NotificationRepository extends JpaRepository<Notification, Integer>{
-	//文字列検索用クエリ
+	//文字列検索用クエリ（elasticsearchに移行)
 	@Query("SELECT n FROM Notification n where n.title like %:title% order by n.update_datetime asc")
 	List<Notification> searchNotification(@Param("title") String title);
 	

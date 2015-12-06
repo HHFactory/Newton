@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.intranewton.domain.entity.FAQ;
 
+/**
+ * m_FAQテーブルリポジトリ
+ */
 @Repository
 public interface FaqRepository extends JpaRepository<FAQ, Integer>{
 	//役に立ったボタン押下時にuseful_countカラムをインクリメントする。
@@ -19,7 +22,7 @@ public interface FaqRepository extends JpaRepository<FAQ, Integer>{
 	@Transactional
 	Integer countUpUsefulCount(Integer id);
 	
-	//文字列検索用クエリ
+	//文字列検索用クエリ(elasticsearchに移行)
 	@Query("SELECT f FROM FAQ f where f.title like %:title% order by f.update_datetime asc")
 	List<FAQ> searchFaq(@Param("title") String title);
 }

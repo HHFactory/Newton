@@ -9,11 +9,13 @@ import org.springframework.stereotype.Repository;
 
 import com.intranewton.domain.entity.Role;
 
+/**
+ * m_roleテーブルリポジトリ
+ */
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer>{
-	
-	
-	@Query("SELECT r FROM Role r WHERE r.skill IN :targetSkillList")
+	//スキルリストから該当するロールを取得
+	@Query("SELECT r FROM Role r WHERE r.skill_name IN :targetSkillList")
 	public List<Role> findBySkillList(@Param("targetSkillList") List<String> targetSkillList);
 	
 }

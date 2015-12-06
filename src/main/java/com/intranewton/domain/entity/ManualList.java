@@ -18,6 +18,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * 現在未使用
+ */
 @Data
 @EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
@@ -31,5 +34,5 @@ public class ManualList extends AbstractEntity{
 	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="m_manual_list_id")
-	private List<ManualFiles> manualFiles;
+	private List<Manual> manualFiles;
 }

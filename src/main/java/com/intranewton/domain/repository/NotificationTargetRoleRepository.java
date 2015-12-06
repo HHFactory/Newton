@@ -9,8 +9,12 @@ import org.springframework.stereotype.Repository;
 
 import com.intranewton.domain.entity.NotificationTargetRole;
 
+/**
+ * m_notification_target_roleテーブルリポジトリ
+ */
 @Repository
 public interface NotificationTargetRoleRepository extends JpaRepository<NotificationTargetRole, Integer>{
+	//指定したユーザ名に紐づくお知らせを取得する
 	@Query("SELECT nt FROM NotificationTargetRole nt WHERE nt.target_user = :targetUser")
 	List<NotificationTargetRole> findbyTargetUser(@Param("targetUser") String targetUser);
 }

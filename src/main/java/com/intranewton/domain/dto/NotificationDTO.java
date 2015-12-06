@@ -1,9 +1,4 @@
 package com.intranewton.domain.dto;
-/**
- * クライアントに返却するお知らせDTO
- * @author hide
- *
- */
 
 import java.util.List;
 
@@ -13,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * クライアントに返却するお知らせDTO
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

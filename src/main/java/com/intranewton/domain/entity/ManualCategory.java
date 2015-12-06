@@ -17,6 +17,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * 現在未使用
+ */
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Entity

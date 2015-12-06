@@ -14,13 +14,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * m_notification_target_roleテーブルエンティティ
+ */
 @Entity
 @Table(name="m_notification_target_role")
 @Data
 @NoArgsConstructor
 public class NotificationTargetRole implements Serializable{
-	private static final long serialVersionUID = 424525830287419781L;
-	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
 	private Integer id;

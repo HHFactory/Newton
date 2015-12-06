@@ -60,17 +60,7 @@ public class FaqRestController {
 	FAQ postFaq(@RequestBody FAQ faq){	
 		return faqService.createFaq(faq);
 	}
-		
-	/**
-	 * elasticsearchでFAQ.contentを検索する
-	 * @param content
-	 * @return FAQ list
-	 */
-//	@RequestMapping(value="/api/v1/elastic/faqs",method=RequestMethod.GET)
-//	List<FAQ> findbyContentLike(@RequestParam String content){
-//		return faqElasticService.findbyContentLike(content);
-//	}
-	
+			
 	/**
 	 * elasticsearchでFAQを全て取得する
 	 * @return FAQ iterable
@@ -86,12 +76,4 @@ public class FaqRestController {
 		return faqElasticService.findbyTitleOrContent(title,title);
 	}
 	
-	
-//	//FAQ,マニュアル、お知らせを全て検索する
-//	@RequestMapping(value="/api/v1/faq",method=RequestMethod.GET)
-//	List<SearchResult> searchALL(@Param("title") String title){
-//		List<SearchResult> searchResults = searchService.searchAll(title);
-//		return searchResults;
-//	}
-
 }

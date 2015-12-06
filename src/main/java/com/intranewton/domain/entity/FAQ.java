@@ -1,5 +1,7 @@
 package com.intranewton.domain.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -13,16 +15,26 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * m_FAQテーブルエンティティ
+ */
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name="m_faq")
-@Where(clause="status='valid'")
-@Document(indexName="jdbc",type="jdbc")
+@Table(name = "m_faq")
+@Where(clause = "status='valid'")
+@Document(indexName = "jdbc",type = "jdbc")
 @NoArgsConstructor
 @AllArgsConstructor
-public class FAQ extends AbstractEntity{
+public class FAQ extends AbstractEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private String title;
 	private String content;
+	private String talk_script;
 	private Integer useful_count;
+	
+//	@OneToOne
+//	@JoinColumn(name = "m_category_id")
+//	private Category category;
 }
