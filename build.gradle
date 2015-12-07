@@ -4,7 +4,7 @@ buildscript{
 	}
 	dependencies{
 		classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE'
-        classpath 'mysql:mysql-connector-java:5.1.36'   
+        classpath 'mysql:mysql-connector-java:5.1.36'
 	}
 }
 
@@ -29,6 +29,12 @@ configurations{
 	provided
 }
 
+sourceSets {
+	main.compileClasspath += configurations.provided
+	test.compileClasspath += configurations.provided
+	test.runtimeClasspath += configurations.provided
+}
+
 eclipse.classpath {
     plusConfigurations += [configurations.provided]
     noExportConfigurations += [configurations.provided]
@@ -41,13 +47,13 @@ dependencies {
     //compile 'org.springframework.boot:spring-boot-starter'
     compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'org.springframework.boot:spring-boot-gradle-plugin'  
+    compile 'org.springframework.boot:spring-boot-gradle-plugin'
     compile 'org.modelmapper.extensions:modelmapper-spring:0.7.5'
     compile 'org.apache.commons:commons-lang3:3.0'
     compile 'org.springframework.boot:spring-boot-starter-data-elasticsearch:1.2.7.RELEASE'
     testCompile 'junit:junit:4.+'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
-	testCompile 'junit:junit:4.+'   
+	testCompile 'junit:junit:4.+'
 	provided 'org.projectlombok:lombok:1.16.6'
     provided 'com.fasterxml.jackson.core:jackson-databind'
 }
