@@ -24,28 +24,24 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="m_category")
+@Table(name="m_manual_category")
 @Where(clause="status='valid'")
 @Embeddable
-public class Category implements Serializable{
+public class ManualCategory implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue
 	private Integer id;
 	private String status;
-	private Integer category_div;
-	private String category_name;
+	private String name;
 	
 	@OneToMany
 	@JoinColumn(name="m_category_id")
 	private List<Manual> manuals;
-	@OneToMany
-	@JoinColumn(name="m_category_id")
-	private List<FAQ> faqs;
 	
 	@OneToMany(mappedBy="children")
-	List<CategoryRelations> children;
+	List<ManualCategoryRelations> children;
 	@OneToMany(mappedBy="parent")
-	List<CategoryRelations> parents;
+	List<ManualCategoryRelations> parents;
 }

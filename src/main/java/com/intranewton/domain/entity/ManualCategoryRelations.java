@@ -22,8 +22,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="m_category_relations")
-public class CategoryRelations implements Serializable{
+@Table(name="m_manual_category_relations")
+public class ManualCategoryRelations implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id 
@@ -36,10 +36,10 @@ public class CategoryRelations implements Serializable{
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="anscestor_id",referencedColumnName="id",insertable=false,updatable=false)
-	private Category children;
+	private ManualCategory children;
 	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="descendant_id",referencedColumnName="id",insertable=false,updatable=false)
-	private Category parent;
+	private ManualCategory parent;
 }
