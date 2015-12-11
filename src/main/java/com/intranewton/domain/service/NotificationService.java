@@ -34,33 +34,33 @@ public class NotificationService {
 	UserService userService;
 
 	/**
-	 * 渡されたDAOのスキル名リストをユーザ名リストに変換し、お知らせとして登録する
+	 * 渡されたパラメータのスキル名リストをユーザ名リストに変換し、お知らせとして登録する
 	 * 
-	 * @param notificationDAO
+	 * @param notificationParam
 	 */
-	public void createNotification( NotificationParam notificationDAO ) {
-		notificationDAO.setTargetUserList(userService.getTargetUsersbySkills(notificationDAO.getTargetUserList()));
-		notificationRepository.save(convertDAOtoEntity(notificationDAO));
+	public void createNotification(NotificationParam notificationParam) {
+		notificationParam.setTargetUserList(userService.getTargetUsersbySkills(notificationParam.getTargetUserList()));
+		notificationRepository.save(convertParamtoEntity(notificationParam));
 		System.out.println("notification post success");
 	}
 
 	/**
-	 * 渡されたDAOからnotificationクラスに詰め替える
+	 * クライアントから渡されたパラメータからnotificationクラスに詰め替える
 	 * 
-	 * @param notificationDAO
+	 * @param notificationParam
 	 * @return notification
 	 */
-	public Notification convertDAOtoEntity( NotificationParam notificationDAO ) {
+	public Notification convertParamtoEntity(NotificationParam notificationParam) {
 		Notification notification = new Notification();
-		notification.setCreate_user(notificationDAO.getCreate_user());
-		notification.setUpdate_user(notificationDAO.getUpdate_user());
+		notification.setCreate_user(notificationParam.getCreate_user());
+		notification.setUpdate_user(notificationParam.getUpdate_user());
 		notification.setStatus("valid");
-		notification.setTitle(notificationDAO.getTitle());
-		notification.setContent(notificationDAO.getContent());
-		notification.setFile_path(notificationDAO.getFile_path());
-		notification.setImportance(notificationDAO.getImportance());
+		notification.setTitle(notificationParam.getTitle());
+		notification.setContent(notificationParam.getContent());
+		notification.setFile_path(notificationParam.getFile_path());
+		notification.setImportance(notificationParam.getImportance());
 		List<NotificationTargetRole> targetRoleList = new ArrayList<>();
-		for ( String targetUser : notificationDAO.getTargetUserList() ) {
+		for ( String targetUser : notificationParam.getTargetUserList() ) {
 			NotificationTargetRole targetRole = new NotificationTargetRole();
 			targetRole.setM_notification(notification);
 			targetRole.setTarget_user(targetUser);
@@ -76,7 +76,7 @@ public class NotificationService {
 	 * @param userName
 	 * @return notificationDTO list
 	 */
-	public List<NotificationDTO> getDTObyUserName( String userName ) {
+	public List<NotificationDTO> getDTObyUserName(String userName) {
 		List<Notification> notifications = getEntitybyUserName(userName);
 		List<NotificationDTO> notificationDTOList = new ArrayList<>();
 		for ( Notification notification : notifications ) {
@@ -99,7 +99,7 @@ public class NotificationService {
 	 * @param userName
 	 * @return notification list
 	 */
-	public List<Notification> getEntitybyUserName( String userName ) {
+	public List<Notification> getEntitybyUserName(String userName) {
 		List<NotificationTargetRole> targetRoleList = notificationTargetRoleRepository.findbyTargetUser(userName);
 		List<Notification> notificationList = new ArrayList<>();
 		for ( NotificationTargetRole targetRole : targetRoleList ) {
@@ -116,7 +116,7 @@ public class NotificationService {
 	 * @param userName
 	 * @return 既読ユーザ名のリスト
 	 */
-	public List<String> createReadUserList( List<NotificationTargetRole> targetRoleList, String userName ) {
+	public List<String> createReadUserList(List<NotificationTargetRole> targetRoleList,String userName) {
 		List<String> readUserList = new ArrayList<>();
 		if ( !(targetRoleList.size() > 0) )
 			return readUserList;
@@ -135,7 +135,7 @@ public class NotificationService {
 	 * @param userName
 	 * @return 未読ユーザ名のリスト
 	 */
-	public List<String> createUnReadUserList( List<NotificationTargetRole> targetRoleList, String userName ) {
+	public List<String> createUnReadUserList(List<NotificationTargetRole> targetRoleList,String userName) {
 		List<String> unreadUserList = new ArrayList<>();
 		if ( !(targetRoleList.size() > 0) )
 			return unreadUserList;

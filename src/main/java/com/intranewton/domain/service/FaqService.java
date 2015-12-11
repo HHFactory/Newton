@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.intranewton.domain.entity.FAQ;
-import com.intranewton.domain.repository.CategoryRepository;
+import com.intranewton.domain.repository.ManualCategoryRepository;
 import com.intranewton.domain.repository.FaqRepository;
 
 @Service
@@ -20,7 +20,7 @@ public class FaqService {
 	@Autowired
 	FaqRepository faqRepository;
 	@Autowired
-	CategoryRepository categoryRepository;
+	ManualCategoryRepository categoryRepository;
 
 	// FAQ取得
 	public List<FAQ> getFaqList() {
