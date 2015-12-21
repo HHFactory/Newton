@@ -8,19 +8,27 @@ package com.intranewton.domain.service;
 
 import java.util.List;
 
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.intranewton.domain.entity.FAQ;
-import com.intranewton.domain.repository.ManualCategoryRepository;
+import com.intranewton.domain.entity.FAQRevision;
 import com.intranewton.domain.repository.FaqRepository;
+import com.intranewton.domain.repository.FaqRevisionRepository;
+import com.intranewton.domain.repository.ManualCategoryRepository;
 
 @Service
 public class FaqService {
 	@Autowired
 	FaqRepository faqRepository;
 	@Autowired
+	FaqRevisionRepository faqRevisionRepository;
+	@Autowired
 	ManualCategoryRepository categoryRepository;
+
+	@Autowired
+	private Mapper dozerBeanMapper;
 
 	// FAQ取得
 	public List<FAQ> getFaqList() {
@@ -36,8 +44,13 @@ public class FaqService {
 
 	// FAQ新規登録
 	public FAQ createFaq( FAQ faq ) {
-		return faqRepository.save(faq);
+		FAQ persistedFaq = faqRepository.save(faq);
+
+		FAQRevision revision = dozerBeanMapper.map(persistedFaq, FAQRevision.class);
+		faqRevisionRepository.save(revision);
+
+		return persistedFaq;
 	}
-	
+
 
 }
