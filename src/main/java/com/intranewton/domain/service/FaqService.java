@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.intranewton.domain.entity.Faq;
-import com.intranewton.domain.entity.FAQRevision;
+import com.intranewton.domain.entity.FaqRevision;
 import com.intranewton.domain.repository.FaqRepository;
 import com.intranewton.domain.repository.FaqRevisionRepository;
 import com.intranewton.domain.repository.ManualCategoryRepository;
@@ -46,7 +46,7 @@ public class FaqService {
 	public Faq createFaq( Faq faq ) {
 		Faq persistedFaq = faqRepository.save(faq);
 
-		FAQRevision revision = dozerBeanMapper.map(persistedFaq, FAQRevision.class);
+		FaqRevision revision = dozerBeanMapper.map(persistedFaq, FaqRevision.class);
 		faqRevisionRepository.save(revision);
 
 		return persistedFaq;

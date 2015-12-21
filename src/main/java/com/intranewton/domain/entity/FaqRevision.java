@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Document(indexName = "jdbc",type = "jdbc")
 @NoArgsConstructor
 @AllArgsConstructor
-public class FAQRevision extends AbstractEntity implements Serializable {
+public class FaqRevision extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String title;
