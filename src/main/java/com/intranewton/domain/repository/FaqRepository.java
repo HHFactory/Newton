@@ -17,12 +17,12 @@ import com.intranewton.domain.entity.Faq;
 @Repository
 public interface FaqRepository extends JpaRepository<Faq, Integer>{
 	//役に立ったボタン押下時にuseful_countカラムをインクリメントする。
-	@Query("UPDATE Faq faq SET faq.useful_count = faq.useful_count + 1 WHERE faq.id=?")
+	@Query("UPDATE Faq f SET f.usefulCount = f.usefulCount + 1 WHERE f.id=?")
 	@Modifying
 	@Transactional
 	Integer countUpUsefulCount(Integer id);
 
 	//文字列検索用クエリ(elasticsearchに移行)
-	@Query("SELECT f FROM Faq f where f.title like %:title% order by f.updateDatetime asc")
+	@Query("SELECT f FROM Faq f WHERE f.title LIKE %:title% ORDER BY f.updateDatetime ASC")
 	List<Faq> searchFaq(@Param("title") String title);
 }

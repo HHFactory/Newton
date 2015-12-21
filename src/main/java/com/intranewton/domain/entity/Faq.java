@@ -32,19 +32,19 @@ public class Faq extends AbstractEntity implements Serializable {
 
 	private String title;
 	private String content;
-	private String talk_script;
-	private Integer useful_count;
+	private String talkScript;
+	private Integer usefulCount;
 
 //	@OneToOne
 //	@JoinColumn(name = "m_category_id")
 //	private Category category;
 
 	public Faq(Integer id, Timestamp createDatetime, String createUser, Timestamp updateDatetime, String updateUser,
-			String status, String title, String content, String talk_script, Integer useful_count) {
+			String status, String title, String content, String talkScript, Integer usefulCount) {
 		super(id, createDatetime, createUser, updateDatetime, updateUser, status);
 		this.title = title;
 		this.content = content;
-		this.talk_script = talk_script;
-		this.useful_count = useful_count;
+		this.talkScript = talkScript;
+		this.usefulCount = usefulCount;
 	}
 }

@@ -31,9 +31,9 @@ public class FaqFaqRevisionMapperTest {
 		final int id = 2;
 		final String title = "Test title";
 		final String content = "Test content";
-		final String talk_script = "Test talk_script";
-		final int useful_count = 42;
-		Faq faq = new Faq(title, content, talk_script, useful_count);
+		final String talkScript = "Test talk_script";
+		final int usefulCount = 42;
+		Faq faq = new Faq(title, content, talkScript, usefulCount);
 		faq.setId(id);
 
 		FaqRevision faqRevision = faqFaqRevisionDozerMapper.map(faq, FaqRevision.class);
@@ -41,8 +41,8 @@ public class FaqFaqRevisionMapperTest {
 		assertThat(faqRevision.getId(), is(nullValue()));
 		assertThat(faqRevision.getTitle(), is(title));
 		assertThat(faqRevision.getContent(), is(content));
-		assertThat(faqRevision.getTalk_script(), is(talk_script));
-		assertThat(faqRevision.getUseful_count(), is(useful_count));
+		assertThat(faqRevision.getTalkScript(), is(talkScript));
+		assertThat(faqRevision.getUsefulCount(), is(usefulCount));
 		assertThat(faqRevision.getFaq(), is(faq));
 	}
 }

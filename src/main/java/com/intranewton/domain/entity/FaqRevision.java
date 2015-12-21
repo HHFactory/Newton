@@ -33,8 +33,8 @@ public class FaqRevision extends AbstractEntity implements Serializable {
 
 	private String title;
 	private String content;
-	private String talk_script;
-	private Integer useful_count;
+	private String talkScript;
+	private Integer usefulCount;
 
 	@ManyToOne
 	@JoinColumn(name="m_faq_id")
