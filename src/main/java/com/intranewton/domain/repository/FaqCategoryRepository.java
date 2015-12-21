@@ -11,7 +11,7 @@ import com.intranewton.domain.entity.FaqCategory;
  * m_manual_categoryテーブルリポジトリ
  */
 @Repository
-public interface FAQCategoryRepository extends JpaRepository<FaqCategory, Integer>{
+public interface FaqCategoryRepository extends JpaRepository<FaqCategory, Integer>{
 	//カテゴリIDからカテゴリを取得する
 	List<FaqCategory> findById(Integer id);
 }

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.intranewton.domain.entity.FaqCategory;
-import com.intranewton.domain.repository.FAQCategoryRepository;
+import com.intranewton.domain.repository.FaqCategoryRepository;
 import com.intranewton.domain.repository.ManualCategoryRepository;
 
 /**
@@ -18,7 +18,7 @@ public class CategoryService {
 	@Autowired
 	ManualCategoryRepository categoryRepository;
 	@Autowired
-	FAQCategoryRepository faqCategoryRepository;
+	FaqCategoryRepository faqCategoryRepository;
 
 	/**
 	 * カテゴリIDからFAQカテゴリを取得
