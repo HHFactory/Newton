@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="m_faq_category_relations")
-public class FAQCategoryRelations implements Serializable{
+public class FaqCategoryRelation implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id 

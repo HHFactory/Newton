@@ -41,7 +41,7 @@ public class FaqCategory implements Serializable{
 	private List<Faq> faqs;
 	
 	@OneToMany(mappedBy="children")
-	List<FAQCategoryRelations> children;
+	List<FaqCategoryRelation> children;
 	@OneToMany(mappedBy="parent")
-	List<FAQCategoryRelations> parents;
+	List<FaqCategoryRelation> parents;
 }
