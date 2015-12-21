@@ -38,7 +38,7 @@ public class FAQCategory implements Serializable{
 	
 	@OneToMany
 	@JoinColumn(name="m_faq_category_id")
-	private List<FAQ> faqs;
+	private List<Faq> faqs;
 	
 	@OneToMany(mappedBy="children")
 	List<FAQCategoryRelations> children;

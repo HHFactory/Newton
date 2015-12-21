@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.intranewton.domain.entity.FAQ;
+import com.intranewton.domain.entity.Faq;
 import com.intranewton.elastic.repository.FAQElasticsearchRepository;
 
 @Service
@@ -17,7 +17,7 @@ public class FAQElasticsearchService {
 	 * elasticsearchでFAQを全件取得する
 	 * @return FAQ Iterable
 	 */
-	public Iterable<FAQ> findAllFaqsbyElasticsearch(){
+	public Iterable<Faq> findAllFaqsbyElasticsearch(){
 		System.out.println(faqElasticsearchRepository.findAll());
 		return faqElasticsearchRepository.findAll();
 	}
@@ -27,7 +27,7 @@ public class FAQElasticsearchService {
 	 * @param content
 	 * @return FAQ.list
 	 */
-	public List<FAQ> findbyContentLike(String content){			
+	public List<Faq> findbyContentLike(String content){			
 		return faqElasticsearchRepository.findByContentLike(content);
 	}
 	
@@ -37,7 +37,7 @@ public class FAQElasticsearchService {
 	 * @param content
 	 * @return FAQ list
 	 */
-	public List<FAQ> findbyTitleOrContent(String title,String content){			
+	public List<Faq> findbyTitleOrContent(String title,String content){			
 		return faqElasticsearchRepository.findByTitleOrContent(title,content);
 	}
 }

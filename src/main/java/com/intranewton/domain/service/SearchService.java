@@ -9,7 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.intranewton.domain.entity.FAQ;
+import com.intranewton.domain.entity.Faq;
 import com.intranewton.domain.entity.Notification;
 import com.intranewton.domain.repository.FaqRepository;
 import com.intranewton.domain.repository.ManualRepository;
@@ -25,7 +25,7 @@ public class SearchService {
 	@Autowired
 	NotificationRepository notificationRepository;
 
-	private List<FAQ> faqs;
+	private List<Faq> faqs;
 	// private List<ManualCategory> manualCategories;
 	private List<Notification> notifications;
 	private SearchResult searchResult;

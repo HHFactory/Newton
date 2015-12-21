@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.intranewton.domain.entity.FAQ;
+import com.intranewton.domain.entity.Faq;
 import com.intranewton.domain.entity.FAQRevision;
 
 @Configuration
@@ -24,7 +24,7 @@ public class FaqFaqRevisionDozerMapperConfiguration {
 		return new BeanMappingBuilder() {
 			@Override
 			protected void configure() {
-				mapping(FAQ.class, FAQRevision.class)
+				mapping(Faq.class, FAQRevision.class)
 						.exclude("id")
 						.fields("this", "faq");
 			}

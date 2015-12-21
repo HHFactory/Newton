@@ -1,10 +1,9 @@
 package com.intranewton.domain.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
@@ -18,17 +17,17 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * [JPA Entity] FAQ更新履歴
+ * m_FAQテーブルエンティティ
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "m_faq_revision")
+@Table(name = "m_faq")
 @Where(clause = "status='valid'")
 @Document(indexName = "jdbc",type = "jdbc")
 @NoArgsConstructor
 @AllArgsConstructor
-public class FAQRevision extends AbstractEntity implements Serializable {
+public class Faq extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String title;
@@ -36,7 +35,16 @@ public class FAQRevision extends AbstractEntity implements Serializable {
 	private String talk_script;
 	private Integer useful_count;
 
-	@ManyToOne
-	@JoinColumn(name="m_faq_id")
-	private Faq faq;
+//	@OneToOne
+//	@JoinColumn(name = "m_category_id")
+//	private Category category;
+
+	public Faq(Integer id, Timestamp create_datetime, String create_user, Timestamp update_datetime, String update_user,
+			String status, String title, String content, String talk_script, Integer useful_count) {
+		super(id, create_datetime, create_user, update_datetime, update_user, status);
+		this.title = title;
+		this.content = content;
+		this.talk_script = talk_script;
+		this.useful_count = useful_count;
+	}
 }

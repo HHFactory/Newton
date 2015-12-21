@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.intranewton.domain.entity.FAQ;
+import com.intranewton.domain.entity.Faq;
 import com.intranewton.domain.service.FaqService;
 import com.intranewton.elastic.service.FAQElasticsearchService;
 
@@ -32,8 +32,8 @@ public class FaqRestController {
 	 * @return FAQ List
 	 */
 	@RequestMapping(value="/api/v1/faqs",method=RequestMethod.GET)
-	List<FAQ> findAllFaqs(){
-		List<FAQ> faqs = faqService.getFaqList();
+	List<Faq> findAllFaqs(){
+		List<Faq> faqs = faqService.getFaqList();
 		System.out.println("connect faq api");
 		return faqs;
 	}
@@ -57,7 +57,7 @@ public class FaqRestController {
 	 */
 	@RequestMapping(value="/api/v1/faq",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	FAQ postFaq(@RequestBody FAQ faq){	
+	Faq postFaq(@RequestBody Faq faq){	
 		return faqService.createFaq(faq);
 	}
 			
@@ -66,13 +66,13 @@ public class FaqRestController {
 	 * @return FAQ iterable
 	 */
 	@RequestMapping(value="/api/v1/elastic/allfaqs",method=RequestMethod.GET)
-	Iterable<FAQ> findallfaqs(){		
+	Iterable<Faq> findallfaqs(){		
 		return faqElasticService.findAllFaqsbyElasticsearch();
 	}
 	
 	
 	@RequestMapping(value="/api/v1/elastic/faqs",method=RequestMethod.GET)
-	List<FAQ> findTitleOrContent(@RequestParam String title){
+	List<Faq> findTitleOrContent(@RequestParam String title){
 		return faqElasticService.findbyTitleOrContent(title,title);
 	}
 	

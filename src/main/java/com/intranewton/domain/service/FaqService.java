@@ -12,7 +12,7 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.intranewton.domain.entity.FAQ;
+import com.intranewton.domain.entity.Faq;
 import com.intranewton.domain.entity.FAQRevision;
 import com.intranewton.domain.repository.FaqRepository;
 import com.intranewton.domain.repository.FaqRevisionRepository;
@@ -31,8 +31,8 @@ public class FaqService {
 	private Mapper dozerBeanMapper;
 
 	// FAQ取得
-	public List<FAQ> getFaqList() {
-		List<FAQ> faqs = faqRepository.findAll();
+	public List<Faq> getFaqList() {
+		List<Faq> faqs = faqRepository.findAll();
 		return faqs;
 	}
 
@@ -43,8 +43,8 @@ public class FaqService {
 	}
 
 	// FAQ新規登録
-	public FAQ createFaq( FAQ faq ) {
-		FAQ persistedFaq = faqRepository.save(faq);
+	public Faq createFaq( Faq faq ) {
+		Faq persistedFaq = faqRepository.save(faq);
 
 		FAQRevision revision = dozerBeanMapper.map(persistedFaq, FAQRevision.class);
 		faqRevisionRepository.save(revision);

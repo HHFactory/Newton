@@ -11,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.intranewton.common.config.DozerBeanMapperConfiguration;
-import com.intranewton.domain.entity.FAQ;
+import com.intranewton.domain.entity.Faq;
 import com.intranewton.domain.entity.FAQRevision;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,7 +33,7 @@ public class FaqFaqRevisionMapperTest {
 		final String content = "Test content";
 		final String talk_script = "Test talk_script";
 		final int useful_count = 42;
-		FAQ faq = new FAQ(title, content, talk_script, useful_count);
+		Faq faq = new Faq(title, content, talk_script, useful_count);
 		faq.setId(id);
 
 		FAQRevision faqRevision = faqFaqRevisionDozerMapper.map(faq, FAQRevision.class);
