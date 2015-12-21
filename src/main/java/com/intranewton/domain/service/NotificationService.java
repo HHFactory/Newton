@@ -52,12 +52,12 @@ public class NotificationService {
 	 */
 	public Notification convertParamtoEntity(NotificationParam notificationParam) {
 		Notification notification = new Notification();
-		notification.setCreateUser(notificationParam.getCreate_user());
-		notification.setUpdateUser(notificationParam.getUpdate_user());
+		notification.setCreateUser(notificationParam.getCreateUser());
+		notification.setUpdateUser(notificationParam.getUpdateUser());
 		notification.setStatus("valid");
 		notification.setTitle(notificationParam.getTitle());
 		notification.setContent(notificationParam.getContent());
-		notification.setFile_path(notificationParam.getFile_path());
+		notification.setFilePath(notificationParam.getFilePath());
 		notification.setImportance(notificationParam.getImportance());
 		List<NotificationTargetRole> targetRoleList = new ArrayList<>();
 		for ( String targetUser : notificationParam.getTargetUserList() ) {
@@ -83,7 +83,7 @@ public class NotificationService {
 			NotificationDTO notificationDTO = new NotificationDTO();
 			notificationDTO.setTitle(notification.getTitle());
 			notificationDTO.setContent(notification.getContent());
-			notificationDTO.setFile_path(notification.getFile_path());
+			notificationDTO.setFilePath(notification.getFilePath());
 			notificationDTO.setImportance(notification.getImportance());
 			notificationDTO.setReadMemberList(createReadUserList(notification.getNotificationTargetRoles(), userName));
 			notificationDTO

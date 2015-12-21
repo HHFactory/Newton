@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 public class NotificationParam {
 	private String title;
 	private String content;
-	private String create_user;
-	private String update_user;
+	private String createUser;
+	private String updateUser;
 	private Integer importance;
-	private String file_path;
+	private String filePath;
 	private List<String> targetUserList;
 }
