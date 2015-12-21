@@ -1,6 +1,7 @@
 package com.intranewton.domain.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -33,8 +34,17 @@ public class FAQ extends AbstractEntity implements Serializable {
 	private String content;
 	private String talk_script;
 	private Integer useful_count;
-	
+
 //	@OneToOne
 //	@JoinColumn(name = "m_category_id")
 //	private Category category;
+
+	public FAQ(Integer id, Timestamp create_datetime, String create_user, Timestamp update_datetime, String update_user,
+			String status, String title, String content, String talk_script, Integer useful_count) {
+		super(id, create_datetime, create_user, update_datetime, update_user, status);
+		this.title = title;
+		this.content = content;
+		this.talk_script = talk_script;
+		this.useful_count = useful_count;
+	}
 }

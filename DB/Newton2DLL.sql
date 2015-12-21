@@ -87,6 +87,33 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
+-- Table `newton2`.`m_faq_revision`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `newton2`.`m_faq_revision` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
+  `create_datetime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '',
+  `create_user` CHAR(15) NOT NULL COMMENT '',
+  `update_datetime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '',
+  `update_user` CHAR(15) NOT NULL COMMENT '',
+  `status` CHAR(8) NOT NULL COMMENT '',
+  `title` VARCHAR(255) NOT NULL COMMENT '',
+  `content` LONGTEXT NOT NULL COMMENT '',
+  `talk_script` LONGTEXT NULL DEFAULT NULL COMMENT '',
+  `useful_count` INT NULL DEFAULT 0 COMMENT '',
+  `m_faq_id` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `fk_m_faq_revision_m_faq_idx` (`m_faq_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_m_faq_revision_m_faq`
+    FOREIGN KEY (`m_faq_id`)
+    REFERENCES `newton2`.`m_faq` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 11
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
 -- Table `newton2`.`m_manual_category`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `newton2`.`m_manual_category` (
