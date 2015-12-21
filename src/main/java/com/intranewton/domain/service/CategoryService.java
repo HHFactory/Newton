@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.intranewton.domain.entity.FAQCategory;
+import com.intranewton.domain.entity.FaqCategory;
 import com.intranewton.domain.repository.FAQCategoryRepository;
 import com.intranewton.domain.repository.ManualCategoryRepository;
 
@@ -25,7 +25,7 @@ public class CategoryService {
 	 * @param categoryID
 	 * @return
 	 */
-	public List<FAQCategory> findFaqCategory(Integer categoryID) {
+	public List<FaqCategory> findFaqCategory(Integer categoryID) {
 		return faqCategoryRepository.findById(categoryID);
 	}
 }

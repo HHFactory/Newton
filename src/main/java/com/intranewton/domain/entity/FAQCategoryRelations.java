@@ -36,10 +36,10 @@ public class FAQCategoryRelations implements Serializable{
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="anscestor_id",referencedColumnName="id",insertable=false,updatable=false)
-	private FAQCategory children;
+	private FaqCategory children;
 	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="descendant_id",referencedColumnName="id",insertable=false,updatable=false)
-	private FAQCategory parent;
+	private FaqCategory parent;
 }

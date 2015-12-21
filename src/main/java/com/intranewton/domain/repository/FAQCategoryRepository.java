@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.intranewton.domain.entity.FAQCategory;
+import com.intranewton.domain.entity.FaqCategory;
 
 /**
  * m_manual_categoryテーブルリポジトリ
  */
 @Repository
-public interface FAQCategoryRepository extends JpaRepository<FAQCategory, Integer>{
+public interface FAQCategoryRepository extends JpaRepository<FaqCategory, Integer>{
 	//カテゴリIDからカテゴリを取得する
-	List<FAQCategory> findById(Integer id);
+	List<FaqCategory> findById(Integer id);
 }

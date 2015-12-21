@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Table(name="m_faq_category")
 @Where(clause="status='valid'")
 @Embeddable
-public class FAQCategory implements Serializable{
+public class FaqCategory implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
