@@ -2,7 +2,7 @@ package com.intranewton.domain.service;
 
 /*
  * お知らせ関連サービス
- * 
+ *
  */
 
 import java.util.ArrayList;
@@ -11,8 +11,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.intranewton.domain.dto.NotificationParam;
 import com.intranewton.domain.dto.NotificationDTO;
+import com.intranewton.domain.dto.NotificationParam;
 import com.intranewton.domain.entity.Notification;
 import com.intranewton.domain.entity.NotificationTargetRole;
 import com.intranewton.domain.repository.NotificationRepository;
@@ -35,7 +35,7 @@ public class NotificationService {
 
 	/**
 	 * 渡されたパラメータのスキル名リストをユーザ名リストに変換し、お知らせとして登録する
-	 * 
+	 *
 	 * @param notificationParam
 	 */
 	public void createNotification(NotificationParam notificationParam) {
@@ -46,14 +46,14 @@ public class NotificationService {
 
 	/**
 	 * クライアントから渡されたパラメータからnotificationクラスに詰め替える
-	 * 
+	 *
 	 * @param notificationParam
 	 * @return notification
 	 */
 	public Notification convertParamtoEntity(NotificationParam notificationParam) {
 		Notification notification = new Notification();
-		notification.setCreate_user(notificationParam.getCreate_user());
-		notification.setUpdate_user(notificationParam.getUpdate_user());
+		notification.setCreateUser(notificationParam.getCreate_user());
+		notification.setUpdateUser(notificationParam.getUpdate_user());
 		notification.setStatus("valid");
 		notification.setTitle(notificationParam.getTitle());
 		notification.setContent(notificationParam.getContent());
@@ -72,7 +72,7 @@ public class NotificationService {
 
 	/**
 	 * 渡されたユーザ名に紐づくお知らせをDTOに変換して返却する
-	 * 
+	 *
 	 * @param userName
 	 * @return notificationDTO list
 	 */
@@ -95,7 +95,7 @@ public class NotificationService {
 
 	/**
 	 * 渡されたユーザ名に紐づくお知らせを返却する
-	 * 
+	 *
 	 * @param userName
 	 * @return notification list
 	 */
@@ -111,7 +111,7 @@ public class NotificationService {
 
 	/**
 	 * お知らせ既読者リストを作成する
-	 * 
+	 *
 	 * @param targetRoleList
 	 * @param userName
 	 * @return 既読ユーザ名のリスト
@@ -130,7 +130,7 @@ public class NotificationService {
 
 	/**
 	 * お知らせ未読者リストの作成
-	 * 
+	 *
 	 * @param targetRoleList
 	 * @param userName
 	 * @return 未読ユーザ名のリスト

@@ -39,9 +39,9 @@ public class Faq extends AbstractEntity implements Serializable {
 //	@JoinColumn(name = "m_category_id")
 //	private Category category;
 
-	public Faq(Integer id, Timestamp create_datetime, String create_user, Timestamp update_datetime, String update_user,
+	public Faq(Integer id, Timestamp createDatetime, String createUser, Timestamp updateDatetime, String updateUser,
 			String status, String title, String content, String talk_script, Integer useful_count) {
-		super(id, create_datetime, create_user, update_datetime, update_user, status);
+		super(id, createDatetime, createUser, updateDatetime, updateUser, status);
 		this.title = title;
 		this.content = content;
 		this.talk_script = talk_script;
