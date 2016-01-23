@@ -62,6 +62,14 @@ test {
     systemProperties 'property': 'value'
 }
 
+task wrapper(type:Wrapper) {
+	gradleVersion = '2.9'
+}
+
+task stage {
+	dependsOn assemble
+}
+
 uploadArchives {
     repositories {
        flatDir {
