@@ -1,0 +1,34 @@
+<!-- お知らせ一覧エリア-->
+<div class="l-notification" ng-controller="ListNotificationController" >
+	<!-- ヘッダエリア -->
+	<div class="col-header--bordered">
+		<span class="col-header__item col-header__title">お知らせ</span>
+		<a href="" class="col-header__item col-header__title">未読</a>
+		<a href="" class="col-header__item col-header__title">既読</a>
+ 	</div>
+	
+	<!-- 一覧表示エリア -->
+ 	<div class="col-contents" >
+ 		<!-- お知らせパネル -->
+		<table ng-class="setHeadColor(notification)" ng-repeat="notification in notifications" ng-click="open(notification)">
+			<thead>
+				<tr><th>{{notification.title}}</th></tr>
+			</thead>
+			<tbody>
+				<tr><td>{{notification.content|abbreviate:150}}</td></tr>
+			</tbody>
+			<tfoot ng-controller="PopOverController" >
+				<tr><td class="table__footer--low">
+					<a uib-popover-template="dynamicPopOver.templateUrl" popover-placement="top">
+						既読<span class="bagde">{{notification.readMemberList.length}}</span>							
+						未読<span class="bagde">{{notification.unreadMemberList.length}}</span>	
+					</a></td>
+				</tr>
+			</tfoot>
+		</table>
+		<!-- 新規登録パネル -->
+		<a class="open-create-notification"　href="" ng-click="openPanel()"><i class="fa fa-pencil-square-o"/><span>新しいお知らせを登録する</span></a>
+		<div ng-include="'../../../app/views/notification/createNotificationPanel.html'" ng-show="isShowCreatePanel"></div>
+	</div>
+
+</div>

@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+//サイズ関連
+$footerHeight: 50px;
+$navbarHeight: 50px;
+$manualAreaWidth: 200px;
+$notificationAreaWidth: 400px;
+$faqAreaWidthWide: calc(100% - #{$notificationAreaWidth});
+$faqAreaWidthNarrow: calc($faqAreaWidthWide - #{$manualAreaWidth});
+$colHeaderHeight: 40px;
+$general-padding-left: 15px;
+$general-padding-right: 15px;
+$navSearchBarWidth: 400px;
+$pageFooterButtonAreaHeight: 20px;
+
+//その他
+$set-prefix: -webkit-, -moz-, -ms-, -o-, '';

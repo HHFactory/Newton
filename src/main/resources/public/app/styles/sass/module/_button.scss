@@ -1,0 +1,49 @@
+
+.btn-green {
+	@extend .btn;
+	background-color: $main-green;
+	border-radius: 0.25em;
+	font-size: 15px;
+	padding: 3px 5px;
+	height: 30px;
+	text-align: center;
+	&:hover {
+		color: white;
+		box-shadow: 2px 2px 2px #555;
+	}
+	&:focus {
+		outline: none;
+	}
+}
+
+.close-button {
+	$btnSize: 60px;
+	width: $btnSize;
+	height: $btnSize;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	color: $main-brown;
+	border: 1px solid;
+	@each $prefix in $set-prefix {
+		#{$prefix}border-radius: $btnSize/2;
+	}
+	background-color: blue;
+	&:hover {
+		background-color: $sidebar-color;
+	}
+	> i {
+		font-size: 22px;
+		border: 1px solid;
+	}
+	> .button--label {
+		border: 1px dotted;
+		width: 100%;
+		display: inline-block;
+		font-size: 12px;
+	}
+}
+
+.btn--link {
+	//display: inline-block;
+}

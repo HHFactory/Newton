@@ -1,0 +1,25 @@
+<!-- FAQ一覧表示エリア -->
+<div class="l-faq" ng-controller="ListFaqController" ng-class="{'is-slide-right':isShowManual}" >
+	<!-- ヘッダエリア -->
+	<div class="col-header">
+		<span class="col-header__item col-header__title">よくあるお問い合わせ</span>
+		<!-- 新規登録アイコン -->
+		<a class="col-header__item" ng-click="create()"><i class="fa fa-pencil-square-o"/></a>
+		<!-- 修正対象一覧アイコン -->
+		<a class="col-header__item" ng-click="checkModifyTaskList()"><i class="fa fa-list-alt"/></a>
+		<!-- まとめて登録アイコン -->
+		<a href="" ng-click="importExcel()"><i class="fa fa-download"/></a>
+ 	</div>
+
+ 	<!-- 一覧表示エリア -->
+ 	<div class="col-contents" >
+		<table class="table--hover" ng-repeat="faq in faqList" ng-click="openDetail(faq)">
+			<thead>
+				<tr><th><i class="fa fa-question-circle"></i>{{faq.title}}</th></tr>
+			</thead>
+			<tbody>
+				<tr><td>{{faq.content | abbreviate:150}}</td></tr>
+			</tbody>
+		</table>
+	</div><!-- end一覧表示エリア -->	
+</div>

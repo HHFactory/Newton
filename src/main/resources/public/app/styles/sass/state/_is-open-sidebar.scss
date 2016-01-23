@@ -1,0 +1,25 @@
+
+.is-slide-right {
+	@each $prefix in $set-prefix {
+		@include transition(transform 0.1s ease);
+		#{$prefix}transform-origin: 0% 100%;
+		#{$prefix}transform: translateX(#{$manualAreaWidth});
+	    width: #{$prefix}calc(100% - #{$manualAreaWidth + $notificationAreaWidth});
+	}
+}
+.is-slide-left {
+	@each $prefix in $set-prefix {
+		@include transition(transform 0.2s ease);
+		#{$prefix}transform-origin: 100% 0%;
+		#{$prefix}transform: translateX();
+		width: #{$prefix}calc(100% - #{$notificationAreaWidth});
+	}
+}
+
+.is-slide-top {
+	@each $prefix in $set-prefix {
+		@include transition(transform 0.1s ease);
+		#{$prefix}transform-origin: 0% 100%;
+		#{$prefix}transform: translateY(-300px);
+	}	
+}

@@ -1,0 +1,11 @@
+
+/** layout.main */
+.l-main {
+	@each $prefix in $set-prefix {
+		height: #{$prefix}calc(100vh - #{$navbarHeight});
+	}
+	width: 100%;
+  	top: $navbarHeight; 
+	position: relative;
+	background-color: $main-bg-gray;
+}

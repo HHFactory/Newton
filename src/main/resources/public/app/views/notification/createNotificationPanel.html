@@ -1,0 +1,41 @@
+<!-- 新規お知らせ登録パネル -->
+<div class="l-notification--create" ng-controller="CreateNotificationController">
+	<form class="form-without-margin" ng-submit="submit(notification)">
+		<table class="create-panel">
+			<thead>
+				<tr>
+					<th>新規お知らせ<a href="" ng-click="closePanel()"><i class="fa fa-times"/></a></th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- 宛先 -->
+				<tr class="create-panel__header-row" >　
+					<td ng-controller="PopOverController">
+						<a uib-popover-template="targetUserList.templateUrl" popover-placement="bottom-left"><i class="fa fa-user"/>宛先</a>
+					</td>
+
+				</tr>
+				<!-- タイトル -->
+				<tr class="create-panel__header-row">
+					<td><input class="create-panel__title" type="text" placeholder="タイトル"></td>
+				</tr>
+				<!-- 本文 -->
+				<tr>
+					<td><textarea class="create-panel__contents" rows="24" ng-change="parseMarkDown()" ng-model="notification.content" placeholder="お知らせ本文を入力してください"></textarea></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<!-- 重要度 -->
+				<tr class="create-panel__footer-row">
+					<td>
+						<span>重要度</span>
+						<label><input type="radio" ng-model="notification.importance" ng-value="1">高</label>
+						<label><input type="radio" ng-model="notification.importance" ng-value="2">中</label>
+						<label><input type="radio" ng-model="notification.importance" ng-value="3">低</label>
+					</td>
+					<td><button class="btn-green" type="submit">送信</button></td>
+				</tr>
+			</tfoot>
+		</table>
+	</form>
+</div>

@@ -1,0 +1,7 @@
+
+/** layout.sidebar */
+.l-manual {
+	@include l-column-set($manualAreaWidth);
+	//left: -$manualAreaWidth;
+	background-color: $sidebar-color;
+}

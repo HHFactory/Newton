@@ -1,0 +1,54 @@
+@charset "UTF-8";
+/**
+ * 新規登録画面用スタイル	
+ */
+
+//新規画面全体
+.create-view {
+	padding: 15px;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: $navbarHeight;
+}
+
+//画面ヘッダー
+.create-view__header {
+	@extend .input__text;
+}
+
+//新規画面メイン部分
+.create-view__contents {
+	display: table;
+	width: 100%;
+	margin-top: 5px;
+	@each $prefix in $set-prefix {
+		height: #{$prefix}calc(100% - 30px);
+	}
+}
+
+//新規画面メイン部分（右側）
+.create-view__contents--left {
+	display: table-cell;
+	width: 50%;
+	height: 100%;
+	text-align: left;
+}
+
+//新規画面メイン部分（左側）
+.create-view__contents--right {
+	display: table-cell;
+	width: 50%;
+	height: 100%;
+	vertical-align: top;
+}
+
+.create-view__contents__footer {
+	height: $pageFooterButtonAreaHeight;
+	width: 100%;
+}
+
+.create-view__textarea {
+	@include form-set();
+	height: 100%;
+}
