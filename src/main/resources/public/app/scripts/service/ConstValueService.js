@@ -9,13 +9,20 @@
 
 	angular.module('indexModule').value(
 		'constURI',{
-			'getFAQ':"http://localhost:8080/api/v1/faqs",
-			'getNotification':"http://localhost:8080/api/v1/notifications",
-			'getManual':"http://localhost:8080/api/v1/manuals",
-			'postFAQ':"http://localhost:8080/api/v1/faq",
-			'putFAQuseful':"http://localhost:8080/api/v1/faqs/",
+			'getFaqList':"http://localhost:8080/api/v1/faqs",
+			'postFaq':"http://localhost:8080/api/v1/faq",
+			'putFaqUseful':"http://localhost:8080/api/v1/faqs/",
+			'getModifyFaqList':"http://localhost:8080/api/v1/modifyfaqs",
+			'getNotificationList':"http://localhost:8080/api/v1/notifications",
 			'putNotification':"http://localhost:8080/api/v1/notification",
-			'getSkill':"http://localhost:8080/api/v1/roles",
+			'getManualList':"http://localhost:8080/api/v1/manuals",
+			'postManual':"http://localhost:8080/api/v1/manual",
+			'putManual':"http://localhost:8080/api/v1/manual",
+			'getSkillList':"http://localhost:8080/api/v1/roles",
+			'getUserList':"http://localhost:8080/api/v1/users",//ToDO:スキルに応じたユーザ取得に切り替え
+			'getToDoList':"http://localhost:8080/api/v1/todos",
+			'getToDoListByTargetUser':"http://localhost:8080/api/v1/targettodos",
+			'postToDo':"http://localhost:8080/api/v1/todo",
 			'searchAPI':"http://localhost:8080/api/v1/elastic/querysearch"
 		}
 	);

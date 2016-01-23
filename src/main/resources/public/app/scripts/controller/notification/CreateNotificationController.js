@@ -1,13 +1,14 @@
 (function(){
 'use strict';
 
-	function CreateNotificationCtrl($scope,$state,connectApiService,constURI){
+	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService){
+
 		/**
 		 * スキルリストの取得
 		 * @param  {[type]} resultAPI){			$scope.targetSkills [description]
 		 * @return {[type]}                                    [description]
 		 */
-		connectApiService.get(constURI.getSkill).then(function(resultAPI){
+		connectApiService.get(constURI.getSkillList).then(function(resultAPI){
 			$scope.targetSkills = resultAPI.data;
 		});
 
@@ -36,7 +37,6 @@
 		$scope.submit = function(notification){
 			notification.targetUserList = $scope.selection;
 			connectApiService.post(constURI.putNotification,notification).then(function(resultAPI){
-				console.log(resultAPI.status);
 				$state.go('main');
 			});
 		};
@@ -47,9 +47,17 @@
 		 */
 		$scope.cancel = function(){
 			$state.go('main');
-		};				
+		};	
+
+		/**
+		 * パネルを閉じる
+		 * @return {[type]} [description]
+		 */
+		$scope.closePanel = function() {
+			sharedService.isShowCreateNotificationPanel = false;
+		}			
 	}
 
 	//moduleへ登録
-	angular.module('indexModule').controller('CreateNotificationController',CreateNotificationCtrl);
+	angular.module('indexModule').controller('CreateNotificationController',['$scope','$state','connectApiService','constURI','sharedService',CreateNotificationCtrl]);
 })();

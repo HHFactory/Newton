@@ -4,17 +4,17 @@
 'use strict';
 	
 	//参照用モーダルコントローラ	
-	function ModalCtrl($scope,$modalInstance,argdata,connectApiService,constURI){
+	function ModalCtrl($scope,$modalInstance,data,connectApiService,constURI){
 		//contentはmarkdownをhtmlに変換して表示する
-		$scope.title= argdata.title;
-		$scope.content = marked(argdata.content);
+		$scope.title= data.title;
+		//$scope.content = marked(data.content);
 
 		/**
 		 * 役に立ったボタン押下処理
 		 * @return {[type]} [description]
 		 */
 		$scope.useful = function(){
-			connectApiService.put(constURI.putFAQuseful+argdata.id,argdata).then(function(){
+			connectApiService.put(constURI.putFAQuseful+data.id,data).then(function(){
 				$modalInstance.close();
 			});
 		};
@@ -29,5 +29,5 @@
 	}
 
 	//moduleへ登録
-	angular.module('indexModule').controller('ModalController',ModalCtrl);
+	angular.module('indexModule').controller('ModalController',['$scope','$modalInstance','connectApiService','constURI',ModalCtrl]);
 })();

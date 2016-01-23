@@ -1,10 +1,12 @@
 
 <!-- マニュアルサイドパネル -->
-<div ng-controller="ManualController">
-	<!-- パネルヘッダ -->
-	<div class="column-title-manual">マニュアル</div>			
+<div class="l-manual" ng-controller="ManualController">
+	<div class="col-header">
+		<span class="col-header__item col-header__title">マニュアル</span>
+	</div>			
+	
 	<!-- コンテンツ -->
-	<ul class="nav nav-stacked acoordion-group" ng-repeat="category in categories">
+	<ul class="col-contents" ng-repeat="category in categories">	
 		<!-- カテゴリ名表示 -->
 		<li><a ng-click="categoryCollapsed = !categoryCollapsed">{{category.name}}</a>
 			<!-- リスト名表示 -->

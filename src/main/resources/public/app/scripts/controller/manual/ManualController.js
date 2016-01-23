@@ -3,12 +3,12 @@
 (function(){
 'use strict';
 	
-	function ManualCtrl($scope,$http,connectApiService,constURI){
+	function ManualCtrl($scope,connectApiService,constURI){
 		$scope.categoryCollapsed=false;
 		$scope.listCollapsed = false;
 		
 		/**
-		 * マニュアルを取得するapiを叩く
+		 * マニュアルを取得する
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
@@ -18,5 +18,5 @@
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('ManualController',ManualCtrl);
+	angular.module('indexModule').controller('ManualController',['$scope','connectApiService','constURI',ManualCtrl]);
 })();

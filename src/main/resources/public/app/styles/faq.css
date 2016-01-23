@@ -72,3 +72,37 @@
 }
 
 
+/**
+ * modifydetailarea
+ */
+.faq-sidebar{
+	position: absolute;
+ 	z-index: 2;
+  	top: 0;
+  	width: 250px;
+  	height: 100%;
+  	right: -250px;
+  	background-color: gray;
+  	box-sizing: border-box;
+  	-moz-box-sizing: border-box;
+  	-webkit-transition: -webkit-transform ease 250ms;
+  	-moz-transition: -webkit-transform ease 250ms;
+  	-ms-transition: -webkit-transform ease 250ms;
+  	-o-transition: -webkit-transform ease 250ms;
+  	transition: -webkit-transform ease 250ms;
+  	-webkit-transition: transform ease 250ms;
+  	-moz-transition: transform ease 250ms;
+  	-ms-transition: transform ease 250ms;
+  	-o-transition: transform ease 250ms;
+  	transition: transform ease 250ms;
+}
+
+
+.isShow{
+	transform: translate3d(-250px, 0, 0);
+  	-ms-transform: translate3d(-250px, 0, 0);
+  	-webkit-transform: translate3d(-250px, 0, 0);
+  	-o-transform: translate3d(-250px, 0, 0);
+  	-moz-transform: translate3d(-250px, 0, 0);
+}
+

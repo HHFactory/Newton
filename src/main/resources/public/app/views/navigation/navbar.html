@@ -1,33 +1,40 @@
 
 <!-- ナビゲーションバー -->
-<div ng-controller="NavController as NavCtrl">
-    <!-- スライドメニュー開閉アイコン -->
-    <div class="navbar-header" ng-show="showList">
-        <a class="navbar-brand" id="slideButton"><span class="glyphicon glyphicon-listglyphicon glyphicon-list"></span></a>
+<div class="l-navbar" ng-controller="NavController" >
+    <div class="l-navbar--left">
+        <!-- マニュアルバー開閉ボタンリンク -->
+        <a class="btn--link " ng-click="showManualArea()" ng-show="showList"><i class="fa fa-th-list"/></a>
+        <!-- ホームボタンリンク -->
+        <a class="btn--link" ng-click="home()" ng-show="showHome"><span class="glyphicon glyphicon-home"/></a>            
     </div>
-    <!-- ホームアイコン -->
-    <div class="navbar-header" ng-show="showHome">
-        <a class="navbar-brand" ng-click="home()"><span class="glyphicon glyphicon-home"></span></a>
+    <div class="l-navbar--left">
+        <!-- 検索バー -->
+        <form role="search" ng-submit="search(query)">
+            <input type="text" class="search-bar" placeholder="&#xf002;マニュアル、FAQ、お知らせを検索できます" ng-model="query"/>
+        </form>              
     </div>
-    <!--　検索フォーム　-->
-    <form class="navbar-form navbar-left" role="search" ng-submit="search(query)">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="マニュアル、FAQ、お知らせを検索できます" ng-model="query"/><i class="glyphicon glyphicon-search form-control-feedback"></i>           
-        </div>
-    </form>
-    <!--　ナビゲーション右アイコン　-->
-    <div class="collapse navbar-collapse target">
-        <ul class="nav navbar-nav navbar-right">
-            <!--　リンク集　-->
-            <li class="dropdown">
-                <a class="dropdown-toggle" id="dropdownMenu" data-toggle="dropdown"><span class="glyphicon glyphicon-link"></span></a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-                    <li><a href="http://www.yahoo.co.jp" title="" target="_blank">yahoo!</a></li>
-                    <li><a href="http://www.google.co.jp" title="" target="_blank">google</a></li>
-                </ul>
-            </li>
-            <!--　ログアウトボタン　-->
-            <li><a class="icon" ><span class="glyphicon glyphicon-off"></span></a></li>
-        </ul>
-    </div>    
+    
+    <!-- <ul class="l-navbar--right"> -->
+        <!-- todoリスト
+        <li class="l-navbar__item dropdown">
+            <a class="dropdown-toggle" id="" data-toggle=""><span class="glyphicon glyphicon-exclamation-sign"></span></a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                <li ng-repeat="ToDo in ToDoList">{{ToDo.title}}</li>
+            </ul>
+        </li> -->
+        <!--　リンク集　
+        <li class="l-navbar__item dropdown">
+            <a class="dropdown-toggle" id="dropdownMenu" data-toggle="dropdown"><span class="glyphicon glyphicon-link"></span></a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                <li><a href="http://www.yahoo.co.jp" title="" target="_blank">yahoo!</a></li>
+                <li><a href="http://www.google.co.jp" title="" target="_blank">google</a></li>
+            </ul>
+        </li>-->
+        <!--　ログアウトボタン　
+        <li class="l-navbar__item">
+            <a class="icon" ><span class="glyphicon glyphicon-off"></span></a>
+        </li>
+    </ul>-->
+    <!-- </div>     -->
+
 </div>

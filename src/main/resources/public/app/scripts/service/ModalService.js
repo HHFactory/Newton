@@ -8,7 +8,7 @@
 'use strict';
 	function ModalService($uibModal){
 		/**
-		 * 参照用モーダルを開く
+		 * モーダルを開く
 		 */
 		var ModalService = {
 			openModal:function(argData){
@@ -21,9 +21,19 @@
 						}
 					}			
 				});
+			},
+			openSendModal:function(){
+				$uibModal.open({
+					templateUrl:"../../app/views/template/sendModal.html",
+					controller:"SendModalController",
+					resolve:{
+						
+					}
+				});
 			}
 		};
 		return ModalService;
+
 	}
 
 	//moduleへの登録
