@@ -66,10 +66,13 @@ task wrapper(type:Wrapper) {
 	gradleVersion = '2.9'
 }
 
-defaultTasks "clean","build"
-
 task stage {
-	dependsOn assemble
+	dependsOn build
+}
+
+task copyToLib(type: Copy) {
+	into "$buildDir/lib"
+	from(configurations.compile)
 }
 
 uploadArchives {
