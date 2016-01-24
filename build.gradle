@@ -66,15 +66,18 @@ task wrapper(type:Wrapper) {
 	gradleVersion = '2.9'
 }
 
-task stage {
-	dependsOn build
+task stage(type:Copy, dependsOn: [clean,build]) {
+	from jar.archivePath
+	into project.rootDir
+	rename{
+		'Newton-1.0.jar'
+	}
 }
+stage.mustRunAfter(clean)
 
-task copyToLib(type: Copy) {
-	into "$buildDir/lib"
-	from(configurations.compile)
+clean << {
+	project.file('Newton-1.0.jar').delete()
 }
-stage.dependsOn(copyToLib)
 
 uploadArchives {
     repositories {
