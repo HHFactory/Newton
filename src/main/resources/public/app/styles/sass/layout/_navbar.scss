@@ -28,3 +28,15 @@
 	height: 100%;
 }
 
+.navbar__item--icon {
+	display: table-cell;
+	vertical-align: middle;
+	height: 100%;
+	text-align: center;
+	font-size: 28px;
+	color: white;
+	&:hover {
+		color: $main-red;
+	}
+}
+

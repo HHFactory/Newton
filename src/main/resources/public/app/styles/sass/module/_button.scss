@@ -16,6 +16,11 @@
 	}
 }
 
+.btn-blue {
+	@extend .btn-green;
+	background-color: $main-blue;
+}
+
 .close-button {
 	$btnSize: 60px;
 	width: $btnSize;

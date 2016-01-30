@@ -6,7 +6,20 @@
 (function(){
 'use strict';
 
-	function CreateFaqCtrl($scope,$state,connectApiService,constURI){
+	function CreateFaqCtrl($scope,$state,$uibModal,connectApiService,constURI){
+
+		/**
+		 * トークスクリプト登録モーダルを開く
+		 * @return {[type]} [description]
+		 */
+		$scope.openTalkScriptModal = function() {
+			$uibModal.open({
+				animation: false,
+				backdrop: true,
+				templateUrl: "../../../../app/views/template/createModal.html",
+				controller: "GeneralModalController"
+			});
+		}
 
 		/**
 		 * 登録ボタン押下処理 
@@ -27,16 +40,8 @@
 			$scope.parsedMarkdown = marked($scope.faq.content);
 		};
 
-		/**
-		 * キャンセルボタン押下処理 
-		 * @return {[type]}
-		 */
-		$scope.cancel = function(){
-			$state.go('main');
-		};
-
 	}
 
 	//モジュールへの登録
-	angular.module('indexModule').controller('CreateFaqController',['$scope','$state','connectApiService','constURI',CreateFaqCtrl]);
+	angular.module('indexModule').controller('CreateFaqController',['$scope','$state','$uibModal','connectApiService','constURI',CreateFaqCtrl]);
 })();

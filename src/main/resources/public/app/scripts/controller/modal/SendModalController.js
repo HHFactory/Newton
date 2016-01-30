@@ -42,5 +42,5 @@
 	}
 
 	//moduleに登録
-	angular.module('indexModule').controller('SendModalController',SendModalCtrl);
+	angular.module('indexModule').controller('SendModalController',['$scope','$state','$modalInstance','connectApiService','constURI','sharedService',SendModalCtrl]);
 })();

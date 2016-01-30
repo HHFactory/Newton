@@ -12,7 +12,7 @@
 	<!-- ナビゲーションバー　-->
 	<div ng-include="'../../app/views/navigation/navbar.html'"></div>
 	<!-- メインエリア	 -->
-	<div ui-view></div>
+	<div class="l-main" ui-view></div>
 		
     <!-- 外部スクリプト -->    
    	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -21,6 +21,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-sanitize.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.core.min.js"></script>
 	<!-- アプリケーションスクリプト -->    
 	<script src="../../app/scripts/app.js"></script>
 	<script src="../../app/scripts/routes.js"></script>
@@ -38,6 +39,7 @@
 	<script src="../../app/scripts/controller/notification/SetTargetSkillModalController.js"></script>
 	<script src="../../app/scripts/controller/modal/ModalController.js"></script>
 	<script src="../../app/scripts/controller/modal/SendModalController.js"></script>
+	<script src="../../app/scripts/controller/modal/GeneralModalController.js"></script>
 	<script src="../../app/scripts/controller/searchresult/SearchResultController.js"></script>
 	<script src="../../app/scripts/filters/wordfilter.js"></script>
 	<script src="../../app/scripts/service/connectApiService.js"></script>

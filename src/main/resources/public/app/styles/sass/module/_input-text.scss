@@ -15,6 +15,7 @@
 	@include form-set($navSearchBarWidth);
 	height: 30px;
 	border-radius: 3px;
+	font-family: FontAwesome;
 }
 
 @mixin text-base($height:30px) {

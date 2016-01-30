@@ -3,23 +3,31 @@
 	<form ng-submit="submit(faq)">
 		<!-- タイトルエリア -->
 		<div class="create-view__header">
-			<input class="search-bar" type="text" placeholder="FAQタイトルを入力してください" ng-model="faq.title"/>
+			<input class="create-view__text" type="text" placeholder="FAQタイトルを入力してください" ng-model="faq.title"/>
 		</div>		
 		<!-- 入力エリア -->
 		<div class="create-view__contents">
-			<div class="create-view__contents--left">
-				<textarea class="create-view__textarea" rows="24" ng-change="parseMarkDown()" ng-model="faq.content" placeholder="FAQ本文を入力してください"/>
-			</div>
-			<!-- markdownプレビュー -->
-			<div class="create-view__contents--right" ng-bind-html="parsedMarkdown"></div>
+			<ul class="textarea__item-list">
+				<li><a href=""><i class="fa fa-picture-o"/></a></li>
+				<li><a href=""><i class="fa fa-bold"/></a></li>
+				<li><a href=""><i class="fa fa-list-ol"/></a></li>
+				<li><a href="" ng-click="openTalkScriptModal()"><i class="fa fa-phone"/></a></li>
+			</ul>
+			<textarea class="create-view__textarea" rows="24" ng-change="parseMarkDown()" ng-model="faq.content" placeholder="FAQ本文を入力してください"/>
 
-			<!-- ページ下部ボタンエリア -->
-			<div class="create-view__contents__footer">
-				<input type="hidden" ng-model="faq.create_user" ng-init="faq.create_user='user1'" />
-				<input type="hidden" ng-model="faq.update_user" ng-init="faq.update_user='user1'"/>
-				<input type="hidden" ng-model="faq.status" ng-init="faq.status='valid'"/>
-				<button class="btn-green" ng-click="post(faq)" type="submit">作成</button>		
-			</div>	
+			<!-- markdownプレビュー -->
+			<div class="preview-area">
+				<p>プレビュー</p>
+				<div ng-bind-html="parsedMarkdown"></div>
+			</div>
 		</div>
+		<!-- ページ下部ボタンエリア -->
+		<div class="create-view__footer">
+			<input type="hidden" ng-model="faq.create_user" ng-init="faq.create_user='user1'" />
+			<input type="hidden" ng-model="faq.update_user" ng-init="faq.update_user='user1'"/>
+			<input type="hidden" ng-model="faq.status" ng-init="faq.status='valid'"/>
+				
+			<button class="btn-green" ng-click="post(faq)" type="submit">作成する</button>
+		</div>	
 	</form>
 </div>

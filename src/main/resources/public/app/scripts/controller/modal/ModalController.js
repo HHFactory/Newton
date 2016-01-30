@@ -29,5 +29,5 @@
 	}
 
 	//moduleへ登録
-	angular.module('indexModule').controller('ModalController',['$scope','$modalInstance','connectApiService','constURI',ModalCtrl]);
+	angular.module('indexModule').controller('ModalController',['$scope','$modalInstance','data','connectApiService','constURI',ModalCtrl]);
 })();

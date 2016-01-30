@@ -3,7 +3,7 @@
 //サイズ関連
 $footerHeight: 50px;
 $navbarHeight: 50px;
-$manualAreaWidth: 200px;
+$manualAreaWidth: 250px;
 $notificationAreaWidth: 400px;
 $faqAreaWidthWide: calc(100% - #{$notificationAreaWidth});
 $faqAreaWidthNarrow: calc($faqAreaWidthWide - #{$manualAreaWidth});

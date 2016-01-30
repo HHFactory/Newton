@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 
 .table-base {
 	@extend .table;
@@ -64,9 +66,12 @@
 	}	
 }
 
-
-.table__header {
-
+//TODO:widthを呼び出し元が決定する
+.table__header__item--right {
+	text-align: right;
+	width: 40px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .table__footer--low {

@@ -2,10 +2,10 @@
 .col-contents {
 	width: 100%;
 	height: calc(100% - #{$colHeaderHeight});
-	overflow: scroll;
+	overflow-y: scroll;
 	position: absolute;
-	top: $navbarHeight;
-	margin-top: 5px;
+	top: $colHeaderHeight;
+	padding-top: 5px;
 	padding-left: $general-padding-left;
 	padding-right: $general-padding-right;
 }

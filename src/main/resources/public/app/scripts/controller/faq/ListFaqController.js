@@ -5,7 +5,7 @@
 (function(){
 	'use strict';
 
-	function ListFaqCtrl($scope,$state,connectApiService,constURI,sharedService){
+	function ListFaqCtrl($scope,$state,connectApiService,constURI,sharedService,$uibModal){
 	 	
 	 	/**
 	 	 * FAQ取得処理
@@ -44,13 +44,25 @@
 		 * ファイルインポートダイアログを開く
 		 * @return {[type]} [description]
 		 */
-		$scope.importExcel = function() {
+		$scope.importExcel = function(e) {
+			$uibModal.open({
+				templateUrl: "../../../../app/views/template/fileLoadModal.html",
+				controller: "GeneralModalController"
+			});
+		}
 
+		$scope.isShowEditIcon = function() {
+			if($scope.isShowIcon == false) {
+				$scope.isShowIcon = true;
+			}else {
+				$scope.isShowIcon = false;
+			}
+			
 		}
 
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('ListFaqController',['$scope','$state','connectApiService','constURI','sharedService',ListFaqCtrl]);
+	angular.module('indexModule').controller('ListFaqController',['$scope','$state','connectApiService','constURI','sharedService','$uibModal',ListFaqCtrl]);
 })();
 

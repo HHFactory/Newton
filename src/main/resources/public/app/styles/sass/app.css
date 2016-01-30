@@ -417,9 +417,11 @@ textarea:hover, input[type="text"]:hover {
   cursor: text;
 }
 
-/* line 46, base/_util.scss */
+/* line 49, base/_util.scss */
 .form-without-margin {
   margin: 0px;
+  padding: 0px;
+  display: inline-block;
   width: 100%;
   height: 100%;
 }
@@ -1633,7 +1635,7 @@ select[multiple].input-lg {
 }
 
 /* line 9, assets/stylesheets/bootstrap/_buttons.scss */
-.btn, .btn-green {
+.btn, .btn-green, .btn-blue, .create-view__submit-btn {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -1654,25 +1656,25 @@ select[multiple].input-lg {
   user-select: none;
 }
 /* line 26, assets/stylesheets/bootstrap/_buttons.scss */
-.btn:focus, .btn-green:focus, .btn.focus, .focus.btn-green, .btn:active:focus, .btn-green:active:focus, .btn:active.focus, .btn-green:active.focus, .btn.active:focus, .active.btn-green:focus, .btn.active.focus, .active.focus.btn-green {
+.btn:focus, .btn-green:focus, .btn-blue:focus, .create-view__submit-btn:focus, .btn.focus, .focus.btn-green, .focus.btn-blue, .focus.create-view__submit-btn, .btn:active:focus, .btn-green:active:focus, .btn-blue:active:focus, .create-view__submit-btn:active:focus, .btn:active.focus, .btn-green:active.focus, .btn-blue:active.focus, .create-view__submit-btn:active.focus, .btn.active:focus, .active.btn-green:focus, .active.btn-blue:focus, .active.create-view__submit-btn:focus, .btn.active.focus, .active.focus.btn-green, .active.focus.btn-blue, .active.focus.create-view__submit-btn {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 /* line 32, assets/stylesheets/bootstrap/_buttons.scss */
-.btn:hover, .btn-green:hover, .btn:focus, .btn-green:focus, .btn.focus, .focus.btn-green {
+.btn:hover, .btn-green:hover, .btn-blue:hover, .create-view__submit-btn:hover, .btn:focus, .btn-green:focus, .btn-blue:focus, .create-view__submit-btn:focus, .btn.focus, .focus.btn-green, .focus.btn-blue, .focus.create-view__submit-btn {
   color: #333;
   text-decoration: none;
 }
 /* line 39, assets/stylesheets/bootstrap/_buttons.scss */
-.btn:active, .btn-green:active, .btn.active, .active.btn-green {
+.btn:active, .btn-green:active, .btn-blue:active, .create-view__submit-btn:active, .btn.active, .active.btn-green, .active.btn-blue, .active.create-view__submit-btn {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 /* line 46, assets/stylesheets/bootstrap/_buttons.scss */
-.btn.disabled, .disabled.btn-green, .btn[disabled], [disabled].btn-green, fieldset[disabled] .btn, fieldset[disabled] .btn-green {
+.btn.disabled, .disabled.btn-green, .disabled.btn-blue, .disabled.create-view__submit-btn, .btn[disabled], [disabled].btn-green, [disabled].btn-blue, [disabled].create-view__submit-btn, fieldset[disabled] .btn, fieldset[disabled] .btn-green, fieldset[disabled] .btn-blue, fieldset[disabled] .create-view__submit-btn {
   cursor: not-allowed;
   opacity: 0.65;
   filter: alpha(opacity=65);
@@ -1681,7 +1683,7 @@ select[multiple].input-lg {
 }
 
 /* line 58, assets/stylesheets/bootstrap/_buttons.scss */
-a.btn.disabled, a.disabled.btn-green, fieldset[disabled] a.btn, fieldset[disabled] a.btn-green {
+a.btn.disabled, a.disabled.btn-green, a.disabled.btn-blue, a.disabled.create-view__submit-btn, fieldset[disabled] a.btn, fieldset[disabled] a.btn-green, fieldset[disabled] a.btn-blue, fieldset[disabled] a.create-view__submit-btn {
   pointer-events: none;
 }
 
@@ -2990,12 +2992,12 @@ input[type="button"].btn-block {
   clear: both;
 }
 /* line 110, assets/stylesheets/bootstrap/_modals.scss */
-.modal-footer .btn + .btn, .modal-footer .btn-green + .btn, .modal-footer .btn + .btn-green, .modal-footer .btn-green + .btn-green {
+.modal-footer .btn + .btn, .modal-footer .btn-green + .btn, .modal-footer .btn-blue + .btn, .modal-footer .create-view__submit-btn + .btn, .modal-footer .btn + .btn-green, .modal-footer .btn-green + .btn-green, .modal-footer .btn-blue + .btn-green, .modal-footer .create-view__submit-btn + .btn-green, .modal-footer .btn + .btn-blue, .modal-footer .btn-green + .btn-blue, .modal-footer .btn-blue + .btn-blue, .modal-footer .create-view__submit-btn + .btn-blue, .modal-footer .btn + .create-view__submit-btn, .modal-footer .btn-green + .create-view__submit-btn, .modal-footer .btn-blue + .create-view__submit-btn, .modal-footer .create-view__submit-btn + .create-view__submit-btn {
   margin-left: 5px;
   margin-bottom: 0;
 }
 /* line 115, assets/stylesheets/bootstrap/_modals.scss */
-.modal-footer .btn-group .btn + .btn, .modal-footer .btn-group .btn-green + .btn, .modal-footer .btn-group .btn + .btn-green, .modal-footer .btn-group .btn-green + .btn-green {
+.modal-footer .btn-group .btn + .btn, .modal-footer .btn-group .btn-green + .btn, .modal-footer .btn-group .btn-blue + .btn, .modal-footer .btn-group .create-view__submit-btn + .btn, .modal-footer .btn-group .btn + .btn-green, .modal-footer .btn-group .btn-green + .btn-green, .modal-footer .btn-group .btn-blue + .btn-green, .modal-footer .btn-group .create-view__submit-btn + .btn-green, .modal-footer .btn-group .btn + .btn-blue, .modal-footer .btn-group .btn-green + .btn-blue, .modal-footer .btn-group .btn-blue + .btn-blue, .modal-footer .btn-group .create-view__submit-btn + .btn-blue, .modal-footer .btn-group .btn + .create-view__submit-btn, .modal-footer .btn-group .btn-green + .create-view__submit-btn, .modal-footer .btn-group .btn-blue + .create-view__submit-btn, .modal-footer .btn-group .create-view__submit-btn + .create-view__submit-btn {
   margin-left: -1px;
 }
 /* line 119, assets/stylesheets/bootstrap/_modals.scss */
@@ -6723,6 +6725,20 @@ input[type="button"].btn-block {
   height: 100%;
 }
 
+/* line 31, layout/_navbar.scss */
+.navbar__item--icon {
+  display: table-cell;
+  vertical-align: middle;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  color: white;
+}
+/* line 38, layout/_navbar.scss */
+.navbar__item--icon:hover {
+  color: #cf363d;
+}
+
 /** layout.main */
 /* line 3, layout/_main.scss */
 .l-main {
@@ -6740,8 +6756,12 @@ input[type="button"].btn-block {
 /** layout.sidebar */
 /* line 3, layout/_manual.scss */
 .l-manual {
-  width: 200px;
-  height: 100%;
+  width: 250px;
+  height: -webkit-calc(100vh - 50px);
+  height: -moz-calc(100vh - 50px);
+  height: -ms-calc(100vh - 50px);
+  height: -o-calc(100vh - 50px);
+  height: calc(100vh - 50px);
   margin: 0;
   position: fixed;
   top: 50px;
@@ -6751,7 +6771,11 @@ input[type="button"].btn-block {
 /* line 2, layout/_faq.scss */
 .l-faq {
   width: calc(100% - 400px);
-  height: 100%;
+  height: -webkit-calc(100vh - 50px);
+  height: -moz-calc(100vh - 50px);
+  height: -ms-calc(100vh - 50px);
+  height: -o-calc(100vh - 50px);
+  height: calc(100vh - 50px);
   margin: 0;
   position: fixed;
   top: 50px;
@@ -6762,17 +6786,21 @@ input[type="button"].btn-block {
 
 /* line 9, layout/_faq.scss */
 .has-narrow-width {
-  width: -webkit-calc(100% - 600px);
-  width: -moz-calc(100% - 600px);
-  width: -ms-calc(100% - 600px);
-  width: -o-calc(100% - 600px);
-  width: calc(100% - 600px);
+  width: -webkit-calc(100% - 650px);
+  width: -moz-calc(100% - 650px);
+  width: -ms-calc(100% - 650px);
+  width: -o-calc(100% - 650px);
+  width: calc(100% - 650px);
 }
 
-/* line 2, layout/_notification.scss */
+/* line 3, layout/_notification.scss */
 .l-notification {
   width: 400px;
-  height: 100%;
+  height: -webkit-calc(100vh - 50px);
+  height: -moz-calc(100vh - 50px);
+  height: -ms-calc(100vh - 50px);
+  height: -o-calc(100vh - 50px);
+  height: calc(100vh - 50px);
   margin: 0;
   position: fixed;
   top: 50px;
@@ -6780,7 +6808,7 @@ input[type="button"].btn-block {
   background-color: #bfde74;
 }
 
-/* line 11, layout/_notification.scss */
+/* line 13, layout/_notification.scss */
 .l-notification--create {
   position: fixed;
   right: 0px;
@@ -6789,9 +6817,10 @@ input[type="button"].btn-block {
   height: 350px;
   z-index: 2;
   padding: 0px 5px;
+  margin: 0px;
 }
 
-/* line 21, layout/_notification.scss */
+/* line 25, layout/_notification.scss */
 .open-create-notification {
   position: fixed;
   right: 0px;
@@ -6805,7 +6834,7 @@ input[type="button"].btn-block {
   background-color: #368acf;
   color: white;
 }
-/* line 33, layout/_notification.scss */
+/* line 37, layout/_notification.scss */
 .open-create-notification > a:visited {
   color: white;
 }
@@ -6818,31 +6847,33 @@ input[type="button"].btn-block {
   color: #808080;
   font-weight: bold;
   font-size: 24px;
-  padding: 3px 15px;
+  padding-left: 15px;
+  padding-right: 15px;
   display: table;
 }
-/* line 28, base/_util.scss */
+/* line 31, base/_util.scss */
 .col-header > ul, .col-header--bordered > ul {
   list-style: none;
 }
-/* line 30, base/_util.scss */
+/* line 33, base/_util.scss */
 .col-header > ul > li, .col-header--bordered > ul > li {
   display: inline-block;
 }
 
-/* line 14, module/_col-header.scss */
+/* line 16, module/_col-header.scss */
 .col-header--bordered {
   border-bottom: solid 3px;
   border-color: #36a3cf;
 }
 
-/* line 20, module/_col-header.scss */
+/* line 22, module/_col-header.scss */
 .col-header__item {
   display: teble-cell;
   vertical-align: middle;
+  margin-right: 10px;
 }
 
-/* line 25, module/_col-header.scss */
+/* line 28, module/_col-header.scss */
 .col-header__title {
   font-size: 16px;
   font-weight: bold;
@@ -6852,10 +6883,10 @@ input[type="button"].btn-block {
 .col-contents {
   width: 100%;
   height: calc(100% - 40px);
-  overflow: scroll;
+  overflow-y: scroll;
   position: absolute;
-  top: 50px;
-  margin-top: 5px;
+  top: 40px;
+  padding-top: 5px;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -6901,20 +6932,20 @@ input[type="button"].btn-block {
   font-family: FontAwesome;
   border-radius: 3px;
 }
-/* line 40, base/_util.scss */
+/* line 43, base/_util.scss */
 .nav__form:focus {
   outline: none;
 }
 
 /* line 4, module/_input-text.scss */
-.input__text, .create-view__header {
+.input__text {
   width: 100%;
   padding-left: 10px;
   background-color: white;
   height: 30px;
 }
-/* line 40, base/_util.scss */
-.input__text:focus, .create-view__header:focus {
+/* line 43, base/_util.scss */
+.input__text:focus {
   outline: none;
 }
 
@@ -6925,7 +6956,7 @@ input[type="button"].btn-block {
   background-color: white;
   height: 130px;
 }
-/* line 40, base/_util.scss */
+/* line 43, base/_util.scss */
 .input__textarea:focus {
   outline: none;
 }
@@ -6937,14 +6968,15 @@ input[type="button"].btn-block {
   background-color: white;
   height: 30px;
   border-radius: 3px;
+  font-family: FontAwesome;
 }
-/* line 40, base/_util.scss */
+/* line 43, base/_util.scss */
 .search-bar:focus {
   outline: none;
 }
 
 /* line 2, module/_button.scss */
-.btn-green {
+.btn-green, .btn-blue, .create-view__submit-btn {
   background-color: #a3cf36;
   border-radius: 0.25em;
   font-size: 15px;
@@ -6953,16 +6985,21 @@ input[type="button"].btn-block {
   text-align: center;
 }
 /* line 10, module/_button.scss */
-.btn-green:hover {
+.btn-green:hover, .btn-blue:hover, .create-view__submit-btn:hover {
   color: white;
   box-shadow: 2px 2px 2px #555;
 }
 /* line 14, module/_button.scss */
-.btn-green:focus {
+.btn-green:focus, .btn-blue:focus, .create-view__submit-btn:focus {
   outline: none;
 }
 
 /* line 19, module/_button.scss */
+.btn-blue {
+  background-color: #36a3cf;
+}
+
+/* line 24, module/_button.scss */
 .close-button {
   width: 60px;
   height: 60px;
@@ -6978,16 +7015,16 @@ input[type="button"].btn-block {
   border-radius: 30px;
   background-color: blue;
 }
-/* line 32, module/_button.scss */
+/* line 37, module/_button.scss */
 .close-button:hover {
   background-color: #c5cfba;
 }
-/* line 35, module/_button.scss */
+/* line 40, module/_button.scss */
 .close-button > i {
   font-size: 22px;
   border: 1px solid;
 }
-/* line 39, module/_button.scss */
+/* line 44, module/_button.scss */
 .close-button > .button--label {
   border: 1px dotted;
   width: 100%;
@@ -6995,34 +7032,34 @@ input[type="button"].btn-block {
   font-size: 12px;
 }
 
-/* line 2, module/_table.scss */
+/* line 4, module/_table.scss */
 .table-base, .table--hover, .table--colored-blue, .table--colored-gray, .table--colored-red {
   background-color: white;
   border-radius: 5px;
   margin-bottom: 5px;
 }
-/* line 7, module/_table.scss */
+/* line 9, module/_table.scss */
 .table-base > thead > tr > th, .table--hover > thead > tr > th, .table--colored-blue > thead > tr > th, .table--colored-gray > thead > tr > th, .table--colored-red > thead > tr > th {
   border: none;
   font-size: 16px;
 }
-/* line 11, module/_table.scss */
+/* line 13, module/_table.scss */
 .table-base > tbody > tr > td, .table--hover > tbody > tr > td, .table--colored-blue > tbody > tr > td, .table--colored-gray > tbody > tr > td, .table--colored-red > tbody > tr > td {
   border: none;
   font-size: 14px;
 }
 
-/* line 19, module/_table.scss */
+/* line 21, module/_table.scss */
 .table--hover:hover, .table--colored-blue:hover, .table--colored-gray:hover, .table--colored-red:hover {
   background-color: #e6e6e6;
   cursor: pointer;
 }
-/* line 23, module/_table.scss */
+/* line 25, module/_table.scss */
 .table--hover > thead > tr > th, .table--colored-blue > thead > tr > th, .table--colored-gray > thead > tr > th, .table--colored-red > thead > tr > th {
   color: #36a3cf;
 }
 
-/* line 30, module/_table.scss */
+/* line 32, module/_table.scss */
 .table--colored-blue > thead > tr > th {
   background-color: #36a3cf;
   border-top-left-radius: 5px;
@@ -7030,7 +7067,7 @@ input[type="button"].btn-block {
   color: black;
 }
 
-/* line 43, module/_table.scss */
+/* line 45, module/_table.scss */
 .table--colored-gray > thead > tr > th {
   background-color: #F5F8FA;
   border-top-left-radius: 5px;
@@ -7038,7 +7075,7 @@ input[type="button"].btn-block {
   color: black;
 }
 
-/* line 56, module/_table.scss */
+/* line 58, module/_table.scss */
 .table--colored-red > thead > tr > th {
   background-color: #cf363d;
   border-top-left-radius: 5px;
@@ -7046,18 +7083,26 @@ input[type="button"].btn-block {
   color: black;
 }
 
-/* line 72, module/_table.scss */
+/* line 70, module/_table.scss */
+.table__header__item--right {
+  text-align: right;
+  width: 40px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* line 77, module/_table.scss */
 .table__footer--low {
   height: 20px;
   font-size: 14px;
 }
 
-/* line 77, module/_table.scss */
+/* line 82, module/_table.scss */
 .table__footer--right {
   float: right;
 }
 
-/* line 81, module/_table.scss */
+/* line 86, module/_table.scss */
 .table__footer--left {
   float: left;
 }
@@ -7072,71 +7117,116 @@ input[type="button"].btn-block {
 /**
  * 新規登録画面用スタイル	
  */
-/* line 7, module/_create-view.scss */
+/* line 10, module/_create-view.scss */
 .create-view {
   padding: 15px;
-  height: 100%;
+  height: -webkit-calc(100vh - 50px);
+  height: -moz-calc(100vh - 50px);
+  height: -ms-calc(100vh - 50px);
+  height: -o-calc(100vh - 50px);
+  height: calc(100vh - 50px);
   width: 100%;
   position: fixed;
   top: 50px;
 }
 
 /* line 21, module/_create-view.scss */
+.create-view__header {
+  width: 100%;
+  height: 40px;
+}
+
+/* line 27, module/_create-view.scss */
 .create-view__contents {
   display: table;
   width: 100%;
   margin-top: 5px;
-  height: -webkit-calc(100% - 30px);
-  height: -moz-calc(100% - 30px);
-  height: -ms-calc(100% - 30px);
-  height: -o-calc(100% - 30px);
-  height: calc(100% - 30px);
+  height: -webkit-calc(100% - $create-view-header-height - $create-view-footer-height);
+  height: -moz-calc(100% - $create-view-header-height - $create-view-footer-height);
+  height: -ms-calc(100% - $create-view-header-height - $create-view-footer-height);
+  height: -o-calc(100% - $create-view-header-height - $create-view-footer-height);
+  height: calc(100% - $create-view-header-height - $create-view-footer-height);
 }
 
-/* line 31, module/_create-view.scss */
-.create-view__contents--left {
-  display: table-cell;
-  width: 50%;
-  height: 100%;
-  text-align: left;
-}
-
-/* line 39, module/_create-view.scss */
-.create-view__contents--right {
-  display: table-cell;
-  width: 50%;
-  height: 100%;
-  vertical-align: top;
-}
-
-/* line 46, module/_create-view.scss */
-.create-view__contents__footer {
-  height: 20px;
+/* line 50, module/_create-view.scss */
+.create-view__footer {
+  height: 40px;
   width: 100%;
+  text-align: right;
+  vertical-align: middle;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
-/* line 51, module/_create-view.scss */
-.create-view__textarea {
+/* line 59, module/_create-view.scss */
+.create-view__text {
   width: 100%;
-  padding-left: 10px;
+  height: 100%;
   background-color: white;
-  height: 100%;
+  border: 1px solid;
+  border-color: gray;
+  border-radius: 5px;
+  padding-left: 10px;
 }
-/* line 40, base/_util.scss */
+/* line 67, module/_create-view.scss */
+.create-view__text:focus {
+  outline: none;
+}
+
+/* line 72, module/_create-view.scss */
+.create-view__textarea {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  padding-left: 5px;
+  resize: none;
+  overflow: scroll;
+  width: 100%;
+  border: 1px solid;
+  border-color: gray;
+  padding-left: 10px;
+}
+/* line 40, module/_input-text.scss */
 .create-view__textarea:focus {
   outline: none;
+}
+
+/* line 80, module/_create-view.scss */
+.textarea__item-list {
+  width: 100%;
+  font-size: 18px;
+}
+/* line 83, module/_create-view.scss */
+.textarea__item-list > li {
+  display: inline-block;
+  border: 1px solid;
+  border-color: #F5F5F5;
+}
+
+/* line 90, module/_create-view.scss */
+.preview-area {
+  display: table-cell;
+  width: 50%;
+  height: 100%;
+  padding-left: 10px;
+}
+
+/* line 97, module/_create-view.scss */
+.create-view__submit-btn {
+  width: 60px;
 }
 
 /**
  * お知らせ登録パネル用スタイル
  */
-/* line 9, module/_create-panel.scss */
+/* line 10, module/_create-panel.scss */
 .create-panel {
   width: 100%;
   height: 100%;
   background-color: white;
+  margin-top: -20px;
 }
-/* line 13, module/_create-panel.scss */
+/* line 15, module/_create-panel.scss */
 .create-panel > thead {
   border-radius: 3px;
   background-color: black;
@@ -7144,23 +7234,17 @@ input[type="button"].btn-block {
   font-size: 14px;
   height: 20px;
 }
-/* line 19, module/_create-panel.scss */
+/* line 21, module/_create-panel.scss */
 .create-panel > thead > tr > th {
   padding-left: 5px;
-  padding-right: 5px;
 }
-/* line 24, module/_create-panel.scss */
-.create-panel > tfoot {
-  background-color: #F5F5F5;
+/* line 23, module/_create-panel.scss */
+.create-panel > thead > tr > th > a {
+  color: white;
   text-align: right;
 }
-/* line 27, module/_create-panel.scss */
-.create-panel > tfoot > th > td {
-  padding-left: 5px;
-  padding-right: 5px;
-}
 
-/* line 34, module/_create-panel.scss */
+/* line 31, module/_create-panel.scss */
 .create-panel__header-row {
   height: 30px;
   width: 100%;
@@ -7168,20 +7252,23 @@ input[type="button"].btn-block {
   border-color: #F5F8FA;
   font-size: 14px;
 }
-/* line 40, module/_create-panel.scss */
+/* line 37, module/_create-panel.scss */
 .create-panel__header-row > td {
   padding-left: 5px;
   padding-right: 5px;
 }
 
-/* line 46, module/_create-panel.scss */
+/* line 43, module/_create-panel.scss */
 .create-panel__content-row {
   padding-left: 10px;
 }
 
-/* line 50, module/_create-panel.scss */
+/* line 47, module/_create-panel.scss */
 .create-panel__footer-row {
   height: 40px;
+  padding-right: 10px;
+  background-color: #F5F5F5;
+  text-align: right;
 }
 
 /* line 54, module/_create-panel.scss */
@@ -7192,7 +7279,7 @@ input[type="button"].btn-block {
   padding-left: 5px;
   border-style: none;
 }
-/* line 26, module/_input-text.scss */
+/* line 27, module/_input-text.scss */
 .create-panel__title:focus {
   outline: none;
 }
@@ -7206,8 +7293,50 @@ input[type="button"].btn-block {
   resize: none;
   overflow: scroll;
 }
-/* line 39, module/_input-text.scss */
+/* line 40, module/_input-text.scss */
 .create-panel__contents:focus {
+  outline: none;
+}
+
+/* line 3, module/_modal.scss */
+.modal-base {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+/* line 11, module/_modal.scss */
+.modal__header {
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid;
+  border-color: gray;
+}
+
+/* line 20, module/_modal.scss */
+.modal__footer {
+  width: 100%;
+  height: 40px;
+  border-top: 1px solid;
+  border-color: #F5F5F5;
+  text-align: right;
+}
+
+/* line 28, module/_modal.scss */
+.modal__textarea {
+  height: 200px;
+  width: 100%;
+  background-color: white;
+  padding-left: 5px;
+  resize: none;
+  overflow: scroll;
+}
+/* line 40, module/_input-text.scss */
+.modal__textarea:focus {
   outline: none;
 }
 
@@ -7217,32 +7346,32 @@ input[type="button"].btn-block {
   -o-transition: transform 0.1s ease;
   transition: transform 0.1s ease;
   -webkit-transform-origin: 0% 100%;
-  -webkit-transform: translateX(200px);
-  width: -webkit-calc(100% - 600px);
+  -webkit-transform: translateX(250px);
+  width: -webkit-calc(100% - 650px);
   -webkit-transition: transform 0.1s ease;
   -o-transition: transform 0.1s ease;
   transition: transform 0.1s ease;
   -moz-transform-origin: 0% 100%;
-  -moz-transform: translateX(200px);
-  width: -moz-calc(100% - 600px);
+  -moz-transform: translateX(250px);
+  width: -moz-calc(100% - 650px);
   -webkit-transition: transform 0.1s ease;
   -o-transition: transform 0.1s ease;
   transition: transform 0.1s ease;
   -ms-transform-origin: 0% 100%;
-  -ms-transform: translateX(200px);
-  width: -ms-calc(100% - 600px);
+  -ms-transform: translateX(250px);
+  width: -ms-calc(100% - 650px);
   -webkit-transition: transform 0.1s ease;
   -o-transition: transform 0.1s ease;
   transition: transform 0.1s ease;
   -o-transform-origin: 0% 100%;
-  -o-transform: translateX(200px);
-  width: -o-calc(100% - 600px);
+  -o-transform: translateX(250px);
+  width: -o-calc(100% - 650px);
   -webkit-transition: transform 0.1s ease;
   -o-transition: transform 0.1s ease;
   transition: transform 0.1s ease;
   transform-origin: 0% 100%;
-  transform: translateX(200px);
-  width: calc(100% - 600px);
+  transform: translateX(250px);
+  width: calc(100% - 650px);
 }
 
 /* line 10, state/_is-open-sidebar.scss */
