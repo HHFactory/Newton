@@ -39,6 +39,8 @@
 			$uibModal.open({
 				templateUrl: "../../../../app/views/template/modal.html",
 				controller:"ModalController",
+				animation: false,
+				backdrop: true,
 				resolve:{
 					data:function(){
 						return notification;

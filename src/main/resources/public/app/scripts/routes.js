@@ -9,12 +9,10 @@ angular.module('indexModule')
 				controller:"MainController"
 			})
 			.state('createFaq',{
-				//url:"/create",
 				templateUrl:"../../app/views/faq/createFaq.html",
 				controller:"CreateFaqController"
 			})
 			.state('detailFaq',{
-				//url:"/detail",
 				templateUrl:"../../app/views/faq/detailFaq.html",
 				controller:"DetailFaqController"
 			})

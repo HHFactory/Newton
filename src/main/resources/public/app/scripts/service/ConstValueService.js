@@ -6,7 +6,7 @@
 */
 (function(){
 'use strict';	
-	var hostName = "https://hhfactory-newton.herokuapp.com";
+	var hostName = "http://localhost:8080";
 
 	angular.module('indexModule').value(
 		'constURI',{

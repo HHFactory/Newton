@@ -15,12 +15,12 @@
 			 * @return {[type]}
 			 */
 			get: function(apiURI,param){
-				var getFaq = $http.get(apiURI,{params:param}).success(function(data,status,headers,config){		
+				var getData = $http.get(apiURI,{params:param}).success(function(data,status,headers,config){		
 					return data;
 				}).error(function(data,status,headers,config){
 					return status;
 				});
-				return getFaq;
+				return getData;
 			},
 			/**
 			 * http.put
@@ -29,12 +29,12 @@
 			 * @return {[type]}
 			 */
 			put:function(apiURI,argdata){
-				var putUseful =$http.put(apiURI,argdata).success(function(data,status,headers,config){					
+				var putData =$http.put(apiURI,argdata).success(function(data,status,headers,config){					
 					console.log('useful countup');
 				}).error(function(data,status,headers,config) {
 					return status;
 				});
-				return putUseful;
+				return putData;
 			},
 			/**
 			 * http.post

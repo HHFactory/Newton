@@ -47,7 +47,8 @@
 		$scope.importExcel = function(e) {
 			$uibModal.open({
 				templateUrl: "../../../../app/views/template/fileLoadModal.html",
-				controller: "GeneralModalController"
+				controller: "GeneralModalController",
+				backdrop: true
 			});
 		}
 
