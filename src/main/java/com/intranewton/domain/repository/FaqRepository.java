@@ -23,6 +23,6 @@ public interface FaqRepository extends JpaRepository<FAQ, Integer>{
 	Integer countUpUsefulCount(Integer id);
 	
 	//文字列検索用クエリ(elasticsearchに移行)
-	@Query("SELECT f FROM FAQ f where f.title like %:title% order by f.update_datetime asc")
+	@Query("SELECT f FROM FAQ f where f.title like %:title% order by f.updateDatetime asc")
 	List<FAQ> searchFaq(@Param("title") String title);
 }

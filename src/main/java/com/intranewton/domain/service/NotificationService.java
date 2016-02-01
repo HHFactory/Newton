@@ -52,8 +52,8 @@ public class NotificationService {
 	 */
 	public Notification convertParamtoEntity(NotificationParam notificationParam) {
 		Notification notification = new Notification();
-		notification.setCreate_user(notificationParam.getCreate_user());
-		notification.setUpdate_user(notificationParam.getUpdate_user());
+		notification.setCreateUser(notificationParam.getCreate_user());
+		notification.setUpdateUser(notificationParam.getUpdate_user());
 		notification.setStatus("valid");
 		notification.setTitle(notificationParam.getTitle());
 		notification.setContent(notificationParam.getContent());

@@ -7,20 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.intranewton.domain.entity.Manual;
+import com.intranewton.domain.dto.ManualDTO;
 import com.intranewton.domain.service.ManualService;
 
 @RestController
 public class ManualRestController {
 	@Autowired
 	ManualService manualService;
-	
-	//マニュアル取得
-	@RequestMapping(value="/api/v1/manuals",method=RequestMethod.GET)
-	List<Manual> findAllManuals(){
-		List<Manual> manuals = manualService.getManualList();
-		System.out.println("connect manual api");
-		return manuals;
+		
+	/**
+	 * マニュアルカテゴリ取得
+	 * @return
+	 */
+	@RequestMapping(value="/api/v1/manuallist",method=RequestMethod.GET)
+	List<ManualDTO> findAllManualCategories() {
+		return manualService.getManualCategories();
 	}
 	
 }

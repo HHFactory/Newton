@@ -14,7 +14,7 @@ import com.intranewton.domain.entity.NotificationTargetRole;
  */
 public interface NotificationRepository extends JpaRepository<Notification, Integer>{
 	//文字列検索用クエリ（elasticsearchに移行)
-	@Query("SELECT n FROM Notification n where n.title like %:title% order by n.update_datetime asc")
+	@Query("SELECT n FROM Notification n where n.title like %:title% order by n.updateDatetime asc")
 	List<Notification> searchNotification(@Param("title") String title);
 	
 	//targetRoleで検索

@@ -29,17 +29,17 @@ public class ManualCategoryRelations implements Serializable{
 	@Id 
 	@GeneratedValue
 	private Integer id;
-	private Integer anscestor_id;
-	private Integer descendant_id;
-	private Integer path_length;
+	private Integer anscestorId;
+	private Integer descendantId;
+	private Integer pathLength;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="anscestor_id",referencedColumnName="id",insertable=false,updatable=false)
+	@JoinColumn(name="anscestorId",referencedColumnName="id",insertable=false,updatable=false)
 	private ManualCategory children;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="descendant_id",referencedColumnName="id",insertable=false,updatable=false)
-	private ManualCategory parent;
+	@JoinColumn(name="descendantId",referencedColumnName="id",insertable=false,updatable=false)
+	private ManualCategory parents;
 }
