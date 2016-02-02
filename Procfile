@@ -1,1 +1,1 @@
-web: java -jar build/libs/*.jar --server.port=$PORT
+web: java -jar -Dspring.profiles.acitve=dev build/libs/*.jar --server.port=$PORT
