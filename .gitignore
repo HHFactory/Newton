@@ -1,0 +1,12 @@
+/bin/
+/build/
+/.DS_Store
+/.project
+/gradlew.bat
+build
+.idea
+out
+*.iml
+*.ipr
+*.iws
+.DS_Store
