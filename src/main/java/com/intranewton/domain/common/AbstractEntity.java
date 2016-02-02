@@ -18,9 +18,9 @@ public class AbstractEntity {
 	@Id
 	@GeneratedValue
 	public Integer id;
-	private Timestamp create_datetime;
-	private String create_user;
-	private Timestamp update_datetime;
-	private String update_user;
+	private Timestamp createDatetime;
+	private String createUser;
+	private Timestamp updateDatetime;
+	private String updateUser;
 	private String status;
 }

@@ -36,7 +36,7 @@ public class Notification extends AbstractEntity implements Serializable {
 
 	private String title;
 	private String content;
-	private String file_path;
+	private String filePath;
 	private Integer importance;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
