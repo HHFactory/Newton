@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @ComponentScan
 @SpringBootApplication
 @EnableJpaRepositories(includeFilters=@ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, value=JpaRepository.class))
