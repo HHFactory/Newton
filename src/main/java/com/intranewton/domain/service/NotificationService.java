@@ -83,7 +83,7 @@ public class NotificationService {
 			NotificationDTO notificationDTO = new NotificationDTO();
 			notificationDTO.setTitle(notification.getTitle());
 			notificationDTO.setContent(notification.getContent());
-			notificationDTO.setFile_path(notification.getFilePath());
+			notificationDTO.setFilePath(notification.getFilePath());
 			notificationDTO.setImportance(notification.getImportance());
 			notificationDTO.setReadMemberList(createReadUserList(notification.getNotificationTargetRoles(), userName));
 			notificationDTO

@@ -2,7 +2,7 @@
 .col-contents {
 	width: 100%;
 	height: calc(100% - #{$colHeaderHeight});
-	overflow-y: scroll;
+	overflow: auto;
 	position: absolute;
 	top: $colHeaderHeight;
 	padding-top: 5px;

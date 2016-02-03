@@ -15,8 +15,8 @@
 			'putFaqUseful': hostName + "/api/v1/faqs/",
 			'getModifyFaqList': hostName + "/api/v1/modifyfaqs",
 			'getNotificationList': hostName + "/api/v1/notifications",
-			'putNotification': hostName + "/api/v1/notification",
-			'getManualList': hostName +"/api/v1/manuals",
+			'postNotification': hostName + "/api/v1/notification",
+			'getManualList': hostName + "/api/v1/manuallist",
 			'postManual': hostName +"/api/v1/manual",
 			'putManual': hostName +"/api/v1/manual",
 			'getSkillList': hostName +"/api/v1/roles",
@@ -24,6 +24,8 @@
 			'getToDoList': hostName +"/api/v1/todos",
 			'getToDoListByTargetUser': hostName +"/api/v1/targettodos",
 			'postToDo': hostName +"/api/v1/todo",
+			'searchTerm': hostName + "/api/v1/term",
+			'postTerm': hostName + "/api/v1/term",
 			'searchAPI': hostName +"/api/v1/elastic/querysearch"
 		}
 	);

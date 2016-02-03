@@ -8,46 +8,55 @@
 		 * @param  {[type]} resultAPI){			$scope.targetSkills [description]
 		 * @return {[type]}                                    [description]
 		 */
-		connectApiService.get(constURI.getSkillList).then(function(resultAPI){
-			$scope.targetSkills = resultAPI.data;
-		});
+		$scope.loadSkills = function(){
+			connectApiService.get(constURI.getSkillList).then(function(resultAPI){
+				return resultAPI.data;
+			});
+		}
 
 		/**
 		 * チェックしたスキルを配列に格納する
 		 * @type {Array}
 		 */
-		$scope.selection = [];
-		$scope.toggleSelection = function toggleSelection(targetSkill) {
-		    var idx = $scope.selection.indexOf(targetSkill.skill);
-		    console.log('index:'+idx);
-		    if (idx > -1) {
-		        $scope.selection.splice(idx, 1);
-		    }
-		    else {
-		        $scope.selection.push(targetSkill.skill);
-		        console.log($scope.selection);
-		    }
-		};
+		// $scope.selection = [];
+		// $scope.toggleSelection = function toggleSelection(targetSkill) {
+		//     var idx = $scope.selection.indexOf(targetSkill.skill);
+		//     console.log('index:'+idx);
+		//     if (idx > -1) {
+		//         $scope.selection.splice(idx, 1);
+		//     }
+		//     else {
+		//         $scope.selection.push(targetSkill.skill);
+		//         console.log($scope.selection);
+		//     }
+		// };
 
 		/**		  	
 		 * 登録ボタン押下処理
 		 * @param  {[type]} notification [description]
 		 * @return {[type]}              [description]
 		 */
-		$scope.submit = function(notification){
-			notification.targetUserList = $scope.selection;
-			connectApiService.post(constURI.putNotification,notification).then(function(resultAPI){
+		$scope.submit = function(notificationDAO){
+			notificationDAO.targetUserList = setTargetSkills($scope.selectSkillList);
+			notificationDAO.filePath = "";
+			console.dir(notificationDAO);
+			connectApiService.post(constURI.postNotification,notificationDAO).then(function(resultAPI){
+				sharedService.isShowCreateNotificationPanel = false;
 				$state.go('main');
 			});
 		};
 
 		/**
-		 * キャンセルボタン押下処理
-		 * @return {[type]} [description]
+		 * 
+		 * @param {[type]} selectSkillList [description]
 		 */
-		$scope.cancel = function(){
-			$state.go('main');
-		};	
+		var setTargetSkills = function(selectSkillList) {
+			var targetSkills = [];
+			for(var i =0; i<selectSkillList.length; i=(i+1)){
+				targetSkills.push(selectSkillList[i]["text"]);
+			}
+			return targetSkills;
+		}
 
 		/**
 		 * パネルを閉じる

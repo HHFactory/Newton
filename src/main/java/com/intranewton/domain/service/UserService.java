@@ -59,6 +59,7 @@ public class UserService {
 		for ( Role targetRole : roleList ) {
 			String userName = userRepository.findbyTargetRole(targetRole);
 			targetUserList.add(userName);
+			System.out.println(userName);
 		}
 		// 重複削除して返却する
 		return targetUserList.stream().distinct().collect(Collectors.toList());

@@ -3018,7 +3018,7 @@ input[type="button"].btn-block {
   /* line 136, assets/stylesheets/bootstrap/_modals.scss */
   .modal-dialog {
     width: 600px;
-    margin: 30px auto;
+    margin: 50px auto;
   }
 
   /* line 140, assets/stylesheets/bootstrap/_modals.scss */
@@ -6725,20 +6725,6 @@ input[type="button"].btn-block {
   height: 100%;
 }
 
-/* line 31, layout/_navbar.scss */
-.navbar__item--icon {
-  display: table-cell;
-  vertical-align: middle;
-  height: 100%;
-  text-align: center;
-  font-size: 28px;
-  color: white;
-}
-/* line 38, layout/_navbar.scss */
-.navbar__item--icon:hover {
-  color: #cf363d;
-}
-
 /** layout.main */
 /* line 3, layout/_main.scss */
 .l-main {
@@ -6780,7 +6766,6 @@ input[type="button"].btn-block {
   position: fixed;
   top: 50px;
   background-color: white;
-  z-index: 2;
   background-color: #F5F8FA;
 }
 
@@ -6883,7 +6868,7 @@ input[type="button"].btn-block {
 .col-contents {
   width: 100%;
   height: calc(100% - 40px);
-  overflow-y: scroll;
+  overflow: auto;
   position: absolute;
   top: 40px;
   padding-top: 5px;
@@ -6935,6 +6920,20 @@ input[type="button"].btn-block {
 /* line 43, base/_util.scss */
 .nav__form:focus {
   outline: none;
+}
+
+/* line 38, module/_navbar-item.scss */
+.navbar__item--icon {
+  display: table-cell;
+  vertical-align: middle;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  color: white;
+}
+/* line 45, module/_navbar-item.scss */
+.navbar__item--icon:hover {
+  color: #cf363d;
 }
 
 /* line 4, module/_input-text.scss */
@@ -7180,7 +7179,7 @@ input[type="button"].btn-block {
   background-color: white;
   padding-left: 5px;
   resize: none;
-  overflow: scroll;
+  overflow: auto;
   width: 100%;
   border: 1px solid;
   border-color: gray;
@@ -7291,7 +7290,7 @@ input[type="button"].btn-block {
   background-color: white;
   padding-left: 5px;
   resize: none;
-  overflow: scroll;
+  overflow: auto;
 }
 /* line 40, module/_input-text.scss */
 .create-panel__contents:focus {
@@ -7333,16 +7332,111 @@ input[type="button"].btn-block {
   background-color: white;
   padding-left: 5px;
   resize: none;
-  overflow: scroll;
+  overflow: auto;
 }
 /* line 40, module/_input-text.scss */
 .modal__textarea:focus {
   outline: none;
 }
 
+/* line 35, module/_modal.scss */
+.dict-modal {
+  width: 100%;
+  height: 400px;
+}
+
+/* line 40, module/_modal.scss */
+.dict-modal__header {
+  width: 100%;
+  height: 40px;
+  display: table;
+  background-color: #c5cfba;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 14px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/* line 52, module/_modal.scss */
+.dict-modal__header__item {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* line 57, module/_modal.scss */
+.dict-modal__content {
+  width: 100%;
+  height: -webkit-calc(100% - 40px);
+  height: -moz-calc(100% - 40px);
+  height: -ms-calc(100% - 40px);
+  height: -o-calc(100% - 40px);
+  height: calc(100% - 40px);
+  display: table;
+  table-layout: fixed;
+}
+
+/* line 66, module/_modal.scss */
+.dict-modal__content--left {
+  display: table-cell;
+  width: 30%;
+  height: 100%;
+  padding-left: 15px;
+  border-right: 3px solid;
+  border-color: #F5F5F5;
+}
+
+/* line 75, module/_modal.scss */
+.dict-modal__content--right {
+  display: table-cell;
+  width: 70%;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 15px;
+}
+
+/* line 83, module/_modal.scss */
+.dict-modal__item-list {
+  list-style: none;
+}
+/* line 85, module/_modal.scss */
+.dict-modal__item-list > li:hover {
+  background-color: #36a3cf;
+}
+/* line 88, module/_modal.scss */
+.dict-modal__item-list > li {
+  margin-bottom: 10px;
+}
+
+/* line 93, module/_modal.scss */
+.dict-modal__textarea {
+  height: 130px;
+  width: 100%;
+  background-color: white;
+  padding-left: 5px;
+  resize: none;
+  overflow: auto;
+  height: -webkit-calc(100% - 80px);
+  height: -moz-calc(100% - 80px);
+  height: -ms-calc(100% - 80px);
+  height: -o-calc(100% - 80px);
+  height: calc(100% - 80px);
+  padding-left: 10px;
+}
+/* line 40, module/_input-text.scss */
+.dict-modal__textarea:focus {
+  outline: none;
+}
+
+/* line 101, module/_modal.scss */
+.dict-moal__footer {
+  width: 100%;
+  height: 40px;
+}
+
 /* line 3, module/_grid.scss */
 .grid-base {
-  width: 100%;
+  width: 550px;
   height: 300px;
   overflow: scroll;
 }

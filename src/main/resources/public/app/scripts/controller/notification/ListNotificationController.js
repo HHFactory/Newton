@@ -35,12 +35,10 @@
 		 * @return {[type]}
 		 */
 		$scope.open = function(notification){
-			//modalService.openModal(notification);
 			$uibModal.open({
 				templateUrl: "../../../../app/views/template/modal.html",
 				controller:"ModalController",
 				animation: false,
-				backdrop: true,
 				resolve:{
 					data:function(){
 						return notification;

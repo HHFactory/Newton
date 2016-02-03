@@ -2,7 +2,7 @@
 .l-faq {
   @include l-column-set($faqAreaWidthWide);
   background-color: white;
-  z-index: 2;
+  //z-index: 2;
   background-color: $main-bg-gray;
 }
 

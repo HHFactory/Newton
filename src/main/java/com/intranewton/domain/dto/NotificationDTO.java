@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class NotificationDTO {
 	private String title;
 	private String content;
-	private String file_path;
+	private String filePath;
 	private Integer importance;
 	private List<NotificationTargetRole> notificationTargetRoles;
 	private List<String> readMemberList;

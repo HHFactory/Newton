@@ -8,6 +8,10 @@
 'use strict';
 	
 	function ConnectApiService($http){
+		var transform = function(data){
+			return $.param(data);
+		}
+
 		var ConnectAPI = {
 			/**
 			 * http.get
@@ -22,6 +26,7 @@
 				});
 				return getData;
 			},
+
 			/**
 			 * http.put
 			 * @param  {[type]}
@@ -36,6 +41,7 @@
 				});
 				return putData;
 			},
+
 			/**
 			 * http.post
 			 * @return {[type]}
@@ -50,9 +56,10 @@
 			}
 		};
 		return ConnectAPI;
-
 	}
 
 	//moduleにfactoryを登録
 	angular.module('indexModule').factory('connectApiService',ConnectApiService);
+
+
 })();

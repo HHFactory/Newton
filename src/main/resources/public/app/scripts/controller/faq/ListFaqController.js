@@ -48,10 +48,15 @@
 			$uibModal.open({
 				templateUrl: "../../../../app/views/template/fileLoadModal.html",
 				controller: "GeneralModalController",
+				animation: false,
 				backdrop: true
 			});
 		}
 
+		/**
+		 * 編集アイコンを表示
+		 * @return {Boolean} [description]
+		 */
 		$scope.isShowEditIcon = function() {
 			if($scope.isShowIcon == false) {
 				$scope.isShowIcon = true;

@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class IndexContoller {	
 	//index.htmlを返す
 	@RequestMapping(value="/index",method=RequestMethod.GET)
-	String indexURL(){
-		System.out.println("return index.html");
+	String indexURL(){		
 		return "app/views/index.html";
 	}
 }
