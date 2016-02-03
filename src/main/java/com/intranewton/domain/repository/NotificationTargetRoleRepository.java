@@ -15,6 +15,6 @@ import com.intranewton.domain.entity.NotificationTargetRole;
 @Repository
 public interface NotificationTargetRoleRepository extends JpaRepository<NotificationTargetRole, Integer>{
 	//指定したユーザ名に紐づくお知らせを取得する
-	@Query("SELECT nt FROM NotificationTargetRole nt WHERE nt.target_user = :targetUser")
+	@Query("SELECT nt FROM NotificationTargetRole nt WHERE nt.targetUser = :targetUser")
 	List<NotificationTargetRole> findbyTargetUser(@Param("targetUser") String targetUser);
 }

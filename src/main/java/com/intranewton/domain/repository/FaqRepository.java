@@ -17,7 +17,7 @@ import com.intranewton.domain.entity.FAQ;
 @Repository
 public interface FaqRepository extends JpaRepository<FAQ, Integer>{
 	//役に立ったボタン押下時にuseful_countカラムをインクリメントする。
-	@Query("UPDATE FAQ faq SET faq.useful_count = faq.useful_count + 1 WHERE faq.id=?")
+	@Query("UPDATE FAQ faq SET faq.usefulCount = faq.usefulCount + 1 WHERE faq.id=?")
 	@Modifying
 	@Transactional
 	Integer countUpUsefulCount(Integer id);

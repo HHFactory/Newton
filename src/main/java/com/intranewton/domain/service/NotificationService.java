@@ -62,8 +62,8 @@ public class NotificationService {
 		List<NotificationTargetRole> targetRoleList = new ArrayList<>();
 		for ( String targetUser : notificationParam.getTargetUserList() ) {
 			NotificationTargetRole targetRole = new NotificationTargetRole();
-			targetRole.setM_notification(notification);
-			targetRole.setTarget_user(targetUser);
+			targetRole.setNotification(notification);
+			targetRole.setTargetUser(targetUser);
 			targetRoleList.add(targetRole);
 		}
 		notification.setNotificationTargetRoles(targetRoleList);
@@ -121,8 +121,8 @@ public class NotificationService {
 		if ( !(targetRoleList.size() > 0) )
 			return readUserList;
 		for ( NotificationTargetRole targetRole : targetRoleList ) {
-			if ( targetRole.isRead_flag() ) {
-				readUserList.add(targetRole.getTarget_user());
+			if ( targetRole.isReadFlag() ) {
+				readUserList.add(targetRole.getTargetUser());
 			}
 		}
 		return readUserList;
@@ -140,8 +140,8 @@ public class NotificationService {
 		if ( !(targetRoleList.size() > 0) )
 			return unreadUserList;
 		for ( NotificationTargetRole targetRole : targetRoleList ) {
-			if ( !targetRole.isRead_flag() ) {
-				unreadUserList.add(targetRole.getTarget_user());
+			if ( !targetRole.isReadFlag() ) {
+				unreadUserList.add(targetRole.getTargetUser());
 			}
 		}
 		return unreadUserList;

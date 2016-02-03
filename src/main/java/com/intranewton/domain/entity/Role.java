@@ -29,6 +29,6 @@ public class Role implements Serializable{
 	@GeneratedValue
 	private Integer id;
 	private String status;
-	private String skill_name;
+	private String skillName;
 
 }

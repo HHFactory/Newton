@@ -18,5 +18,5 @@ public class ManualDTO {
 	private String name;
 	private List<Manual> manuals;
 	private List<ManualCategoryItem> children;
-	private List<ManualCategoryItem> parents;
+	//private List<ManualCategoryItem> parents;
 }

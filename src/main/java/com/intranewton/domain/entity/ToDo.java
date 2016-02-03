@@ -27,13 +27,13 @@ public class ToDo implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer id;
-	private Timestamp create_datetime;
-	private String create_user;
+	private Timestamp createDatetime;
+	private String createUser;
 	private String status;
 	private String title;
 	private String content;
-	private String target_user;
+	private String targetUser;
 	private Integer importance;
-	private Timestamp dead_line;
+	private Timestamp deadLine;
 	private String memo;
 }

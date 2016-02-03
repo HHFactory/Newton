@@ -3,7 +3,6 @@ package com.intranewton.domain.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.lucene.analysis.compound.DictionaryCompoundWordTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +22,28 @@ public class ManualService {
 	ManualCategoryRepository categoryRepository;
 	
 	/**
-	 * マニュアル取得
-	 * @return
+	 * m_manualテーブル確認用
 	 */
-	public List<Manual> getManualList() {
+	public List<Manual> getAllManual() {
 		return manualRepository.findAll();
 	}
+	
+	/**
+	 * m_manual_categoryテーブル確認用
+	 * @return
+	 */
+	public List<ManualCategory> getAllManualCategories() {
+		return categoryRepository.findAll();
+	}
+	
+	/**
+	 * m_manual_categoryをID検索
+	 * @return
+	 */
+	public ManualCategory getManualCategory() {
+		return categoryRepository.findManualCategoryByID(1);
+	}
+//-----------------------------------	
 	
 	/**
 	 * マニュアルカテゴリ取得
@@ -36,62 +51,39 @@ public class ManualService {
 	 */
 	public List<ManualDTO> getManualCategories() {
 		List<ManualCategory> categories = categoryRepository.findAll();
+
 		List<ManualDTO> manualDTOs = new ArrayList<>();
-		for(ManualCategory category : categories) {
-			ManualDTO dto = new ManualDTO();
-			dto.setName(category.getName());
-			dto.setManuals(category.getManuals());
-			dto.setChildren(getChildrenList(category.getChildren(), categories));
-			dto.setParents(getChildrenList(category.getParents(), categories));
-			manualDTOs.add(dto);			
+		for ( ManualCategory category : categories ) {
+			//最上位カテゴリのみ返却
+			if(category.getParents().size() == 1 && category.getParents().get(0).getPathLength() == 0) {
+				ManualDTO dto = new ManualDTO();
+				dto.setName(category.getName());
+				dto.setManuals(category.getManuals());
+				dto.setChildren(getRelationItemsInfo(category.getChildren()));// manualcategoryitem.list
+				manualDTOs.add(dto);				
+			}
 		}
 		return manualDTOs;
 	}
-	
+		
 	/**
-	 * 子カテゴリの中でpathLength=0以外を返す
-	 * @param category
-	 * @return
-	 */
-	private List<ManualCategoryRelations> removeSelfItem(List<ManualCategoryRelations> targetList) {
-		List<ManualCategoryRelations> categoryRelations = new ArrayList<>();
-		for(ManualCategoryRelations relationItem : targetList) {
-			if(relationItem.getPathLength() != 0) {
-				categoryRelations.add(relationItem);
-			}
-		}
-		return categoryRelations;
-	}
-	
-	/**
-	 * 
+	 * カテゴリ要素の作成
 	 * @param targetCategory
 	 * @return
 	 */
-	private List<ManualCategoryItem> getChildrenList(List<ManualCategoryRelations> targetList,List<ManualCategory> categoryList) {
+	private List<ManualCategoryItem> getRelationItemsInfo(List<ManualCategoryRelations> targetList) {
 		List<ManualCategoryItem> categoryItems = new ArrayList<>();
 		for ( ManualCategoryRelations relation : targetList ) {
-			for ( ManualCategory category : categoryList ) {
-				//parents
-				if(relation.getDescendantId().equals(category.getId())){
-					ManualCategoryItem categoryItem = new ManualCategoryItem();
-					ManualCategory tmpCategory = categoryRepository.findOne(relation.getAnscestorId());
-					categoryItem.setName(tmpCategory.getName());
-					categoryItem.setManuals(tmpCategory.getManuals());
-					categoryItem.setPathLength(relation.getPathLength());
-					categoryItems.add(categoryItem);
-					break;	
-				}
-				//children
-				if ( category.getId().equals(relation.getDescendantId()) ) {
-					ManualCategoryItem categoryItem = new ManualCategoryItem();
-					categoryItem.setName(category.getName());
-					categoryItem.setManuals(category.getManuals());
-					categoryItem.setPathLength(relation.getPathLength());
-					categoryItems.add(categoryItem);
-					break;
-				}
+			ManualCategoryItem categoryItem = new ManualCategoryItem();
+			//自身を除くitemの情報を取得する
+			if(relation.getPathLength() == 0) {
+				continue;
 			}
+			ManualCategory category = categoryRepository.findManualCategoryByID(relation.getDescendantId());
+			categoryItem.setName(category.getName());
+			categoryItem.setManuals(category.getManuals());
+			categoryItem.setPathLength(relation.getPathLength());				
+			categoryItems.add(categoryItem);
 		}
 		return categoryItems;
 	}

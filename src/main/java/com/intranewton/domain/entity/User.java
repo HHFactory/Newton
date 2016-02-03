@@ -38,7 +38,7 @@ public class User implements Serializable{
 	private String status;
 	private String name;
 	private String password;
-	private String mail_address;
+	private String mailAddress;
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
 			name="m_user_has_m_role",

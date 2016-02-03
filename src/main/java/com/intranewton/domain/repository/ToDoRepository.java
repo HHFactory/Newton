@@ -14,7 +14,7 @@ import java.lang.String;
 public interface ToDoRepository extends JpaRepository<ToDo, Integer>{
 
 	//user名に紐づくtodoリストを取得
-	@Query("SELECT td FROM ToDo td WHERE td.target_user = :userName")
+	@Query("SELECT td FROM ToDo td WHERE td.targetUser = :userName")
 	List<ToDo> findByTarget_user(@Param("userName") String userName);
 	
 	//未完了のtodoリストを取得
