@@ -11,7 +11,10 @@
 				<li><a href=""><i class="fa fa-picture-o"/></a></li>
 				<li><a href=""><i class="fa fa-bold"/></a></li>
 				<li><a href=""><i class="fa fa-list-ol"/></a></li>
-				<li><a href="" ng-click="openTalkScriptModal()"><i class="fa fa-phone"/></a></li>
+				<li><a href="" ng-click="openTalkScriptModal()" 
+						uib-tooltip="トークスクリプト作成ダイアログを表示します" 
+    					tooltip-placement="right" tooltip-trigger="mouseenter">
+    					<i class="fa fa-phone"/></a></li>
 			</ul>
 			<textarea class="create-view__textarea" rows="24" ng-change="parseMarkDown()" ng-model="faq.content" placeholder="FAQ本文を入力してください"/>
 
