@@ -3,7 +3,7 @@
 (function(){
 'use strict';
 
-	function ListNotificationCtrl($scope,$state,connectApiService,constURI,modalService,UserService,sharedService,$uibModal){
+	function ListNotificationCtrl($scope,connectApiService,constURI,UserService,sharedService,$uibModal){
 		var userID = {userName:"user1"};
 		/**
 		 * お知らせを取得する
@@ -20,12 +20,22 @@
 		 * @param {[type]} notification [description]
 		 */
 		$scope.setHeadColor = function(notification) {
-			if(notification.importance == 1) {
+			if(notification.importance == 3) {
 				return "table--colored-gray";
 			}else if(notification.importance == 2) {
 				return "table--colored-blue";
-			}else if(notification.importance == 3) {
+			}else if(notification.importance == 1) {
 				return "table--colored-red";
+			}
+		}
+
+		$scope.setTagColor = function(notification) {
+			if(notification.importance == 1) {
+				return "importance--low";
+			}else if(notification.importance == 2) {
+				return "importance--middle";
+			}else if(notification.importance == 3) {
+				return "importance--high";
 			}
 		}
 
@@ -67,12 +77,11 @@
 			return sharedService.isShowCreateNotificationPanel;
 		}, function() {
 			$scope.isShowCreatePanel = sharedService.isShowCreateNotificationPanel;
-			console.log($scope.isShowCreatePanel);
 		});	
 
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('ListNotificationController',['$scope','$state','connectApiService','constURI','modalService','UserService','sharedService','$uibModal',ListNotificationCtrl]);
+	angular.module('indexModule').controller('ListNotificationController',['$scope','connectApiService','constURI','UserService','sharedService','$uibModal',ListNotificationCtrl]);
 })();
 

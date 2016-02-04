@@ -1,5 +1,7 @@
 package com.intranewton.domain.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,5 +15,5 @@ import com.intranewton.domain.entity.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
 	//ロールリストから該当するユーザを取得する
 	@Query("SELECT u.name FROM User u Where :targetRole MEMBER OF u.roleList")
-	public String findbyTargetRole(@Param("targetRole") Role targetRole);
+	public List<String> findbyTargetRole(@Param("targetRole") Role targetRole);
 }

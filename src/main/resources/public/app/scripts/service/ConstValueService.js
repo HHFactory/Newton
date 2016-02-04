@@ -19,7 +19,7 @@
 			'getManualList': hostName + "/api/v1/manuallist",
 			'postManual': hostName +"/api/v1/manual",
 			'putManual': hostName +"/api/v1/manual",
-			'getSkillList': hostName +"/api/v1/roles",
+			'getSkillList': hostName + "/api/v1/roles",
 			'getUserList': hostName +"/api/v1/users",
 			'getToDoList': hostName +"/api/v1/todos",
 			'getToDoListByTargetUser': hostName +"/api/v1/targettodos",

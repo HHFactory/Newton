@@ -1,43 +1,37 @@
+/**
+ * お知らせ新規登録パネルコントローラ
+ * 
+ */
 (function(){
 'use strict';
 
 	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService){
 
 		/**
-		 * スキルリストの取得
-		 * @param  {[type]} resultAPI){			$scope.targetSkills [description]
-		 * @return {[type]}                                    [description]
+		 * 宛先リスト取得処理
+		 * @param  {obj} query 
+		 * @return {list} targetSkill      
 		 */
-		$scope.loadSkills = function(){
-			connectApiService.get(constURI.getSkillList).then(function(resultAPI){
-				return resultAPI.data;
+		$scope.loadSkills = function(query) {
+			return connectApiService.get(constURI.getSkillList).then(function(apiResult){
+				var targetSkill = [];
+				var loadSkillList = apiResult.data;
+				for(var i = 0; i < loadSkillList.length; i = (i+1)) {
+					var skill = {};
+					skill["text"] = loadSkillList[i]["skillName"];
+					targetSkill.push(skill);
+				}
+				return targetSkill;
 			});
-		}
+		};
 
 		/**
-		 * チェックしたスキルを配列に格納する
-		 * @type {Array}
-		 */
-		// $scope.selection = [];
-		// $scope.toggleSelection = function toggleSelection(targetSkill) {
-		//     var idx = $scope.selection.indexOf(targetSkill.skill);
-		//     console.log('index:'+idx);
-		//     if (idx > -1) {
-		//         $scope.selection.splice(idx, 1);
-		//     }
-		//     else {
-		//         $scope.selection.push(targetSkill.skill);
-		//         console.log($scope.selection);
-		//     }
-		// };
-
-		/**		  	
 		 * 登録ボタン押下処理
-		 * @param  {[type]} notification [description]
-		 * @return {[type]}              [description]
+		 * @param  {obj} notificationDAO 
+		 * @return {}                 
 		 */
-		$scope.submit = function(notificationDAO){
-			notificationDAO.targetUserList = setTargetSkills($scope.selectSkillList);
+		$scope.submit = function(notificationDAO) {
+			notificationDAO.targetUserList = getSkillNameList($scope.selectSkillList);
 			notificationDAO.filePath = "";
 			console.dir(notificationDAO);
 			connectApiService.post(constURI.postNotification,notificationDAO).then(function(resultAPI){
@@ -47,24 +41,25 @@
 		};
 
 		/**
-		 * 
-		 * @param {[type]} selectSkillList [description]
+		 * 選択したスキルリストの整形
+		 * @param {list} selectSkillList
+		 * @retun {list} skillNameList
 		 */
-		var setTargetSkills = function(selectSkillList) {
-			var targetSkills = [];
+		var getSkillNameList = function(selectSkillList) {
+			var skillNameList = [];
 			for(var i =0; i<selectSkillList.length; i=(i+1)){
-				targetSkills.push(selectSkillList[i]["text"]);
+				skillNameList.push(selectSkillList[i]["text"]);
 			}
-			return targetSkills;
+			return skillNameList;
 		}
 
 		/**
-		 * パネルを閉じる
-		 * @return {[type]} [description]
+		 * 新規登録パネルを閉じる
+		 * @return {} 
 		 */
 		$scope.closePanel = function() {
 			sharedService.isShowCreateNotificationPanel = false;
-		}			
+		}
 	}
 
 	//moduleへ登録

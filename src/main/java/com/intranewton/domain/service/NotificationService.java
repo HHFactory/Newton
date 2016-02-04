@@ -6,6 +6,7 @@ package com.intranewton.domain.service;
  */
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,18 +36,15 @@ public class NotificationService {
 
 	/**
 	 * 渡されたパラメータのスキル名リストをユーザ名リストに変換し、お知らせとして登録する
-	 * 
 	 * @param notificationParam
 	 */
-	public void createNotification(NotificationParam notificationParam) {
+	public Notification createNotification(NotificationParam notificationParam) {
 		notificationParam.setTargetUserList(userService.getTargetUsersbySkills(notificationParam.getTargetUserList()));
-		notificationRepository.save(convertParamtoEntity(notificationParam));
-		System.out.println("notification post success");
+		return notificationRepository.save(convertParamtoEntity(notificationParam));
 	}
 
 	/**
 	 * クライアントから渡されたパラメータからnotificationクラスに詰め替える
-	 * 
 	 * @param notificationParam
 	 * @return notification
 	 */
@@ -78,6 +76,8 @@ public class NotificationService {
 	 */
 	public List<NotificationDTO> getDTObyUserName(String userName) {
 		List<Notification> notifications = getEntitybyUserName(userName);
+		//更新日で降順ソート
+		Collections.sort(notifications, (n1,  n2) -> Long.compare(n2.getUpdateDatetime().getTime(), n1.getUpdateDatetime().getTime()));
 		List<NotificationDTO> notificationDTOList = new ArrayList<>();
 		for ( Notification notification : notifications ) {
 			NotificationDTO notificationDTO = new NotificationDTO();
@@ -85,6 +85,7 @@ public class NotificationService {
 			notificationDTO.setContent(notification.getContent());
 			notificationDTO.setFilePath(notification.getFilePath());
 			notificationDTO.setImportance(notification.getImportance());
+			notificationDTO.setCreateUser(notification.getCreateUser());
 			notificationDTO.setReadMemberList(createReadUserList(notification.getNotificationTargetRoles(), userName));
 			notificationDTO
 			        .setUnreadMemberList(createUnReadUserList(notification.getNotificationTargetRoles(), userName));
@@ -146,5 +147,6 @@ public class NotificationService {
 		}
 		return unreadUserList;
 	}
+
 
 }

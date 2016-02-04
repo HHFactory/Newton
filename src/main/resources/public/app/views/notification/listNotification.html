@@ -10,22 +10,44 @@
 	<!-- 一覧表示エリア -->
  	<div class="col-contents" >
  		<!-- お知らせパネル -->
-		<table ng-class="setHeadColor(notification)" ng-repeat="notification in notifications" ng-click="open(notification)">
+<!-- 		<table class="timeline"  ng-repeat="notification in notifications" ng-click="open(notification)">
 			<thead>
-				<tr><th>{{notification.title}}</th></tr>
+				<tr>
+					<td class="timeline__title">{{notification.title}}</td>					
+					<td><i class="fa fa-tag"/></td>
+				</tr>
+				<tr><td colspan="2" class="timeline__item--user-name">@{{notification.createUser}}</td></tr>
 			</thead>
 			<tbody>
-				<tr><td>{{notification.content|abbreviate:150}}</td></tr>
+				<tr><td colspan="2" class="timeline__content">{{notification.content|abbreviate:150}}</td></tr>
 			</tbody>
-			<tfoot ng-controller="PopOverController" >
-				<tr><td class="table__footer--low">
-					<a uib-popover-template="dynamicPopOver.templateUrl" popover-placement="top">
-						既読<span class="bagde">{{notification.readMemberList.length}}</span>							
-						未読<span class="bagde">{{notification.unreadMemberList.length}}</span>	
-					</a></td>
+			<tfoot>
+				<tr>
+					<td class="timeline__footer" colspan="2">
+						<i class="fa fa-envelope-o"/><span class="timeline__item--number">{{notification.readMemberList.length}}</span>
+						<i class="fa fa-envelope"/><span class="timeline__item--number">{{notification.unreadMemberList.length}}</span>
+					</td>
 				</tr>
 			</tfoot>
-		</table>
+		</table> -->
+
+		<div class="timeline" ng-repeat="notification in notifications" ng-click="open(notification)">
+			<div class="timeline__header">
+				<div class="header__item timeline__title">{{notification.title}}</div>
+			</div>
+			<div class="timeline__header">
+				<div class="header__item timeline__item--user-name">@{{notification.createUser}}</div>
+				<div class="header__item--tag" ng-class="setTagColor(notification)"><i class="fa fa-tag"/>重要度{{notification.importance}}</div>
+			</div>
+			<div class="timeline__content">{{notification.content|abbreviate:150}}</div>
+			<div class="timeline__footer">
+				<div class="footer__item">
+					<i class="fa fa-envelope-o"/><span class="timeline__item--number">{{notification.readMemberList.length}}</span>
+					<i class="fa fa-envelope"/><span class="timeline__item--number">{{notification.unreadMemberList.length}}</span>	
+				</div>
+			</div>
+		</div>
+
 		<!-- 新規登録パネル -->
 		<a class="open-create-notification"　href="" ng-click="openPanel()"><i class="fa fa-pencil-square-o"/><span>新しいお知らせを登録する</span></a>
 		<div ng-include="'../../../app/views/notification/createNotificationPanel.html'" ng-show="isShowCreatePanel"></div>

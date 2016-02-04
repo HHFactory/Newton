@@ -11,14 +11,9 @@
 			<tbody>
 				<!-- 宛先 -->
 				<tr class="create-panel__header-row" >　
-<!-- 					<td ng-controller="PopOverController" colspan="2">
-						<a uib-popover-template="targetUserList.templateUrl" popover-placement="bottom-left"><i class="fa fa-user"/>宛先</a>
-					</td>
- -->
- 					<!-- ngTagsInput test -->
  					<td>
- 						<tags-input ng-model="selectSkillList" placeholder="お知らせ対象を選択">
- 							<auto-complete source="loadSkills()" min-length="0" max-results="10" debounce-delay="0"></auto-complete>
+ 						<tags-input ng-model="selectSkillList" placeholder="お知らせ対象を選択" replace-spaces-with-dashes="false">
+ 							<auto-complete source="loadSkills($query)" min-length="0" max-results="10" debounce-delay="0"></auto-complete>
  						</tags-input>
  					</td>
 				</tr>
@@ -41,7 +36,7 @@
 						<label><input type="radio" ng-model="notificationDAO.importance" ng-value="3">低</label>
 						<button class="btn-green" type="submit">送信</button>
 						<input type="hidden" ng-model="notificationDAO.createUser" ng-init="notificationDAO.createUser='user1'" />
-						<input type="hidden" ng-model="notificationDAO.updateUser" ng-init="notificationDAO.updateUser='user1'" />						
+						<input type="hidden" ng-model="notificationDAO.updateUser" ng-init="notificationDAO.updateUser='user1'" />
 					</td>
 				</tr>
 			</tfoot>

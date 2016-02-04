@@ -19,6 +19,7 @@ public class NotificationDTO {
 	private String content;
 	private String filePath;
 	private Integer importance;
+	private String createUser;
 	private List<NotificationTargetRole> notificationTargetRoles;
 	private List<String> readMemberList;
 	private List<String> unreadMemberList;

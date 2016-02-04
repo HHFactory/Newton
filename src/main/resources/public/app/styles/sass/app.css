@@ -7441,6 +7441,115 @@ input[type="button"].btn-block {
   overflow: scroll;
 }
 
+/* line 3, module/_timeline.scss */
+.timeline {
+  width: 100%;
+  margin: 0px;
+  border-bottom: 2px solid;
+  border-color: #F5F5F5;
+  background-color: white;
+}
+/* line 9, module/_timeline.scss */
+.timeline:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
+}
+
+/* line 15, module/_timeline.scss */
+.timeline__header {
+  display: table;
+  width: 100%;
+  padding-top: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* line 23, module/_timeline.scss */
+.header__item, .header__item--right {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* line 28, module/_timeline.scss */
+.header__item--tag {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 3px;
+  width: 20%;
+  font-size: 13px;
+  color: white;
+}
+
+/* line 38, module/_timeline.scss */
+.header__item--right {
+  text-align: right;
+}
+
+/* line 43, module/_timeline.scss */
+.timeline__title {
+  font-weight: bold;
+  color: #292f33;
+  font-size: 16px;
+}
+
+/* line 49, module/_timeline.scss */
+.timeline__content {
+  font-size: 14px;
+  color: #292f33;
+  line-height: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/* line 59, module/_timeline.scss */
+.timeline__item--user-name {
+  font-size: 13px;
+  color: #8899a6;
+}
+
+/* line 64, module/_timeline.scss */
+.timeline__item--number {
+  font-size: 16px;
+  color: #8899a6;
+  margin-left: 3px;
+}
+
+/* line 70, module/_timeline.scss */
+.importance--high {
+  background-color: red;
+}
+
+/* line 74, module/_timeline.scss */
+.importance--middle {
+  background-color: #cfc736;
+}
+
+/* line 78, module/_timeline.scss */
+.importance--low {
+  background-color: #36a3cf;
+}
+
+/* line 82, module/_timeline.scss */
+.timeline__footer {
+  display: table;
+  width: 100%;
+  height: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
+
+/* line 92, module/_timeline.scss */
+.footer__item {
+  display: table-cell;
+  font-size: 18px;
+  color: #aab8c2;
+}
+
 /* line 2, state/_is-open-sidebar.scss */
 .is-slide-right {
   -webkit-transition: transform 0.1s ease;
