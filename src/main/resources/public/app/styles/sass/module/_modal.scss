@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+.modal-base {
+	width: 100%;
+	height: 100%;
+	padding: 15px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.modal__header{
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	vertical-align: middle;
+	border-bottom: 1px solid;
+	border-color: gray;
+}
+
+.modal__footer {
+	width: 100%;
+	height: 40px;
+	border-top: 1px solid;
+	border-color: $sub-gray;
+	text-align: right;
+}
+
+.modal__textarea {
+	@include textarea-base(200px);
+}
+
+
+$modalHeaderHeight: 40px;
+
+.dict-modal {
+	width: 100%;
+	height: 400px;
+}
+
+.dict-modal__header {
+	width: 100%;
+	height: $modalHeaderHeight;
+	display: table;
+	background-color: $sidebar-color;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 14px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.dict-modal__header__item {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.dict-modal__content {
+	width: 100%;
+	@each $prefix in $set-prefix {
+		height: #{$prefix}calc(100% - #{$modalHeaderHeight});
+	}
+	display: table;
+	table-layout: fixed;
+}
+
+.dict-modal__content--left {
+	display: table-cell;
+	width: 30%;
+	height: 100%;
+	padding-left: 15px;
+	border-right: 3px solid;
+	border-color: $sub-gray;
+}
+
+.dict-modal__content--right {
+	display: table-cell;
+	width: 70%;
+	height: 100%;
+	padding-left: 10px;
+	padding-right: 15px;
+}
+
+.dict-modal__item-list {
+	list-style: none;
+	& > li:hover {
+		background-color: $main-blue;
+	}
+	& > li {
+		margin-bottom: 10px;
+	}
+}
+
+.dict-modal__textarea {
+	@include textarea-base();
+	@each $prefix in $set-prefix {
+		height: #{$prefix}calc(100% - #{$modalHeaderHeight * 2});
+	}
+	padding-left: 10px;
+}
+
+.dict-moal__footer {
+	width: 100%;
+	height: $modalHeaderHeight;
+}
