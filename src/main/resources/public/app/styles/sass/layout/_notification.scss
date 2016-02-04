@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.l-notification {
+	@include l-column-set($notificationAreaWidth);
+//	position: absolute;
+	right: 0;
+	background-color: $notification-color;
+	// padding-left: 15px;
+	// padding-right: 15px;
+}
+
+//お知らせ登録パネルスタイル
+.l-notification--create {
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	width: $notificationAreaWidth;
+	height: 350px;
+	z-index: 2;
+	padding: 0px 5px;
+	margin: 0px;
+}
+
+//お知らせ登録パネルトリガー用スタイル
+.open-create-notification {
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	width: 250px;
+	height: 30px;
+	z-index: 2;
+	border-radius: 3px;
+	padding: 5px;
+	font-size: 14px;
+	background-color: $button-blue;
+	color: white;
+	& > a:visited {
+		color: white;
+	}
+}

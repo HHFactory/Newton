@@ -1,0 +1,14 @@
+
+.l-faq {
+  @include l-column-set($faqAreaWidthWide);
+  background-color: white;
+  //z-index: 2;
+  background-color: $main-bg-gray;
+}
+
+.has-narrow-width {
+  @each $prefix in $set-prefix {
+    width: #{$prefix}calc(100% - #{$manualAreaWidth + $notificationAreaWidth});
+  }
+}
+

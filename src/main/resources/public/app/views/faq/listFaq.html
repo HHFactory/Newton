@@ -1,0 +1,28 @@
+<!-- FAQ一覧表示エリア -->
+<div class="l-faq" ng-controller="ListFaqController" ng-class="{'is-slide-right':isShowManual}" >
+	<!-- ヘッダエリア -->
+	<div class="col-header">
+		<span class="col-header__item col-header__title">よくあるお問い合わせ</span>
+		<!-- 新規登録アイコン -->
+		<a class="col-header__item" ng-click="create()" uib-popover="登録" popover-trigger="mouseenter" popover-placement="bottom"><i class="fa fa-pencil-square-o"/></a>
+		<!-- まとめて登録アイコン -->
+		<a href="" class="col-header__item" ng-click="importExcel()" uib-popover="まとめて登録" popover-trigger="mouseenter" popover-placement="bottom" ><i class="fa fa-upload"/></a>
+		<!-- 修正対象一覧アイコン -->
+		<a class="col-header__item" ng-click="checkModifyTaskList()" uib-popover="修正対象一覧" popover-trigger="mouseenter" popover-placement="bottom"><i class="fa fa-list-alt"/></a>
+ 	</div>
+
+ 	<!-- 一覧表示エリア -->
+ 	<div class="col-contents" >
+		<table class="table--hover" ng-repeat="faq in faqList" ng-click="openDetail(faq)" ng-mouseover="isShowIcon = true" ng-mouseleave="isShowIcon = false">
+			<thead>
+				<tr>
+					<th><i class="fa fa-question-circle"/>{{faq.title}}</th>
+					<th class="table__header__item--right" ng-show="isShowIcon"><a href=""><i class="fa fa-pencil"/></a></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><td colspan="2">{{faq.content | abbreviate:150}}</td></tr>
+			</tbody>
+		</table>
+	</div><!-- end一覧表示エリア -->	
+</div>

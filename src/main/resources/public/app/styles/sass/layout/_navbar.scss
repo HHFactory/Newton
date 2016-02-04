@@ -1,0 +1,32 @@
+
+/** layout.navigation */
+.l-navbar {
+	position:fixed;
+	top: 0;
+	left: 0; 
+	margin: 0;
+	padding-left: $general-padding-left;
+	padding-right: $general-padding-right;
+	height: $navbarHeight;
+	width: 100%;
+	background-color:$main-green;
+	display: table;
+}
+
+.l-navbar--left {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: left;
+	height: 100%;
+
+}
+
+.l-navbar--right {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: right;
+	height: 100%;
+}
+
+
+

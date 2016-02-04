@@ -6,17 +6,27 @@
 */
 (function(){
 'use strict';	
+	var hostName = "http://localhost:8080";
 
 	angular.module('indexModule').value(
 		'constURI',{
-			'getFAQ':"http://localhost:8080/api/v1/faqs",
-			'getNotification':"http://localhost:8080/api/v1/notifications",
-			'getManual':"http://localhost:8080/api/v1/manuals",
-			'postFAQ':"http://localhost:8080/api/v1/faq",
-			'putFAQuseful':"http://localhost:8080/api/v1/faqs/",
-			'putNotification':"http://localhost:8080/api/v1/notification",
-			'getSkill':"http://localhost:8080/api/v1/roles",
-			'searchAPI':"http://localhost:8080/api/v1/elastic/querysearch"
+			'getFaqList': hostName + "/api/v1/faqs",
+			'postFaq': hostName + "/api/v1/faq",
+			'putFaqUseful': hostName + "/api/v1/faqs/",
+			'getModifyFaqList': hostName + "/api/v1/modifyfaqs",
+			'getNotificationList': hostName + "/api/v1/notifications",
+			'postNotification': hostName + "/api/v1/notification",
+			'getManualList': hostName + "/api/v1/manuallist",
+			'postManual': hostName +"/api/v1/manual",
+			'putManual': hostName +"/api/v1/manual",
+			'getSkillList': hostName + "/api/v1/roles",
+			'getUserList': hostName +"/api/v1/users",
+			'getToDoList': hostName +"/api/v1/todos",
+			'getToDoListByTargetUser': hostName +"/api/v1/targettodos",
+			'postToDo': hostName +"/api/v1/todo",
+			'searchTerm': hostName + "/api/v1/term",
+			'postTerm': hostName + "/api/v1/term",
+			'searchAPI': hostName +"/api/v1/elastic/querysearch"
 		}
 	);
 

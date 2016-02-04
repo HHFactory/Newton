@@ -5,6 +5,7 @@ buildscript{
 	dependencies{
 		classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE'
         classpath 'mysql:mysql-connector-java:5.1.36'
+        classpath 'org.springframework:springloaded:1.2.5.RELEASE'
 	}
 }
 
@@ -53,19 +54,29 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'org.springframework.boot:spring-boot-gradle-plugin'
+    compile 'org.springframework.boot:spring-boot-starter-jdbc'
     compile 'org.modelmapper.extensions:modelmapper-spring:0.7.5'
     compile 'org.apache.commons:commons-lang3:3.0'
-    compile 'org.springframework.boot:spring-boot-starter-data-elasticsearch:1.2.7.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-data-elasticsearch:1.2.7.RELEASE'  
+    compile 'mysql:mysql-connector-java'
+    compile 'org.lazyluke:log4jdbc-remix:0.2.7'
     testCompile 'junit:junit:4.+'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 	testCompile 'junit:junit:4.+'
 	provided 'org.projectlombok:lombok:1.16.6'
-    provided 'com.fasterxml.jackson.core:jackson-databind'
-    compile 'mysql:mysql-connector-java:5.1.36'
+    provided 'com.fasterxml.jackson.core:jackson-databind' 
 }
 
 test {
     systemProperties 'property': 'value'
+}
+
+task wrapper(type:Wrapper) {
+	gradleVersion = '2.2.1'
+}
+
+task stage {
+	dependsOn build
 }
 
 uploadArchives {

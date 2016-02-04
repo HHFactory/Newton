@@ -1,22 +1,26 @@
 
-//Manual Controller
+/**
+ * manualbar.controller
+ * @return {[type]} [description]
+ */
 (function(){
 'use strict';
 	
-	function ManualCtrl($scope,$http,connectApiService,constURI){
-		$scope.categoryCollapsed=false;
-		$scope.listCollapsed = false;
-		
+	function ManualCtrl($scope,connectApiService,constURI){
+
 		/**
-		 * マニュアルを取得するapiを叩く
+		 * マニュアルリストを取得し、
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
-		connectApiService.get(constURI.getManual).then(function(resultAPI){
-			$scope.categories = resultAPI.data;
-		});	
+		connectApiService.get(constURI.getManualList).then(function(resultAPI){
+			var highestCategories = resultAPI.data;
+			
+		});
+
+
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('ManualController',ManualCtrl);
+	angular.module('indexModule').controller('ManualController',['$scope','connectApiService','constURI',ManualCtrl]);
 })();

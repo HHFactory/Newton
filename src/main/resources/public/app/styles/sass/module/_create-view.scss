@@ -1,0 +1,100 @@
+@charset "UTF-8";
+/**
+ * 新規登録画面用スタイル	
+ */
+
+$create-view-header-height: 40px;
+$create-view-footer-height: 40px;
+
+//新規画面全体
+.create-view {
+	padding: 15px;
+	@each $prefix in $set-prefix {
+		height: #{$prefix}calc(100vh - #{$navbarHeight});
+	}
+	width: 100%;
+	position: fixed;
+	top: $navbarHeight;
+}
+
+//画面ヘッダー
+.create-view__header {
+	width: 100%;
+	height: $create-view-header-height;
+}
+
+//新規画面メイン部分
+.create-view__contents {
+	display: table;
+	width: 100%;
+	margin-top: 5px;
+	@each $prefix in $set-prefix {
+		height: #{$prefix}calc(100% - $create-view-header-height - $create-view-footer-height);
+	}
+}
+
+// //新規画面メイン部分（左側）
+// .create-view__contents--left {
+// 	display: table-cell;
+// 	width: 50%;
+// 	height: 100%;
+// }
+
+// //新規画面メイン部分（右側）
+// .create-view__contents--right {
+// 	display: table-cell;
+// 	width: 50%;
+// 	height: 100%;
+// }
+
+.create-view__footer {
+	height: $create-view-footer-height;
+	width: 100%;
+	text-align: right;
+	vertical-align: middle;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.create-view__text {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	border: 1px solid;
+	border-color: gray;
+	border-radius: 5px;
+	padding-left: 10px;
+	&:focus {
+		outline: none;
+	}
+}
+
+.create-view__textarea {
+	@include textarea-base(100%);
+	width: 100%;
+	border: 1px solid;
+	border-color: gray;
+	padding-left: 10px;
+}
+
+.textarea__item-list {
+	width: 100%;
+	font-size: 18px;
+	& > li {
+		display: inline-block;
+		border: 1px solid;
+		border-color: $sub-gray;		
+	}
+}
+
+.preview-area {
+	display: table-cell;
+	width: 50%;
+	height: 100%;
+	padding-left: 10px;
+}
+
+.create-view__submit-btn {
+	@extend .btn-green;
+	width: 60px;
+}

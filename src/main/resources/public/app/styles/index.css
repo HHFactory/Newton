@@ -2,11 +2,12 @@
 /***index.htmlに使用するcss***/
 @charset "UTF-8";
 @import "navbarset.css";
+/*@import "../../app/styles/sass/main.css";*/
 @import "faq.css";
 @import "sidebar.css";
 @import "timeline.css";
 @import "popover.css";
-@import "createViewSet.css"
+@import "createViewSet.css";
 
 body{
 	position: ralative;

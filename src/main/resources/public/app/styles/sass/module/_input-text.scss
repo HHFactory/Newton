@@ -1,0 +1,45 @@
+@charset "UTF-8";
+//入力フォームに関するcss
+
+.input__text {
+	@include form-set();
+	height: 30px;
+}
+
+.input__textarea {
+	@include form-set();
+	height: 130px;
+}
+
+.search-bar {
+	@include form-set($navSearchBarWidth);
+	height: 30px;
+	border-radius: 3px;
+	font-family: FontAwesome;
+}
+
+@mixin text-base($height:30px) {
+	width: 100%;
+	height: $height;
+	background-color: white;
+	padding-left: 5px;
+	border-style: none;
+	&:focus {
+		outline: none;
+	}
+}
+
+//textareaベーススタイル
+@mixin textarea-base($height:130px) {
+	height: $height;
+	width: 100%;
+	background-color: white;
+	padding-left: 5px;
+	resize: none;
+	overflow: auto;
+	&:focus {
+		outline: none;
+	}
+}
+
+

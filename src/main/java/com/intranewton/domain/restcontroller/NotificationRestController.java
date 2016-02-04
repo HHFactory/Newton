@@ -30,9 +30,8 @@ public class NotificationRestController {
 	 */
 	@RequestMapping(value="/api/v1/notification",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	Integer postNotification(@RequestBody NotificationParam notificationDAO){
-		notificationService.createNotification(notificationDAO);
-		return 200;
+	Notification postNotification(@RequestBody NotificationParam notificationDAO){
+		return notificationService.createNotification(notificationDAO);
 	}
 	
 	/**

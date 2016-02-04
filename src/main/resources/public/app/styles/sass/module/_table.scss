@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+
+.table-base {
+	@extend .table;
+	background-color: white;
+	border-radius: 5px;
+	margin-bottom: 5px;
+	> thead > tr > th {
+		border: none;
+		font-size: 16px;
+	}
+	> tbody > tr > td {
+		border: none;
+		font-size: 14px;
+	}
+}
+
+.table--hover {
+	@extend .table-base;
+	&:hover {
+		background-color: darken(white,10%);
+		cursor: pointer;		
+	}
+	& > thead > tr > th {
+		color: $main-blue;
+	}
+}
+
+.table--colored-blue {
+	@extend .table--hover;
+	& > thead > tr > th {
+		background-color: $main-blue;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		color: black;
+	}
+	& > tfoot {
+
+	}
+}
+
+.table--colored-gray {
+	@extend .table--hover;
+	& > thead > tr > th {
+		background-color: $main-bg-gray;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		color: black;
+	}
+	& > tfoot {
+
+	}	
+}
+
+.table--colored-red {
+	@extend .table--hover;
+	& > thead > tr > th{
+		background-color: $main-red;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		color: black;
+	}
+	& > tfoot {
+
+	}	
+}
+
+//TODO:widthを呼び出し元が決定する
+.table__header__item--right {
+	text-align: right;
+	width: 40px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.table__footer--low {
+	height: 20px;
+	font-size: 14px;
+}
+
+.table__footer--right {
+	float: right;
+}
+
+.table__footer--left {
+	float: left;
+}

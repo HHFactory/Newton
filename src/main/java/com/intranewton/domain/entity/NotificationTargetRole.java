@@ -28,11 +28,11 @@ public class NotificationTargetRole implements Serializable{
 	@GeneratedValue
 	private Integer id;
 	
-	private String target_user;
-	private boolean read_flag;
+	private String targetUser;
+	private boolean readFlag;
 	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="m_notification_id")
-	private Notification m_notification;
+	private Notification notification;
 }

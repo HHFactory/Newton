@@ -18,7 +18,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * m_categoryテーブルエンティティ
+ * m_category_categoryテーブルエンティティ
  */
 @Data
 @Entity
@@ -37,11 +37,11 @@ public class ManualCategory implements Serializable{
 	private String name;
 	
 	@OneToMany
-	@JoinColumn(name="m_category_id")
+	@JoinColumn(name="m_manual_category_id")
 	private List<Manual> manuals;
 	
 	@OneToMany(mappedBy="children")
 	List<ManualCategoryRelations> children;
-	@OneToMany(mappedBy="parent")
+	@OneToMany(mappedBy="parents")
 	List<ManualCategoryRelations> parents;
 }

@@ -13,6 +13,10 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src/test/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer" exported="true"/>
+=======
+	<classpathentry exported="true" kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer"/>
+>>>>>>> refs/remotes/origin/dev_horinouchi
 	<classpathentry kind="output" path="bin"/>
 </classpath>

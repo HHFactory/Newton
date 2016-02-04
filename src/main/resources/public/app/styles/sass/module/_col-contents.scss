@@ -1,0 +1,11 @@
+
+.col-contents {
+	width: 100%;
+	height: calc(100% - #{$colHeaderHeight});
+	overflow: auto;
+	position: absolute;
+	top: $colHeaderHeight;
+	padding-top: 5px;
+	padding-left: $general-padding-left;
+	padding-right: $general-padding-right;
+}

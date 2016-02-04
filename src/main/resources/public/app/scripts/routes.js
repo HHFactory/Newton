@@ -8,15 +8,9 @@ angular.module('indexModule')
 				templateUrl:"../../app/views/mainView.html",
 				controller:"MainController"
 			})
-			.state('createFAQ',{
-				url:"/create",
-				templateUrl:"../../app/views/faq/faq001.html",
-				controller:"CreateFAQController"
-			})
-			.state('createNotification',{
-				url:"/createNotification",
-				templateUrl:"../../app/views/notification/notification001.html",
-				controller:"CreateNotificationController"
+			.state('detailFaq',{
+				templateUrl:"../../app/views/faq/detailFaq.html",
+				controller:"DetailFaqController"
 			})
 			.state('searchResult',{
 				url:"/searchResult/:searchWord",

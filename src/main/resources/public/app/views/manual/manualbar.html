@@ -1,20 +1,14 @@
 
 <!-- マニュアルサイドパネル -->
-<div ng-controller="ManualController">
-	<!-- パネルヘッダ -->
-	<div class="column-title-manual">マニュアル</div>			
+<div class="l-manual" ng-controller="ManualController">
+	<div class="col-header">
+		<span class="col-header__item col-header__title">マニュアル</span>
+	</div>			
+	
 	<!-- コンテンツ -->
-	<ul class="nav nav-stacked acoordion-group" ng-repeat="category in categories">
-		<!-- カテゴリ名表示 -->
-		<li><a ng-click="categoryCollapsed = !categoryCollapsed">{{category.name}}</a>
-			<!-- リスト名表示 -->
-			<ul ng-repeat="list in category.manualLists">
-    			<li uib-collapse="!categoryCollapsed" ><a ng-click="listCollapsed = !listCollapsed">{{list.name}}</a></li>
-    				<!-- ファイル名表示 -->
-    				<ul uib-collapse="listCollapsed" ng-repeat="file in list.manualFiles">
-    					<li><a ng-href="{{file.file_path}}" target="_blank">{{file.file_name}}</a></li>
-    				</ul>			           
-   			</ul>
-   		</li>	
-	</ul>							
+	<div class="col-contents">
+		<ul>
+			<li ng-repeat="category in categories">{{category.name}}</li>
+		</ul>
+	</div>
 </div>

@@ -1,0 +1,31 @@
+
+.col-header {
+	@include horizontal-list;
+	width: 100%;
+	height: $colHeaderHeight;
+	position: absolute;
+	color: $header-text-color;
+	font-weight: bold;
+	font-size: 24px;
+//	padding: 3px 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+	display: table;
+}
+
+.col-header--bordered {
+	@extend .col-header;
+	border-bottom: solid 3px;
+	border-color: $main-blue;
+}
+
+.col-header__item {
+	display: teble-cell;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.col-header__title {
+	font-size: 16px;
+	font-weight: bold;
+}

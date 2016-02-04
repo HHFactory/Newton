@@ -1,0 +1,6 @@
+
+
+@mixin box($type: border-box) {
+    @include box-sizing(#{$type});
+}
+

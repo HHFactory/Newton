@@ -57,8 +57,8 @@ public class UserService {
 		List<Role> roleList = roleRepository.findBySkillList(targetSkillList);
 		List<String> targetUserList = new ArrayList<>();
 		for ( Role targetRole : roleList ) {
-			String userName = userRepository.findbyTargetRole(targetRole);
-			targetUserList.add(userName);
+			List<String> userNameList = userRepository.findbyTargetRole(targetRole);
+			targetUserList.addAll(userNameList);
 		}
 		// 重複削除して返却する
 		return targetUserList.stream().distinct().collect(Collectors.toList());
