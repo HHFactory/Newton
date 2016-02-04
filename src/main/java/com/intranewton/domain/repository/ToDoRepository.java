@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.intranewton.domain.entity.ToDo;
+import java.lang.String;
 
 @Repository
 public interface ToDoRepository extends JpaRepository<ToDo, Integer>{

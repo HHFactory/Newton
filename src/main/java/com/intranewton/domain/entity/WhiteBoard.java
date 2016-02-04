@@ -1,8 +1,5 @@
 package com.intranewton.domain.entity;
 
-import java.io.Serializable;
-
-import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
@@ -13,6 +10,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
 
 /**
  * m_white_boardエンティティクラス
