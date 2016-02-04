@@ -1,6 +1,5 @@
 package com.intranewton;
 
-import net.sf.log4jdbc.Log4jdbcProxyDataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -10,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-@Configuration
+import net.sf.log4jdbc.Log4jdbcProxyDataSource;
+
+//@Configuration
 public class AppConfig {
 	@Autowired
 	DataSourceProperties properties;
@@ -31,7 +31,7 @@ public class AppConfig {
 			URI dbUri = new URI(databaseUrl);
 			url = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath() + ":" + dbUri.getPort() + dbUri.getPath();
 			username = dbUri.getUserInfo().split(":")[0];
-			password = dbUri.getUserInfo().split(":")[1];
+			password = dbUri.getUserInfo().split(":")[1];		
 		}else{
 			url = this.properties.getUrl();
 			username = this.properties.getUsername();

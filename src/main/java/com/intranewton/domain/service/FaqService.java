@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.intranewton.domain.entity.FAQ;
-import com.intranewton.domain.repository.ManualCategoryRepository;
 import com.intranewton.domain.repository.FaqRepository;
+import com.intranewton.domain.repository.ManualCategoryRepository;
 
 @Service
 public class FaqService {
