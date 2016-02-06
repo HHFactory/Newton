@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.intranewton.domain.entity.FAQ;
+import com.intranewton.domain.entity.FAQCategory;
 import com.intranewton.domain.service.FaqService;
 import com.intranewton.elastic.service.FAQElasticsearchService;
 
@@ -34,8 +35,16 @@ public class FaqRestController {
 	@RequestMapping(value="/api/v1/faqs",method=RequestMethod.GET)
 	List<FAQ> findAllFaqs(){
 		List<FAQ> faqs = faqService.getFaqList();
-		System.out.println("connect faq api");
 		return faqs;
+	}
+	
+	/**
+	 * FAQカテゴリを全件取得
+	 * @return
+	 */
+	@RequestMapping(value="/api/v1/faqcategories",method=RequestMethod.GET)
+	List<FAQCategory> findAllCategories() {
+		return faqService.findAllCategories();
 	}
 	
 	/**
@@ -45,7 +54,7 @@ public class FaqRestController {
 	 */
 	@RequestMapping(value="/api/v1/faqs/{id}",method=RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
-	public Integer countUpUsefulCount(@PathVariable Integer id){
+	public Integer countUpUsefulCount(@PathVariable Integer id){		
 		Integer usefulcount = faqService.countUpUsefulCount(id);
 		return usefulcount;
 	}
@@ -60,6 +69,17 @@ public class FaqRestController {
 	FAQ postFaq(@RequestBody FAQ faq){	
 		return faqService.createFaq(faq);
 	}
+	
+	/**
+	 * FAQリストから登録する
+	 * @param faqs
+	 * @return
+	 */
+	@RequestMapping(value="/api/v1/faqlist",method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	Integer postFaqList(@RequestBody List<FAQ> faqs) {
+		return faqService.postFaqList(faqs);
+	}
 			
 	/**
 	 * elasticsearchでFAQを全て取得する
@@ -70,7 +90,11 @@ public class FaqRestController {
 		return faqElasticService.findAllFaqsbyElasticsearch();
 	}
 	
-	
+	/**
+	 * elasticsearch titleと本文からの検索
+	 * @param title
+	 * @return
+	 */
 	@RequestMapping(value="/api/v1/elastic/faqs",method=RequestMethod.GET)
 	List<FAQ> findTitleOrContent(@RequestParam String title){
 		return faqElasticService.findbyTitleOrContent(title,title);

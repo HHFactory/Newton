@@ -99,6 +99,13 @@ $item-list-height: 30px;
 	width: 50%;
 	height: 100%;
 	padding-left: 10px;
+	overflow: scroll;
+	
+}
+
+.preview-text {
+	white-space: pre-wrap;
+	widows: 100%;
 	overflow: auto;
 }
 

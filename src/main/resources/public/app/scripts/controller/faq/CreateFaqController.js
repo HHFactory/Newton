@@ -7,6 +7,21 @@
 'use strict';
 
 	function CreateFaqCtrl($scope,$state,$uibModal,connectApiService,constURI){
+		/**
+		 * marked setting
+		 * @type {[type]}
+		 */
+		//var marked = require('marked');
+		marked.setOptions({
+			renderer: new marked.Renderer(),
+			gfm: true,
+			tables: true,
+			breaks: true,
+			pedantic: true,
+			sanitize: true,
+			smartLists: true,
+			smartypants: true
+		});
 
 		/**
 		 * トークスクリプト登録モーダルを開く
@@ -17,7 +32,7 @@
 				animation: false,
 				backdrop: true,
 				templateUrl: "../../../../app/views/template/createModal.html",
-				controller: "GeneralModalController"
+				controller: "FileLoadModalController"
 			});
 		}
 
@@ -28,6 +43,7 @@
 		 */
 		$scope.submit = function(faq){
 			connectApiService.post(constURI.postFaq,faq).then(function(apiResult){
+				console.dir(faq);
 				$state.go('main');
 			});			
 		};

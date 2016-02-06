@@ -12,6 +12,7 @@
 		'constURI',{
 			'getFaqList': hostName + "/api/v1/faqs",
 			'postFaq': hostName + "/api/v1/faq",
+			'postFaqList': hostName + "/api/v1/faqlist",
 			'putFaqUseful': hostName + "/api/v1/faqs/",
 			'getModifyFaqList': hostName + "/api/v1/modifyfaqs",
 			'getNotificationList': hostName + "/api/v1/notifications",

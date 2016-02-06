@@ -12,6 +12,10 @@ import com.intranewton.domain.entity.FAQCategory;
  */
 @Repository
 public interface FAQCategoryRepository extends JpaRepository<FAQCategory, Integer>{
-	//カテゴリIDからカテゴリを取得する
+	/**
+	 * カテゴリIDからカテゴリentityを取得
+	 * @param id
+	 * @return
+	 */
 	List<FAQCategory> findById(Integer id);
 }

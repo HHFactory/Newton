@@ -7116,48 +7116,57 @@ input[type="button"].btn-block {
 /**
  * 新規登録画面用スタイル	
  */
-/* line 10, module/_create-view.scss */
+/* line 11, module/_create-view.scss */
 .create-view {
   padding: 15px;
-  height: -webkit-calc(100vh - 50px);
-  height: -moz-calc(100vh - 50px);
-  height: -ms-calc(100vh - 50px);
-  height: -o-calc(100vh - 50px);
-  height: calc(100vh - 50px);
+  height: -webkit-calc(100% - 50px);
+  height: -moz-calc(100% - 50px);
+  height: -ms-calc(100% - 50px);
+  height: -o-calc(100% - 50px);
+  height: calc(100% - 50px);
   width: 100%;
   position: fixed;
   top: 50px;
+  margin: 0px;
 }
 
-/* line 21, module/_create-view.scss */
+/* line 23, module/_create-view.scss */
 .create-view__header {
   width: 100%;
   height: 40px;
 }
 
-/* line 27, module/_create-view.scss */
+/* line 29, module/_create-view.scss */
 .create-view__contents {
   display: table;
   width: 100%;
   margin-top: 5px;
-  height: -webkit-calc(100% - $create-view-header-height - $create-view-footer-height);
-  height: -moz-calc(100% - $create-view-header-height - $create-view-footer-height);
-  height: -ms-calc(100% - $create-view-header-height - $create-view-footer-height);
-  height: -o-calc(100% - $create-view-header-height - $create-view-footer-height);
-  height: calc(100% - $create-view-header-height - $create-view-footer-height);
+  position: relative;
+  height: -webkit-calc(100% - 40px - 40px);
+  height: -moz-calc(100% - 40px - 40px);
+  height: -ms-calc(100% - 40px - 40px);
+  height: -o-calc(100% - 40px - 40px);
+  height: calc(100% - 40px - 40px);
 }
 
-/* line 50, module/_create-view.scss */
+/* line 39, module/_create-view.scss */
 .create-view__footer {
   height: 40px;
   width: 100%;
   text-align: right;
-  vertical-align: middle;
   padding-left: 15px;
   padding-right: 15px;
+  display: table;
 }
 
-/* line 59, module/_create-view.scss */
+/* line 48, module/_create-view.scss */
+.create-view__footer__item {
+  display: table-cell;
+  vertical-align: middle;
+  margin: auto;
+}
+
+/* line 54, module/_create-view.scss */
 .create-view__text {
   width: 100%;
   height: 100%;
@@ -7167,23 +7176,30 @@ input[type="button"].btn-block {
   border-radius: 5px;
   padding-left: 10px;
 }
-/* line 67, module/_create-view.scss */
+/* line 62, module/_create-view.scss */
 .create-view__text:focus {
   outline: none;
 }
 
-/* line 72, module/_create-view.scss */
+/* line 67, module/_create-view.scss */
 .create-view__textarea {
-  height: 100%;
+  height: 130px;
   width: 100%;
   background-color: white;
   padding-left: 5px;
   resize: none;
   overflow: auto;
-  width: 100%;
+  width: 50%;
+  height: -webkit-calc(100% - 30px);
+  height: -moz-calc(100% - 30px);
+  height: -ms-calc(100% - 30px);
+  height: -o-calc(100% - 30px);
+  height: calc(100% - 30px);
   border: 1px solid;
   border-color: gray;
   padding-left: 10px;
+  position: absolute;
+  overflow: auto;
 }
 /* line 40, module/_input-text.scss */
 .create-view__textarea:focus {
@@ -7193,24 +7209,40 @@ input[type="button"].btn-block {
 /* line 80, module/_create-view.scss */
 .textarea__item-list {
   width: 100%;
+  height: 30px;
   font-size: 18px;
 }
-/* line 83, module/_create-view.scss */
+/* line 84, module/_create-view.scss */
 .textarea__item-list > li {
   display: inline-block;
   border: 1px solid;
   border-color: #F5F5F5;
 }
 
-/* line 90, module/_create-view.scss */
+/* line 91, module/_create-view.scss */
+.write-area {
+  display: table-cell;
+  width: 50%;
+  height: 100%;
+}
+
+/* line 97, module/_create-view.scss */
 .preview-area {
   display: table-cell;
   width: 50%;
   height: 100%;
   padding-left: 10px;
+  overflow: scroll;
 }
 
-/* line 97, module/_create-view.scss */
+/* line 106, module/_create-view.scss */
+.preview-text {
+  white-space: pre-wrap;
+  widows: 100%;
+  overflow: auto;
+}
+
+/* line 112, module/_create-view.scss */
 .create-view__submit-btn {
   width: 60px;
 }

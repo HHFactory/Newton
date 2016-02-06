@@ -1,8 +1,13 @@
 package com.intranewton.domain.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
@@ -33,4 +38,12 @@ public class FAQ extends AbstractEntity implements Serializable {
 	private String content;
 	private String talkScript;
 	private Integer usefulCount;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="m_faq_has_m_faq_category",
+			joinColumns=@JoinColumn(name="m_faq_id",referencedColumnName="id"),
+			inverseJoinColumns=@JoinColumn(name="m_faq_category",referencedColumnName="id")
+			)
+	private List<FAQCategory> categories;	
 }
