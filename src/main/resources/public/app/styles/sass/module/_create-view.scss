@@ -5,16 +5,18 @@
 
 $create-view-header-height: 40px;
 $create-view-footer-height: 40px;
+$item-list-height: 30px;
 
 //新規画面全体
 .create-view {
 	padding: 15px;
 	@each $prefix in $set-prefix {
-		height: #{$prefix}calc(100vh - #{$navbarHeight});
+		height: #{$prefix}calc(100% - #{$navbarHeight});
 	}
 	width: 100%;
 	position: fixed;
 	top: $navbarHeight;
+	margin: 0px;
 }
 
 //画面ヘッダー
@@ -28,32 +30,25 @@ $create-view-footer-height: 40px;
 	display: table;
 	width: 100%;
 	margin-top: 5px;
+	position: relative;
 	@each $prefix in $set-prefix {
-		height: #{$prefix}calc(100% - $create-view-header-height - $create-view-footer-height);
+		height: #{$prefix}calc(100% - #{$create-view-header-height} - #{$create-view-footer-height});
 	}
 }
-
-// //新規画面メイン部分（左側）
-// .create-view__contents--left {
-// 	display: table-cell;
-// 	width: 50%;
-// 	height: 100%;
-// }
-
-// //新規画面メイン部分（右側）
-// .create-view__contents--right {
-// 	display: table-cell;
-// 	width: 50%;
-// 	height: 100%;
-// }
 
 .create-view__footer {
 	height: $create-view-footer-height;
 	width: 100%;
 	text-align: right;
-	vertical-align: middle;
 	padding-left: 15px;
 	padding-right: 15px;
+	display: table;
+}
+
+.create-view__footer__item {
+	display: table-cell;
+	vertical-align: middle;
+	margin: auto;
 }
 
 .create-view__text {
@@ -70,15 +65,21 @@ $create-view-footer-height: 40px;
 }
 
 .create-view__textarea {
-	@include textarea-base(100%);
-	width: 100%;
+	@include textarea-base();
+	width: 50%;
+	@each $prefix in $set-prefix {
+		height: #{$prefix}calc(100% - #{$item-list-height});
+	}
 	border: 1px solid;
 	border-color: gray;
 	padding-left: 10px;
+	position: absolute;
+	overflow: auto;
 }
 
 .textarea__item-list {
 	width: 100%;
+	height: $item-list-height;
 	font-size: 18px;
 	& > li {
 		display: inline-block;
@@ -87,11 +88,18 @@ $create-view-footer-height: 40px;
 	}
 }
 
+.write-area {
+	display: table-cell;
+	width: 50%;
+	height: 100%;
+}
+
 .preview-area {
 	display: table-cell;
 	width: 50%;
 	height: 100%;
 	padding-left: 10px;
+	overflow: auto;
 }
 
 .create-view__submit-btn {
