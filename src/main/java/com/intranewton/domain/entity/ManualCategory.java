@@ -3,8 +3,10 @@ package com.intranewton.domain.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -36,9 +38,14 @@ public class ManualCategory implements Serializable{
 	private String status;
 	private String name;
 	
-	@OneToMany
+//	@OneToMany
+//	@JoinColumn(name="m_manual_category_id")
+//	private List<Manual> manuals;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="m_manual_category_id")
 	private List<Manual> manuals;
+	
 	
 	@OneToMany(mappedBy="children")
 	List<ManualCategoryRelations> children;

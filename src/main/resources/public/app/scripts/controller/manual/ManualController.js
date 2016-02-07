@@ -14,9 +14,8 @@
 		 * @return {[type]}
 		 */
 		connectApiService.get(constURI.getManualList).then(function(resultAPI){
-			//var highestCategories = resultAPI.data;
-			console.dir(resultAPI.data);
 			$scope.categories = resultAPI.data;
+			console.dir($scope.categories);
 		});
 
 		/**

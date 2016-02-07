@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.intranewton.domain.dto.ManualCategoryItem;
 import com.intranewton.domain.dto.ManualDTO;
 import com.intranewton.domain.entity.Manual;
 import com.intranewton.domain.entity.ManualCategory;
@@ -54,38 +53,54 @@ public class ManualService {
 
 		List<ManualDTO> manualDTOs = new ArrayList<>();
 		for ( ManualCategory category : categories ) {
-			//最上位カテゴリのみ返却
+			//最上位カテゴリ->子カテゴリ->孫カテゴリ・・・となるように返却
+			//自分自身のアイテムは含めない
 			if(category.getParents().size() == 1 && category.getParents().get(0).getPathLength() == 0) {
 				ManualDTO dto = new ManualDTO();
 				dto.setName(category.getName());
 				dto.setManuals(category.getManuals());
-				dto.setChildren(getRelationItemsInfo(category.getChildren()));// manualcategoryitem.list
+				//１つ下の子要素を取得する
+				dto.setChildren(getCategoryChildItem(category.getChildren()));
 				manualDTOs.add(dto);				
 			}
 		}
 		return manualDTOs;
 	}
-		
+			
 	/**
-	 * カテゴリ要素の作成
-	 * @param targetCategory
+	 * 子要素の取得
+	 * @param targetRelations
 	 * @return
 	 */
-	private List<ManualCategoryItem> getRelationItemsInfo(List<ManualCategoryRelations> targetList) {
-		List<ManualCategoryItem> categoryItems = new ArrayList<>();
-		for ( ManualCategoryRelations relation : targetList ) {
-			ManualCategoryItem categoryItem = new ManualCategoryItem();
-			//自身を除くitemの情報を取得する
-			if(relation.getPathLength() == 0) {
-				continue;
+	private List<ManualDTO> getCategoryChildItem(List<ManualCategoryRelations> targetRelations) {
+		List<ManualDTO> children = new ArrayList<>();
+		for(ManualCategoryRelations relation : targetRelations){
+			//1つ下の子要素のみ取得
+			if ( relation.getPathLength() == 1 ) {
+				ManualDTO child = new ManualDTO();
+				ManualCategory category = categoryRepository.findManualCategoryByID(relation.getDescendantId());
+				child.setName(category.getName());
+				child.setManuals(category.getManuals());
+				child.setChildren(getCategoryChildItem(category.getChildren()));
+				children.add(child);
 			}
-			ManualCategory category = categoryRepository.findManualCategoryByID(relation.getDescendantId());
-			categoryItem.setName(category.getName());
-			categoryItem.setManuals(category.getManuals());
-			categoryItem.setPathLength(relation.getPathLength());				
-			categoryItems.add(categoryItem);
 		}
-		return categoryItems;
+		return children;
+	}
+	
+	/**
+	 * アップロードしたマニュアルファイル情報をDBに格納する
+	 * @param uploadedFile
+	 * @return
+	 */
+	public Manual postManual(String fileName, String filePath) {
+		Manual loadedFile = new Manual();
+		ManualCategory category = categoryRepository.findManualCategoryByID(1);
+		loadedFile.setFileName(fileName);
+		loadedFile.setFilePath(filePath);
+		loadedFile.setCategory(category);
+		loadedFile.setStatus("valid");
+		return manualRepository.save(loadedFile);
 	}
 	
 

@@ -1,0 +1,9 @@
+
+<!-- 親カテゴリ -->
+<a ng-click="isCollapsed = !isCollapsed" >
+	<i ng-class="{'fa fa-folder-open-o':isCollapsed,'fa fa-folder-o':!isCollapsed}"/>{{nwtTreeView.name}}
+</a>
+<!-- 子カテゴリ -->
+<ol ng-show="isCollapsed" class="tree__node"></ol>
+<!-- マニュアル -->
+<ul ng-show="isCollapsed" class="tree__node"></ul>

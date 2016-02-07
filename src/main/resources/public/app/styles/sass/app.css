@@ -7582,6 +7582,12 @@ input[type="button"].btn-block {
   color: #aab8c2;
 }
 
+/* line 3, module/_tree-view.scss */
+.tree__node {
+  margin: 5px 10px;
+  list-style: none;
+}
+
 /* line 2, state/_is-open-sidebar.scss */
 .is-slide-right {
   -webkit-transition: transform 0.1s ease;

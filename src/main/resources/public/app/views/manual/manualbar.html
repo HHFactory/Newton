@@ -3,13 +3,12 @@
 <div class="l-manual" ng-controller="ManualController">
 	<div class="col-header">
 		<span class="col-header__item col-header__title">マニュアル</span>
+		<!-- マニュアルファイル登録アイコン -->
 		<a ng-click="openFileUploadModal()"><i class="fa fa-upload"/></a>
 	</div>
 	
 	<!-- コンテンツ -->
 	<div class="col-contents">
-		<ul>
-			<li ng-repeat="category in categories"><a>{{category.name}}</a></li>
-		</ul>
+		<div ng-repeat="category in categories" nwt-tree-view="category"></div>
 	</div>
 </div>
