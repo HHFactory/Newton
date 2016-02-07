@@ -1,5 +1,10 @@
 <!-- ファイルアップロード用モーダル -->
-<form ng-submit="submit()">
-	<input type="file" ngf-select ng-model="file" name="file" ngf-max-size="20MB">
-	<button type="submit" class="btn-green">登録</button>
+<form ng-submit="submit()" name="fileUploadForm">
+	<!-- カテゴリ選択 -->
+	<tags-input name="tags" ng-model="selectCategory" placeholder="カテゴリを選択" replace-spaces-with-dashes="false" min-tags="1" max-tags="1">
+ 		<auto-complete source="targetCategories($query)" min-length="0" max-results="10" debounce-delay="0"></auto-complete>
+ 	</tags-input>
+ 	<!-- ファイル選択 -->
+	<input type="file" ngf-select ng-model="file" name="file" ngf-max-size="5MB">
+	<button type="submit" class="btn-green" ng-disabled="fileUploadForm.tags.$invalid">登録</button>
 </form>

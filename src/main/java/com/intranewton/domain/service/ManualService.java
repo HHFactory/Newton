@@ -93,11 +93,11 @@ public class ManualService {
 	 * @param uploadedFile
 	 * @return
 	 */
-	public Manual postManual(String fileName, String filePath) {
+	public Manual postManual(String fileName, String filePath,Integer categoryID) {
 		Manual loadedFile = new Manual();
-		ManualCategory category = categoryRepository.findManualCategoryByID(1);
+		ManualCategory category = categoryRepository.findManualCategoryByID(categoryID);
 		loadedFile.setFileName(fileName);
-		loadedFile.setFilePath(filePath);
+		loadedFile.setFilePath("../../app/files/" + fileName);
 		loadedFile.setCategory(category);
 		loadedFile.setStatus("valid");
 		return manualRepository.save(loadedFile);

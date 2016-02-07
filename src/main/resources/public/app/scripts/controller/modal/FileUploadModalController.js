@@ -5,26 +5,64 @@
 (function(){
 'use strict';
 
-	function FileUploadCtrl($scope,Upload,$uibModalInstance) {
+	function FileUploadCtrl($scope,$state,Upload,$uibModalInstance,connectApiService,constURI) {
 		
-		$scope.submit = function() {
-			console.log($scope.file);
-			upload($scope.file);
+		/**
+		 * 
+		 * @param  {[type]} 
+		 * @return {[type]} 
+		 */
+		connectApiService.get(constURI.getManualCategories).then(function(apiResult){
+			$scope.loadedCategories = apiResult.data;
+			console.dir($scope.loadedCategories);
+		});
+
+		/**
+		 * 
+		 * @param  {[type]} 
+		 * @return {[type]} 
+		 */
+		$scope.targetCategories = function(query) {
+			var targetCategories = [];
+			for(var i = 0; i < $scope.loadedCategories.length; i = (i+1)){
+				var category = {};
+				category["text"] = $scope.loadedCategories[i]["name"];
+				targetCategories.push(category);
+			}
+			return targetCategories;
 		}
 
-		var upload = function(file){
+		/**
+		 * 
+		 * @return {[type]} 
+		 */
+		$scope.submit = function() {
+			for(var i = 0; i < $scope.loadedCategories.length; i = (i+1)){
+				if($scope.selectCategory[0]["text"] === $scope.loadedCategories[i]["name"]){
+					var categoryID = $scope.loadedCategories[i]["id"];
+				}
+			}
+			upload($scope.file, categoryID);
+		}
+
+		/**
+		 * 
+		 * @param  {[type]} 
+		 * @return {[type]} 
+		 */
+		var upload = function(file,categoryID){
 			Upload.upload({
 				url: '/upload',
-				data: {file:file}
+				data: {file:file,categoryID:categoryID}
 			}).then(function(resp) {
 				console.log(resp);
-				console.log('success');
 				$uibModalInstance.close(resp);
+				$state.reload();
 			},function(resp) {
-				console.log('error' + resp.status);
+				console.log(resp.status);
 			});
 		}
 	} 
 
-	angular.module('indexModule').controller('FileUploadModalController',['$scope','Upload','$uibModalInstance',FileUploadCtrl]);
+	angular.module('indexModule').controller('FileUploadModalController',['$scope','$state','Upload','$uibModalInstance','connectApiService','constURI',FileUploadCtrl]);
 })();

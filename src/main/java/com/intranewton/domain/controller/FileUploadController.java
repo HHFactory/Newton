@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.intranewton.domain.service.ManualService;
-import com.sun.xml.internal.bind.v2.TODO;
 
 @Controller
 public class FileUploadController {
@@ -23,8 +22,8 @@ public class FileUploadController {
 	
 	@RequestMapping(value="/upload",method=RequestMethod.POST)
 	@ResponseBody
-	//TODO:戻り値の型を調整、同じファイル名があった場合は登録できないようにする
-	public void handleFileUpload(@RequestParam("file") MultipartFile file) {
+	//TODO:同じファイル名があった場合は登録できないようにする
+	public void handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("categoryID") Integer categoryID) {
 		if(!file.isEmpty()){
 			try{
 				String directory = "./src/main/resources/public/app/files";
@@ -33,12 +32,10 @@ public class FileUploadController {
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
 				stream.write(file.getBytes());
 				stream.close();
-				//manualService.postManual(name, filePath);
+				manualService.postManual(file.getOriginalFilename(), filePath, categoryID);
 				System.out.println(file.getOriginalFilename() + "  uploaded");
-				
 			}catch(Exception e){
-				System.out.println(e.getMessage());
-				
+				System.out.println(e.getMessage());				
 			}
 		}else{
 			System.out.println("file empty");
