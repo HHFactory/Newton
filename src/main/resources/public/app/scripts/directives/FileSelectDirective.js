@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 
-    function ngFileSelect() {
+    function FileSelect() {
         return {
             link: function($scope,element) {
                 element.bind("change", function(e){
@@ -24,5 +24,5 @@
         }
     };
 
-    angular.module('indexModule').directive("ngFileSelect",[ngFileSelect]);
+    angular.module('indexModule').directive("ngFileSelect",[FileSelect]);
 })();
