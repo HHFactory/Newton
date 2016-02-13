@@ -1,5 +1,5 @@
 
 'use strict';
 
-angular.module('indexModule',['ui.bootstrap','ui.router','ngSanitize','ui.grid','ngTagsInput','ngFileUpload']);
+angular.module('indexModule',['ui.bootstrap','ui.router','ngSanitize','ui.grid','ngTagsInput','ngFileUpload','ui.tree']);
 

@@ -3,14 +3,21 @@
 	
 	var TreeViewDirective = function($compile){
 		return {
-			restrict: 'A',
+			restrict: 'AE',
 			templateUrl: "../../../app/views/template/treeTemplate.html",
 			scope: {
-				nwtTreeView: '='
+				nwtTreeView: '=',
+				ngClick: '&',
+				deleteFile: '&',
+				addFile: '&'
 			},
+			transclude:true,
 			compile: function(){
-				var childTemplate = '<li ng-repeat="child in nwtTreeView.children"><ol nwt-tree-view="child"></ol></li>';
-				var manualTemplate = '<li ng-repeat="manual in nwtTreeView.manuals"><i class="fa fa-file-text-o"/><a ng-href="{{manual.filePath}}" target="_blank">{{manual.fileName}}</a></li>';
+				var childTemplate = '<li ng-repeat="node in nwtTreeView.children" ><ol nwt-tree-view="node"></ol></li>';
+				// var manualTemplate = '<li ng-repeat="manual in nwtTreeView.manuals">'+
+				// 						'<i class="fa fa-file-text-o"/><a ng-href="{{manual.filePath}}" target="_blank">{{manual.fileName}}</a>'+
+				// 						'<a delete-file="deleteFile(manual)"><i class="fa fa-trash-o"/></a>'+
+				// 						'</li>';
 				var childLinkFn;//キャッシュ用
 				var manualLinkFn;//キャッシュ用
 				return function postLink(scope,element) {
@@ -20,10 +27,10 @@
 						element.find('ol').append(clonedElm);
 					});
 					//
-					manualLinkFn = manualLinkFn || $compile(manualTemplate);
-					manualLinkFn(scope,function(clonedElm){
-						element.find('ul').append(clonedElm);
-					});
+					// manualLinkFn = manualLinkFn || $compile(manualTemplate);
+					// manualLinkFn(scope,function(clonedElm){
+					// 	element.find('ul').append(clonedElm);
+					// });
 				};
 
 			}

@@ -14,12 +14,13 @@
 		 * @return {[type]}
 		 */
 		connectApiService.get(constURI.getManualList).then(function(resultAPI){
-			$scope.categories = resultAPI.data;
-			console.dir($scope.categories);
+			//$scope.categories = resultAPI.data;
+			$scope.data = resultAPI.data;
+			console.dir($scope.data);
 		});
 
 		/**
-		 * 
+		 * ファイル登録モーダルを開く
 		 * @return {[type]} [description]
 		 */
 		$scope.openFileUploadModal = function() {
@@ -29,6 +30,65 @@
 				animation: false
 			});
 		}
+
+		//ui.tree test
+		$scope.remove = function (scope) {
+		  scope.remove();
+		};
+
+		$scope.toggle = function (scope) {
+			console.log('toggle');
+			scope.toggle();
+		};
+
+		$scope.moveLastToTheBeginning = function () {
+		  var a = $scope.data.pop();
+		  $scope.data.splice(0, 0, a);
+		};
+
+
+		/**
+		 * 子カテゴリを追加
+		 * @param  {[type]} scope [description]
+		 * @return {[type]}       [description]
+		 */
+		$scope.newSubItem = function (scope,itemName) {
+			var nodeData = scope.$modelValue;
+			console.dir(scope.$modelValue);
+			nodeData.children.push({
+				id: "",
+				name: itemName,
+				children: []
+			});
+		};
+
+		/**
+		 * 
+		 * @return {[type]} [description]
+		 */
+		$scope.showJson = function(){
+			console.dir($scope.data);
+		}
+
+		/**
+		 * ファイル追加モーダルを開く
+		 */
+		$scope.addManualFile = function(node) {
+			console.log(node);
+		}
+
+		$scope.deleteFile = function(){
+			console.log('delete');
+		}
+
+		$scope.addFile = function() {
+			console.log('addfile');
+		}
+
+		$scope.onClick = function(){
+			console.log('onlick');
+		}
+
 
 
 	}
