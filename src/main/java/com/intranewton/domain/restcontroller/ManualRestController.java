@@ -27,7 +27,7 @@ public class ManualRestController {
 	}
 		
 	/**
-	 * 確認用１
+	 * json確認用-manualテーブル
 	 * @return
 	 */
 	@RequestMapping(value="/api/v1/manual",method=RequestMethod.GET)
@@ -36,21 +36,12 @@ public class ManualRestController {
 	}
 	
 	/**
-	 * 確認用2
+	 * json確認用-manualcategoryテーブル
 	 * @return
 	 */
 	@RequestMapping(value="/api/v1/manualcategory",method=RequestMethod.GET)
 	List<ManualCategory> findAllManualCategory() {
 		return manualService.getAllManualCategories();
-	}
-	
-	/**
-	 * 確認用3
-	 * @return
-	 */
-	@RequestMapping(value="/api/v1/manualitem",method=RequestMethod.GET)
-	ManualCategory findCategoryItem() {
-		return manualService.getManualCategory();
 	}
 	
 }

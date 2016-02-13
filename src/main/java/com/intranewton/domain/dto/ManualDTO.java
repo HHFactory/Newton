@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ManualDTO {
+	private Integer id;
 	private String name;
 	private List<Manual> manuals;
 	private List<ManualDTO> children;

@@ -19,31 +19,7 @@ public class ManualService {
 	ManualRepository manualRepository;
 	@Autowired
 	ManualCategoryRepository categoryRepository;
-	
-	/**
-	 * m_manualテーブル確認用
-	 */
-	public List<Manual> getAllManual() {
-		return manualRepository.findAll();
-	}
-	
-	/**
-	 * m_manual_categoryテーブル確認用
-	 * @return
-	 */
-	public List<ManualCategory> getAllManualCategories() {
-		return categoryRepository.findAll();
-	}
-	
-	/**
-	 * m_manual_categoryをID検索
-	 * @return
-	 */
-	public ManualCategory getManualCategory() {
-		return categoryRepository.findManualCategoryByID(1);
-	}
-//-----------------------------------	
-	
+
 	/**
 	 * マニュアルカテゴリ取得
 	 * @return
@@ -52,14 +28,15 @@ public class ManualService {
 		List<ManualCategory> categories = categoryRepository.findAll();
 
 		List<ManualDTO> manualDTOs = new ArrayList<>();
+		//親カテゴリ->子カテゴリ->孫カテゴリ・・・となるように整形
 		for ( ManualCategory category : categories ) {
-			//最上位カテゴリ->子カテゴリ->孫カテゴリ・・・となるように返却
 			//自分自身のアイテムは含めない
 			if(category.getParents().size() == 1 && category.getParents().get(0).getPathLength() == 0) {
 				ManualDTO dto = new ManualDTO();
+				dto.setId(category.getId());
 				dto.setName(category.getName());
 				dto.setManuals(category.getManuals());
-				//１つ下の子要素を取得する
+				//子要素を取得する
 				dto.setChildren(getCategoryChildItem(category.getChildren()));
 				manualDTOs.add(dto);				
 			}
@@ -79,6 +56,7 @@ public class ManualService {
 			if ( relation.getPathLength() == 1 ) {
 				ManualDTO child = new ManualDTO();
 				ManualCategory category = categoryRepository.findManualCategoryByID(relation.getDescendantId());
+				child.setId(category.getId());
 				child.setName(category.getName());
 				child.setManuals(category.getManuals());
 				child.setChildren(getCategoryChildItem(category.getChildren()));
@@ -92,6 +70,7 @@ public class ManualService {
 	 * アップロードしたマニュアルファイル情報をDBに格納する
 	 * @param uploadedFile
 	 * @return
+	 * TODO:ファイル名にタイムスタンプを付与、ファイルパスを絶対パス&相対パスに
 	 */
 	public Manual postManual(String fileName, String filePath,Integer categoryID) {
 		Manual loadedFile = new Manual();
@@ -102,6 +81,22 @@ public class ManualService {
 		loadedFile.setStatus("valid");
 		return manualRepository.save(loadedFile);
 	}
+		
+	/**
+	 * m_manualテーブルjson確認用
+	 */
+	public List<Manual> getAllManual() {
+		return manualRepository.findAll();
+	}
 	
+	/**
+	 * m_manual_categoryテーブルjson確認用
+	 * @return
+	 */
+	public List<ManualCategory> getAllManualCategories() {
+		return categoryRepository.findAll();
+	}
+	
+
 
 }
