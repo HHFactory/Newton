@@ -10,7 +10,10 @@ angular.module('indexModule')
 			})
 			.state('createFaq',{
 				templateUrl: "../../app/views/faq/createFaq.html",
-				controller: "CreateFaqController"
+				controller: "CreateFaqController",
+				params: {
+					'editTarget': null
+				}
 			})
 			.state('detailFaq',{
 				templateUrl:"../../app/views/faq/detailFaq.html",

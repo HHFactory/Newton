@@ -9,23 +9,40 @@
 	<div class="create-view__contents">
 		<div class="write-area">
 			<ul class="textarea__item-list">
-				<li><a href=""><i class="fa fa-picture-o"/></a></li>
-				<li><a href=""><i class="fa fa-bold"/></a></li>
-				<li><a href=""><i class="fa fa-list-ol"/></a></li>
+				<li><a ng-click="addImage()" ngf-select="upload($file)" ngf-pattern="'image/*'"><i class="fa fa-picture-o"/></a></li>
+				<li><a ng-click="addHeaderTag()"><i class="fa fa-header"/></a></li>
+				<li><a ng-click="addStrongTag()"><i class="fa fa-bold"/></a></li>
+				<li><a ng-click="addOlTag()"><i class="fa fa-list-ol"/></a></li>
+				<li><a ng-click="addHrTag()"><i class="fa fa-minus"/></a></li>
+				<li><a ng-click="addQuoteTag()"><i class="fa fa-quote-right"/></a></li>
+
 <!-- 				<li><a href="" ng-click="openTalkScriptModal()" 
 						uib-tooltip="トークスクリプトの登録" 
 						tooltip-placement="bottom" tooltip-trigger="mouseenter">
 						<i class="fa fa-phone"/></a></li>
  -->				<!-- <li><a ><i class="fa fa-tags"/></a></li> -->
 			</ul>
-			<textarea class="create-view__textarea" rows="24" ng-change="parseMarkDown()" ng-model="faq.content" placeholder="FAQ本文を入力してください"/>
+			<!-- <textarea class="create-view__textarea" rows="24" ng-change="parseMarkDown()" ng-model="faq.content" placeholder="FAQ本文を入力してください"/> -->
+			
+			<textarea class="create-view__textarea" rows="24" ng-model="faq.content" placeholder="FAQ本文を入力してください" eb-caret="cursorPosition" ></textarea>
+
 		</div>
 
 		<!-- markdownプレビュー -->
-		<div class="preview-area">
+<!-- 		<div class="preview-area">
 			<p>プレビュー</p>
 			<div class="preview-text" ng-bind-html="parsedMarkdown"></div>
 		</div>
+ -->
+		<!-- markdownプレビュー.test -->
+		<div class="preview-area">
+			<p>プレビュー</p>
+			<p markdown-to-html="faq.content"></p>
+		</div>
+
+
+
+
 	</div>
 	<!-- ページ下部ボタンエリア -->
 	<div class="create-view__footer">
@@ -34,7 +51,8 @@
 		<input type="hidden" ng-model="faq.status" ng-init="faq.status='valid'"/>
 		<input type="hidden" ng-init="faq.usefulCount='0'">
 		<div class="create-view__footer__item">
-			<button class="btn-green" type="submit">登録</button>
+			<button class="btn-green" type="submit" ng-hide="editMode">登録</button>
+			<button type="submit" class="btn-green" ng-show="editMode">更新</button>
 		</div>
 	</div>	
 </form>

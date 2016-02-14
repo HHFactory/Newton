@@ -1,7 +1,22 @@
 @charset "UTF-8";
 
 .tree__node {
-	margin: 5px 10px;
+	margin: 5px 0px;
 	list-style: none;
+	padding-left: 20px;
 }
 
+.tree__nodes {
+	display: table;
+	width: 100%;
+}
+
+.tree__nodes__item {
+	display: table-cell;
+}
+
+.tree__nodes__item--right {
+	display: table-cell;
+	text-align: right;
+	vertical-align: middle;
+}

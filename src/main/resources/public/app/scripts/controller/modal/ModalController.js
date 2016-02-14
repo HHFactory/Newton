@@ -4,10 +4,11 @@
 'use strict';
 	
 	//参照用モーダルコントローラ	
-	function ModalCtrl($scope,data,connectApiService,constURI){
-		//contentはmarkdownをhtmlに変換して表示する
+	function ModalCtrl($scope,data,connectApiService,constURI,$showdown){
+		
 		$scope.title= data.title;
 		//$scope.content = marked(data.content);
+		$scope.content = $showdown.makeHtml(data.content);
 
 		/**
 		 * 役に立ったボタン押下処理
@@ -29,5 +30,5 @@
 	}
 
 	//moduleへ登録
-	angular.module('indexModule').controller('ModalController',['$scope','data','connectApiService','constURI',ModalCtrl]);
+	angular.module('indexModule').controller('ModalController',['$scope','data','connectApiService','constURI','$showdown',ModalCtrl]);
 })();

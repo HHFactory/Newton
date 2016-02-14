@@ -13,15 +13,16 @@
 
  	<!-- 一覧表示エリア -->
  	<div class="col-contents" >
-		<table class="table--hover" ng-repeat="faq in faqList" ng-click="openDetail(faq)" ng-mouseover="isShowIcon = true" ng-mouseleave="isShowIcon = false">
+		<table class="table--hover" ng-repeat="faq in faqList"  ng-mouseover="isShowIcon = true" ng-mouseleave="isShowIcon = false">
 			<thead>
 				<tr>
 					<th><i class="fa fa-question-circle"/>{{faq.title}}</th>
-					<th class="table__header__item--right" ng-show="isShowIcon"><a href=""><i class="fa fa-pencil"/></a></th>
+					<th class="table__header__item--right" ng-show="isShowIcon"><a ng-click="edit(faq)"><i class="fa fa-pencil"/></a></th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr><td colspan="2">{{faq.content | abbreviate:150}}</td></tr>
+			<tbody >
+				<tr><td colspan="2" ng-click="openDetail(faq)">{{faq.content | abbreviate:150}}</td></tr>
+				<!-- <tr><td colspan="2" markdown-to-html="faq.content"></td></tr> -->
 			</tbody>
 		</table>
 	</div><!-- end一覧表示エリア -->	
