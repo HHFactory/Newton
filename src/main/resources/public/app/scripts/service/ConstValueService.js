@@ -6,7 +6,8 @@
 */
 (function(){
 'use strict';	
-	var hostName = "http://localhost:8080";
+	//var hostName = "http://hhfactory-newton.japanwest.cloudapp.azure.com:8080/newton-1.0";
+	var hostName = "http://localhost:8080/";
 
 	angular.module('indexModule').value(
 		'constURI',{

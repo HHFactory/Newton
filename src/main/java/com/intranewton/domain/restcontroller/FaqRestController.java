@@ -69,7 +69,7 @@ public class FaqRestController {
 	FAQ postFaq(@RequestBody FAQ faq){	
 		return faqService.createFaq(faq);
 	}
-	
+		
 	/**
 	 * FAQリストから登録する
 	 * @param faqs

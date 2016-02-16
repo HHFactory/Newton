@@ -25,7 +25,7 @@
 		 */
 		$scope.openFileUploadModal = function() {
 			$uibModal.open({
-				templateUrl: "../../../../app/views/template/fileUploadModal.html",
+				templateUrl: "/app/views/template/fileUploadModal.html",
 				controller: "FileUploadModalController",
 				animation: false
 			});
@@ -46,7 +46,6 @@
 		  $scope.data.splice(0, 0, a);
 		};
 
-
 		/**
 		 * 子カテゴリを追加
 		 * @param  {[type]} scope [description]
@@ -63,33 +62,15 @@
 		};
 
 		/**
-		 * 
-		 * @return {[type]} [description]
-		 */
-		$scope.showJson = function(){
-			console.dir($scope.data);
-		}
-
-		/**
 		 * ファイル追加モーダルを開く
 		 */
 		$scope.addManualFile = function(node) {
 			console.log(node);
 		}
 
-		$scope.deleteFile = function(){
+		$scope.deleteFile = function($event){
 			console.log('delete');
 		}
-
-		$scope.addFile = function() {
-			console.log('addfile');
-		}
-
-		$scope.onClick = function(){
-			console.log('onlick');
-		}
-
-
 
 	}
 

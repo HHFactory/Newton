@@ -23,7 +23,7 @@
 	     */
 	    $scope.openDetail = function(faq) {
 	    	$uibModal.open({
-	    		templateUrl: "../../../../app/views/template/modal.html",
+	    		templateUrl: "/app/views/template/modal.html",
 	    		controller: "ModalController",
 	    		animation: false,
 	    		resolve: {
@@ -54,7 +54,7 @@
 		 */
 		$scope.importExcel = function(e) {
 			$uibModal.open({
-				templateUrl: "../../../../app/views/template/fileLoadModal.html",
+				templateUrl: "/app/views/template/fileLoadModal.html",
 				controller: "FileLoadModalController",
 				animation: false,
 				backdrop: true

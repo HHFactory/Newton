@@ -42,4 +42,23 @@ public class FileUploadController {
 		}
 	}
 	
+	@RequestMapping(value="/upload/tmp",method=RequestMethod.POST)
+	@ResponseBody
+	public void tmpImageFileUpload(@RequestParam("file") MultipartFile file) {
+		if(!file.isEmpty()){
+			try {
+				String directory = "./src/main/resources/public/app/files/tmp";
+				String filePath = Paths.get(directory,file.getOriginalFilename()).toString();
+				System.out.println(filePath);
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+				stream.write(file.getBytes());
+				stream.close();
+			}catch (Exception e) {
+				System.out.println("upload failed");
+			}
+		}else{
+			System.out.println("file empty");
+		}
+	}
+	
 }

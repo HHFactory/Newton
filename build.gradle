@@ -1,6 +1,6 @@
 buildscript{
 	repositories{
-		jcenter()
+		mavenCentral()
 	}
 	dependencies{
 		classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE'
@@ -12,14 +12,18 @@ buildscript{
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
+apply plugin: 'war'
 
-sourceCompatibility = 1.8
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 version = '1.0'
+
+war {
+	baseName = 'newton'
+}
+
 jar {
-    manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
-                   'Implementation-Version': version
-    }
+	baseName = 'newton'
 }
 
 repositories {
@@ -28,6 +32,7 @@ repositories {
 
 configurations{
 	provided
+	providedRuntime
 }
 
 sourceSets {
@@ -45,10 +50,14 @@ dependencies {
     compile 'commons-collections:commons-collections:3.2'
     compile 'org.apache.logging.log4j:log4j-api:2.4'
     compile 'org.apache.logging.log4j:log4j-core:2.4'
+//    compile ('org.springframework.boot:spring-boot-starter-web'){
+//    	exclude module:"spring-boot-starter-tomcat"
+//    }
     compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'org.springframework.boot:spring-boot-gradle-plugin'
     compile 'org.springframework.boot:spring-boot-starter-jdbc'
+    compile 'org.springframework.boot:spring-boot-starter-websocket'
     compile 'org.modelmapper.extensions:modelmapper-spring:0.7.5'
     compile 'org.apache.commons:commons-lang3:3.0'
     compile 'org.springframework.boot:spring-boot-starter-data-elasticsearch:1.2.7.RELEASE'  
@@ -69,10 +78,6 @@ task wrapper(type:Wrapper) {
 	gradleVersion = '2.2.1'
 }
 
-task stage {
-	dependsOn build
-}
-
 uploadArchives {
     repositories {
        flatDir {
@@ -80,3 +85,6 @@ uploadArchives {
        }
     }
 }
+
+
+	

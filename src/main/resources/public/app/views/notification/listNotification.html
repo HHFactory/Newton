@@ -10,26 +10,6 @@
 	<!-- 一覧表示エリア -->
  	<div class="col-contents" >
  		<!-- お知らせパネル -->
-<!-- 		<table class="timeline"  ng-repeat="notification in notifications" ng-click="open(notification)">
-			<thead>
-				<tr>
-					<td class="timeline__title">{{notification.title}}</td>					
-					<td><i class="fa fa-tag"/></td>
-				</tr>
-				<tr><td colspan="2" class="timeline__item--user-name">@{{notification.createUser}}</td></tr>
-			</thead>
-			<tbody>
-				<tr><td colspan="2" class="timeline__content">{{notification.content|abbreviate:150}}</td></tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td class="timeline__footer" colspan="2">
-						<i class="fa fa-envelope-o"/><span class="timeline__item--number">{{notification.readMemberList.length}}</span>
-						<i class="fa fa-envelope"/><span class="timeline__item--number">{{notification.unreadMemberList.length}}</span>
-					</td>
-				</tr>
-			</tfoot>
-		</table> -->
 
 		<div class="timeline" ng-repeat="notification in notifications" ng-click="open(notification)">
 			<div class="timeline__header">
@@ -50,7 +30,7 @@
 
 		<!-- 新規登録パネル -->
 		<a class="open-create-notification"　href="" ng-click="openPanel()"><i class="fa fa-pencil-square-o"/><span>新しいお知らせを登録する</span></a>
-		<div ng-include="'../../../app/views/notification/createNotificationPanel.html'" ng-show="isShowCreatePanel"></div>
+		<div ng-include="'/app/views/notification/createNotificationPanel.html'" ng-show="isShowCreatePanel"></div>
 	</div>
 
 </div>

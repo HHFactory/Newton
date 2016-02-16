@@ -25,7 +25,7 @@
 			$uibModal.open({
 				animation: false,
 				backdrop: true,
-				templateUrl: "../../../../app/views/template/createModal.html",
+				templateUrl: "/app/views/template/createModal.html",
 				controller: "FileLoadModalController"
 			});
 		}

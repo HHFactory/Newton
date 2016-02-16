@@ -13,7 +13,7 @@
 		var ModalService = {
 			openModal:function(argData){
 				$uibModal.open({
-					templateUrl:"../../app/views/template/modal.html",
+					templateUrl:"/app/views/template/modal.html",
 					controller:"ModalController",
 					resolve:{
 						argdata:function(){
@@ -24,7 +24,7 @@
 			},
 			openSendModal:function(){
 				$uibModal.open({
-					templateUrl:"../../app/views/template/sendModal.html",
+					templateUrl:"/app/views/template/sendModal.html",
 					controller:"SendModalController",
 					resolve:{
 						
