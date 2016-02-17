@@ -2,6 +2,7 @@ package com.intranewton.domain.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,19 +27,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="m_manual")
+@Table(name="manual")
 @Where(clause="status='valid'")
 public class Manual implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@Column(name="status",columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
 	private String fileName;
 	private String filePath;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="m_manual_category_id")
+	@JoinColumn(name="manual_category_id")
 	ManualCategory category;
 }

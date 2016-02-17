@@ -3,6 +3,7 @@ package com.intranewton.domain.entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
  *
  */
 @Entity
-@Table(name="m_todo")
+@Table(name="todo")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,6 +30,7 @@ public class ToDo implements Serializable{
 	private Integer id;
 	private Timestamp createDatetime;
 	private String createUser;
+	@Column(name="status",columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
 	private String title;
 	private String content;

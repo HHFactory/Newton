@@ -19,7 +19,9 @@ public class ManualService {
 	ManualRepository manualRepository;
 	@Autowired
 	ManualCategoryRepository categoryRepository;
-
+	/** ファイルパス　**/
+	private static final String FILE_PATH = "app/files/";
+	
 	/**
 	 * マニュアルカテゴリ取得
 	 * @return
@@ -70,15 +72,13 @@ public class ManualService {
 	 * アップロードしたマニュアルファイル情報をDBに格納する
 	 * @param uploadedFile
 	 * @return
-	 * TODO:ファイル名にタイムスタンプを付与、ファイルパスを絶対パス&相対パスに
 	 */
-	public Manual postManual(String fileName, String filePath,Integer categoryID) {
+	public Manual postFileInfo(String fileName, String filePath,Integer categoryID) {
 		Manual loadedFile = new Manual();
 		ManualCategory category = categoryRepository.findManualCategoryByID(categoryID);
 		loadedFile.setFileName(fileName);
-		loadedFile.setFilePath("../../app/files/" + fileName);
+		loadedFile.setFilePath(FILE_PATH + fileName);
 		loadedFile.setCategory(category);
-		loadedFile.setStatus("valid");
 		return manualRepository.save(loadedFile);
 	}
 		

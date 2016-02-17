@@ -3,6 +3,7 @@ package com.intranewton.domain.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -26,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "m_faq")
+@Table(name = "faq")
 @Where(clause = "status='valid'")
 @Document(indexName = "jdbc",type = "jdbc")
 @NoArgsConstructor
@@ -37,13 +38,14 @@ public class FAQ extends AbstractEntity implements Serializable {
 	private String title;
 	private String content;
 	private String talkScript;
+	@Column(name="useful_count",columnDefinition="int(11) DEFAULT '0'")
 	private Integer usefulCount;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
-			name="m_faq_has_m_faq_category",
-			joinColumns=@JoinColumn(name="m_faq_id",referencedColumnName="id"),
-			inverseJoinColumns=@JoinColumn(name="m_faq_category",referencedColumnName="id")
+			name="faq_has_faq_category",
+			joinColumns=@JoinColumn(name="faq_id",referencedColumnName="id"),
+			inverseJoinColumns=@JoinColumn(name="faq_category",referencedColumnName="id")
 			)
 	private List<FAQCategory> categories;	
 }

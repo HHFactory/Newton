@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
  * m_notification_target_roleテーブルエンティティ
  */
 @Entity
-@Table(name="m_notification_target_role")
+@Table(name="notification_target_role")
 @Data
 @NoArgsConstructor
 public class NotificationTargetRole implements Serializable{
@@ -33,6 +33,6 @@ public class NotificationTargetRole implements Serializable{
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="m_notification_id")
+	@JoinColumn(name="notification_id")
 	private Notification notification;
 }

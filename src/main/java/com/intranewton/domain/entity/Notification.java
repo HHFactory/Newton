@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "m_notification")
+@Table(name = "notification")
 @Where(clause = "status='valid'")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -40,6 +40,6 @@ public class Notification extends AbstractEntity implements Serializable {
 	private Integer importance;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "m_notification_id")
+	@JoinColumn(name = "notification_id")
 	private List<NotificationTargetRole> notificationTargetRoles;
 }

@@ -4,6 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Paths;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,19 +22,27 @@ public class FileUploadController {
 	@Autowired
 	ManualService manualService;
 	
+	/**
+	 * ファイルアップロード処理
+	 * @param file
+	 * @param categoryID
+	 */
 	@RequestMapping(value="/upload",method=RequestMethod.POST)
 	@ResponseBody
-	//TODO:同じファイル名があった場合は登録できないようにする
 	public void handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("categoryID") Integer categoryID) {
 		if(!file.isEmpty()){
 			try{
-				String directory = "./src/main/resources/public/app/files";
+				//アップロード時のタイムスタンプを取得し、ファイル名に付与
+				final String timestampStr = new Timestamp(new Date().getTime()).toString();
+				String directory = "app/files";
 				String filePath = Paths.get(directory, file.getOriginalFilename()).toString();								
-				
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+				//ファイルアップロード
+				String fileName = timestampStr + "_" + file.getOriginalFilename();
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fileName)));
 				stream.write(file.getBytes());
 				stream.close();
-				manualService.postManual(file.getOriginalFilename(), filePath, categoryID);
+				//登録情報をDBに格納
+				manualService.postFileInfo(file.getOriginalFilename(), filePath, categoryID);
 				System.out.println(file.getOriginalFilename() + "  uploaded");
 			}catch(Exception e){
 				System.out.println(e.getMessage());				

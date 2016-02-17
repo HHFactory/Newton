@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="m_manual_category")
+@Table(name="manual_category")
 @Where(clause="status='valid'")
 @Embeddable
 public class ManualCategory implements Serializable{
@@ -43,7 +43,7 @@ public class ManualCategory implements Serializable{
 //	private List<Manual> manuals;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="m_manual_category_id")
+	@JoinColumn(name="manual_category_id")
 	private List<Manual> manuals;
 	
 	
