@@ -5,9 +5,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +24,10 @@ public class FileUploadController {
 	@Autowired
 	ManualService manualService;
 	
+	/** アップロード先をpropertiesファイルから読み込む **/
+	@Value("${uploaddirectory.path}")
+	private String directory;
+	
 	/**
 	 * ファイルアップロード処理
 	 * @param file
@@ -33,16 +39,17 @@ public class FileUploadController {
 		if(!file.isEmpty()){
 			try{
 				//アップロード時のタイムスタンプを取得し、ファイル名に付与
-				final String timestampStr = new Timestamp(new Date().getTime()).toString();
-				String directory = "app/files";
-				String filePath = Paths.get(directory, file.getOriginalFilename()).toString();								
-				//ファイルアップロード
+				Timestamp timestamp = new Timestamp(new Date().getTime());
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+				String timestampStr = dateFormat.format(timestamp);
 				String fileName = timestampStr + "_" + file.getOriginalFilename();
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fileName)));
+				String filePath = Paths.get(directory, fileName).toString();								
+				//ファイルアップロード
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
 				stream.write(file.getBytes());
 				stream.close();
 				//登録情報をDBに格納
-				manualService.postFileInfo(file.getOriginalFilename(), filePath, categoryID);
+				manualService.postFileInfo(fileName, categoryID);
 				System.out.println(file.getOriginalFilename() + "  uploaded");
 			}catch(Exception e){
 				System.out.println(e.getMessage());				

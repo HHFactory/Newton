@@ -73,12 +73,16 @@ public class ManualService {
 	 * @param uploadedFile
 	 * @return
 	 */
-	public Manual postFileInfo(String fileName, String filePath,Integer categoryID) {
+	public Manual postFileInfo(String fileName,Integer categoryID) {
 		Manual loadedFile = new Manual();
 		ManualCategory category = categoryRepository.findManualCategoryByID(categoryID);
-		loadedFile.setFileName(fileName);
+		//timestamp箇所をトリムしてファイル名とする
+		String name = fileName.substring(15);
+		loadedFile.setFileName(name);
+		//パスはトリミングしない
 		loadedFile.setFilePath(FILE_PATH + fileName);
 		loadedFile.setCategory(category);
+		loadedFile.setStatus("valid");
 		return manualRepository.save(loadedFile);
 	}
 		
