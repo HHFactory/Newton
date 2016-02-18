@@ -14,7 +14,7 @@
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
-		connectApiService.get(constURI.getNotificationList,userID).then(function(resultAPI){
+		connectApiService.get(constURI.notifications,userID).then(function(resultAPI){
 			$scope.notifications = resultAPI.data;
 			UserService.createReadUserList($scope.notifications);
 		});
@@ -50,7 +50,7 @@
 		 */
 		$scope.open = function(notification){
 			$uibModal.open({
-				templateUrl: "/app/views/template/modal.html",
+				templateUrl: "app/views/template/modal.html",
 				controller:"ModalController",
 				animation: false,
 				resolve:{

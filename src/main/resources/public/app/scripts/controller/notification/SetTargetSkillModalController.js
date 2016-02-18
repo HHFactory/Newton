@@ -14,7 +14,7 @@
 		 * @param  {[type]} resultAPI){			$scope.targetSkills [description]
 		 * @return {[type]}                                    [description]
 		 */
-		connectApiService.get(constURI.getSkillList).then(function(resultAPI){
+		connectApiService.get(constURI.roles).then(function(resultAPI){
 			$scope.targetSkills = resultAPI.data;
 		});
 

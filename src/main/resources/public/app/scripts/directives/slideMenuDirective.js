@@ -8,7 +8,7 @@
     function slideMenu() {
         return {
             ristrict: 'E',
-            templateUrl: '/app/views/faq/modifyTaskDetail.html',
+            templateUrl: 'app/views/faq/modifyTaskDetail.html',
             transclude: true,
             raplace: true
         };

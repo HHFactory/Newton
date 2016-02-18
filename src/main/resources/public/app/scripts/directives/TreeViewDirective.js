@@ -4,24 +4,35 @@
 	var TreeViewDirective = function($compile){
 		return {
 			restrict: 'AE',
-			templateUrl: "/app/views/template/treeTemplate.html",
+			templateUrl: "app/views/template/treeTemplate.html",
 			scope: {
 				nwtTreeView: '=',
-				ngClick: '&',
-				deleteFile: '&',
-				addFile: '&'
+				addFile: '&',
+//				deleteFile: '&'
 			},
 			transclude:true,
+			controller: function($scope) {
+				$scope.tmpfn = function(node){
+					console.log('add clicked');
+					$scope.addFile({node:node});
+				}
+				$scope.tmpfn2 = function(manualID){
+					console.log('delete clicked');
+					$scope.deleteFile({manualID:manualID});
+				}
+			},
 			compile: function(){
+				//子カテゴリテンプレート
 				var childTemplate = '<li ng-repeat="node in nwtTreeView.children" ><ol nwt-tree-view="node"></ol></li>';
+				//マニュアルテンプレート
 				// var manualTemplate = '<li ng-repeat="manual in nwtTreeView.manuals">'+
 				// 						'<i class="fa fa-file-text-o"/><a ng-href="{{manual.filePath}}" target="_blank">{{manual.fileName}}</a>'+
-				// 						'<a delete-file="deleteFile(manual)"><i class="fa fa-trash-o"/></a>'+
+				// 						'<a ng-click="tmpfn2(manual.id)"><i class="fa fa-trash-o"/></a>'+
 				// 						'</li>';
 				var childLinkFn;
 				var manualLinkFn;
 				return function postLink(scope,element) {
-					//chilTemlateを一度compileし、キャッシュ
+					//chilTemlateを一度compileしキャッシ
 					childLinkFn =  childLinkFn || $compile(childTemplate);
 					childLinkFn(scope, function(clonedElm){
 						element.find('ol').append(clonedElm);
@@ -32,18 +43,6 @@
 					// 	element.find('ul').append(clonedElm);
 					// });
 
-					var deleteIcon = angular.element(element).find('.delete-manual');
-					deleteIcon.bind("mousedown",scope.onClick);
-					console.log(deleteIcon);
-					
-
-					scope.addFile = function(){
-						console.log('addfile');
-					}
-
-					scope.deleteFile = function(){
-						console.log('delete');
-					}
 				};
 
 			}

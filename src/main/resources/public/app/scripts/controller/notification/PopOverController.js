@@ -22,7 +22,7 @@
 		//お知らせ対象スキルpopover表示
 		$scope.targetUserList = {
 			content: $scope.targetSkills,
-			templateUrl: '/app/views/template/targetUserList.html'
+			templateUrl: 'app/views/template/targetUserList.html'
 		}
 
 	}

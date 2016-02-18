@@ -53,6 +53,21 @@
 					return status;
 				});
 				return postData;
+			},
+
+			/**
+			 * http.delete
+			 * @param  {[type]} apiURI     
+			 * @param  {[type]} targetData 
+			 * @return {[type]}            
+			 */
+			delete:function(apiURI,param){
+				var deleteData = $http.delete(apiURI, {params:param}).success(function(data,status,headers,config){
+					return status;
+				}).error(function(data,status,headers,config){
+					return status;
+				});
+				return deleteData;
 			}
 		};
 		return ConnectAPI;

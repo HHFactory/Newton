@@ -54,7 +54,7 @@
 		  */
 		$scope.openDictionary = function() {
 			$uibModal.open({
-				templateUrl: "/app/views/template/dictionaryModal.html",
+				templateUrl: "app/views/template/dictionaryModal.html",
 				controller: "DictionaryModalController",
 				animation: false,
 			});

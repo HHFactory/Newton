@@ -13,7 +13,7 @@
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
-		connectApiService.get(constURI.getManualList).then(function(resultAPI){
+		connectApiService.get(constURI.manuals).then(function(resultAPI){
 			//$scope.categories = resultAPI.data;
 			$scope.data = resultAPI.data;
 			console.dir($scope.data);
@@ -25,26 +25,11 @@
 		 */
 		$scope.openFileUploadModal = function() {
 			$uibModal.open({
-				templateUrl: "/app/views/template/fileUploadModal.html",
+				templateUrl: "app/views/template/fileUploadModal.html",
 				controller: "FileUploadModalController",
 				animation: false
 			});
 		}
-
-		//ui.tree test
-		$scope.remove = function (scope) {
-		  scope.remove();
-		};
-
-		$scope.toggle = function (scope) {
-			console.log('toggle');
-			scope.toggle();
-		};
-
-		$scope.moveLastToTheBeginning = function () {
-		  var a = $scope.data.pop();
-		  $scope.data.splice(0, 0, a);
-		};
 
 		/**
 		 * 子カテゴリを追加
@@ -62,16 +47,35 @@
 		};
 
 		/**
-		 * ファイル追加モーダルを開く
+		 * ファイルアップロードモーダルを開く
+		 * @param {[type]} node 
 		 */
-		$scope.addManualFile = function(node) {
-			console.log(node);
+		$scope.addFile = function(node){
+			$uibModal.open({
+				templateUrl: "app/views/template/fileUploadModal.html",
+				controller: "FileUploadModalController",
+				animation: false,
+				resolve: {
+					params: function(){
+						return {
+							node:node
+						};
+					}
+				}
+			});
 		}
 
-		$scope.deleteFile = function($event){
-			console.log('delete');
+		/**
+		 * ファイル削除処理
+		 * @param  {[type]} manual 
+		 * @return {[type]}        
+		 */
+		$scope.deleteFile = function(manual){
+			var param = {id:manual["id"], name:manual["fullFileName"]};
+			connectApiService.delete(constURI.deleteFile,param).then(function(resultAPI){
+				console.log('delete success');
+			});
 		}
-
 	}
 
 	//moduleへの登録

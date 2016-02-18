@@ -15,7 +15,7 @@
 		 * @return {[type]} [description]
 		 */
 		$scope.useful = function(){
-			connectApiService.put(constURI.putFAQuseful+data.id,data).then(function(){
+			connectApiService.put(constURI.faqs+data.id,data).then(function(){
 				$modalInstance.close();
 			});
 		};

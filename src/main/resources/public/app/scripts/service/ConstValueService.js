@@ -5,32 +5,38 @@
 * @Return
 */
 (function(){
-'use strict';	
-	//var hostName = "http://hhfactory-newton.japanwest.cloudapp.azure.com:8080/newton-1.0";
-	var hostName = "http://localhost:8080/";
+'use strict';
+	//TODO:hostNameを動的に切り替えたい
+
+	// var hostName = "http://hhfactory.japanwest.cloudapp.azure.com:8080/newton-1.0/";
+	var hostName = "http://localhost:8080/newton-1.0/";
 
 	angular.module('indexModule').value(
 		'constURI',{
-			'getFaqList': hostName + "/api/v1/faqs",
-			'postFaq': hostName + "/api/v1/faq",
-			'postFaqList': hostName + "/api/v1/faqlist",
-			'putFaqUseful': hostName + "/api/v1/faqs/",
-			'getModifyFaqList': hostName + "/api/v1/modifyfaqs",
-			'getNotificationList': hostName + "/api/v1/notifications",
-			'postNotification': hostName + "/api/v1/notification",
-			'getManual': hostName + "/api/v1/manual",
-			'getManualList': hostName + "/api/v1/manuallist",
-			'getManualCategories': hostName + "/api/v1/manualcategory",
-			'postManual': hostName +"/api/v1/manual",
-			'putManual': hostName +"/api/v1/manual",
-			'getSkillList': hostName + "/api/v1/roles",
-			'getUserList': hostName +"/api/v1/users",
-			'getToDoList': hostName +"/api/v1/todos",
-			'getToDoListByTargetUser': hostName +"/api/v1/targettodos",
-			'postToDo': hostName +"/api/v1/todo",
-			'searchTerm': hostName + "/api/v1/term",
-			'postTerm': hostName + "/api/v1/term",
-			'searchAPI': hostName +"/api/v1/elastic/querysearch"
+			//faq
+			'faq': hostName + "api/v1/faq",
+			'faqs': hostName + "api/v1/faqs",
+			'modifyFaqs': hostName + "api/v1/modifyfaqs",
+			//notification
+			'notification': hostName + "api/v1/notification",
+			'notifications': hostName + "api/v1/notifications",
+			//manual
+			'manual': hostName +"api/v1/manual",
+			'manuals': hostName + "api/v1/manuals",
+			'manualCategory': hostName + "api/v1/manualcategory",
+			//role&user
+			'roles': hostName + "api/v1/roles",
+			'users': hostName +"api/v1/users",
+			//todo
+			'postToDo': hostName +"api/v1/todo",
+			'getToDoList': hostName +"api/v1/todos",
+			'getToDoListByTargetUser': hostName +"api/v1/targettodos",
+			//term
+			'term': hostName + "api/v1/term",
+			//elasticsearch
+			'searchAPI': hostName +"api/v1/elastic/querysearch",
+			//
+			'deleteFile': hostName + "delete"
 		}
 	);
 

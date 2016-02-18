@@ -32,7 +32,7 @@
 		 * @return {[type]} [description]
 		 */
 		$scope.useful = function(id){
-			connectApiService.put(constURI.putFaqUseful+id).then(function(){
+			connectApiService.put(constURI.faqs+id).then(function(){
 				$state.go('main');
 			});
 		}

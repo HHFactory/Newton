@@ -12,7 +12,7 @@
 	 	 * @param  {[type]}
 	 	 * @return {[type]}
 	 	 */
-		connectApiService.get(constURI.getFaqList).then(function(apiResult){
+		connectApiService.get(constURI.faqs).then(function(apiResult){
 	 		$scope.faqList = apiResult.data;
 	 	});
 
@@ -23,7 +23,7 @@
 	     */
 	    $scope.openDetail = function(faq) {
 	    	$uibModal.open({
-	    		templateUrl: "/app/views/template/modal.html",
+	    		templateUrl: "app/views/template/modal.html",
 	    		controller: "ModalController",
 	    		animation: false,
 	    		resolve: {
@@ -54,7 +54,7 @@
 		 */
 		$scope.importExcel = function(e) {
 			$uibModal.open({
-				templateUrl: "/app/views/template/fileLoadModal.html",
+				templateUrl: "app/views/template/fileLoadModal.html",
 				controller: "FileLoadModalController",
 				animation: false,
 				backdrop: true
@@ -62,17 +62,10 @@
 		}
 
 		/**
-		 * 編集アイコンを表示
-		 * @return {Boolean} [description]
+		 * 編集画面に遷移する
+		 * @param  {[type]} faq [description]
+		 * @return {[type]}     [description]
 		 */
-		$scope.isShowEditIcon = function() {
-			if($scope.isShowIcon == false) {
-				$scope.isShowIcon = true;
-			}else {
-				$scope.isShowIcon = false;
-			}
-		}
-
 		$scope.edit = function(faq) {
 			console.dir(faq);
 			$state.go('createFaq',{editTarget:faq});

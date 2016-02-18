@@ -25,7 +25,7 @@
 			$uibModal.open({
 				animation: false,
 				backdrop: true,
-				templateUrl: "/app/views/template/createModal.html",
+				templateUrl: "app/views/template/createModal.html",
 				controller: "FileLoadModalController"
 			});
 		}
@@ -38,13 +38,13 @@
 		$scope.submit = function(faq){
 			if(!faq.id){
 				//登録
-				connectApiService.post(constURI.postFaq,faq).then(function(apiResult){
+				connectApiService.post(constURI.faq,faq).then(function(apiResult){
 					console.dir(faq);
 					$state.go('main');
 				});
 			}else {
 				//更新
-				connectApiService.put(constURI.postFaq,faq).then(function(apiResult){
+				connectApiService.put(constURI.faq,faq).then(function(apiResult){
 					console.dir(apiResult);
 					$state.go('main');
 				});
@@ -81,7 +81,7 @@
 		 $scope.upload = function(file) {
 		 	console.log(file);
 		 	Upload.upload({
-		 		url: '/upload/tmp',
+		 		url: '/newton-1.0/upload/tmp',
 		 		data: {file:file},
 		 	}).then(function(resp) {
 		 		//success
