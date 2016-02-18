@@ -1,19 +1,19 @@
 
-	<!-- 親カテゴリ -->
-	<div name={{nwtTreeView.name}} class="tree__nodes">
-		<a ng-click="isCollapsed = !isCollapsed" ><i ng-class="{'fa fa-folder-open-o':isCollapsed,'fa fa-folder-o':!isCollapsed}"/>{{nwtTreeView.name}}</a>
-		<a ng-click="addFile({node:nwtTreeView})" class="tree__nodes__item--right" add-file="addManualFile(nwtTreeView)"><i class="fa fa-plus"/></a>
-	</div>
+<!-- 親カテゴリ -->
+<div name={{nwtTreeView.name}} class="tree__nodes" ng-mouseenter="isShowIcon = true" ng-mouseleave="isShowIcon = false">
+	<a ng-click="isCollapsed = !isCollapsed" ><i ng-class="{'fa fa-folder-open-o':isCollapsed,'fa fa-folder-o':!isCollapsed}"/>{{nwtTreeView.name}}</a>
+	<a class="tree__nodes__item--right" ng-show="isShowIcon" ng-click="add(nwtTreeView)"><i class="fa fa-plus"/></a>
+</div>
 
-	<!-- 子カテゴリ -->
-	<ol ng-show="isCollapsed" class="tree__node" ></ol>
-	<!-- マニュアル -->
-	<ul ng-show="isCollapsed" class="tree__node">
-		<li ng-repeat="manual in nwtTreeView.manuals">
-			<i class="fa fa-file-text-o"/><a ng-href="{{manual.filePath}}" target="_blank">{{manual.fileName}}</a>
-			<a class="delete-manual" ><i class="fa fa-trash-o"/></a>
-		</li>	
-	</ul>
-	
+<!-- 子カテゴリ -->
+<ol ng-show="isCollapsed" class="tree__node"></ol>
+<!-- マニュアル -->
+<ul ng-show="isCollapsed" class="tree__node">
+	<li ng-repeat="manual in nwtTreeView.manuals">
+		<i class="fa fa-file-text-o"/><a ng-href="{{manual.filePath}}" target="_blank">{{manual.fileName}}</a>
+		<a class="delete-manual" ng-click="delete(manual)"><i class="fa fa-trash-o"/></a>
+	</li>	
+</ul>
+
 
 

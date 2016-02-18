@@ -61,7 +61,6 @@
 					categoryID:categoryID
 				}
 			}).then(function(resp) {
-				console.log(resp);
 				$uibModalInstance.close(resp);
 				$state.reload();
 			},function(resp) {
