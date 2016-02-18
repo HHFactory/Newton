@@ -79,13 +79,24 @@ public class ManualService {
 		//timestamp箇所をトリムしてファイル名とする
 		String name = fileName.substring(15);
 		loadedFile.setFileName(name);
+		//トリムしないファイル名も保存する(削除時用)
+		loadedFile.setFullFileName(fileName);
 		//パスはトリミングしない
 		loadedFile.setFilePath(FILE_PATH + fileName);
 		loadedFile.setCategory(category);
 		loadedFile.setStatus("valid");
 		return manualRepository.save(loadedFile);
 	}
-		
+	
+	/**
+	 * マニュアルデータの削除
+	 * @param manualID
+	 */
+	public void deleteFileInfo(Integer targetId) {
+		manualRepository.delete(targetId);
+	}
+	
+	
 	/**
 	 * m_manualテーブルjson確認用
 	 */
@@ -101,6 +112,4 @@ public class ManualService {
 		return categoryRepository.findAll();
 	}
 	
-
-
 }

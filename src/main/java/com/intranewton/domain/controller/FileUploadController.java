@@ -8,15 +8,20 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.intranewton.domain.entity.Manual;
 import com.intranewton.domain.service.ManualService;
 
 @Controller
@@ -59,23 +64,26 @@ public class FileUploadController {
 		}
 	}
 	
-	@RequestMapping(value="/upload/tmp",method=RequestMethod.POST)
-	@ResponseBody
-	public void tmpImageFileUpload(@RequestParam("file") MultipartFile file) {
-		if(!file.isEmpty()){
-			try {
-				String directory = "./src/main/resources/public/app/files/tmp";
-				String filePath = Paths.get(directory,file.getOriginalFilename()).toString();
-				System.out.println(filePath);
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
-				stream.write(file.getBytes());
-				stream.close();
-			}catch (Exception e) {
-				System.out.println("upload failed");
+	/**
+	 * ファイル削除処理
+	 * @param fileName
+	 */
+	@RequestMapping(value="/delete",method=RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteFile(@RequestParam("id") Integer targetId,@RequestParam("name") String targetFileName) {
+		//対象データをDBから削除
+		manualService.deleteFileInfo(targetId);
+		//格納されているファイルを削除
+		String filePath = directory + targetFileName;
+		File targetFile = new File(filePath);
+		if(targetFile.exists()){
+			if(targetFile.delete()){
+				System.out.println("ファイルが正常に削除されました。");
+			}else{
+				System.out.println("ファイルの削除に失敗しました。");
 			}
 		}else{
-			System.out.println("file empty");
+			System.out.println("ファイルが見つかりません");
 		}
 	}
-	
 }
