@@ -22,7 +22,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * m_FAQテーブルエンティティ
+ * FAQテーブルエンティティ
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -36,6 +36,7 @@ public class FAQ extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String title;
+	@Column(name="content",columnDefinition="TEXT")
 	private String content;
 	private String talkScript;
 	@Column(name="useful_count",columnDefinition="int(11) DEFAULT '0'")

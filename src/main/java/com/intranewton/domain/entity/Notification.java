@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -35,6 +36,7 @@ public class Notification extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String title;
+	@Column(name="content",columnDefinition="TEXT")
 	private String content;
 	private String filePath;
 	private Integer importance;

@@ -37,6 +37,7 @@ public class Manual implements Serializable{
 	@Column(name="status",columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
 	private String fileName;
+	private String fullFileName;
 	private String filePath;
 	
 	@JsonIgnore
