@@ -32,7 +32,7 @@ public class FaqRestController {
 	 * 全てのFAQを取得する
 	 * @return FAQ List
 	 */
-	@RequestMapping(value="/api/v1/faqs",method=RequestMethod.GET)
+	@RequestMapping(value="/api/v1/faqs/",method=RequestMethod.GET)
 	List<FAQ> findAllFaqs(){
 		List<FAQ> faqs = faqService.getFaqList();
 		return faqs;
@@ -64,7 +64,7 @@ public class FaqRestController {
 	 * @param faq
 	 * @return FAQ
 	 */
-	@RequestMapping(value="/api/v1/faq",method=RequestMethod.POST)
+	@RequestMapping(value="/api/v1/faq/",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	FAQ postFaq(@RequestBody FAQ faq){	
 		return faqService.createFaq(faq);
@@ -75,12 +75,35 @@ public class FaqRestController {
 	 * @param faqs
 	 * @return
 	 */
-	@RequestMapping(value="/api/v1/faqs",method=RequestMethod.POST)
+	@RequestMapping(value="/api/v1/faqs/",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	Integer postFaqList(@RequestBody List<FAQ> faqs) {
 		return faqService.postFaqList(faqs);
 	}
-			
+	
+	/**
+	 * FAQ更新処理
+	 * @param id
+	 * @param targetFaq
+	 * @return
+	 */
+	@RequestMapping(value="/api/v1/faq/{id}",method=RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.CREATED)
+	public FAQ editFaq(@PathVariable Integer id, @RequestBody FAQ targetFaq) {
+		targetFaq.setId(id);
+		return faqService.editFaq(targetFaq);
+	}
+	
+	/**
+	 * FAQ削除処理
+	 * @param id
+	 */
+	@RequestMapping(value="/api/v1/faq/{id}",method=RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteFaq(@PathVariable Integer id) {
+		faqService.deleteFaq(id);
+	}
+	
 	/**
 	 * elasticsearchでFAQを全て取得する
 	 * @return FAQ iterable

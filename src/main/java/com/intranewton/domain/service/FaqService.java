@@ -69,5 +69,24 @@ public class FaqService {
 		return categoryRepository.findAll();
 	}
 	
+	/**
+	 * FAQ更新処理
+	 * @param id
+	 * @param target
+	 * @return
+	 */
+	public FAQ editFaq(FAQ target) {
+		return faqRepository.save(target);
+	}
+	
+	/**
+	 * FAQ削除処理
+	 * @param id
+	 * @return
+	 */
+	public void deleteFaq(Integer id) {
+		faqRepository.delete(id);
+	}
+	
 
 }
