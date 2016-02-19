@@ -14,9 +14,9 @@
 	angular.module('indexModule').value(
 		'constURI',{
 			//faq
-			'faq': hostName + "api/v1/faq",
-			'faqs': hostName + "api/v1/faqs",
-			'modifyFaqs': hostName + "api/v1/modifyfaqs",
+			'faq': hostName + "api/v1/faq/",
+			'faqs': hostName + "api/v1/faqs/",
+			'modifyFaqs': hostName + "api/v1/modifyfaqs/",
 			//notification
 			'notification': hostName + "api/v1/notification",
 			'notifications': hostName + "api/v1/notifications",

@@ -8,9 +8,6 @@
 'use strict';
 	
 	function ConnectApiService($http){
-		// var transform = function(data){
-		// 	return $.param(data);
-		// }
 
 		var ConnectAPI = {
 			/**
