@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.aspectj.internal.lang.reflect.PointcutBasedPerClauseImpl;
 import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,15 +24,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.intranewton.domain.entity.Manual;
 import com.intranewton.domain.service.ManualService;
+import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
 
 @Controller
 public class FileUploadController {
 	@Autowired
 	ManualService manualService;
 	
-	/** アップロード先をpropertiesファイルから読み込む **/
+	/** ファイル保存先 **/
 	@Value("${uploaddirectory.path}")
 	private String directory;
+	/** 画像保存先 **/
+	@Value("${uploadimage.path}")
+	private String imageDirectory;
 	
 	/**
 	 * ファイルアップロード処理
@@ -86,4 +91,33 @@ public class FileUploadController {
 			System.out.println("ファイルが見つかりません");
 		}
 	}
+	
+	/**
+	 * 画像アップロード処理
+	 * TODO:ファイルアップロードと共通化
+	 */
+	@RequestMapping(value="/upload/image",method=RequestMethod.POST, produces = "text/plain; charset=utf-8")
+	@ResponseBody
+	public String postImage(@RequestParam("image") MultipartFile image) {
+		if(!image.isEmpty()){
+			try{
+				//アップロード時のタイムスタンプを取得し、ファイル名に付与
+				Timestamp timestamp = new Timestamp(new Date().getTime());
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+				String timestampStr = dateFormat.format(timestamp);
+				String fileName = timestampStr + "_" + image.getOriginalFilename();
+				String filePath = Paths.get(imageDirectory, fileName).toString();								
+				//ファイルアップロード
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+				stream.write(image.getBytes());
+				stream.close();
+				return fileName;
+			}catch(Exception e){
+				return e.getMessage();
+			}
+		}else{
+			return "image empty";
+		}
+	}
+	
 }

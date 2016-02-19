@@ -25,8 +25,8 @@
 						showLoaderOnConfirm: true
 					},
 					function(){
+						$scope.$emit('deleteFile',manual);
 						$timeout(function(){
-							$scope.$emit('deleteFile',manual);
 							swal("正常に削除されました");
 						},2000);
 					});

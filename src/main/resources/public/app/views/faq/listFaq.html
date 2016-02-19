@@ -17,7 +17,12 @@
 			<thead>
 				<tr>
 					<th><i class="fa fa-question-circle"/>{{faq.title}}</th>
-					<th class="table__header__item--right" ng-show="isShowIcon"><a ng-click="edit(faq)"><i class="fa fa-pencil"/></a></th>
+					<th class="table__header__item--right" ng-show="isShowIcon">
+						<a ng-click="edit(faq)"><i class="fa fa-pencil"/></a>
+					</th>
+					<th class="table__header__item--right" ng-show="isShowIcon">
+						<a ng-click="delete(faq)"><i class="fa fa-trash-o"/></a>
+					</th>
 				</tr>
 			</thead>
 			<tbody >

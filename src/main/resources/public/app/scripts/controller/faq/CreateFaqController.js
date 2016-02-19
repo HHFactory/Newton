@@ -7,13 +7,14 @@
 'use strict';
 
 	function CreateFaqCtrl($scope,$state,$uibModal,connectApiService,constURI,Upload,$location,$http,$stateParams){
-		//パラメータ取得
+		//更新用パラメータ取得
 		if($stateParams.editTarget){
 			$scope.faq = {
 				title: $stateParams.editTarget["title"],
 				content: $stateParams.editTarget["content"],
 				id: $stateParams.editTarget["id"]
 			}
+			//更新ボタンを表示
 			$scope.editMode = true;
 		}
 
@@ -44,7 +45,8 @@
 				});
 			}else {
 				//更新
-				connectApiService.put(constURI.faq,faq).then(function(apiResult){
+				var targetId = $scope.faq.id;
+				connectApiService.put(constURI.faq+targetId,faq).then(function(apiResult){
 					console.dir(apiResult);
 					$state.go('main');
 				});
@@ -79,27 +81,21 @@
 		 * 画像アップロード処理
 		 */
 		 $scope.upload = function(file) {
-		 	console.log(file);
+		 	var fileName = file.name;
+		 	var basePath = "http://localhost:8080/newton-1.0/app/images/";
 		 	Upload.upload({
-		 		url: '/newton-1.0/upload/tmp',
-		 		data: {file:file},
+		 		url: '/newton-1.0/upload/image',
+		 		data: {image:file}
 		 	}).then(function(resp) {
-		 		//success
-		 		console.log($location.path());
-		 		console.log($http.get('/upload/tmp'));
-		 		var fileName = resp['config']['data']['file']['name'];
-		 		var filePath = resp['config']['url'];
-		 		console.log(fileName);
-		 		console.log(filePath);
+		 		var fullFileName = resp['data'];
+		 		console.log(fullFileName);
 		 		var nameTag = "![" + fileName + "]";
-		 		var pathTag = "(" + filePath + "/" + fileName + ")";
+		 		var pathTag = "(" + basePath + fullFileName + ")";
 		 		var imageTag = nameTag + pathTag;
 		 		setMarkdownTag(imageTag);
 		 	},function(resp) {
 		 		//failed
 		 		console.log(resp);
-		 	},function(event) {
-		 		//notice
 		 	});
 		 }
 
