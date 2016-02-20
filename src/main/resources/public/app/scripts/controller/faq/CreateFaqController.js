@@ -6,22 +6,16 @@
 (function(){
 'use strict';
 
-	function CreateFaqCtrl($scope,$state,$uibModal,connectApiService,constURI){
-		/**
-		 * marked setting
-		 * @type {[type]}
-		 */
-		//var marked = require('marked');
-		marked.setOptions({
-			renderer: new marked.Renderer(),
-			gfm: true,
-			tables: true,
-			breaks: true,
-			pedantic: true,
-			sanitize: true,
-			smartLists: true,
-			smartypants: true
-		});
+	function CreateFaqCtrl($scope,$state,$uibModal,connectApiService,constURI,Upload,$location,$http,$stateParams){
+		//パラメータ取得
+		if($stateParams.editTarget){
+			$scope.faq = {
+				title: $stateParams.editTarget["title"],
+				content: $stateParams.editTarget["content"],
+				id: $stateParams.editTarget["id"]
+			}
+			$scope.editMode = true;
+		}
 
 		/**
 		 * トークスクリプト登録モーダルを開く
@@ -31,7 +25,7 @@
 			$uibModal.open({
 				animation: false,
 				backdrop: true,
-				templateUrl: "../../../../app/views/template/createModal.html",
+				templateUrl: "app/views/template/createModal.html",
 				controller: "FileLoadModalController"
 			});
 		}
@@ -42,10 +36,19 @@
 		 * @return {[type]}
 		 */
 		$scope.submit = function(faq){
-			connectApiService.post(constURI.postFaq,faq).then(function(apiResult){
-				console.dir(faq);
-				$state.go('main');
-			});			
+			if(!faq.id){
+				//登録
+				connectApiService.post(constURI.faq,faq).then(function(apiResult){
+					console.dir(faq);
+					$state.go('main');
+				});
+			}else {
+				//更新
+				connectApiService.put(constURI.faq,faq).then(function(apiResult){
+					console.dir(apiResult);
+					$state.go('main');
+				});
+			}
 		};
 
 		/**
@@ -56,8 +59,94 @@
 			$scope.parsedMarkdown = marked($scope.faq.content);
 		};
 
+		/**
+		 * markdown用のタグを現在カーソル位置に挿入
+		 * @param {[type]} tag [description]
+		 */
+		var setMarkdownTag = function(tag){
+			var caret = $scope.cursorPosition['get'];
+			var text = $scope.faq.content;
+			if(caret > 0) {
+				var former = text.slice(0,caret);
+				var latter = text.slice(caret);
+				$scope.faq.content = former + tag + latter;
+			} else {
+				$scope.faq.content = tag;
+			}
+		}
+
+		/**
+		 * 画像アップロード処理
+		 */
+		 $scope.upload = function(file) {
+		 	console.log(file);
+		 	Upload.upload({
+		 		url: '/newton-1.0/upload/tmp',
+		 		data: {file:file},
+		 	}).then(function(resp) {
+		 		//success
+		 		console.log($location.path());
+		 		console.log($http.get('/upload/tmp'));
+		 		var fileName = resp['config']['data']['file']['name'];
+		 		var filePath = resp['config']['url'];
+		 		console.log(fileName);
+		 		console.log(filePath);
+		 		var nameTag = "![" + fileName + "]";
+		 		var pathTag = "(" + filePath + "/" + fileName + ")";
+		 		var imageTag = nameTag + pathTag;
+		 		setMarkdownTag(imageTag);
+		 	},function(resp) {
+		 		//failed
+		 		console.log(resp);
+		 	},function(event) {
+		 		//notice
+		 	});
+		 }
+
+		/**
+		 * add <h3>
+		 */
+		$scope.addHeaderTag = function() {
+			setMarkdownTag("### 見出しをここに入力");
+		}
+
+		/**
+		 * add <strong>
+		 */
+		$scope.addStrongTag = function() {
+			setMarkdownTag("**" + "ここに入力" + "**");
+		}
+
+		/**
+		 * add <ol>
+		 */
+		$scope.addOlTag = function(){
+			setMarkdownTag("1. ここに入力");
+		}
+
+		/**
+		 * add <hr>
+		 */
+		$scope.addHrTag = function() {
+			setMarkdownTag("***  ");
+		}
+
+		/**
+		 * add <blockquote>
+		 */
+		$scope.addQuoteTag = function() {
+			setMarkdownTag("> ここから引用を入力");
+		}
+
+		/**
+		 * EnterKey押下時に、末尾に半角スペース×2を挿入
+		 */
+		$scope.addNewLineTag = function(){
+			setMarkdownTag("  ");
+		}
+
 	}
 
 	//モジュールへの登録
-	angular.module('indexModule').controller('CreateFaqController',['$scope','$state','$uibModal','connectApiService','constURI',CreateFaqCtrl]);
+	angular.module('indexModule').controller('CreateFaqController',['$scope','$state','$uibModal','connectApiService','constURI','Upload','$location','$http','$stateParams',CreateFaqCtrl]);
 })();

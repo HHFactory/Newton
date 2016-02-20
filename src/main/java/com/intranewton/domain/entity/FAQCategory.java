@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="m_faq_category")
+@Table(name="faq_category")
 @Where(clause="status='valid'")
 @Embeddable
 public class FAQCategory implements Serializable{

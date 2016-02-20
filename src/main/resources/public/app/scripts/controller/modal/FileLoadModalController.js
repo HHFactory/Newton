@@ -61,7 +61,7 @@
 		$scope.submit = function(faqData) {
 			var postParm = formatPostParam(faqData);
 			if(validFlag === true){
-				connectApiService.post(constURI.postFaqList,postParm).then(function(apiResult){
+				connectApiService.post(constURI.faqs,postParm).then(function(apiResult){
 					$uibModalInstance.close(postParm);
 				});
 			}

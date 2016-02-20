@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="m_code")
+@Table(name="code")
 @Where(clause="status='valid'")
 public class Code implements Serializable{
 	private static final long serialVersionUID = 1L;

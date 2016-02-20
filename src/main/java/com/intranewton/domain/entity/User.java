@@ -3,6 +3,7 @@ package com.intranewton.domain.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="m_user")
+@Table(name="user")
 @Where(clause="status='valid'")
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -35,15 +36,16 @@ public class User implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@Column(name="status",columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
 	private String name;
 	private String password;
 	private String mailAddress;
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
-			name="m_user_has_m_role",
-			joinColumns=@JoinColumn(name="m_user_id",referencedColumnName="id"),
-			inverseJoinColumns=@JoinColumn(name="m_role_id",referencedColumnName="id")
+			name="user_has_role",
+			joinColumns=@JoinColumn(name="user_id",referencedColumnName="id"),
+			inverseJoinColumns=@JoinColumn(name="role_id",referencedColumnName="id")
 			)
 	private List<Role> roleList;
  

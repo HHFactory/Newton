@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="m_code_group")
+@Table(name="code_group")
 @Where(clause="status='valid'")
 public class CodeGroup implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -34,6 +34,6 @@ public class CodeGroup implements Serializable{
 	private Integer id;
 	private String name;
 	@OneToMany(fetch=FetchType.LAZY)
-	@JoinColumn(name="m_code_group_id")
+	@JoinColumn(name="code_group_id")
 	List<Code> codes;
 }

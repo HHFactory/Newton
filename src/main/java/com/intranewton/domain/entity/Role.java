@@ -2,6 +2,7 @@ package com.intranewton.domain.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="m_role")
+@Table(name="role")
 @Where(clause="status='valid'")
 public class Role implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -28,6 +29,7 @@ public class Role implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@Column(name="status",columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
 	private String skillName;
 

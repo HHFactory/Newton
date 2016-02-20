@@ -16,7 +16,7 @@
 		 */
 		$scope.search = function(query) {
 			var keyword = {title: query};
-			connectApiService.get(constURI.searchTerm,keyword).then(function(resultAPI){
+			connectApiService.get(constURI.term,keyword).then(function(resultAPI){
 				console.dir(resultAPI.data);
 				$scope.termList = resultAPI.data;
 			});
@@ -52,7 +52,7 @@
 		$scope.submit = function(term) {
 			console.dir(term);
 			term.status = "valid";
-			connectApiService.post(constURI.postTerm,term).then(function(resultAPI){
+			connectApiService.post(constURI.term,term).then(function(resultAPI){
 				console.log(resultAPI.data);
 				$scope.isShowCreatePanel = false;
 			});

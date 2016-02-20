@@ -1,10 +1,10 @@
 <div ng-controller="MainController">
 	<!--マニュアルエリア-->
-	<div ng-include="'../../app/views/manual/manualbar.html'" ></div>
+	<div ng-include="'app/views/manual/manualbar.html'" ></div>
 	<!--FAQエリア-->
-	<div ng-include="'../../app/views/faq/listFaq.html'" ng-hide="checkModifyFaqList"></div>
-	<div ng-include="'../../app/views/faq/modifyTaskList.html'" ng-show="checkModifyFaqList" ></div>
+	<div ng-include="'app/views/faq/listFaq.html'" ng-hide="checkModifyFaqList"></div>
+	<div ng-include="'app/views/faq/modifyTaskList.html'" ng-show="checkModifyFaqList" ></div>
 	<!--お知らせエリア-->
-	<div ng-include="'../../app/views/notification/listNotification.html'"></div>
-	<div ng-include="'../../app/views/faq/modifyTaskDetail.html'" ng-show="showModifyFaqDetail"></div>
+	<div ng-include="'app/views/notification/listNotification.html'"></div>
+	<div ng-include="'app/views/faq/modifyTaskDetail.html'" ng-show="showModifyFaqDetail"></div>
 </div>

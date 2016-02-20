@@ -1,41 +1,53 @@
 (function(){
 'use strict';
 	
-	var TreeViewDirective = function($compile){
+	var TreeViewDirective = function($compile,$timeout){
 		return {
 			restrict: 'AE',
-			templateUrl: "../../../app/views/template/treeTemplate.html",
+			templateUrl: "app/views/template/treeTemplate.html",
 			scope: {
 				nwtTreeView: '=',
-				ngClick: '&',
-				deleteFile: '&',
-				addFile: '&'
 			},
 			transclude:true,
+			controller: function($scope) {
+				$scope.add = function(node){
+					$scope.$emit('addFile', node);
+				}
+
+				$scope.delete = function(manual){
+					sweetAlert({
+						title: "このファイルを削除しますか？",
+						text: "削除した場合、ファイルの復元はできません",
+						type: "warning",
+						showCancelButton: true,
+						confirmButtonText: "OK",
+						closeOnConfirm: false,
+						showLoaderOnConfirm: true
+					},
+					function(){
+						$timeout(function(){
+							$scope.$emit('deleteFile',manual);
+							swal("正常に削除されました");
+						},2000);
+					});
+				}
+			},
 			compile: function(){
+				//子カテゴリテンプレート
 				var childTemplate = '<li ng-repeat="node in nwtTreeView.children" ><ol nwt-tree-view="node"></ol></li>';
-				// var manualTemplate = '<li ng-repeat="manual in nwtTreeView.manuals">'+
-				// 						'<i class="fa fa-file-text-o"/><a ng-href="{{manual.filePath}}" target="_blank">{{manual.fileName}}</a>'+
-				// 						'<a delete-file="deleteFile(manual)"><i class="fa fa-trash-o"/></a>'+
-				// 						'</li>';
-				var childLinkFn;//キャッシュ用
-				var manualLinkFn;//キャッシュ用
+				var childLinkFn;
+
 				return function postLink(scope,element) {
-					//
+					//chilTemlateを一度compileしキャッシ
 					childLinkFn =  childLinkFn || $compile(childTemplate);
 					childLinkFn(scope, function(clonedElm){
 						element.find('ol').append(clonedElm);
 					});
-					//
-					// manualLinkFn = manualLinkFn || $compile(manualTemplate);
-					// manualLinkFn(scope,function(clonedElm){
-					// 	element.find('ul').append(clonedElm);
-					// });
 				};
 
 			}
 		}
 	}
 
-	angular.module('indexModule').directive('nwtTreeView',['$compile',TreeViewDirective]);
+	angular.module('indexModule').directive('nwtTreeView',['$compile','$timeout',TreeViewDirective]);
 })();

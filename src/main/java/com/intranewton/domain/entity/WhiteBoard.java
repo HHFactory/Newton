@@ -20,7 +20,7 @@ import javax.persistence.Entity;
  *
  */
 @Entity
-@Table(name="m_white_board")
+@Table(name="white_board")
 @Where(clause="status='valid'")
 @Data
 @EqualsAndHashCode(callSuper=false)

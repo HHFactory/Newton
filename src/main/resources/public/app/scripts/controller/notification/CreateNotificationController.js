@@ -13,7 +13,7 @@
 		 * @return {list} targetSkill      
 		 */
 		$scope.loadSkills = function(query) {
-			return connectApiService.get(constURI.getSkillList).then(function(apiResult){
+			return connectApiService.get(constURI.roles).then(function(apiResult){
 				var targetSkill = [];
 				var loadSkillList = apiResult.data;
 				for(var i = 0; i < loadSkillList.length; i = (i+1)) {
@@ -34,7 +34,7 @@
 			notificationDAO.targetUserList = getSkillNameList($scope.selectSkillList);
 			notificationDAO.filePath = "";
 			console.dir(notificationDAO);
-			connectApiService.post(constURI.postNotification,notificationDAO).then(function(resultAPI){
+			connectApiService.post(constURI.notification,notificationDAO).then(function(resultAPI){
 				sharedService.isShowCreateNotificationPanel = false;
 				$state.go('main');
 			});

@@ -18,7 +18,7 @@
 		/**
 		 * SVユーザリストを取得する
 		 */
-		connectApiService.get(constURI.getUserList).then(function(apiResult){
+		connectApiService.get(constURI.users).then(function(apiResult){
 			$scope.targeUserList = apiResult.data;
 		});
 

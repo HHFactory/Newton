@@ -7191,42 +7191,47 @@ input[type="button"].btn-block {
   overflow: auto;
   width: 50%;
   height: -webkit-calc(100% - 30px);
+  max-height: -webkit-calc(100% - 30px);
   height: -moz-calc(100% - 30px);
+  max-height: -moz-calc(100% - 30px);
   height: -ms-calc(100% - 30px);
+  max-height: -ms-calc(100% - 30px);
   height: -o-calc(100% - 30px);
+  max-height: -o-calc(100% - 30px);
   height: calc(100% - 30px);
+  max-height: calc(100% - 30px);
   border: 1px solid;
   border-color: gray;
   padding-left: 10px;
   position: absolute;
   overflow: auto;
 }
-/* line 40, module/_input-text.scss */
+/* line 41, module/_input-text.scss */
 .create-view__textarea:focus {
   outline: none;
 }
 
-/* line 80, module/_create-view.scss */
+/* line 82, module/_create-view.scss */
 .textarea__item-list {
   width: 100%;
   height: 30px;
   font-size: 18px;
 }
-/* line 84, module/_create-view.scss */
+/* line 86, module/_create-view.scss */
 .textarea__item-list > li {
   display: inline-block;
   border: 1px solid;
   border-color: #F5F5F5;
 }
 
-/* line 91, module/_create-view.scss */
+/* line 93, module/_create-view.scss */
 .write-area {
   display: table-cell;
   width: 50%;
   height: 100%;
 }
 
-/* line 97, module/_create-view.scss */
+/* line 99, module/_create-view.scss */
 .preview-area {
   display: table-cell;
   width: 50%;
@@ -7234,15 +7239,38 @@ input[type="button"].btn-block {
   padding-left: 10px;
   overflow: scroll;
 }
+@media (max-width: 480px) {
+  /* line 99, module/_create-view.scss */
+  .preview-area {
+    max-width: 220px;
+  }
+}
+@media (max-width: 767px) {
+  /* line 99, module/_create-view.scss */
+  .preview-area {
+    max-width: 320px;
+  }
+}
+@media (max-width: 979px) {
+  /* line 99, module/_create-view.scss */
+  .preview-area {
+    max-width: 400px;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 99, module/_create-view.scss */
+  .preview-area {
+    max-width: 600px;
+  }
+}
 
-/* line 106, module/_create-view.scss */
+/* line 123, module/_create-view.scss */
 .preview-text {
-  white-space: pre-wrap;
   widows: 100%;
   overflow: auto;
 }
 
-/* line 112, module/_create-view.scss */
+/* line 129, module/_create-view.scss */
 .create-view__submit-btn {
   width: 60px;
 }
@@ -7309,8 +7337,9 @@ input[type="button"].btn-block {
   background-color: white;
   padding-left: 5px;
   border-style: none;
+  resize: none;
 }
-/* line 27, module/_input-text.scss */
+/* line 28, module/_input-text.scss */
 .create-panel__title:focus {
   outline: none;
 }
@@ -7324,7 +7353,7 @@ input[type="button"].btn-block {
   resize: none;
   overflow: auto;
 }
-/* line 40, module/_input-text.scss */
+/* line 41, module/_input-text.scss */
 .create-panel__contents:focus {
   outline: none;
 }
@@ -7366,7 +7395,7 @@ input[type="button"].btn-block {
   resize: none;
   overflow: auto;
 }
-/* line 40, module/_input-text.scss */
+/* line 41, module/_input-text.scss */
 .modal__textarea:focus {
   outline: none;
 }
@@ -7455,7 +7484,7 @@ input[type="button"].btn-block {
   height: calc(100% - 80px);
   padding-left: 10px;
 }
-/* line 40, module/_input-text.scss */
+/* line 41, module/_input-text.scss */
 .dict-modal__textarea:focus {
   outline: none;
 }
@@ -7666,6 +7695,149 @@ input[type="button"].btn-block {
   pointer-events: none;
   z-index: 999;
   opacity: .8;
+}
+
+/* line 1, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding, .modal-body > .ng-binding {
+  overflow: auto;
+  width: 100%;
+  word-wrap: break-word;
+  height: -webkit-calc(100% - 30px);
+  max-height: -webkit-calc(100% - 30px);
+  height: -moz-calc(100% - 30px);
+  max-height: -moz-calc(100% - 30px);
+  height: -ms-calc(100% - 30px);
+  max-height: -ms-calc(100% - 30px);
+  height: -o-calc(100% - 30px);
+  max-height: -o-calc(100% - 30px);
+  height: calc(100% - 30px);
+  max-height: calc(100% - 30px);
+}
+/* line 9, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > a, .modal-body > .ng-binding > a {
+  color: #0645ad;
+  text-decoration: none;
+}
+/* line 12, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > a:visited, .modal-body > .ng-binding > a:visited {
+  color: #0b0080;
+}
+/* line 15, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > a:hover, .modal-body > .ng-binding > a:hover {
+  color: #06e;
+}
+/* line 18, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > a:active, .modal-body > .ng-binding > a:active {
+  color: #faa700;
+}
+/* line 21, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > a:focus, .modal-body > .ng-binding > a:focus {
+  outline: thin dotted;
+}
+/* line 24, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > a:hover, .preview-area > .ng-isolate-scope > .ng-binding > a:active, .modal-body > .ng-binding > a:hover, .modal-body > .ng-binding > a:active {
+  outline: 0;
+}
+/* line 28, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > p, .modal-body > .ng-binding > p {
+  margin: 1em 0;
+}
+/* line 31, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > img, .modal-body > .ng-binding > img {
+  max-width: 100%;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+}
+/* line 37, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > h1, .preview-area > .ng-isolate-scope > .ng-binding h2, .preview-area > .ng-isolate-scope > .ng-binding h3, .preview-area > .ng-isolate-scope > .ng-binding h4, .preview-area > .ng-isolate-scope > .ng-binding h5, .preview-area > .ng-isolate-scope > .ng-binding h6, .modal-body > .ng-binding > h1, .modal-body > .ng-binding h2, .modal-body > .ng-binding h3, .modal-body > .ng-binding h4, .modal-body > .ng-binding h5, .modal-body > .ng-binding h6 {
+  font-weight: normal;
+  color: #111;
+  line-height: 1em;
+}
+/* line 42, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > h4, .preview-area > .ng-isolate-scope > .ng-binding h5, .preview-area > .ng-isolate-scope > .ng-binding h6, .modal-body > .ng-binding > h4, .modal-body > .ng-binding h5, .modal-body > .ng-binding h6 {
+  font-weight: bold;
+}
+/* line 45, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > h1, .modal-body > .ng-binding > h1 {
+  font-size: 2.5em;
+}
+/* line 48, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > h2, .modal-body > .ng-binding > h2 {
+  font-size: 2em;
+}
+/* line 51, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > h3, .modal-body > .ng-binding > h3 {
+  font-size: 1.5em;
+}
+/* line 54, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > h4, .modal-body > .ng-binding > h4 {
+  font-size: 1.2em;
+}
+/* line 57, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > h5, .modal-body > .ng-binding > h5 {
+  font-size: 1em;
+}
+/* line 60, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > h6, .modal-body > .ng-binding > h6 {
+  font-size: 0.9em;
+}
+/* line 63, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > blockquote, .modal-body > .ng-binding > blockquote {
+  color: #666666;
+  margin: 0;
+  padding-left: 3em;
+  border-left: 0.5em #EEE solid;
+}
+/* line 69, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > hr, .modal-body > .ng-binding > hr {
+  display: block;
+  height: 2px;
+  border: 0;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #eee;
+  margin: 1em 0;
+  padding: 0;
+}
+/* line 78, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > pre, .preview-area > .ng-isolate-scope > .ng-binding code, .preview-area > .ng-isolate-scope > .ng-binding kbd, .preview-area > .ng-isolate-scope > .ng-binding samp, .modal-body > .ng-binding > pre, .modal-body > .ng-binding code, .modal-body > .ng-binding kbd, .modal-body > .ng-binding samp {
+  color: #000;
+  font-family: monospace, monospace;
+  _font-family: 'courier new', monospace;
+  font-size: 0.98em;
+}
+/* line 84, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > pre, .modal-body > .ng-binding > pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+/* line 89, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > b, .preview-area > .ng-isolate-scope > .ng-binding strong, .modal-body > .ng-binding > b, .modal-body > .ng-binding strong {
+  font-weight: bold;
+}
+/* line 92, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > ul, .preview-area > .ng-isolate-scope > .ng-binding ol, .modal-body > .ng-binding > ul, .modal-body > .ng-binding ol {
+  margin: 1em 0;
+  padding: 0 0 0 2em;
+}
+/* line 96, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > ul, .modal-body > .ng-binding > ul {
+  list-style: disc;
+}
+/* line 99, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > li p:last-child, .modal-body > .ng-binding > li p:last-child {
+  margin: 0;
+}
+/* line 102, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding table, .modal-body > .ng-binding table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* line 106, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > td, .modal-body > .ng-binding > td {
+  vertical-align: top;
 }
 
 /* line 2, state/_is-open-sidebar.scss */

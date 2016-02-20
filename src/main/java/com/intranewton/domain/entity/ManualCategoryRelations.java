@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="m_manual_category_relations")
+@Table(name="manual_category_relations")
 public class ManualCategoryRelations implements Serializable{
 	private static final long serialVersionUID = 1L;
 	

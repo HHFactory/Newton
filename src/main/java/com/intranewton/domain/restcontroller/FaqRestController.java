@@ -69,13 +69,13 @@ public class FaqRestController {
 	FAQ postFaq(@RequestBody FAQ faq){	
 		return faqService.createFaq(faq);
 	}
-	
+		
 	/**
 	 * FAQリストから登録する
 	 * @param faqs
 	 * @return
 	 */
-	@RequestMapping(value="/api/v1/faqlist",method=RequestMethod.POST)
+	@RequestMapping(value="/api/v1/faqs",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	Integer postFaqList(@RequestBody List<FAQ> faqs) {
 		return faqService.postFaqList(faqs);

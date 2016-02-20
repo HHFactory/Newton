@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -26,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "m_notification")
+@Table(name = "notification")
 @Where(clause = "status='valid'")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,11 +36,12 @@ public class Notification extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String title;
+	@Column(name="content",columnDefinition="TEXT")
 	private String content;
 	private String filePath;
 	private Integer importance;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "m_notification_id")
+	@JoinColumn(name = "notification_id")
 	private List<NotificationTargetRole> notificationTargetRoles;
 }

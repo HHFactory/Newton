@@ -16,7 +16,7 @@
 		 * @param  {[type]} apiResult){			$scope.targetList [description]
 		 * @return {[type]}                                  [description]
 		 */
-		connectApiService.get(constURI.getUserList).then(function(apiResult){
+		connectApiService.get(constURI.users).then(function(apiResult){
 			$scope.targetUserList = apiResult.data;
 		});
 

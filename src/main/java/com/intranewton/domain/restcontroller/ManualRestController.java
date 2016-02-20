@@ -21,7 +21,7 @@ public class ManualRestController {
 	 * マニュアルカテゴリ取得
 	 * @return
 	 */
-	@RequestMapping(value="/api/v1/manuallist",method=RequestMethod.GET)
+	@RequestMapping(value="/api/v1/manuals",method=RequestMethod.GET)
 	List<ManualDTO> findAllManualCategories() {
 		return manualService.getManualCategories();
 	}
