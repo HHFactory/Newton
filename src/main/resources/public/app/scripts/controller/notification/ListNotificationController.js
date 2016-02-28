@@ -6,9 +6,25 @@
 (function(){
 'use strict';
 
-	function ListNotificationCtrl($scope,connectApiService,constURI,UserService,sharedService,$uibModal){
+	function ListNotificationCtrl($scope,connectApiService,constURI,UserService,sharedService,$uibModal,APP_CONF){
+		/** カラムタイトル */
+		$scope.columnTitle = APP_CONF.columnTitleNotification;
+		/** ラベル */
+		$scope.labelImportant = APP_CONF.labelImportance;
+		$scope.buttonLabel = APP_CONF.buttonLabelCreateNotification;
+		/** ユーザ情報 */
 		var userID = {userName:"user1"};
+		/** 開閉フラグ */
+		$scope.isShowCreatePanel = sharedService.isShowCreateNotificationPanel;
+		$scope.notifications = {};
 
+		/**
+		 * 閉じるアイコン押下処理
+		 * @return {Boolean} [description]
+		 */
+		$scope.isClose = function(){
+			sharedService.isShowNotification = false;
+		}
 		/**
 		 * お知らせを取得する
 		 * @param  {[type]}
@@ -20,19 +36,9 @@
 		});
 
 		/**
-		 * 重要度に応じたヘッダー背景色の切り替え
-		 * @param {[type]} notification
+		 * 重要度に応じてタグの色を切り替える
+		 * @param {[type]} notification 
 		 */
-		$scope.setHeadColor = function(notification) {
-			if(notification.importance == 3) {
-				return "table--colored-gray";
-			}else if(notification.importance == 2) {
-				return "table--colored-blue";
-			}else if(notification.importance == 1) {
-				return "table--colored-red";
-			}
-		}
-
 		$scope.setTagColor = function(notification) {
 			if(notification.importance == 1) {
 				return "importance--low";
@@ -50,11 +56,11 @@
 		 */
 		$scope.open = function(notification){
 			$uibModal.open({
-				templateUrl: "app/views/template/modal.html",
-				controller:"ModalController",
+				templateUrl: "app/views/notification/detailNotificationModal.html",
+				controller: "DetailNotificationController",
 				animation: false,
 				resolve:{
-					data:function(){
+					detailNotification:function(){
 						return notification;
 					}
 				}
@@ -65,13 +71,12 @@
 		 * 新規登録パネルを開く
 		 * @return {[type]} 
 		 */
-		$scope.isShowCreatePanel = sharedService.isShowCreateNotificationPanel;
 		$scope.openPanel = function() {
 			sharedService.isShowCreateNotificationPanel = true;
 		}
 
 		/**
-		 * sharedService監視
+		 * お知らせパネル開閉フラグ監視
 		 * @param  {[type]}  
 		 * @param  {[type]} 
 		 * @return {[type]}    
@@ -85,6 +90,6 @@
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('ListNotificationController',['$scope','connectApiService','constURI','UserService','sharedService','$uibModal',ListNotificationCtrl]);
+	angular.module('indexModule').controller('ListNotificationController',['$scope','connectApiService','constURI','UserService','sharedService','$uibModal','APP_CONF',ListNotificationCtrl]);
 })();
 

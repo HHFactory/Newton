@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.intranewton.domain.dto.ManualDTO;
@@ -20,7 +21,9 @@ public class ManualService {
 	@Autowired
 	ManualCategoryRepository categoryRepository;
 	/** ファイルパス　**/
-	private static final String FILE_PATH = "app/files/";
+	@Value("${fileurl.path}")
+	private String FILE_PATH;
+
 	
 	/**
 	 * マニュアルカテゴリ取得

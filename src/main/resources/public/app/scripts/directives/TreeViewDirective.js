@@ -34,11 +34,11 @@
 			},
 			compile: function(){
 				//子カテゴリテンプレート
-				var childTemplate = '<li ng-repeat="node in nwtTreeView.children" ><ol nwt-tree-view="node"></ol></li>';
+				var childTemplate = '<li ng-repeat="node in nwtTreeView.children" class="tree__node__item"><ol nwt-tree-view="node"></ol></li>';
 				var childLinkFn;
 
 				return function postLink(scope,element) {
-					//chilTemlateを一度compileしキャッシ
+					//chilTemlateを一度compileしキャッシュ
 					childLinkFn =  childLinkFn || $compile(childTemplate);
 					childLinkFn(scope, function(clonedElm){
 						element.find('ol').append(clonedElm);

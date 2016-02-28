@@ -1,18 +1,28 @@
 @charset "UTF-8";
 
-.tree__node {
-	margin: 5px 0px;
-	list-style: none;
-	padding-left: 20px;
-}
-
+/** treeview-parent */
 .tree__nodes {
 	display: table;
 	width: 100%;
+	height: $manualItemHeight;
+	line-height: $manualItemHeight;
+	padding-left: $general-padding;
+	padding-right: $general-padding;
+	color: white;
+	font-size: 1.0em;
+	&:hover {
+		background-color: $main-green;
+	}
 }
 
-.tree__nodes__item {
-	display: table-cell;
+/** treeview-child */
+.tree__node {
+	list-style: none;
+}
+
+/** treeview-chid__item */
+.tree__node__item {
+	padding-left: 20px;
 }
 
 .tree__nodes__item--right {

@@ -25,7 +25,16 @@ public class CategoryService {
 	 * @param categoryID
 	 * @return
 	 */
-	public List<FAQCategory> findFaqCategory(Integer categoryID) {
-		return faqCategoryRepository.findById(categoryID);
+	public FAQCategory findFaqCategory(Integer categoryID) {
+		return faqCategoryRepository.findOne(categoryID);
 	}
+	
+	/**
+	 * FAQカテゴリ全件取得処理
+	 * @return
+	 */
+	public List<FAQCategory> findFaqCategories(){
+		return faqCategoryRepository.findAll();
+	}
+	
 }

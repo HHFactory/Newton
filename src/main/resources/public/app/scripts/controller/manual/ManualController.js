@@ -6,7 +6,16 @@
 (function(){
 'use strict';
 	
-	function ManualCtrl($scope,$uibModal,connectApiService,constURI){
+	function ManualCtrl($scope,$uibModal,connectApiService,constURI,sharedService,APP_CONF){
+		/** カラムタイトル */
+		$scope.columnTitle = APP_CONF.columnTitleManual;
+		/**
+		 * 閉じるボタン押下
+		 * @return {Boolean} [description]
+		 */
+		$scope.isClose = function(){
+			sharedService.isShowManual = false;
+		}
 
 		/**
 		 * マニュアルリストを取得
@@ -14,10 +23,9 @@
 		 * @return {[type]}
 		 */
 		connectApiService.get(constURI.manuals).then(function(resultAPI){
-			//$scope.categories = resultAPI.data;
 			$scope.data = resultAPI.data;
-			console.dir($scope.data);
 		});
+
 
 		/**
 		 * ファイル登録モーダルを開く
@@ -47,14 +55,36 @@
 		};
 
 		/**
+		 * ファイルを追加するカテゴリ情報を受け取る
+		 * @param  {[type]} event
+		 * @param  {[type]} data
+		 * @return {[type]}
+		 */
+		$scope.$on('addFile',function(event,data){
+			event.stopPropagation();
+			addFile(data);
+		});
+
+		/**
+		 * 削除対象ファイル情報を受け取る
+		 * @param  
+		 * @param  
+		 * @return 
+		 */
+		$scope.$on('deleteFile',function(event,data){
+			event.stopPropagation();
+			deleteFile(data);
+		})
+
+		/**
 		 * ファイルアップロードモーダルを開く
 		 * @param {[type]} node 
 		 */
-		$scope.addFile = function(node){
+		var addFile = function(node){
 			$uibModal.open({
 				templateUrl: "app/views/template/fileUploadModal.html",
 				controller: "FileUploadModalController",
-				animation: false,
+				animation: true,
 				resolve: {
 					params: function(){
 						return {
@@ -70,14 +100,17 @@
 		 * @param  {[type]} manual 
 		 * @return {[type]}        
 		 */
-		$scope.deleteFile = function(manual){
+		var deleteFile = function(manual){
 			var param = {id:manual["id"], name:manual["fullFileName"]};
 			connectApiService.delete(constURI.deleteFile,param).then(function(resultAPI){
-				console.log('delete success');
+				//TODO:１つにまとめる
+				connectApiService.get(constURI.manuals).then(function(resultAPI){
+					$scope.data = resultAPI.data;
+				});
 			});
 		}
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('ManualController',['$scope','$uibModal','connectApiService','constURI',ManualCtrl]);
+	angular.module('indexModule').controller('ManualController',['$scope','$uibModal','connectApiService','constURI','sharedService','APP_CONF',ManualCtrl]);
 })();

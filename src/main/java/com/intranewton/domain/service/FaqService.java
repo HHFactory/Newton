@@ -6,6 +6,7 @@ package com.intranewton.domain.service;
  * 3.createFaq=FAQの新規登録
  */
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,8 @@ public class FaqService {
 	 * @return
 	 */
 	public FAQ createFaq( FAQ faq ) {
+		//登録前にFAQカテゴリを登録する
+		faq.setCategories(saveFaqCategory(faq.getCategories()));
 		return faqRepository.save(faq);
 	}
 	
@@ -56,6 +59,7 @@ public class FaqService {
 	 */
 	public Integer postFaqList(List<FAQ> faqs) {
 		for(FAQ faq:faqs) {
+			faq.setCategories(saveFaqCategory(faq.getCategories()));
 			faqRepository.save(faq);
 		}
 		return 200;
@@ -70,12 +74,22 @@ public class FaqService {
 	}
 	
 	/**
+	 * FAQをIDで取得する
+	 * @param id
+	 * @return
+	 */
+	public FAQ findFaqById(Integer id) {
+		return faqRepository.findOne(id);
+	}
+	
+	/**
 	 * FAQ更新処理
 	 * @param id
 	 * @param target
 	 * @return
 	 */
 	public FAQ editFaq(FAQ target) {
+		target.setCategories(saveFaqCategory(target.getCategories()));
 		return faqRepository.save(target);
 	}
 	
@@ -88,5 +102,37 @@ public class FaqService {
 		faqRepository.delete(id);
 	}
 	
-
+	/**
+	 * FAQ登録前のカテゴリ整形処理
+	 * @param argCategoryList
+	 * @return
+	 */
+	private List<FAQCategory> saveFaqCategory(List<FAQCategory> argCategoryList){
+		List<FAQCategory> savedCategoryList = new ArrayList<>();
+		List<FAQCategory> existCategoryList = categoryRepository.findAll();
+		List<String> existCategoryNameList = new ArrayList<>();
+		
+		if(existCategoryList.size() > 0){
+			//既存カテゴリ名リストを作成
+			for(FAQCategory existCategory:existCategoryList){
+				existCategoryNameList.add(existCategory.getName());
+			}
+			for(FAQCategory argCategory:argCategoryList){
+				//既存カテゴリの場合
+				if(existCategoryNameList.contains(argCategory.getName())){
+					savedCategoryList.add(categoryRepository.findByName(argCategory.getName()));
+				}
+				//新規カテゴリの場合
+				else{
+					savedCategoryList.add(categoryRepository.save(argCategory));
+				}
+			}
+		}else{
+			for(FAQCategory argCategory:argCategoryList){
+				savedCategoryList.add(categoryRepository.save(argCategory));
+			}
+		}
+		return savedCategoryList;
+	}
+		
 }

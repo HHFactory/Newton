@@ -2,16 +2,18 @@
 'use strict';
 
 	function sharedService(){
-		return{
+		return {
 			data: null,
 			checkModifyTask: false,
 			showModifyFaqDetail: false,
 			modifyFaqDetail: null,
 			isShowManual: false,
-			isShowCreateNotificationPanel: false
+			isShowNotification: false,
+			isShowCreateNotificationPanel: false,
+			isShowFaqImport: false,
+			searchQuery: null
 		};
 	}
 
 	angular.module('indexModule').factory('sharedService',sharedService);
-
 })();

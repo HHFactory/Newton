@@ -1,21 +1,18 @@
 
 <!-- ナビゲーションバー -->
 <div class="l-navbar" ng-controller="NavController" >
-
-	<!-- マニュアルバー開閉ボタンリンク -->
-	<a class="navbar__item--icon btn--link" ng-click="showManualArea()" ng-show="showList"><i class="fa fa-th-list"/></a>
 	<!-- ホームボタンリンク -->
-	<a class="navbar__item--icon btn--link" ng-click="home()" ng-show="showHome"><i class="fa fa-home"/></a>
+	<a class="navbar__item--icon btn--link" ng-click="home()"><i class="fa fa-home"/></a>
 
 	<div class="l-navbar--left">
 		<!-- 検索バー -->
-		<form role="search" ng-submit="search(query)">
-			<input type="text" class="search-bar" placeholder="&#xf002;マニュアル、FAQ、お知らせを検索できます" ng-model="query"/>
+		<form role="search" ng-submit="search(query)" ng-hide="isOpenMenu">
+			<input type="text" class="search-bar" placeholder="&#xf002;FAQを検索できます" ng-model="query"/>
 		</form>
 	</div>
-	
-	<!-- 辞書アイコン -->
+
+	<!-- ユーザアイコン -->
 	<div class="l-navbar--right">
-		<a class="navbar__item--icon btn-link" ng-click="openDictionary()"><i class="fa fa-book"/></a>
+		<!-- <a class="navbar__item--icon btn-link" ng-click="openDictionary()"><i class="fa fa-book"/></a> -->
 	</div>
 </div>

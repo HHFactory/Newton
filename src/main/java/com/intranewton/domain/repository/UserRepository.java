@@ -16,4 +16,6 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	//ロールリストから該当するユーザを取得する
 	@Query("SELECT u.name FROM User u Where :targetRole MEMBER OF u.roleList")
 	public List<String> findbyTargetRole(@Param("targetRole") Role targetRole);
+	
+	
 }

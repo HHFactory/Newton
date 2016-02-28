@@ -1,5 +1,8 @@
 
-//ユーザ関連の処理をまとめたservice
+/**
+ * ユーザ操作関連サービス
+ * @return {[type]} [description]
+ */
 (function(){
 'use strict';
 	
@@ -26,7 +29,7 @@
 						else if(targetUserList[j].read_flag = false)
 							unreadMemberList.push(targetUserList[j].target_user);
 					}
-				}				
+				}
 			}
 		};
 		return userService;

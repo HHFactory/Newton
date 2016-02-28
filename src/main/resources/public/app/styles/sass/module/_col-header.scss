@@ -1,16 +1,13 @@
+@charset "UTF-8";
 
+/** カラムヘッダ */
 .col-header {
 	@include horizontal-list;
 	width: 100%;
 	height: $colHeaderHeight;
-	position: absolute;
 	color: $header-text-color;
-	font-weight: bold;
-	font-size: 24px;
-//	padding: 3px 15px;
-	padding-left: 15px;
-	padding-right: 15px;
 	display: table;
+	line-height: $colHeaderHeight;
 }
 
 .col-header--bordered {
@@ -25,7 +22,18 @@
 	margin-right: 10px;
 }
 
+/** ヘッダ部アイコン */
+.col-header__icon {
+	@include icon--base;
+	font-size: 1.2em;
+}
+
 .col-header__title {
-	font-size: 16px;
+	font-size: 1.2rem;
 	font-weight: bold;
+	margin-left: $general-padding;
+}
+
+.col-header__title-normal {
+	font-size: 16px;
 }

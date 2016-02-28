@@ -33,7 +33,10 @@ $textarea-resize: vertical !default;
 audio:not([controls]) {
 	display: none; // Chrome 44-, iOS 8+, Safari 9+
 }
-
+body {
+	overflow-y: hidden;
+	height: 100vh;
+}
 button {
 	overflow: visible; // Internet Explorer 11-
 	-webkit-appearance: button; // iOS 8+
@@ -46,7 +49,7 @@ details {
 
 html {
 	-ms-overflow-style: -ms-autohiding-scrollbar; // Edge 12+, Internet Explorer 11-
-	overflow-y: scroll; // All browsers without overlaying scrollbars
+	overflow-y: hidden; // All browsers without overlaying scrollbars
 	-webkit-text-size-adjust: 100%; // iOS 8+
 }
 
@@ -181,6 +184,7 @@ iframe,
 img,
 svg,
 video {
+	width: 100%;
 	vertical-align: $media-element-vertical-align;
 }
 
@@ -272,6 +276,62 @@ table {
 textarea {
 	resize: $textarea-resize;
 }
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight:normal;
+	color:#111;
+	line-height:1em;
+}
+h1 {
+	font-size:2.5em; 
+}
+h2 {
+	font-size:2em;
+}
+h3 {
+	font-size:1.5em;
+}
+h4 {
+	font-size:1.2em;
+}
+h5 {
+	font-size:1em;
+}
+h6 {
+	font-size:0.9em;
+}
+blockquote {
+	color:#666666;
+	margin:0;
+	padding-left: 3em;
+	border-left: 0.5em #EEE solid;
+}
+hr {
+	display: block; 
+	height: 2px; 
+	border: 0; 
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #eee; 
+	margin: 1em 0; 
+	padding: 0;
+}
+pre,code,kbd,samp {
+	color: #000; 
+	font-family: monospace, monospace; 
+	_font-family: 'courier new', monospace; 
+	font-size: 0.98em; 
+}
+pre {
+	white-space: pre; 
+	white-space: pre-wrap; 
+	word-wrap: break-word; 
+}
+b,strong {
+	font-weight: bold; 
+}
+
+
+
 
 // specify the background color, font color and drop shadow of text selections
 

@@ -6,30 +6,38 @@
 (function(){
 'use strict';
 
-	function CreateFaqCtrl($scope,$state,$uibModal,connectApiService,constURI,Upload,$location,$http,$stateParams){
+	function CreateFaqCtrl($scope,$state,$uibModal,connectApiService,constURI,Upload,$location,$http,$stateParams,APP_CONF){
+		/** ラベル */
+		$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmit;
+		$scope.buttonLabelUpdate = APP_CONF.buttonLabelUpdate;
+		$scope.columnLabelPreview = APP_CONF.columnLabelPreview;
+		$scope.iconLabelTag = APP_CONF.iconLabelTag;
+
+		/** 選択済みカテゴリリスト　*/
+		$scope.selectedList = [];
+
 		//更新用パラメータ取得
 		if($stateParams.editTarget){
 			$scope.faq = {
 				title: $stateParams.editTarget["title"],
 				content: $stateParams.editTarget["content"],
-				id: $stateParams.editTarget["id"]
+				id: $stateParams.editTarget["id"],
+				categories: $stateParams.editTarget["categories"]
 			}
+
+			$scope.selectedList.push.apply($scope.selectedList,$scope.faq.categories);
 			//更新ボタンを表示
 			$scope.editMode = true;
 		}
 
 		/**
-		 * トークスクリプト登録モーダルを開く
-		 * @return {[type]} [description]
+		 * FAQカテゴリの取得
+		 * @param  {[type]} apiResult
+		 * @return {[type]}           
 		 */
-		$scope.openTalkScriptModal = function() {
-			$uibModal.open({
-				animation: false,
-				backdrop: true,
-				templateUrl: "app/views/template/createModal.html",
-				controller: "FileLoadModalController"
-			});
-		}
+		connectApiService.get(constURI.faqCategory).then(function(apiResult){
+			$scope.categoryList = apiResult.data;
+		});
 
 		/**
 		 * 登録ボタン押下処理 
@@ -37,17 +45,34 @@
 		 * @return {[type]}
 		 */
 		$scope.submit = function(faq){
+			faq.categories = $scope.selectedList;
 			if(!faq.id){
 				//登録
 				connectApiService.post(constURI.faq,faq).then(function(apiResult){
-					console.dir(faq);
-					$state.go('main');
+					if(apiResult.status == 201){
+						swal({
+							title: "登録完了",
+							type: "success",
+							timer: 1000,
+							showConfirmButton: false
+						},function(){
+							swal.close();
+							$state.go('main');
+						});
+					}else{
+						swal({
+							title: "登録失敗",
+							type: "error",
+							timer: 2000,
+							showConfirmButton: false
+						});
+						console.log(apiResult);
+					}
 				});
 			}else {
 				//更新
 				var targetId = $scope.faq.id;
 				connectApiService.put(constURI.faq+targetId,faq).then(function(apiResult){
-					console.dir(apiResult);
 					$state.go('main');
 				});
 			}
@@ -82,20 +107,18 @@
 		 */
 		 $scope.upload = function(file) {
 		 	var fileName = file.name;
-		 	var basePath = "http://localhost:8080/newton-1.0/app/images/";
+		 	var basePath = APP_CONF.urlBase + "app/images/";
 		 	Upload.upload({
 		 		url: '/newton-1.0/upload/image',
 		 		data: {image:file}
 		 	}).then(function(resp) {
 		 		var fullFileName = resp['data'];
-		 		console.log(fullFileName);
 		 		var nameTag = "![" + fileName + "]";
 		 		var pathTag = "(" + basePath + fullFileName + ")";
 		 		var imageTag = nameTag + pathTag;
 		 		setMarkdownTag(imageTag);
 		 	},function(resp) {
 		 		//failed
-		 		console.log(resp);
 		 	});
 		 }
 
@@ -103,21 +126,21 @@
 		 * add <h3>
 		 */
 		$scope.addHeaderTag = function() {
-			setMarkdownTag("### 見出しをここに入力");
+			setMarkdownTag("### 見出し");
 		}
 
 		/**
 		 * add <strong>
 		 */
 		$scope.addStrongTag = function() {
-			setMarkdownTag("**" + "ここに入力" + "**");
+			setMarkdownTag("**" + "強調" + "** ");
 		}
 
 		/**
 		 * add <ol>
 		 */
 		$scope.addOlTag = function(){
-			setMarkdownTag("1. ここに入力");
+			setMarkdownTag("1. リスト");
 		}
 
 		/**
@@ -131,18 +154,18 @@
 		 * add <blockquote>
 		 */
 		$scope.addQuoteTag = function() {
-			setMarkdownTag("> ここから引用を入力");
+			setMarkdownTag("> 引用");
 		}
 
 		/**
 		 * EnterKey押下時に、末尾に半角スペース×2を挿入
 		 */
-		$scope.addNewLineTag = function(){
-			setMarkdownTag("  ");
-		}
-
+		// $scope.$on('clickedEnter',function(event){
+		// 	event.stopPropagation();
+		// 	setMarkdownTag("  ");
+		// });
 	}
 
 	//モジュールへの登録
-	angular.module('indexModule').controller('CreateFaqController',['$scope','$state','$uibModal','connectApiService','constURI','Upload','$location','$http','$stateParams',CreateFaqCtrl]);
+	angular.module('indexModule').controller('CreateFaqController',['$scope','$state','$uibModal','connectApiService','constURI','Upload','$location','$http','$stateParams','APP_CONF',CreateFaqCtrl]);
 })();

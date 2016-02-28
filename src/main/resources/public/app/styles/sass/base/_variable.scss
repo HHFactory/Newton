@@ -3,15 +3,42 @@
 //サイズ関連
 $footerHeight: 50px;
 $navbarHeight: 50px;
-$manualAreaWidth: 250px;
+$menubarWidth: 60px;
+$mainViewWidth: calc(100% - #{$menubarWidth});
+
+$manualAreaWidth: 240px;
+$manualItemHeight: 30px;
 $notificationAreaWidth: 400px;
-$faqAreaWidthWide: calc(100% - #{$notificationAreaWidth});
+
+$faqAreaWidthWide: calc(100% - #{$menubarWidth});
 $faqAreaWidthNarrow: calc($faqAreaWidthWide - #{$manualAreaWidth});
+
+$faqListAreaWidth: 400px;
+$faqDetailAreaWidth: calc(100% - #{$faqListAreaWidth});
+
 $colHeaderHeight: 40px;
-$general-padding-left: 15px;
-$general-padding-right: 15px;
+
 $navSearchBarWidth: 400px;
 $pageFooterButtonAreaHeight: 20px;
+$createFaqHeight: 500px;
+$telModeLeftWidth: 300px;
+$general-padding: 15px;
+$category-searchbar: 30px;
+$category-list: 40px;
+
+$iconHeight: 40px;
+$iconWidth: 40px;
+
+$faqDetailHeader: 100px;
+$faqRightFooterHeight: 40px;
+
+$importPanelWidth: 600px;
+
+$categoryHeadHeight: 30px;
+$categoryListHeight: 80px;
+
+$categoryWrapperHeight: 140px;
+
 
 //その他
 $set-prefix: -webkit-, -moz-, -ms-, -o-, '';

@@ -48,7 +48,7 @@ public class NotificationService {
 	 * @param notificationParam
 	 * @return notification
 	 */
-	public Notification convertParamtoEntity(NotificationParam notificationParam) {
+	private Notification convertParamtoEntity(NotificationParam notificationParam) {
 		Notification notification = new Notification();
 		notification.setCreateUser(notificationParam.getCreateUser());		
 		notification.setUpdateUser(notificationParam.getUpdateUser());
@@ -75,12 +75,13 @@ public class NotificationService {
 	 * @return notificationDTO list
 	 */
 	public List<NotificationDTO> getDTObyUserName(String userName) {
-		List<Notification> notifications = getEntitybyUserName(userName);
+		List<Notification> notifications = getEntityByUserName(userName);
 		//更新日で降順ソート
 		Collections.sort(notifications, (n1,  n2) -> Long.compare(n2.getUpdateDatetime().getTime(), n1.getUpdateDatetime().getTime()));
 		List<NotificationDTO> notificationDTOList = new ArrayList<>();
 		for ( Notification notification : notifications ) {
 			NotificationDTO notificationDTO = new NotificationDTO();
+			notificationDTO.setId(notification.getId());
 			notificationDTO.setTitle(notification.getTitle());
 			notificationDTO.setContent(notification.getContent());
 			notificationDTO.setFilePath(notification.getFilePath());
@@ -100,7 +101,7 @@ public class NotificationService {
 	 * @param userName
 	 * @return notification list
 	 */
-	public List<Notification> getEntitybyUserName(String userName) {
+	private List<Notification> getEntityByUserName(String userName) {
 		List<NotificationTargetRole> targetRoleList = notificationTargetRoleRepository.findbyTargetUser(userName);
 		List<Notification> notificationList = new ArrayList<>();
 		for ( NotificationTargetRole targetRole : targetRoleList ) {
@@ -117,10 +118,11 @@ public class NotificationService {
 	 * @param userName
 	 * @return 既読ユーザ名のリスト
 	 */
-	public List<String> createReadUserList(List<NotificationTargetRole> targetRoleList,String userName) {
+	private List<String> createReadUserList(List<NotificationTargetRole> targetRoleList,String userName) {
 		List<String> readUserList = new ArrayList<>();
-		if ( !(targetRoleList.size() > 0) )
-			return readUserList;
+		if ( !(targetRoleList.size() > 0) ) {
+			return readUserList;			
+		}
 		for ( NotificationTargetRole targetRole : targetRoleList ) {
 			if ( targetRole.isReadFlag() ) {
 				readUserList.add(targetRole.getTargetUser());
@@ -136,10 +138,11 @@ public class NotificationService {
 	 * @param userName
 	 * @return 未読ユーザ名のリスト
 	 */
-	public List<String> createUnReadUserList(List<NotificationTargetRole> targetRoleList,String userName) {
+	private List<String> createUnReadUserList(List<NotificationTargetRole> targetRoleList,String userName) {
 		List<String> unreadUserList = new ArrayList<>();
-		if ( !(targetRoleList.size() > 0) )
+		if ( !(targetRoleList.size() > 0) ){
 			return unreadUserList;
+		}
 		for ( NotificationTargetRole targetRole : targetRoleList ) {
 			if ( !targetRole.isReadFlag() ) {
 				unreadUserList.add(targetRole.getTargetUser());
@@ -147,6 +150,15 @@ public class NotificationService {
 		}
 		return unreadUserList;
 	}
+	
+	/**
+	 * 既読処理
+	 * @param id
+	 * @param userName
+	 */
+//	public void readNotification(Integer id, String userName){
+//		notificationTargetRoleRepository.isRead(id, userName);
+//	}
 
 
 }

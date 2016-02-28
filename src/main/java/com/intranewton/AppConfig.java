@@ -1,6 +1,5 @@
 package com.intranewton;
 
-import net.sf.log4jdbc.Log4jdbcProxyDataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -10,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+
+import net.sf.log4jdbc.Log4jdbcProxyDataSource;
 
 //@Configuration
 public class AppConfig {

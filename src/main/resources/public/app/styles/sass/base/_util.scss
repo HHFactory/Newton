@@ -14,16 +14,12 @@ textarea:hover, input[type="text"]:hover {
 	}
 }
 
+//レイアウトカラムセット
 @mixin l-column-set($width){
 	width: $width;
-	//height: 100%;
-	@each $prefix in $set-prefix {
-		height: #{$prefix}calc(100vh - #{$navbarHeight});
-	}
+	height: 100%;
 	margin: 0;
-	//padding-top: 10px;
-	position: fixed;
-	top: $navbarHeight;
+	position: absolute;
 }
 
 //ヘッダー部など、ボタンを横並びに配置したい箇所に使用

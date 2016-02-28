@@ -10,5 +10,5 @@ import com.intranewton.domain.entity.Manual;
  */
 @Repository
 public interface ManualRepository extends JpaRepository<Manual,Integer>{
-
+	
 }

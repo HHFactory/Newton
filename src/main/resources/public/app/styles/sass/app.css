@@ -8,86 +8,92 @@ audio:not([controls]) {
   display: none;
 }
 
-/* line 37, base/_sanitize.scss */
+/* line 36, base/_sanitize.scss */
+body {
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+/* line 40, base/_sanitize.scss */
 button {
   overflow: visible;
   -webkit-appearance: button;
 }
 
-/* line 43, base/_sanitize.scss */
+/* line 46, base/_sanitize.scss */
 details {
   display: block;
 }
 
-/* line 47, base/_sanitize.scss */
+/* line 50, base/_sanitize.scss */
 html {
   -ms-overflow-style: -ms-autohiding-scrollbar;
-  overflow-y: scroll;
+  overflow-y: hidden;
   -webkit-text-size-adjust: 100%;
 }
 
-/* line 53, base/_sanitize.scss */
+/* line 56, base/_sanitize.scss */
 input {
   -webkit-border-radius: 0;
 }
-/* line 56, base/_sanitize.scss */
+/* line 59, base/_sanitize.scss */
 input[type="button"], input[type="reset"], input[type="submit"] {
   -webkit-appearance: button;
 }
-/* line 60, base/_sanitize.scss */
+/* line 63, base/_sanitize.scss */
 input[type="number"] {
   width: auto;
 }
-/* line 64, base/_sanitize.scss */
+/* line 67, base/_sanitize.scss */
 input[type="search"] {
   -webkit-appearance: textfield;
 }
-/* line 67, base/_sanitize.scss */
+/* line 70, base/_sanitize.scss */
 input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
-/* line 74, base/_sanitize.scss */
+/* line 77, base/_sanitize.scss */
 main {
   display: block;
 }
 
-/* line 78, base/_sanitize.scss */
+/* line 81, base/_sanitize.scss */
 pre {
   overflow: auto;
 }
 
-/* line 82, base/_sanitize.scss */
+/* line 85, base/_sanitize.scss */
 progress {
   display: inline-block;
 }
 
-/* line 86, base/_sanitize.scss */
+/* line 89, base/_sanitize.scss */
 small {
   font-size: 75%;
 }
 
-/* line 90, base/_sanitize.scss */
+/* line 93, base/_sanitize.scss */
 summary {
   display: block;
 }
 
-/* line 94, base/_sanitize.scss */
+/* line 97, base/_sanitize.scss */
 svg:not(:root) {
   overflow: hidden;
 }
 
-/* line 98, base/_sanitize.scss */
+/* line 101, base/_sanitize.scss */
 template {
   display: none;
 }
 
-/* line 102, base/_sanitize.scss */
+/* line 105, base/_sanitize.scss */
 textarea {
   overflow: auto;
 }
 
-/* line 106, base/_sanitize.scss */
+/* line 109, base/_sanitize.scss */
 [hidden] {
   display: none;
 }
@@ -95,7 +101,7 @@ textarea {
 /*
  * Universal inheritance
  */
-/* line 114, base/_sanitize.scss */
+/* line 117, base/_sanitize.scss */
 *,
 ::before,
 ::after {
@@ -106,13 +112,13 @@ textarea {
   box-sizing: border-box;
 }
 
-/* line 125, base/_sanitize.scss */
+/* line 128, base/_sanitize.scss */
 * {
   font-size: inherit;
   line-height: inherit;
 }
 
-/* line 130, base/_sanitize.scss */
+/* line 133, base/_sanitize.scss */
 ::before,
 ::after {
   text-decoration: inherit;
@@ -122,7 +128,7 @@ textarea {
 /*
  * Opinionated defaults
  */
-/* line 144, base/_sanitize.scss */
+/* line 147, base/_sanitize.scss */
 *,
 ::before,
 ::after {
@@ -130,14 +136,14 @@ textarea {
   border-width: 0;
 }
 
-/* line 153, base/_sanitize.scss */
+/* line 156, base/_sanitize.scss */
 * {
   background-repeat: no-repeat;
   margin: 0;
   padding: 0;
 }
 
-/* line 161, base/_sanitize.scss */
+/* line 164, base/_sanitize.scss */
 :root {
   background-color: #FFFFFF;
   box-sizing: border-box;
@@ -147,22 +153,23 @@ textarea {
   text-rendering: optimizeLegibility;
 }
 
-/* line 172, base/_sanitize.scss */
+/* line 175, base/_sanitize.scss */
 a {
   text-decoration: none;
 }
 
-/* line 178, base/_sanitize.scss */
+/* line 181, base/_sanitize.scss */
 audio,
 canvas,
 iframe,
 img,
 svg,
 video {
+  width: 100%;
   vertical-align: middle;
 }
 
-/* line 189, base/_sanitize.scss */
+/* line 193, base/_sanitize.scss */
 button,
 input,
 select,
@@ -170,7 +177,7 @@ textarea {
   background-color: transparent;
 }
 
-/* line 198, base/_sanitize.scss */
+/* line 202, base/_sanitize.scss */
 button,
 input,
 select,
@@ -181,7 +188,7 @@ textarea {
   font-weight: inherit;
 }
 
-/* line 210, base/_sanitize.scss */
+/* line 214, base/_sanitize.scss */
 button,
 [type="button"],
 [type="date"],
@@ -204,7 +211,7 @@ textarea {
   min-height: 1.5em;
 }
 
-/* line 234, base/_sanitize.scss */
+/* line 238, base/_sanitize.scss */
 code,
 kbd,
 pre,
@@ -212,199 +219,212 @@ samp {
   font-family: monospace, monospace;
 }
 
-/* line 243, base/_sanitize.scss */
+/* line 247, base/_sanitize.scss */
 nav ol,
 nav ul {
   list-style: none;
 }
 
-/* line 250, base/_sanitize.scss */
+/* line 254, base/_sanitize.scss */
 select {
   -moz-appearance: none;
   -webkit-appearance: none;
 }
-/* line 254, base/_sanitize.scss */
+/* line 258, base/_sanitize.scss */
 select::-ms-expand {
   display: none;
 }
-/* line 258, base/_sanitize.scss */
+/* line 262, base/_sanitize.scss */
 select::-ms-value {
   color: currentColor;
 }
 
-/* line 265, base/_sanitize.scss */
+/* line 269, base/_sanitize.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 272, base/_sanitize.scss */
+/* line 276, base/_sanitize.scss */
 textarea {
   resize: vertical;
 }
 
-/* line 278, base/_sanitize.scss */
+/* line 280, base/_sanitize.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  color: #111;
+  line-height: 1em;
+}
+
+/* line 285, base/_sanitize.scss */
+h1 {
+  font-size: 2.5em;
+}
+
+/* line 288, base/_sanitize.scss */
+h2 {
+  font-size: 2em;
+}
+
+/* line 291, base/_sanitize.scss */
+h3 {
+  font-size: 1.5em;
+}
+
+/* line 294, base/_sanitize.scss */
+h4 {
+  font-size: 1.2em;
+}
+
+/* line 297, base/_sanitize.scss */
+h5 {
+  font-size: 1em;
+}
+
+/* line 300, base/_sanitize.scss */
+h6 {
+  font-size: 0.9em;
+}
+
+/* line 303, base/_sanitize.scss */
+blockquote {
+  color: #666666;
+  margin: 0;
+  padding-left: 3em;
+  border-left: 0.5em #EEE solid;
+}
+
+/* line 309, base/_sanitize.scss */
+hr {
+  display: block;
+  height: 2px;
+  border: 0;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #eee;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/* line 318, base/_sanitize.scss */
+pre, code, kbd, samp {
+  color: #000;
+  font-family: monospace, monospace;
+  _font-family: 'courier new', monospace;
+  font-size: 0.98em;
+}
+
+/* line 324, base/_sanitize.scss */
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* line 329, base/_sanitize.scss */
+b, strong {
+  font-weight: bold;
+}
+
+/* line 338, base/_sanitize.scss */
 ::-moz-selection {
   background-color: #B3D4FC;
   color: #ffffff;
   text-shadow: none;
 }
 
-/* line 284, base/_sanitize.scss */
+/* line 344, base/_sanitize.scss */
 ::selection {
   background-color: #B3D4FC;
   color: #ffffff;
   text-shadow: none;
 }
 
-/* line 292, base/_sanitize.scss */
+/* line 352, base/_sanitize.scss */
 [aria-busy="true"] {
   cursor: progress;
 }
 
-/* line 298, base/_sanitize.scss */
+/* line 358, base/_sanitize.scss */
 [aria-controls] {
   cursor: pointer;
 }
 
-/* line 304, base/_sanitize.scss */
+/* line 364, base/_sanitize.scss */
 [aria-disabled] {
   cursor: default;
 }
 
-/* line 310, base/_sanitize.scss */
+/* line 370, base/_sanitize.scss */
 [hidden][aria-hidden="false"] {
   clip: rect(0 0 0 0);
   display: inherit;
   position: absolute;
 }
-/* line 315, base/_sanitize.scss */
+/* line 375, base/_sanitize.scss */
 [hidden][aria-hidden="false"]:focus {
   clip: auto;
 }
 
 /** color */
-@font-face {
-  font-family: 'icomoon';
-  src: url("base/fonts/icomoon.eot?pi49k6");
-  src: url("base/fonts/icomoon.eot?pi49k6#iefix") format("embedded-opentype"), url("base/fonts/icomoon.ttf?pi49k6") format("truetype"), url("base/fonts/icomoon.woff?pi49k6") format("woff"), url("base/fonts/icomoon.svg?pi49k6#icomoon") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-/* line 12, base/_icon.scss */
-[class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  font-size: 30px;
-  text-transform: none;
-  line-height: 1;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/** FAQタイトル用フォントセット（リンクあり） */
+/* line 4, base/_font.scss */
+.f-faq__title--link {
+  color: #0078CA;
+  margin-bottom: 3px;
+  font-size: 1.3rem;
+  letter-spacing: 0.4px;
+  line-height: 1.3rem;
 }
 
-/* line 28, base/_icon.scss */
-.icon-home:before {
-  content: "\e900";
+/* line 13, base/_font.scss */
+.f-faq-set__title {
+  font-size: 1.25rem;
+  font-weight: 200;
+  letter-spacing: -1px;
+  line-height: 1.25rem;
 }
 
-/* line 31, base/_icon.scss */
-.icon-pencil:before {
-  content: "\e901";
+/* line 10, base/_icon.scss */
+.navbar__item--text-icon, .telmode__item-icon {
+  display: table-cell;
+  table-layout: fixed;
+  vertical-align: middle;
+  height: 40px;
+  text-align: center;
+  color: white;
+  width: 60px;
+  padding-top: 6px;
+  font-size: 20px;
+  line-height: 1.0em;
+}
+/* line 20, base/_icon.scss */
+.navbar__item--text-icon > p, .telmode__item-icon > p {
+  font-size: 10px;
+}
+/* line 24, base/_icon.scss */
+.navbar__item--text-icon:hover, .telmode__item-icon:hover {
+  color: #cf363d;
 }
 
-/* line 34, base/_icon.scss */
-.icon-images:before {
-  content: "\e902";
+/* line 47, base/_icon.scss */
+.menu__icon {
+  height: 50px;
+  width: 60px;
+  display: inline-block;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  line-height: 1.0em;
+  margin-bottom: 15px;
 }
-
 /* line 37, base/_icon.scss */
-.icon-folder-open:before {
-  content: "\e903";
+.menu__icon > p {
+  font-size: 10px;
 }
-
-/* line 40, base/_icon.scss */
-.icon-price-tag:before {
-  content: "\e904";
-}
-
-/* line 43, base/_icon.scss */
-.icon-bubbles:before {
-  content: "\e905";
-}
-
-/* line 46, base/_icon.scss */
-.icon-user:before {
-  content: "\e906";
-}
-
-/* line 49, base/_icon.scss */
-.icon-users:before {
-  content: "\e907";
-}
-
-/* line 52, base/_icon.scss */
-.icon-user-plus:before {
-  content: "\e908";
-}
-
-/* line 55, base/_icon.scss */
-.icon-user-minus:before {
-  content: "\e909";
-}
-
-/* line 58, base/_icon.scss */
-.icon-cog:before {
-  content: "\e90a";
-}
-
-/* line 61, base/_icon.scss */
-.icon-bin:before {
-  content: "\e90b";
-}
-
-/* line 64, base/_icon.scss */
-.icon-switch:before {
-  content: "\e90c";
-}
-
-/* line 67, base/_icon.scss */
-.icon-download2:before {
-  content: "\e90d";
-}
-
-/* line 70, base/_icon.scss */
-.icon-upload2:before {
-  content: "\e90e";
-}
-
-/* line 73, base/_icon.scss */
-.icon-link:before {
-  content: "\e90f";
-}
-
-/* line 76, base/_icon.scss */
-.icon-star-empty:before {
-  content: "\e910";
-}
-
-/* line 79, base/_icon.scss */
-.icon-cross:before {
-  content: "\e911";
-}
-
-/* line 82, base/_icon.scss */
-.icon-arrow-right2:before {
-  content: "\e912";
-}
-
-/* line 85, base/_icon.scss */
-.icon-arrow-left2:before {
-  content: "\e913";
+/* line 41, base/_icon.scss */
+.menu__icon:hover {
+  color: #cf363d;
 }
 
 /* line 3, base/_util.scss */
@@ -417,7 +437,7 @@ textarea:hover, input[type="text"]:hover {
   cursor: text;
 }
 
-/* line 49, base/_util.scss */
+/* line 45, base/_util.scss */
 .form-without-margin {
   margin: 0px;
   padding: 0px;
@@ -1635,7 +1655,7 @@ select[multiple].input-lg {
 }
 
 /* line 9, assets/stylesheets/bootstrap/_buttons.scss */
-.btn, .btn-green, .btn-blue, .create-view__submit-btn {
+.btn, .btn-green, .btn-blue, .btn-white, .create-view__submit-btn {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -1656,25 +1676,25 @@ select[multiple].input-lg {
   user-select: none;
 }
 /* line 26, assets/stylesheets/bootstrap/_buttons.scss */
-.btn:focus, .btn-green:focus, .btn-blue:focus, .create-view__submit-btn:focus, .btn.focus, .focus.btn-green, .focus.btn-blue, .focus.create-view__submit-btn, .btn:active:focus, .btn-green:active:focus, .btn-blue:active:focus, .create-view__submit-btn:active:focus, .btn:active.focus, .btn-green:active.focus, .btn-blue:active.focus, .create-view__submit-btn:active.focus, .btn.active:focus, .active.btn-green:focus, .active.btn-blue:focus, .active.create-view__submit-btn:focus, .btn.active.focus, .active.focus.btn-green, .active.focus.btn-blue, .active.focus.create-view__submit-btn {
+.btn:focus, .btn-green:focus, .btn-blue:focus, .btn-white:focus, .create-view__submit-btn:focus, .btn.focus, .focus.btn-green, .focus.btn-blue, .focus.btn-white, .focus.create-view__submit-btn, .btn:active:focus, .btn-green:active:focus, .btn-blue:active:focus, .btn-white:active:focus, .create-view__submit-btn:active:focus, .btn:active.focus, .btn-green:active.focus, .btn-blue:active.focus, .btn-white:active.focus, .create-view__submit-btn:active.focus, .btn.active:focus, .active.btn-green:focus, .active.btn-blue:focus, .active.btn-white:focus, .active.create-view__submit-btn:focus, .btn.active.focus, .active.focus.btn-green, .active.focus.btn-blue, .active.focus.btn-white, .active.focus.create-view__submit-btn {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 /* line 32, assets/stylesheets/bootstrap/_buttons.scss */
-.btn:hover, .btn-green:hover, .btn-blue:hover, .create-view__submit-btn:hover, .btn:focus, .btn-green:focus, .btn-blue:focus, .create-view__submit-btn:focus, .btn.focus, .focus.btn-green, .focus.btn-blue, .focus.create-view__submit-btn {
+.btn:hover, .btn-green:hover, .btn-blue:hover, .btn-white:hover, .create-view__submit-btn:hover, .btn:focus, .btn-green:focus, .btn-blue:focus, .btn-white:focus, .create-view__submit-btn:focus, .btn.focus, .focus.btn-green, .focus.btn-blue, .focus.btn-white, .focus.create-view__submit-btn {
   color: #333;
   text-decoration: none;
 }
 /* line 39, assets/stylesheets/bootstrap/_buttons.scss */
-.btn:active, .btn-green:active, .btn-blue:active, .create-view__submit-btn:active, .btn.active, .active.btn-green, .active.btn-blue, .active.create-view__submit-btn {
+.btn:active, .btn-green:active, .btn-blue:active, .btn-white:active, .create-view__submit-btn:active, .btn.active, .active.btn-green, .active.btn-blue, .active.btn-white, .active.create-view__submit-btn {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 /* line 46, assets/stylesheets/bootstrap/_buttons.scss */
-.btn.disabled, .disabled.btn-green, .disabled.btn-blue, .disabled.create-view__submit-btn, .btn[disabled], [disabled].btn-green, [disabled].btn-blue, [disabled].create-view__submit-btn, fieldset[disabled] .btn, fieldset[disabled] .btn-green, fieldset[disabled] .btn-blue, fieldset[disabled] .create-view__submit-btn {
+.btn.disabled, .disabled.btn-green, .disabled.btn-blue, .disabled.btn-white, .disabled.create-view__submit-btn, .btn[disabled], [disabled].btn-green, [disabled].btn-blue, [disabled].btn-white, [disabled].create-view__submit-btn, fieldset[disabled] .btn, fieldset[disabled] .btn-green, fieldset[disabled] .btn-blue, fieldset[disabled] .btn-white, fieldset[disabled] .create-view__submit-btn {
   cursor: not-allowed;
   opacity: 0.65;
   filter: alpha(opacity=65);
@@ -1683,7 +1703,7 @@ select[multiple].input-lg {
 }
 
 /* line 58, assets/stylesheets/bootstrap/_buttons.scss */
-a.btn.disabled, a.disabled.btn-green, a.disabled.btn-blue, a.disabled.create-view__submit-btn, fieldset[disabled] a.btn, fieldset[disabled] a.btn-green, fieldset[disabled] a.btn-blue, fieldset[disabled] a.create-view__submit-btn {
+a.btn.disabled, a.disabled.btn-green, a.disabled.btn-blue, a.disabled.btn-white, a.disabled.create-view__submit-btn, fieldset[disabled] a.btn, fieldset[disabled] a.btn-green, fieldset[disabled] a.btn-blue, fieldset[disabled] a.btn-white, fieldset[disabled] a.create-view__submit-btn {
   pointer-events: none;
 }
 
@@ -2992,12 +3012,12 @@ input[type="button"].btn-block {
   clear: both;
 }
 /* line 110, assets/stylesheets/bootstrap/_modals.scss */
-.modal-footer .btn + .btn, .modal-footer .btn-green + .btn, .modal-footer .btn-blue + .btn, .modal-footer .create-view__submit-btn + .btn, .modal-footer .btn + .btn-green, .modal-footer .btn-green + .btn-green, .modal-footer .btn-blue + .btn-green, .modal-footer .create-view__submit-btn + .btn-green, .modal-footer .btn + .btn-blue, .modal-footer .btn-green + .btn-blue, .modal-footer .btn-blue + .btn-blue, .modal-footer .create-view__submit-btn + .btn-blue, .modal-footer .btn + .create-view__submit-btn, .modal-footer .btn-green + .create-view__submit-btn, .modal-footer .btn-blue + .create-view__submit-btn, .modal-footer .create-view__submit-btn + .create-view__submit-btn {
+.modal-footer .btn + .btn, .modal-footer .btn-green + .btn, .modal-footer .btn-blue + .btn, .modal-footer .btn-white + .btn, .modal-footer .create-view__submit-btn + .btn, .modal-footer .btn + .btn-green, .modal-footer .btn-green + .btn-green, .modal-footer .btn-blue + .btn-green, .modal-footer .btn-white + .btn-green, .modal-footer .create-view__submit-btn + .btn-green, .modal-footer .btn + .btn-blue, .modal-footer .btn-green + .btn-blue, .modal-footer .btn-blue + .btn-blue, .modal-footer .btn-white + .btn-blue, .modal-footer .create-view__submit-btn + .btn-blue, .modal-footer .btn + .btn-white, .modal-footer .btn-green + .btn-white, .modal-footer .btn-blue + .btn-white, .modal-footer .btn-white + .btn-white, .modal-footer .create-view__submit-btn + .btn-white, .modal-footer .btn + .create-view__submit-btn, .modal-footer .btn-green + .create-view__submit-btn, .modal-footer .btn-blue + .create-view__submit-btn, .modal-footer .btn-white + .create-view__submit-btn, .modal-footer .create-view__submit-btn + .create-view__submit-btn {
   margin-left: 5px;
   margin-bottom: 0;
 }
 /* line 115, assets/stylesheets/bootstrap/_modals.scss */
-.modal-footer .btn-group .btn + .btn, .modal-footer .btn-group .btn-green + .btn, .modal-footer .btn-group .btn-blue + .btn, .modal-footer .btn-group .create-view__submit-btn + .btn, .modal-footer .btn-group .btn + .btn-green, .modal-footer .btn-group .btn-green + .btn-green, .modal-footer .btn-group .btn-blue + .btn-green, .modal-footer .btn-group .create-view__submit-btn + .btn-green, .modal-footer .btn-group .btn + .btn-blue, .modal-footer .btn-group .btn-green + .btn-blue, .modal-footer .btn-group .btn-blue + .btn-blue, .modal-footer .btn-group .create-view__submit-btn + .btn-blue, .modal-footer .btn-group .btn + .create-view__submit-btn, .modal-footer .btn-group .btn-green + .create-view__submit-btn, .modal-footer .btn-group .btn-blue + .create-view__submit-btn, .modal-footer .btn-group .create-view__submit-btn + .create-view__submit-btn {
+.modal-footer .btn-group .btn + .btn, .modal-footer .btn-group .btn-green + .btn, .modal-footer .btn-group .btn-blue + .btn, .modal-footer .btn-group .btn-white + .btn, .modal-footer .btn-group .create-view__submit-btn + .btn, .modal-footer .btn-group .btn + .btn-green, .modal-footer .btn-group .btn-green + .btn-green, .modal-footer .btn-group .btn-blue + .btn-green, .modal-footer .btn-group .btn-white + .btn-green, .modal-footer .btn-group .create-view__submit-btn + .btn-green, .modal-footer .btn-group .btn + .btn-blue, .modal-footer .btn-group .btn-green + .btn-blue, .modal-footer .btn-group .btn-blue + .btn-blue, .modal-footer .btn-group .btn-white + .btn-blue, .modal-footer .btn-group .create-view__submit-btn + .btn-blue, .modal-footer .btn-group .btn + .btn-white, .modal-footer .btn-group .btn-green + .btn-white, .modal-footer .btn-group .btn-blue + .btn-white, .modal-footer .btn-group .btn-white + .btn-white, .modal-footer .btn-group .create-view__submit-btn + .btn-white, .modal-footer .btn-group .btn + .create-view__submit-btn, .modal-footer .btn-group .btn-green + .create-view__submit-btn, .modal-footer .btn-group .btn-blue + .create-view__submit-btn, .modal-footer .btn-group .btn-white + .create-view__submit-btn, .modal-footer .btn-group .create-view__submit-btn + .create-view__submit-btn {
   margin-left: -1px;
 }
 /* line 119, assets/stylesheets/bootstrap/_modals.scss */
@@ -6684,6 +6704,14 @@ input[type="button"].btn-block {
   content: "";
 }
 
+/**
+ * バリデーションエラー時のスタイルセット
+ */
+/* line 8, base/_errorSet.scss */
+.ng-invalid.ng-touched {
+  border: solid 2px #cf363d;
+}
+
 /** layout.footer */
 /* line 3, layout/_footer.scss */
 .l-footer {
@@ -6695,29 +6723,29 @@ input[type="button"].btn-block {
 }
 
 /** layout.navigation */
-/* line 3, layout/_navbar.scss */
+/* line 4, layout/_navbar.scss */
 .l-navbar {
   position: fixed;
   top: 0;
-  left: 0;
   margin: 0;
-  padding-left: 15px;
-  padding-right: 15px;
   height: 50px;
   width: 100%;
-  background-color: #a3cf36;
+  background-color: #8ACE36;
   display: table;
 }
 
-/* line 16, layout/_navbar.scss */
+/** navigation-leftArea */
+/* line 18, layout/_navbar.scss */
 .l-navbar--left {
   display: table-cell;
   vertical-align: middle;
   text-align: left;
   height: 100%;
+  position: relative;
 }
 
-/* line 24, layout/_navbar.scss */
+/** navigation-rightArea */
+/* line 28, layout/_navbar.scss */
 .l-navbar--right {
   display: table-cell;
   vertical-align: middle;
@@ -6736,61 +6764,136 @@ input[type="button"].btn-block {
   width: 100%;
   top: 50px;
   position: relative;
-  background-color: #F5F8FA;
 }
 
 /** layout.sidebar */
-/* line 3, layout/_manual.scss */
+/* line 4, layout/_manual.scss */
 .l-manual {
-  width: 250px;
-  height: -webkit-calc(100vh - 50px);
-  height: -moz-calc(100vh - 50px);
-  height: -ms-calc(100vh - 50px);
-  height: -o-calc(100vh - 50px);
-  height: calc(100vh - 50px);
+  width: 240px;
+  height: 100%;
   margin: 0;
-  position: fixed;
-  top: 50px;
-  background-color: #c5cfba;
+  position: absolute;
+  background-color: #AFD67F;
+  left: 60px;
 }
 
-/* line 2, layout/_faq.scss */
+/** FAQ一覧画面ベース */
+/* line 4, layout/_faq.scss */
 .l-faq {
-  width: calc(100% - 400px);
-  height: -webkit-calc(100vh - 50px);
-  height: -moz-calc(100vh - 50px);
-  height: -ms-calc(100vh - 50px);
-  height: -o-calc(100vh - 50px);
-  height: calc(100vh - 50px);
+  width: calc(100% - 60px);
+  height: 100%;
   margin: 0;
-  position: fixed;
-  top: 50px;
-  background-color: white;
+  position: absolute;
+  background-color: #F7F7F7;
+  right: 0;
+}
+
+/** FAQ一覧画面-左部 */
+/* line 11, layout/_faq.scss */
+.l-faq--left {
+  width: 400px;
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/** FAQ一覧画面-右部 */
+/* line 18, layout/_faq.scss */
+.l-faq--right {
+  width: calc(100% - 400px);
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  right: 0;
+}
+
+/** FAQ一覧画面-右部フッター */
+/* line 24, layout/_faq.scss */
+.l-faq--right__footer {
+  width: 100%;
+  height: 40px;
+  text-align: right;
+  line-height: 40px;
+}
+
+/* line 31, layout/_faq.scss */
+.has-narrow-width {
+  width: -webkit-calc(100% - 640px);
+  width: -moz-calc(100% - 640px);
+  width: -ms-calc(100% - 640px);
+  width: -o-calc(100% - 640px);
+  width: calc(100% - 640px);
+}
+
+/* line 37, layout/_faq.scss */
+.l-faq--search {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  position: absolute;
   background-color: #F5F8FA;
 }
 
-/* line 9, layout/_faq.scss */
-.has-narrow-width {
-  width: -webkit-calc(100% - 650px);
-  width: -moz-calc(100% - 650px);
-  width: -ms-calc(100% - 650px);
-  width: -o-calc(100% - 650px);
-  width: calc(100% - 650px);
+/* line 42, layout/_faq.scss */
+.l-search-result {
+  height: calc(100vh - 50px);
+  width: 100%;
+  position: relative;
+  background-color: white;
 }
 
-/* line 3, layout/_notification.scss */
+/** FAQ一覧タイトル用 */
+/* line 50, layout/_faq.scss */
+.faq__title {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 3px;
+  border-bottom: solid 1px #D6DBDE;
+}
+
+/** FAQ詳細パネル */
+/* line 59, layout/_faq.scss */
+.faq__detail {
+  width: calc(100% - 20px);
+  height: calc(100% - 40px);
+  border: solid 1px #D6DBDE;
+  border-radius: 5px;
+  background-color: white;
+  top: 40px;
+  padding: 15px;
+  position: absolute;
+}
+
+/** FAQ詳細パネルヘッダ */
+/* line 71, layout/_faq.scss */
+.faq__detail__header {
+  width: 100%;
+  height: 100px;
+  display: table;
+}
+
+/** FAQ詳細本文 */
+/* line 78, layout/_faq.scss */
+.faq__content {
+  width: 100%;
+  height: calc(100% - (100px + 40px));
+  overflow: auto;
+}
+
+/** お知らせ一覧 */
+/* line 4, layout/_notification.scss */
 .l-notification {
   width: 400px;
-  height: -webkit-calc(100vh - 50px);
-  height: -moz-calc(100vh - 50px);
-  height: -ms-calc(100vh - 50px);
-  height: -o-calc(100vh - 50px);
-  height: calc(100vh - 50px);
+  height: 100%;
   margin: 0;
-  position: fixed;
-  top: 50px;
+  position: absolute;
+  background-color: #D4ECB7;
   right: 0;
-  background-color: #bfde74;
+  z-index: 1000;
+  box-shadow: -2px 0px 1px rgba(0, 0, 0, 0.4);
 }
 
 /* line 13, layout/_notification.scss */
@@ -6824,55 +6927,110 @@ input[type="button"].btn-block {
   color: white;
 }
 
-/* line 2, module/_col-header.scss */
+/* line 4, layout/_menu.scss */
+.l-menu {
+  width: 60px;
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  background-color: #8ACE36;
+}
+
+/* line 10, layout/_menu.scss */
+.l-menu__list {
+  margin-top: 15px;
+  position: absolute;
+}
+
+/** FAQ一括登録画面 */
+/* line 4, layout/_importPanel.scss */
+.l-import {
+  width: 600px;
+  height: 100%;
+  right: 0;
+  z-index: 1000;
+  box-shadow: -2px 0px 1px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  background-color: #a3cf36;
+}
+
+/** カラムヘッダ */
+/* line 4, module/_col-header.scss */
 .col-header, .col-header--bordered {
   width: 100%;
   height: 40px;
-  position: absolute;
   color: #808080;
-  font-weight: bold;
-  font-size: 24px;
-  padding-left: 15px;
-  padding-right: 15px;
   display: table;
+  line-height: 40px;
 }
-/* line 31, base/_util.scss */
+/* line 27, base/_util.scss */
 .col-header > ul, .col-header--bordered > ul {
   list-style: none;
 }
-/* line 33, base/_util.scss */
+/* line 29, base/_util.scss */
 .col-header > ul > li, .col-header--bordered > ul > li {
   display: inline-block;
 }
 
-/* line 16, module/_col-header.scss */
+/* line 13, module/_col-header.scss */
 .col-header--bordered {
   border-bottom: solid 3px;
   border-color: #36a3cf;
 }
 
-/* line 22, module/_col-header.scss */
+/* line 19, module/_col-header.scss */
 .col-header__item {
   display: teble-cell;
   vertical-align: middle;
   margin-right: 10px;
 }
 
-/* line 28, module/_col-header.scss */
-.col-header__title {
-  font-size: 16px;
-  font-weight: bold;
+/** ヘッダ部アイコン */
+/* line 26, module/_col-header.scss */
+.col-header__icon {
+  display: table-cell;
+  color: white;
+  text-align: center;
+  padding-left: 10px;
+  font-size: 1.2em;
 }
 
-/* line 2, module/_col-contents.scss */
-.col-contents {
+/* line 31, module/_col-header.scss */
+.col-header__title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+/* line 37, module/_col-header.scss */
+.col-header__title-normal {
+  font-size: 16px;
+}
+
+/** カラム本文 */
+/* line 4, module/_col-contents.scss */
+.col-contents, .col-contents--padding {
   width: 100%;
   height: calc(100% - 40px);
   overflow: auto;
+}
+
+/** padding付き */
+/* line 11, module/_col-contents.scss */
+.col-contents--padding {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/** カラムフッター */
+/* line 18, module/_col-contents.scss */
+.col-footer {
+  width: 100%;
+  height: 40px;
+  bottom: 0px;
+  line-height: 40px;
   position: absolute;
-  top: 40px;
-  padding-top: 5px;
-  padding-left: 15px;
+  text-align: right;
   padding-right: 15px;
 }
 
@@ -6917,7 +7075,7 @@ input[type="button"].btn-block {
   font-family: FontAwesome;
   border-radius: 3px;
 }
-/* line 43, base/_util.scss */
+/* line 39, base/_util.scss */
 .nav__form:focus {
   outline: none;
 }
@@ -6930,6 +7088,8 @@ input[type="button"].btn-block {
   text-align: center;
   font-size: 28px;
   color: white;
+  table-layout: fixed;
+  width: 60px;
 }
 /* line 45, module/_navbar-item.scss */
 .navbar__item--icon:hover {
@@ -6943,7 +7103,7 @@ input[type="button"].btn-block {
   background-color: white;
   height: 30px;
 }
-/* line 43, base/_util.scss */
+/* line 39, base/_util.scss */
 .input__text:focus {
   outline: none;
 }
@@ -6955,7 +7115,7 @@ input[type="button"].btn-block {
   background-color: white;
   height: 130px;
 }
-/* line 43, base/_util.scss */
+/* line 39, base/_util.scss */
 .input__textarea:focus {
   outline: none;
 }
@@ -6969,36 +7129,52 @@ input[type="button"].btn-block {
   border-radius: 3px;
   font-family: FontAwesome;
 }
-/* line 43, base/_util.scss */
+/* line 39, base/_util.scss */
 .search-bar:focus {
   outline: none;
 }
 
-/* line 2, module/_button.scss */
-.btn-green, .btn-blue, .create-view__submit-btn {
-  background-color: #a3cf36;
-  border-radius: 0.25em;
-  font-size: 15px;
+/** 標準ボタン(緑) */
+/* line 4, module/_button.scss */
+.btn-green, .btn-blue, .btn-white, .create-view__submit-btn {
+  background-color: #8ACE36;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
   padding: 3px 5px;
   height: 30px;
+  width: 120px;
   text-align: center;
+  color: white;
 }
-/* line 10, module/_button.scss */
-.btn-green:hover, .btn-blue:hover, .create-view__submit-btn:hover {
+/* line 14, module/_button.scss */
+.btn-green:hover, .btn-blue:hover, .btn-white:hover, .create-view__submit-btn:hover {
   color: white;
   box-shadow: 2px 2px 2px #555;
 }
-/* line 14, module/_button.scss */
-.btn-green:focus, .btn-blue:focus, .create-view__submit-btn:focus {
+/* line 18, module/_button.scss */
+.btn-green:focus, .btn-blue:focus, .btn-white:focus, .create-view__submit-btn:focus {
   outline: none;
 }
 
-/* line 19, module/_button.scss */
+/** 標準ボタン(青) */
+/* line 24, module/_button.scss */
 .btn-blue {
   background-color: #36a3cf;
 }
 
-/* line 24, module/_button.scss */
+/* line 29, module/_button.scss */
+.btn-white {
+  background-color: white;
+  color: black;
+  border: solid 1px gray;
+}
+/* line 34, module/_button.scss */
+.btn-white:hover {
+  color: black;
+  box-shadow: 2px 2px 2px #555;
+}
+
+/* line 40, module/_button.scss */
 .close-button {
   width: 60px;
   height: 60px;
@@ -7014,16 +7190,16 @@ input[type="button"].btn-block {
   border-radius: 30px;
   background-color: blue;
 }
-/* line 37, module/_button.scss */
+/* line 53, module/_button.scss */
 .close-button:hover {
-  background-color: #c5cfba;
+  background-color: #f2f2f2;
 }
-/* line 40, module/_button.scss */
+/* line 56, module/_button.scss */
 .close-button > i {
   font-size: 22px;
   border: 1px solid;
 }
-/* line 44, module/_button.scss */
+/* line 60, module/_button.scss */
 .close-button > .button--label {
   border: 1px dotted;
   width: 100%;
@@ -7031,34 +7207,34 @@ input[type="button"].btn-block {
   font-size: 12px;
 }
 
-/* line 4, module/_table.scss */
+/* line 3, module/_table.scss */
 .table-base, .table--hover, .table--colored-blue, .table--colored-gray, .table--colored-red {
   background-color: white;
   border-radius: 5px;
   margin-bottom: 5px;
 }
-/* line 9, module/_table.scss */
+/* line 8, module/_table.scss */
 .table-base > thead > tr > th, .table--hover > thead > tr > th, .table--colored-blue > thead > tr > th, .table--colored-gray > thead > tr > th, .table--colored-red > thead > tr > th {
   border: none;
   font-size: 16px;
 }
-/* line 13, module/_table.scss */
+/* line 12, module/_table.scss */
 .table-base > tbody > tr > td, .table--hover > tbody > tr > td, .table--colored-blue > tbody > tr > td, .table--colored-gray > tbody > tr > td, .table--colored-red > tbody > tr > td {
   border: none;
   font-size: 14px;
 }
 
-/* line 21, module/_table.scss */
+/* line 20, module/_table.scss */
 .table--hover:hover, .table--colored-blue:hover, .table--colored-gray:hover, .table--colored-red:hover {
   background-color: #e6e6e6;
   cursor: pointer;
 }
-/* line 25, module/_table.scss */
+/* line 24, module/_table.scss */
 .table--hover > thead > tr > th, .table--colored-blue > thead > tr > th, .table--colored-gray > thead > tr > th, .table--colored-red > thead > tr > th {
   color: #36a3cf;
 }
 
-/* line 32, module/_table.scss */
+/* line 31, module/_table.scss */
 .table--colored-blue > thead > tr > th {
   background-color: #36a3cf;
   border-top-left-radius: 5px;
@@ -7066,7 +7242,7 @@ input[type="button"].btn-block {
   color: black;
 }
 
-/* line 45, module/_table.scss */
+/* line 44, module/_table.scss */
 .table--colored-gray > thead > tr > th {
   background-color: #F5F8FA;
   border-top-left-radius: 5px;
@@ -7074,7 +7250,7 @@ input[type="button"].btn-block {
   color: black;
 }
 
-/* line 58, module/_table.scss */
+/* line 57, module/_table.scss */
 .table--colored-red > thead > tr > th {
   background-color: #cf363d;
   border-top-left-radius: 5px;
@@ -7082,7 +7258,7 @@ input[type="button"].btn-block {
   color: black;
 }
 
-/* line 70, module/_table.scss */
+/* line 69, module/_table.scss */
 .table__header__item--right {
   text-align: right;
   width: 40px;
@@ -7090,18 +7266,18 @@ input[type="button"].btn-block {
   padding-right: 5px;
 }
 
-/* line 77, module/_table.scss */
+/* line 76, module/_table.scss */
 .table__footer--low {
   height: 20px;
   font-size: 14px;
 }
 
-/* line 82, module/_table.scss */
+/* line 81, module/_table.scss */
 .table__footer--right {
   float: right;
 }
 
-/* line 86, module/_table.scss */
+/* line 85, module/_table.scss */
 .table__footer--left {
   float: left;
 }
@@ -7113,10 +7289,8 @@ input[type="button"].btn-block {
   overflow: scroll;
 }
 
-/**
- * 新規登録画面用スタイル	
- */
-/* line 11, module/_create-view.scss */
+/** FAQ新規登録画面スタイル */
+/* line 10, module/_create-view.scss */
 .create-view {
   padding: 15px;
   height: -webkit-calc(100% - 50px);
@@ -7130,17 +7304,43 @@ input[type="button"].btn-block {
   margin: 0px;
 }
 
-/* line 23, module/_create-view.scss */
+/** タイトル入力エリア */
+/* line 22, module/_create-view.scss */
 .create-view__header {
   width: 100%;
   height: 40px;
+  line-height: 40px;
+  display: table;
 }
 
-/* line 29, module/_create-view.scss */
+/** タイトルエリアアイコン */
+/* line 30, module/_create-view.scss */
+.create-view__header__icon {
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  line-height: 1.0em;
+  color: black;
+  display: table-cell;
+  position: absolute;
+}
+/* line 37, base/_icon.scss */
+.create-view__header__icon > p {
+  font-size: 10px;
+}
+/* line 41, base/_icon.scss */
+.create-view__header__icon:hover {
+  color: #cf363d;
+}
+
+/* line 38, module/_create-view.scss */
 .create-view__contents {
   display: table;
   width: 100%;
-  margin-top: 5px;
+  margin-top: 10px;
   position: relative;
   height: -webkit-calc(100% - 40px - 40px);
   height: -moz-calc(100% - 40px - 40px);
@@ -7149,7 +7349,7 @@ input[type="button"].btn-block {
   height: calc(100% - 40px - 40px);
 }
 
-/* line 39, module/_create-view.scss */
+/* line 48, module/_create-view.scss */
 .create-view__footer {
   height: 40px;
   width: 100%;
@@ -7159,29 +7359,33 @@ input[type="button"].btn-block {
   display: table;
 }
 
-/* line 48, module/_create-view.scss */
+/* line 57, module/_create-view.scss */
 .create-view__footer__item {
   display: table-cell;
   vertical-align: middle;
   margin: auto;
 }
 
-/* line 54, module/_create-view.scss */
+/** FAQタイトル */
+/* line 64, module/_create-view.scss */
 .create-view__text {
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 40px - 10px);
+  height: 40px;
   background-color: white;
   border: 1px solid;
   border-color: gray;
   border-radius: 5px;
   padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  left: calc(40px + 10px);
 }
-/* line 62, module/_create-view.scss */
+/* line 75, module/_create-view.scss */
 .create-view__text:focus {
   outline: none;
 }
 
-/* line 67, module/_create-view.scss */
+/* line 80, module/_create-view.scss */
 .create-view__textarea {
   height: 130px;
   width: 100%;
@@ -7202,75 +7406,76 @@ input[type="button"].btn-block {
   max-height: calc(100% - 30px);
   border: 1px solid;
   border-color: gray;
-  padding-left: 10px;
   position: absolute;
   overflow: auto;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 /* line 41, module/_input-text.scss */
 .create-view__textarea:focus {
   outline: none;
 }
 
-/* line 82, module/_create-view.scss */
+/* line 95, module/_create-view.scss */
 .textarea__item-list {
   width: 100%;
   height: 30px;
   font-size: 18px;
 }
-/* line 86, module/_create-view.scss */
+/* line 99, module/_create-view.scss */
 .textarea__item-list > li {
   display: inline-block;
   border: 1px solid;
   border-color: #F5F5F5;
 }
 
-/* line 93, module/_create-view.scss */
+/* line 106, module/_create-view.scss */
 .write-area {
   display: table-cell;
   width: 50%;
   height: 100%;
 }
 
-/* line 99, module/_create-view.scss */
+/* line 112, module/_create-view.scss */
 .preview-area {
   display: table-cell;
   width: 50%;
   height: 100%;
   padding-left: 10px;
-  overflow: scroll;
+  overflow: auto;
 }
 @media (max-width: 480px) {
-  /* line 99, module/_create-view.scss */
+  /* line 112, module/_create-view.scss */
   .preview-area {
     max-width: 220px;
   }
 }
 @media (max-width: 767px) {
-  /* line 99, module/_create-view.scss */
+  /* line 112, module/_create-view.scss */
   .preview-area {
     max-width: 320px;
   }
 }
-@media (max-width: 979px) {
-  /* line 99, module/_create-view.scss */
+@media (max-width: 979px) and (min-width: 1200px) {
+  /* line 112, module/_create-view.scss */
   .preview-area {
     max-width: 400px;
   }
 }
 @media (min-width: 1200px) {
-  /* line 99, module/_create-view.scss */
+  /* line 112, module/_create-view.scss */
   .preview-area {
     max-width: 600px;
   }
 }
 
-/* line 123, module/_create-view.scss */
+/* line 136, module/_create-view.scss */
 .preview-text {
   widows: 100%;
   overflow: auto;
 }
 
-/* line 129, module/_create-view.scss */
+/* line 142, module/_create-view.scss */
 .create-view__submit-btn {
   width: 60px;
 }
@@ -7304,7 +7509,7 @@ input[type="button"].btn-block {
 }
 
 /* line 31, module/_create-panel.scss */
-.create-panel__header-row {
+.create-panel__row {
   height: 30px;
   width: 100%;
   border-bottom: 2px solid;
@@ -7312,7 +7517,7 @@ input[type="button"].btn-block {
   font-size: 14px;
 }
 /* line 37, module/_create-panel.scss */
-.create-panel__header-row > td {
+.create-panel__row > td {
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -7346,7 +7551,7 @@ input[type="button"].btn-block {
 
 /* line 58, module/_create-panel.scss */
 .create-panel__contents {
-  height: 100%;
+  height: 200px;
   width: 100%;
   background-color: white;
   padding-left: 5px;
@@ -7411,7 +7616,7 @@ input[type="button"].btn-block {
   width: 100%;
   height: 40px;
   display: table;
-  background-color: #c5cfba;
+  background-color: #f2f2f2;
   padding-left: 15px;
   padding-right: 15px;
   font-size: 14px;
@@ -7423,9 +7628,10 @@ input[type="button"].btn-block {
 .dict-modal__header__item {
   display: table-cell;
   vertical-align: middle;
+  text-align: left;
 }
 
-/* line 57, module/_modal.scss */
+/* line 58, module/_modal.scss */
 .dict-modal__content {
   width: 100%;
   height: -webkit-calc(100% - 40px);
@@ -7437,7 +7643,7 @@ input[type="button"].btn-block {
   table-layout: fixed;
 }
 
-/* line 66, module/_modal.scss */
+/* line 68, module/_modal.scss */
 .dict-modal__content--left {
   display: table-cell;
   width: 30%;
@@ -7447,29 +7653,32 @@ input[type="button"].btn-block {
   border-color: #F5F5F5;
 }
 
-/* line 75, module/_modal.scss */
+/* line 77, module/_modal.scss */
 .dict-modal__content--right {
   display: table-cell;
   width: 70%;
-  height: 100%;
-  padding-left: 10px;
-  padding-right: 15px;
+  height: calc(100% - 40px);
+  padding: 5px 15px;
+  overflow: auto;
+  position: absolute;
 }
 
-/* line 83, module/_modal.scss */
+/* line 86, module/_modal.scss */
 .dict-modal__item-list {
   list-style: none;
+  height: 100%;
+  overflow: auto;
 }
-/* line 85, module/_modal.scss */
+/* line 88, module/_modal.scss */
 .dict-modal__item-list > li:hover {
   background-color: #36a3cf;
 }
-/* line 88, module/_modal.scss */
+/* line 91, module/_modal.scss */
 .dict-modal__item-list > li {
   margin-bottom: 10px;
 }
 
-/* line 93, module/_modal.scss */
+/* line 99, module/_modal.scss */
 .dict-modal__textarea {
   height: 130px;
   width: 100%;
@@ -7483,40 +7692,58 @@ input[type="button"].btn-block {
   height: -o-calc(100% - 80px);
   height: calc(100% - 80px);
   padding-left: 10px;
+  padding-right: 10px;
 }
 /* line 41, module/_input-text.scss */
 .dict-modal__textarea:focus {
   outline: none;
 }
 
-/* line 101, module/_modal.scss */
-.dict-moal__footer {
+/* line 108, module/_modal.scss */
+.dict-modal__text {
   width: 100%;
   height: 40px;
+  background-color: white;
+  padding-left: 5px;
+  border-style: none;
+  resize: none;
+  margin-bottom: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: solid 1px #D6DBDE;
+}
+/* line 28, module/_input-text.scss */
+.dict-modal__text:focus {
+  outline: none;
+}
+
+/* line 116, module/_modal.scss */
+.dict-modal__footer {
+  width: 100%;
+  height: 40px;
+  text-align: right;
+  line-height: 40px;
+  bottom: 0px;
+  position: absolute;
 }
 
 /* line 3, module/_grid.scss */
 .grid-base {
-  width: 550px;
-  height: 300px;
-  overflow: scroll;
+  width: 100%;
+  height: 500px;
+  overflow: auto;
 }
 
-/* line 3, module/_timeline.scss */
+/** お知らせ用セット */
+/* line 4, module/_timeline.scss */
 .timeline {
   width: 100%;
-  margin: 0px;
-  border-bottom: 2px solid;
-  border-color: #F5F5F5;
+  border-radius: 5px;
+  margin-bottom: 5px;
   background-color: white;
 }
-/* line 9, module/_timeline.scss */
-.timeline:hover {
-  background-color: #e6e6e6;
-  cursor: pointer;
-}
 
-/* line 15, module/_timeline.scss */
+/* line 11, module/_timeline.scss */
 .timeline__header {
   display: table;
   width: 100%;
@@ -7525,13 +7752,13 @@ input[type="button"].btn-block {
   padding-right: 15px;
 }
 
-/* line 23, module/_timeline.scss */
+/* line 19, module/_timeline.scss */
 .header__item, .header__item--right {
   display: table-cell;
   vertical-align: middle;
 }
 
-/* line 28, module/_timeline.scss */
+/* line 24, module/_timeline.scss */
 .header__item--tag {
   display: table-cell;
   vertical-align: middle;
@@ -7542,19 +7769,19 @@ input[type="button"].btn-block {
   color: white;
 }
 
-/* line 38, module/_timeline.scss */
+/* line 34, module/_timeline.scss */
 .header__item--right {
   text-align: right;
 }
 
-/* line 43, module/_timeline.scss */
+/* line 39, module/_timeline.scss */
 .timeline__title {
   font-weight: bold;
   color: #292f33;
   font-size: 16px;
 }
 
-/* line 49, module/_timeline.scss */
+/* line 45, module/_timeline.scss */
 .timeline__content {
   font-size: 14px;
   color: #292f33;
@@ -7565,35 +7792,35 @@ input[type="button"].btn-block {
   margin-bottom: 10px;
 }
 
-/* line 59, module/_timeline.scss */
+/* line 55, module/_timeline.scss */
 .timeline__item--user-name {
   font-size: 13px;
   color: #8899a6;
 }
 
-/* line 64, module/_timeline.scss */
+/* line 60, module/_timeline.scss */
 .timeline__item--number {
   font-size: 16px;
   color: #8899a6;
   margin-left: 3px;
 }
 
-/* line 70, module/_timeline.scss */
+/* line 66, module/_timeline.scss */
 .importance--high {
   background-color: red;
 }
 
-/* line 74, module/_timeline.scss */
+/* line 70, module/_timeline.scss */
 .importance--middle {
   background-color: #cfc736;
 }
 
-/* line 78, module/_timeline.scss */
+/* line 74, module/_timeline.scss */
 .importance--low {
   background-color: #36a3cf;
 }
 
-/* line 82, module/_timeline.scss */
+/* line 78, module/_timeline.scss */
 .timeline__footer {
   display: table;
   width: 100%;
@@ -7604,32 +7831,43 @@ input[type="button"].btn-block {
   margin-bottom: 2px;
 }
 
-/* line 92, module/_timeline.scss */
+/* line 88, module/_timeline.scss */
 .footer__item {
   display: table-cell;
   font-size: 18px;
   color: #aab8c2;
 }
 
-/* line 3, module/_tree-view.scss */
-.tree__node {
-  margin: 5px 0px;
-  list-style: none;
-  padding-left: 20px;
-}
-
-/* line 9, module/_tree-view.scss */
+/** treeview-parent */
+/* line 4, module/_tree-view.scss */
 .tree__nodes {
   display: table;
   width: 100%;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: white;
+  font-size: 1.0em;
+}
+/* line 13, module/_tree-view.scss */
+.tree__nodes:hover {
+  background-color: #8ACE36;
 }
 
-/* line 14, module/_tree-view.scss */
-.tree__nodes__item {
-  display: table-cell;
+/** treeview-child */
+/* line 19, module/_tree-view.scss */
+.tree__node {
+  list-style: none;
 }
 
-/* line 18, module/_tree-view.scss */
+/** treeview-chid__item */
+/* line 24, module/_tree-view.scss */
+.tree__node__item {
+  padding-left: 20px;
+}
+
+/* line 28, module/_tree-view.scss */
 .tree__nodes__item--right {
   display: table-cell;
   text-align: right;
@@ -7698,10 +7936,12 @@ input[type="button"].btn-block {
 }
 
 /* line 1, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding, .modal-body > .ng-binding {
+.preview-area > .ng-isolate-scope > .ng-binding,
+.modal-body > .ng-binding {
   overflow: auto;
-  width: 100%;
   word-wrap: break-word;
+  position: absolute;
+  padding: 0px 6px;
   height: -webkit-calc(100% - 30px);
   max-height: -webkit-calc(100% - 30px);
   height: -moz-calc(100% - 30px);
@@ -7713,202 +7953,333 @@ input[type="button"].btn-block {
   height: calc(100% - 30px);
   max-height: calc(100% - 30px);
 }
-/* line 9, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > a, .modal-body > .ng-binding > a {
+/* line 12, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > a,
+.modal-body > .ng-binding > a {
   color: #0645ad;
   text-decoration: none;
 }
-/* line 12, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > a:visited, .modal-body > .ng-binding > a:visited {
+/* line 15, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > a:visited,
+.modal-body > .ng-binding > a:visited {
   color: #0b0080;
 }
-/* line 15, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > a:hover, .modal-body > .ng-binding > a:hover {
+/* line 18, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > a:hover,
+.modal-body > .ng-binding > a:hover {
   color: #06e;
 }
-/* line 18, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > a:active, .modal-body > .ng-binding > a:active {
+/* line 21, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > a:active,
+.modal-body > .ng-binding > a:active {
   color: #faa700;
 }
-/* line 21, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > a:focus, .modal-body > .ng-binding > a:focus {
+/* line 24, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > a:focus,
+.modal-body > .ng-binding > a:focus {
   outline: thin dotted;
 }
-/* line 24, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > a:hover, .preview-area > .ng-isolate-scope > .ng-binding > a:active, .modal-body > .ng-binding > a:hover, .modal-body > .ng-binding > a:active {
+/* line 27, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > a:hover, .preview-area > .ng-isolate-scope > .ng-binding > a:active,
+.modal-body > .ng-binding > a:hover,
+.modal-body > .ng-binding > a:active {
   outline: 0;
 }
-/* line 28, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > p, .modal-body > .ng-binding > p {
+/* line 31, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > p,
+.modal-body > .ng-binding > p {
   margin: 1em 0;
 }
-/* line 31, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > img, .modal-body > .ng-binding > img {
+/* line 34, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > img,
+.modal-body > .ng-binding > img {
+  width: 100%;
   max-width: 100%;
   border: 0;
   -ms-interpolation-mode: bicubic;
   vertical-align: middle;
 }
-/* line 37, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > h1, .preview-area > .ng-isolate-scope > .ng-binding h2, .preview-area > .ng-isolate-scope > .ng-binding h3, .preview-area > .ng-isolate-scope > .ng-binding h4, .preview-area > .ng-isolate-scope > .ng-binding h5, .preview-area > .ng-isolate-scope > .ng-binding h6, .modal-body > .ng-binding > h1, .modal-body > .ng-binding h2, .modal-body > .ng-binding h3, .modal-body > .ng-binding h4, .modal-body > .ng-binding h5, .modal-body > .ng-binding h6 {
-  font-weight: normal;
-  color: #111;
-  line-height: 1em;
-}
-/* line 42, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > h4, .preview-area > .ng-isolate-scope > .ng-binding h5, .preview-area > .ng-isolate-scope > .ng-binding h6, .modal-body > .ng-binding > h4, .modal-body > .ng-binding h5, .modal-body > .ng-binding h6 {
-  font-weight: bold;
-}
-/* line 45, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > h1, .modal-body > .ng-binding > h1 {
-  font-size: 2.5em;
-}
-/* line 48, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > h2, .modal-body > .ng-binding > h2 {
-  font-size: 2em;
-}
-/* line 51, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > h3, .modal-body > .ng-binding > h3 {
-  font-size: 1.5em;
-}
-/* line 54, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > h4, .modal-body > .ng-binding > h4 {
-  font-size: 1.2em;
-}
-/* line 57, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > h5, .modal-body > .ng-binding > h5 {
-  font-size: 1em;
-}
-/* line 60, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > h6, .modal-body > .ng-binding > h6 {
-  font-size: 0.9em;
-}
-/* line 63, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > blockquote, .modal-body > .ng-binding > blockquote {
-  color: #666666;
-  margin: 0;
-  padding-left: 3em;
-  border-left: 0.5em #EEE solid;
-}
-/* line 69, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > hr, .modal-body > .ng-binding > hr {
-  display: block;
-  height: 2px;
-  border: 0;
-  border-top: 1px solid #aaa;
-  border-bottom: 1px solid #eee;
-  margin: 1em 0;
-  padding: 0;
-}
-/* line 78, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > pre, .preview-area > .ng-isolate-scope > .ng-binding code, .preview-area > .ng-isolate-scope > .ng-binding kbd, .preview-area > .ng-isolate-scope > .ng-binding samp, .modal-body > .ng-binding > pre, .modal-body > .ng-binding code, .modal-body > .ng-binding kbd, .modal-body > .ng-binding samp {
-  color: #000;
-  font-family: monospace, monospace;
-  _font-family: 'courier new', monospace;
-  font-size: 0.98em;
-}
-/* line 84, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > pre, .modal-body > .ng-binding > pre {
-  white-space: pre;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-/* line 89, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > b, .preview-area > .ng-isolate-scope > .ng-binding strong, .modal-body > .ng-binding > b, .modal-body > .ng-binding strong {
-  font-weight: bold;
-}
-/* line 92, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > ul, .preview-area > .ng-isolate-scope > .ng-binding ol, .modal-body > .ng-binding > ul, .modal-body > .ng-binding ol {
+/* line 41, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > ul, .preview-area > .ng-isolate-scope > .ng-binding ol,
+.modal-body > .ng-binding > ul,
+.modal-body > .ng-binding ol {
   margin: 1em 0;
   padding: 0 0 0 2em;
 }
-/* line 96, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > ul, .modal-body > .ng-binding > ul {
+/* line 45, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > ul,
+.modal-body > .ng-binding > ul {
   list-style: disc;
 }
-/* line 99, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > li p:last-child, .modal-body > .ng-binding > li p:last-child {
+/* line 48, module/_markdown.scss */
+.preview-area > .ng-isolate-scope > .ng-binding > li p:last-child,
+.modal-body > .ng-binding > li p:last-child {
   margin: 0;
 }
-/* line 102, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding table, .modal-body > .ng-binding table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-/* line 106, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > td, .modal-body > .ng-binding > td {
-  vertical-align: top;
+
+/* line 54, module/_markdown.scss */
+.modal-body > .ng-binding {
+  position: relative;
 }
 
-/* line 2, state/_is-open-sidebar.scss */
+/* line 3, module/_search-result.scss */
+.result-box {
+  height: 500px;
+  width: 150px;
+  background-color: yellow;
+}
+
+/* line 3, module/_telmode.scss */
+.telmode__left {
+  width: 40%;
+  height: 100%;
+  margin: 0;
+  position: absolute;
+}
+
+/* line 7, module/_telmode.scss */
+.telmode__right {
+  width: 60%;
+  height: 100%;
+  max-height: 100%;
+  padding: 15px;
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  border-left: 1px solid;
+  border-color: #8ACE36;
+}
+/* line 17, module/_telmode.scss */
+.telmode__right > h3 {
+  margin-bottom: 30px;
+}
+
+/* line 22, module/_telmode.scss */
+.telmode__list {
+  width: 100%;
+  height: 80px;
+  overflow: hidden;
+  padding: 5px 15px;
+  border-bottom: 2px solid;
+  border-color: #F5F8FA;
+}
+/* line 27, module/_telmode.scss */
+.telmode__list:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
+}
+
+/* line 36, module/_telmode.scss */
+.telmode__item-icon {
+  color: black;
+}
+
+/** カテゴリ選択パネルベース */
+/* line 4, module/_category.scss */
+.category {
+  width: 300px;
+  height: 350px;
+  z-index: 1000;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  position: absolute;
+  top: -5px;
+  box-shadow: rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+}
+/* line 13, module/_category.scss */
+.category:focus {
+  outline: none;
+}
+
+/** カテゴリ選択パネルヘッダ部 */
+/* line 19, module/_category.scss */
+.category__head {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  background-color: gray;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/** カテゴリ選択済み状態 */
+/* line 31, module/_category.scss */
+.is-selected {
+  color: #0078CA;
+}
+
+/* line 35, module/_category.scss */
+.category__header-wrapper {
+  width: 100%;
+  max-height: 140px;
+}
+
+/* line 40, module/_category.scss */
+.category__search-area {
+  display: table;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  background-color: white;
+  padding-right: 15px;
+}
+
+/* line 49, module/_category.scss */
+.category__searchbar {
+  width: 260px;
+  height: 30px;
+  background-color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+/* line 55, module/_category.scss */
+.category__searchbar:focus {
+  outline: none;
+}
+
+/**  */
+/* line 61, module/_category.scss */
+.category__list {
+  width: 100%;
+  max-height: calc(100% - 140px);
+  margin-top: 5px;
+  background-color: white;
+  overflow: auto;
+}
+/* line 67, module/_category.scss */
+.category__list > li {
+  list-style: none;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 5px;
+  border-bottom: solid 1px #F5F8FA;
+  line-height: 40px;
+  display: table;
+  width: 100%;
+}
+/* line 77, module/_category.scss */
+.category__list > li:hover {
+  cursor: pointer;
+}
+
+/* line 83, module/_category.scss */
+.category__selected {
+  width: 100%;
+  max-height: 80px;
+  overflow: auto;
+}
+/* line 87, module/_category.scss */
+.category__selected > li {
+  list-style: none;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom: solid 1px #F5F8FA;
+  display: table;
+  width: 100%;
+}
+
+/* line 99, module/_category.scss */
+.category__icon {
+  display: table-cell;
+  text-align: right;
+  height: 100%;
+}
+
+/** 横並びタグスタイル */
+/* line 106, module/_category.scss */
+.category-list--vertical {
+  width: 100%;
+  overflow-x: auto;
+  height: 20px;
+  line-height: 20px;
+}
+/* line 111, module/_category.scss */
+.category-list--vertical > li {
+  list-style: none;
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 0.5em;
+  vertical-align: middle;
+  color: #A2B6C3;
+}
+
+/* line 122, module/_category.scss */
+.category__footer {
+  width: 100%;
+  height: 40px;
+  display: table;
+  text-align: right;
+  line-height: 40px;
+  padding-right: 15px;
+}
+
+/** 右へスライド */
+/* line 4, state/_is-open-sidebar.scss */
 .is-slide-right {
   -webkit-transition: transform 0.1s ease;
   -o-transition: transform 0.1s ease;
   transition: transform 0.1s ease;
-  -webkit-transform-origin: 0% 100%;
-  -webkit-transform: translateX(250px);
-  width: -webkit-calc(100% - 650px);
-  -webkit-transition: transform 0.1s ease;
-  -o-transition: transform 0.1s ease;
-  transition: transform 0.1s ease;
-  -moz-transform-origin: 0% 100%;
-  -moz-transform: translateX(250px);
-  width: -moz-calc(100% - 650px);
-  -webkit-transition: transform 0.1s ease;
-  -o-transition: transform 0.1s ease;
-  transition: transform 0.1s ease;
-  -ms-transform-origin: 0% 100%;
-  -ms-transform: translateX(250px);
-  width: -ms-calc(100% - 650px);
-  -webkit-transition: transform 0.1s ease;
-  -o-transition: transform 0.1s ease;
-  transition: transform 0.1s ease;
-  -o-transform-origin: 0% 100%;
-  -o-transform: translateX(250px);
-  width: -o-calc(100% - 650px);
-  -webkit-transition: transform 0.1s ease;
-  -o-transition: transform 0.1s ease;
-  transition: transform 0.1s ease;
-  transform-origin: 0% 100%;
-  transform: translateX(250px);
-  width: calc(100% - 650px);
-}
-
-/* line 10, state/_is-open-sidebar.scss */
-.is-slide-left {
-  -webkit-transition: transform 0.2s ease;
-  -o-transition: transform 0.2s ease;
-  transition: transform 0.2s ease;
   -webkit-transform-origin: 100% 0%;
-  -webkit-transform: translateX();
-  width: -webkit-calc(100% - 400px);
-  -webkit-transition: transform 0.2s ease;
-  -o-transition: transform 0.2s ease;
-  transition: transform 0.2s ease;
+  width: -webkit-calc(100% - 300px);
+  -webkit-transition: transform 0.1s ease;
+  -o-transition: transform 0.1s ease;
+  transition: transform 0.1s ease;
   -moz-transform-origin: 100% 0%;
-  -moz-transform: translateX();
-  width: -moz-calc(100% - 400px);
-  -webkit-transition: transform 0.2s ease;
-  -o-transition: transform 0.2s ease;
-  transition: transform 0.2s ease;
+  width: -moz-calc(100% - 300px);
+  -webkit-transition: transform 0.1s ease;
+  -o-transition: transform 0.1s ease;
+  transition: transform 0.1s ease;
   -ms-transform-origin: 100% 0%;
-  -ms-transform: translateX();
-  width: -ms-calc(100% - 400px);
-  -webkit-transition: transform 0.2s ease;
-  -o-transition: transform 0.2s ease;
-  transition: transform 0.2s ease;
+  width: -ms-calc(100% - 300px);
+  -webkit-transition: transform 0.1s ease;
+  -o-transition: transform 0.1s ease;
+  transition: transform 0.1s ease;
   -o-transform-origin: 100% 0%;
-  -o-transform: translateX();
-  width: -o-calc(100% - 400px);
-  -webkit-transition: transform 0.2s ease;
-  -o-transition: transform 0.2s ease;
-  transition: transform 0.2s ease;
+  width: -o-calc(100% - 300px);
+  -webkit-transition: transform 0.1s ease;
+  -o-transition: transform 0.1s ease;
+  transition: transform 0.1s ease;
   transform-origin: 100% 0%;
-  transform: translateX();
-  width: calc(100% - 400px);
+  width: calc(100% - 300px);
 }
 
-/* line 19, state/_is-open-sidebar.scss */
+/** 左へスライド */
+/* line 13, state/_is-open-sidebar.scss */
+.is-slide-left {
+  -webkit-transition: transform 0.1s ease;
+  -o-transition: transform 0.1s ease;
+  transition: transform 0.1s ease;
+  -webkit-transform-origin: 100% 0%;
+  width: 100%;
+  -webkit-transition: transform 0.1s ease;
+  -o-transition: transform 0.1s ease;
+  transition: transform 0.1s ease;
+  -moz-transform-origin: 100% 0%;
+  width: 100%;
+  -webkit-transition: transform 0.1s ease;
+  -o-transition: transform 0.1s ease;
+  transition: transform 0.1s ease;
+  -ms-transform-origin: 100% 0%;
+  width: 100%;
+  -webkit-transition: transform 0.1s ease;
+  -o-transition: transform 0.1s ease;
+  transition: transform 0.1s ease;
+  -o-transform-origin: 100% 0%;
+  width: 100%;
+  -webkit-transition: transform 0.1s ease;
+  -o-transition: transform 0.1s ease;
+  transition: transform 0.1s ease;
+  transform-origin: 100% 0%;
+  width: 100%;
+}
+
+/* line 21, state/_is-open-sidebar.scss */
 .is-slide-top {
   -webkit-transition: transform 0.1s ease;
   -o-transition: transform 0.1s ease;

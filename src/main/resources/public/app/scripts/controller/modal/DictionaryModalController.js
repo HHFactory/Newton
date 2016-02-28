@@ -6,21 +6,17 @@
 (function(){
 'use strict';
 	
-	function DictionaryCtrl($scope,connectApiService,constURI) {
+	function DictionaryCtrl($scope,connectApiService,constURI,$timeout) {
 		$scope.isShowCreatePanel = false;
 		
 		/**
-		 * 用語のタイトル検索
-		 * @param  {[type]} query [description]
-		 * @return {[type]}       [description]
+		 * 全用語取得
+		 * @param  {[type]} apiResult)
+		 * @return {[type]}           
 		 */
-		$scope.search = function(query) {
-			var keyword = {title: query};
-			connectApiService.get(constURI.term,keyword).then(function(resultAPI){
-				console.dir(resultAPI.data);
-				$scope.termList = resultAPI.data;
-			});
-		}
+		connectApiService.get(constURI.terms).then(function(apiResult){
+			$scope.termList = apiResult.data;
+		});
 
 		/**
 		 * 用語の意味を表示
@@ -52,14 +48,24 @@
 		$scope.submit = function(term) {
 			console.dir(term);
 			term.status = "valid";
-			connectApiService.post(constURI.term,term).then(function(resultAPI){
-				console.log(resultAPI.data);
-				$scope.isShowCreatePanel = false;
+			connectApiService.post(constURI.term,term).then(function(apiResult){
+				if(apiResult.status == 201){
+					console.log(apiResult.data);
+					$scope.isShowCreatePanel = false;
+					connectApiService.get(constURI.terms).then(function(apiResult){
+						$scope.termList = apiResult.data;
+					});
+				}else{
+					$timeout(function(){
+						swal("登録に失敗しました");
+					},1000);
+				}
+
 			});
 		}
 
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('DictionaryModalController',['$scope','connectApiService','constURI',DictionaryCtrl]);
+	angular.module('indexModule').controller('DictionaryModalController',['$scope','connectApiService','constURI','$timeout',DictionaryCtrl]);
 })();

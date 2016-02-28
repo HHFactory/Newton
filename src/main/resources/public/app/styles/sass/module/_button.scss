@@ -1,12 +1,16 @@
+@charset "UTF-8";
 
+/** 標準ボタン(緑) */
 .btn-green {
 	@extend .btn;
 	background-color: $main-green;
-	border-radius: 0.25em;
-	font-size: 15px;
+	border-radius: 0.25rem;
+	font-size: 0.9rem;
 	padding: 3px 5px;
 	height: 30px;
+	width: 120px;
 	text-align: center;
+	color: white;
 	&:hover {
 		color: white;
 		box-shadow: 2px 2px 2px #555;
@@ -16,9 +20,21 @@
 	}
 }
 
+/** 標準ボタン(青) */
 .btn-blue {
 	@extend .btn-green;
 	background-color: $main-blue;
+}
+
+.btn-white {
+	@extend .btn-green;
+	background-color: white;
+	color: black;
+	border: solid 1px gray;
+	&:hover {
+		color: black;
+		box-shadow: 2px 2px 2px #555;
+	}
 }
 
 .close-button {

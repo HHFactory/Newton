@@ -1,7 +1,8 @@
+@charset "UTF-8";
 
 /** layout.sidebar */
 .l-manual {
 	@include l-column-set($manualAreaWidth);
-	//left: -$manualAreaWidth;
-	background-color: $sidebar-color;
+	background-color: $manual-backcolor;
+	left: $menubarWidth;
 }

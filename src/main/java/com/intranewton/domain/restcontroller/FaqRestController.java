@@ -48,14 +48,15 @@ public class FaqRestController {
 	}
 	
 	/**
-	 * 引き渡されたidを持つFAQ.useful_countをインクリメントする
+	 * 引き渡されたidを持つFAQ.useful_countをインクリメントし結果を返却する
 	 * @param id
 	 * @return integer
 	 */
 	@RequestMapping(value="/api/v1/faqs/{id}",method=RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
 	public Integer countUpUsefulCount(@PathVariable Integer id){		
-		Integer usefulcount = faqService.countUpUsefulCount(id);
+		faqService.countUpUsefulCount(id);
+		Integer usefulcount = faqService.findFaqById(id).getUsefulCount();
 		return usefulcount;
 	}
 	

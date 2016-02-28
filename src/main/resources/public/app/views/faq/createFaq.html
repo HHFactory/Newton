@@ -1,9 +1,15 @@
 <!-- FAQ新規登録画面 -->
-
-<form ng-submit="submit(faq)" class="create-view" ng-controller="CreateFaqController">
+<form class="create-view" name="submitForm" ng-controller="CreateFaqController" ng-submit="submit(faq)" novalidate>
 	<!-- タイトルエリア -->
 	<div class="create-view__header">
-		<input class="create-view__text" type="text" placeholder="FAQタイトルを入力してください" ng-model="faq.title"/>
+		<!-- TODO:directiveにする -->
+		<a class="create-view__header__icon" ng-click="isOpenCategory = !isOpenCategory">
+			<i class="fa fa-tag"/>
+			<p>{{iconLabelTag}}</p>
+		</a>
+		<input class="create-view__text" type="text" name="title" required="true" ng-maxlength="40" placeholder="FAQタイトルを入力してください" ng-model="faq.title" uib-tooltip="40字以内にしてください" tooltip-placement="bottom" tooltip-enable="submitForm.title.$error.maxlength"/>
+		<!-- directive化 -->
+		<!-- <hhf-text-form name="title" placeholder="FAQタイトルを入力してください" ng-model="faq.title" required="true" ng-maxlength="50"></hhf-text-form> -->
 	</div>
 	<!-- 入力エリア -->
 	<div class="create-view__contents">
@@ -15,17 +21,20 @@
 				<li><a ng-click="addOlTag()"><i class="fa fa-list-ol"/></a></li>
 				<li><a ng-click="addHrTag()"><i class="fa fa-minus"/></a></li>
 				<li><a ng-click="addQuoteTag()"><i class="fa fa-quote-right"/></a></li>
-<!-- 				<li><a href="" ng-click="openTalkScriptModal()" 
-						uib-tooltip="トークスクリプトの登録" 
-						tooltip-placement="bottom" tooltip-trigger="mouseenter">
-						<i class="fa fa-phone"/></a></li>
- -->				<!-- <li><a ><i class="fa fa-tags"/></a></li> -->
 			</ul>
-			<textarea class="create-view__textarea" rows="24" ng-model="faq.content" placeholder="FAQ本文を入力してください" eb-caret="cursorPosition" ></textarea>
+
+			<!-- カテゴリ選択パネル -->
+			<div ng-show="isOpenCategory" class="category" ng-class="{'is-selected': isSelected}" hhf-tag-select ng-model="categoryList"></div>
+
+			<!-- 回答入力エリア -->
+			<textarea class="create-view__textarea" name="content" required="required" rows="24" ng-model="faq.content" placeholder="FAQ本文を入力してください" eb-caret="cursorPosition"></textarea>
+			<label ng-show="submitForm.content.$touched && submitForm.content.$pristine">
+				<span ng-if="submitForm.content.$error.required">必須項目</span>
+			</label>
 		</div>
 		<!-- markdownプレビュー -->
 		<div class="preview-area">
-			<p>プレビュー</p>
+			<p>{{columnLabelPreview}}</p>
 			<p markdown-to-html="faq.content"></p>
 		</div>
 	</div>
@@ -36,8 +45,8 @@
 		<input type="hidden" ng-model="faq.status" ng-init="faq.status='valid'"/>
 		<input type="hidden" ng-init="faq.usefulCount='0'">
 		<div class="create-view__footer__item">
-			<button type="submit" class="btn-green" ng-hide="editMode">登録</button>
-			<button type="submit" class="btn-green" ng-show="editMode">更新</button>
+			<button type="submit" class="btn-blue" ng-hide="editMode" ng-disabled="submitForm.$invalid">{{buttonLabelSubmit}}</button>
+			<button type="submit" class="btn-blue" ng-show="editMode" ng-disabled="submitForm.$invalid">{{buttonLabelUpdate}}</button>
 		</div>
 	</div>	
 </form>

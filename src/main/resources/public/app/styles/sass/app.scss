@@ -9,6 +9,7 @@
 @import "base/util";
 @import "assets/stylesheets/bootstrap";
 @import "base/scss/font-awesome";
+@import "base/errorSet";
 
 @import "layout/footer/";
 @import "layout/navbar";
@@ -17,6 +18,8 @@
 @import "layout/manual";
 @import "layout/faq";
 @import "layout/notification";
+@import "layout/menu";
+@import "layout/importPanel";
 
 @import "module/col-header";
 @import "module/col-contents";
@@ -33,5 +36,8 @@
 @import "module/tree-view";
 @import "module/uitree-view";
 @import "module/markdown";
+@import "module/search-result";
+@import "module/telmode";
+@import "module/category";
 
 @import "state/is-open-sidebar";

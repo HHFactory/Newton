@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 
-	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService){
+	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout){
 
 		/**
 		 * 宛先リスト取得処理
@@ -27,16 +27,24 @@
 
 		/**
 		 * 登録ボタン押下処理
-		 * @param  {obj} notificationDAO 
+		 * @param  {obj} notification
 		 * @return {}                 
+		 * TODO:websocket
 		 */
-		$scope.submit = function(notificationDAO) {
-			notificationDAO.targetUserList = getSkillNameList($scope.selectSkillList);
-			notificationDAO.filePath = "";
-			console.dir(notificationDAO);
-			connectApiService.post(constURI.notification,notificationDAO).then(function(resultAPI){
-				sharedService.isShowCreateNotificationPanel = false;
-				$state.go('main');
+		$scope.submit = function(notification) {
+			notification.targetUserList = getSkillNameList($scope.selectSkillList);
+			notification.filePath = "";
+			connectApiService.post(constURI.notification,notification).then(function(resultAPI){
+				if(resultAPI.status == 201){
+					$timeout(function(){
+						$state.reload();
+						sharedService.isShowCreateNotificationPanel = false;
+					});
+				}else{
+					$timeout(function(){
+						swal("お知らせに失敗しました");
+					},1000);
+				}
 			});
 		};
 
@@ -63,5 +71,5 @@
 	}
 
 	//moduleへ登録
-	angular.module('indexModule').controller('CreateNotificationController',['$scope','$state','connectApiService','constURI','sharedService',CreateNotificationCtrl]);
+	angular.module('indexModule').controller('CreateNotificationController',['$scope','$state','connectApiService','constURI','sharedService','$timeout',CreateNotificationCtrl]);
 })();
