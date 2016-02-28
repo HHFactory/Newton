@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+//メニューバーレイアウトスタイル
+.l-menu {
+	@include l-column-set($menubarWidth);
+	background-color: $main-green;
+}
+
+//メニューアイコングループレイアウト
+.l-menu__list {
+	margin-top: 15px;
+	position: absolute;
+}

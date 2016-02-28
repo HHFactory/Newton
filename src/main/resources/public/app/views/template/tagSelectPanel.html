@@ -1,0 +1,23 @@
+<!-- FAQカテゴリ選択パネル -->
+<div class="category__header-wrapper">
+	<div class="category__head">タグ選択</div>
+	<!-- 選択済みカテゴリリスト -->
+	<ul class="category__selected">
+		<li ng-repeat="selectItem in selectedList">{{selectItem.name}}
+			<a ng-click="removeItem(selectItem)" class="category__icon"><i class="fa fa-times" /></a>
+		</li>
+	</ul>
+	<div class="category__search-area">
+		<input type="text" placeholder="検索/追加" class="category__searchbar" ng-model="query"/>
+		<a class="category__icon" ng-click="addCategory(query)"><i class="fa fa-plus" /></a>
+	</div>
+</div>
+<!-- 　全カテゴリリスト -->
+<ul class="category__list">
+	<li ng-repeat="item in categoryList | filter:query" ng-click="selectCategory(item)">{{item.name}}
+		<span class="category__icon">{{item.faqs.length}}</span>
+	</li>
+</ul>
+<div class="category__footer">
+	<button type="button" class="btn-green" ng-click="confirm()">OK</button>
+</div>
