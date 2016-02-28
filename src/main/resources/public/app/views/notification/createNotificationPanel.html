@@ -1,6 +1,6 @@
 <!-- 新規お知らせ登録パネル -->
 <div class="l-notification--create" ng-controller="CreateNotificationController">
-	<form class="form-without-margin" ng-submit="submit(notificationDAO)" style="margin-top:0px; margin-bottom:0px;">
+	<form class="form-without-margin" ng-submit="submit(notification)" style="margin-top:0px; margin-bottom:0px;">
 		<table class="create-panel">
 			<thead>
 				<tr>
@@ -10,7 +10,7 @@
 			</thead>
 			<tbody>
 				<!-- 宛先 -->
-				<tr class="create-panel__header-row" >　
+				<tr class="create-panel__row" >　
  					<td>
  						<tags-input ng-model="selectSkillList" placeholder="お知らせ対象を選択" replace-spaces-with-dashes="false">
  							<auto-complete source="loadSkills($query)" min-length="0" max-results="10" debounce-delay="0"></auto-complete>
@@ -18,12 +18,12 @@
  					</td>
 				</tr>
 				<!-- タイトル -->
-				<tr class="create-panel__header-row">
-					<td colspan="2"><input class="create-panel__title" type="text" placeholder="タイトル" ng-model="notificationDAO.title"></td>
+				<tr class="create-panel__row">
+					<td colspan="2"><input class="create-panel__title" type="text" placeholder="タイトル" ng-model="notification.title"></td>
 				</tr>
 				<!-- 本文 -->
-				<tr>
-					<td colspan="2"><textarea class="create-panel__contents" rows="24" ng-change="parseMarkDown()" ng-model="notificationDAO.content" placeholder="お知らせ本文を入力してください"></textarea></td>
+				<tr class="create-panel__row">
+					<td colspan="2"><textarea class="create-panel__contents" rows="24" ng-change="parseMarkDown()" ng-model="notification.content" placeholder="お知らせ本文を入力してください"></textarea></td>
 				</tr>
 			</tbody>
 			<tfoot>
@@ -31,12 +31,12 @@
 				<tr class="create-panel__footer-row">
 					<td  colspan="2">
 						<span>重要度</span>
-						<label><input type="radio" ng-model="notificationDAO.importance" ng-value="1">高</label>
-						<label><input type="radio" ng-model="notificationDAO.importance" ng-value="2">中</label>
-						<label><input type="radio" ng-model="notificationDAO.importance" ng-value="3">低</label>
-						<button class="btn-green" type="submit">送信</button>
-						<input type="hidden" ng-model="notificationDAO.createUser" ng-init="notificationDAO.createUser='user1'" />
-						<input type="hidden" ng-model="notificationDAO.updateUser" ng-init="notificationDAO.updateUser='user1'" />
+						<label><input type="radio" ng-model="notification.importance" ng-value="3">高</label>
+						<label><input type="radio" ng-model="notification.importance" ng-value="2">中</label>
+						<label><input type="radio" ng-model="notification.importance" ng-value="1">低</label>
+						<button class="btn-blue" type="submit">送信</button>
+						<input type="hidden" ng-model="notification.createUser" ng-init="notification.createUser='user1'" />
+						<input type="hidden" ng-model="notification.updateUser" ng-init="notification.updateUser='user1'" />
 					</td>
 				</tr>
 			</tfoot>

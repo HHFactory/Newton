@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+/**
+ * バリデーションエラー時のスタイルセット
+ */
+
+//エラー発生かつフォーカス外れ
+.ng-invalid.ng-touched {
+	border: solid 2px $main-red;
+}

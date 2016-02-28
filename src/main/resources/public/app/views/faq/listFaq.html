@@ -1,29 +1,47 @@
 <!-- FAQ一覧表示エリア -->
 <div class="l-faq" ng-controller="ListFaqController" ng-class="{'is-slide-right':isShowManual}" >
-	<!-- ヘッダエリア -->
-	<div class="col-header">
-		<span class="col-header__item col-header__title">よくあるお問い合わせ</span>
-		<!-- 新規登録アイコン -->
-		<a class="col-header__item" ng-click="create()" uib-popover="登録" popover-trigger="mouseenter" popover-placement="bottom"><i class="fa fa-pencil-square-o"/></a>
-		<!-- まとめて登録アイコン -->
-		<a href="" class="col-header__item" ng-click="importExcel()" uib-popover="まとめて登録" popover-trigger="mouseenter" popover-placement="bottom" ><i class="fa fa-upload"/></a>
-		<!-- 修正対象一覧アイコン -->
-		<a class="col-header__item" ng-click="checkModifyTaskList()" uib-popover="修正対象一覧" popover-trigger="mouseenter" popover-placement="bottom"><i class="fa fa-list-alt"/></a>
- 	</div>
+	<!-- 画面左-一覧エリア -->
+	<div class="l-faq--left">
+		<div class="col-header">
+			<span class="col-header__item col-header__title">{{columnTitle}}</span>
+			<!-- <a class="" ng-click="isOpenCategory = !isOpenCategory"><i class="fa fa-tag"/></a> -->
+	 	</div>
 
- 	<!-- 一覧表示エリア -->
- 	<div class="col-contents" >
-		<table class="table--hover" ng-repeat="faq in faqList"  ng-mouseover="isShowIcon = true" ng-mouseleave="isShowIcon = false">
-			<thead>
-				<tr>
-					<th><i class="fa fa-question-circle"/>{{faq.title}}</th>
-					<th class="table__header__item--right" ng-show="isShowIcon"><a ng-click="edit(faq)"><i class="fa fa-pencil"/></a></th>
-				</tr>
-			</thead>
-			<tbody >
-				<tr><td colspan="2" ng-click="openDetail(faq)">{{faq.content | abbreviate:150}}</td></tr>
-				<!-- <tr><td colspan="2" markdown-to-html="faq.content"></td></tr> -->
-			</tbody>
-		</table>
-	</div><!-- end一覧表示エリア -->	
+	 	<!-- 一覧表示エリア -->
+	 	<div class="col-contents">
+	 		<!-- カテゴリ選択パネル -->
+			<!-- <div ng-show="isOpenCategory" class="category" hhf-tag-select ng-model="categoryList"></div> -->
+			<!-- 一覧エリア -->
+			<div class="faq__title" ng-repeat="faq in faqList">
+				<a class="f-faq__title--link" ng-click="showDetail(faq)"><i class="fa fa-question-circle"/>{{faq.title}}</a>
+				<ul class="category-list--vertical">
+					<li ng-repeat="category in faq.categories"><i class="fa fa-tag"/>{{category.name}}</li>
+				</ul>
+			</div>
+
+		</div><!-- end一覧表示エリア -->
+	</div>
+
+	<!-- 画面右部-FAQ詳細エリア -->
+	<div class="l-faq--right" ng-class="{'is-slide-left':isWideMode}" ng-show="isShowDetail">
+		<div class="faq__detail">
+			<div class="faq__detail__header">
+				<h3>{{targetFaq.title}}</h3>
+				<ul class="category-list--vertical">
+					<span>#{{targetFaq.id}}</span>
+					<i class="fa fa-heart-o"/>{{usefulCount}}
+					<li ng-repeat="category in targetFaq.categories"><i class="fa fa-tag"/>{{category.name}}</li>
+				</ul>
+				<div class="button--group">
+					<button type="button" ng-click="edit(targetFaq)">{{buttonLabelEdit}}</button>
+					<button type="button" ng-click="delete(targetFaq)">{{buttonLabelDelete}}</button>
+				</div>
+			</div>
+			<div class="faq__content" ng-bind-html="content"></div>
+			<div class="l-faq--right__footer">
+				<button type="button" class="btn-white" ng-click="sendModifyReq()">{{buttonLabelModifyReq}}</button>
+				<button type="button" class="btn-blue" ng-click="useful(targetFaq)">{{buttonLabelUseful}}</button>
+			</div>
+		</div>
+	</div>
 </div>

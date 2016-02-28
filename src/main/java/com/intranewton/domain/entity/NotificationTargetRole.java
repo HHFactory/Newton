@@ -35,4 +35,5 @@ public class NotificationTargetRole implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="notification_id")
 	private Notification notification;
+
 }

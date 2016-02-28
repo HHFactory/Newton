@@ -1,0 +1,10 @@
+<div>
+	<!-- バリデーション付きinput-text -->
+	<input class="create-view__text" type="text" name="{{name}}" ng-required="required" ng-maxlength="ngMaxlength" placeholder="{{placeholder}}" ng-model="ngModel" ng-class="{'has-error':isError()}"/>
+	<!-- エラーメッセージ -->
+	<label ng-show="isError()">
+		<span ng-if="isRequiredError()">必須項目</span>
+		<span ng-if="isLengthError()">{{length}}字以内に修正してください。</span>	
+	</label>
+</div>
+

@@ -9,13 +9,14 @@
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/3.1.0/ui-grid.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/3.0.0/ng-tags-input.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 	<link rel="stylesheet" href="app/styles/sass/app.css">
 </head>
 <body>
 	<!-- ナビゲーションバー　-->
-	<div ng-include="'app/views/navigation/navbar.html'"></div>
+	<ng-include src="'app/views/navigation/navbar.html'" include-replace></ng-include>
 	<!-- メインエリア	 -->
-	<div class="l-main" ui-view></div>
+	<div ui-view></div>
 		
     <!-- 外部スクリプト -->
    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -27,50 +28,38 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/3.0.0/ng-tags-input.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.core.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/3.1.0/ui-grid.min.js"></script>
-	<!-- <script src="https://rawgit.com/gdi2290/angular-websocket/v1.0.9/angular-websocket.js"></script> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/11.2.3/ng-file-upload.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-tree/2.15.0/angular-ui-tree.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-showdown/1.1.0/ng-showdown.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 	<!-- アプリケーションスクリプト -->
 	<script src="app/scripts/app.js"></script>
 	<script src="app/scripts/routes.js"></script>
+	<script src="app/scripts/config/config_azure.js"></script>
 	<!-- <script src="app/scripts/config/config_local.js"></script> -->
-	<!-- <script src="app/scripts/config/config_azure.js"></script> -->
 	<script src="app/scripts/directives/caret.js"></script>
 	<script src="app/scripts/controller/MainController.js"></script>
 	<script src="app/scripts/controller/navigation/NavController.js"></script>
 	<script src="app/scripts/controller/manual/ManualController.js"></script>
+	<script src="app/scripts/controller/menu/MenuController.js"></script>
 	<script src="app/scripts/controller/faq/CreateFaqController.js"></script>
 	<script src="app/scripts/controller/faq/ListFaqController.js"></script>
-	<script src="app/scripts/controller/faq/DetailFaqController.js"></script>
-	<script src="app/scripts/controller/faq/ModifyTaskListController.js"></script>
-	<script src="app/scripts/controller/faq/ModifyTaskDetailController.js"></script>
+	<script src="app/scripts/controller/faq/ImportFaqController.js"></script>
 	<script src="app/scripts/controller/notification/CreateNotificationController.js"></script>
 	<script src="app/scripts/controller/notification/ListNotificationController.js"></script>
-	<script src="app/scripts/controller/notification/PopOverController.js"></script>	
 	<script src="app/scripts/controller/notification/SetTargetSkillModalController.js"></script>
-	<script src="app/scripts/controller/modal/ModalController.js"></script>
-	<script src="app/scripts/controller/modal/SendModalController.js"></script>
-	<script src="app/scripts/controller/modal/FileLoadModalController.js"></script>
+	<script src="app/scripts/controller/notification/DetailNotificationController.js"></script>
 	<script src="app/scripts/controller/modal/DictionaryModalController.js"></script>
 	<script src="app/scripts/controller/modal/FileUploadModalController.js"></script>
-	<script src="app/scripts/controller/searchresult/SearchResultController.js"></script>
 	<script src="app/scripts/filters/wordfilter.js"></script>
 	<script src="app/scripts/service/ConnectApiService.js"></script>
 	<script src="app/scripts/service/ConstValueService.js"></script>
-	<script src="app/scripts/service/ModalService.js"></script>
 	<script src="app/scripts/service/UserService.js"></script>
 	<script src="app/scripts/service/SharedService.js"></script>
-	<!-- <script ="/app/scripts/factory/fileReader.js"></script> -->
-	<script src="app/scripts/factory/websocketFactory.js"></script>
-	<script src="app/scripts/directives/slideMenuDirective.js"></script>
+	<script src="app/scripts/directives/IncludeReplace.js"></script>
 	<script src="app/scripts/directives/FileSelectDirective.js"></script>
 	<script src="app/scripts/directives/TreeViewDirective.js"></script>
-	<script src="app/scripts/directives/DraggableDirective.js"></script>
-	<script src="app/scripts/directives/DroppableDirective.js"></script>
-	<script src="app/scripts/directives/EnterKeyBinding.js"></script>
-	<script src="app/scripts/directives/HHFTreeView.js"></script>
-	<!-- <script src="app/scripts/directives/HHFTreeNode.js"></script> -->
+	<script src="app/scripts/directives/HHFTextForm.js"></script>
+	<script src="app/scripts/directives/HHFTagSelect.js"></script>
 </body>
 </html>

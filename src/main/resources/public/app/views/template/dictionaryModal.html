@@ -1,16 +1,15 @@
 <!-- 辞書モーダル -->
 <div class="dict-modal" ng-hide="isShowCreatePanel">
 	<div class="dict-modal__header">
-		<form role="search" ng-submit="search(query)" class="dict-modal__header__item">
-			<input type="text" class="search-bar" placeholder="&#xf002;キーワード" ng-model="query">
-			{{termList.length}}件見つかりました
-		</form>
+		<div class="dict-modal__header__item">
+			<input type="text" class="search-bar" placeholder="&#xf002;キーワード" ng-model="query">			
+		</div>
 		<a class="dict-modal__header__item" ng-click="toggleCreatePanel()"><i class="fa fa-plus-circle"/></a>
 	</div>
 	<div class="dict-modal__content">
 		<div class="dict-modal__content--left">
 			<ul class="dict-modal__item-list">
-				<li ng-repeat="term in termList" ng-click="openContent(term)">{{term.title}}</li>
+				<li ng-repeat="term in termList | filter:query" ng-click="openContent(term)">{{term.title}}</li>
 			</ul>
 		</div>
 		<div class="dict-modal__content--right">
@@ -23,13 +22,16 @@
 <!-- 用語登録パネル -->
 <form ng-submit="submit(term)" class="dict-modal" ng-show="isShowCreatePanel">
 	<div class="dict-modal__header">
-		<input class="dict-modal__header__item create-panel__title" type="text" placeholder="用語を入力してください" ng-model="term.title">
+		<div class="dict-modal__header__item">
+			<h4>新しい用語を登録する</h4>
+		</div>
 	</div>
 	<div class="dict-modal__content">
-		<textarea class="dict-modal__textarea" palceholder="用語の意味を入力してください" ng-model="term.content"></textarea>
+		<input class="dict-modal__text" type="text" placeholder="用語タイトルを入力してください" ng-model="term.title">
+		<textarea class="dict-modal__textarea" placeholder="用語の意味を入力してください" ng-model="term.content"></textarea>
 		<div class="dict-modal__footer">
-			<button type="buton" class="btn-gray" ng-click="toggleCreatePanel()">閉じる</button>
-			<button type="submit" class="btn-green">登録</button>		
+			<button type="buton" class="btn-white" ng-click="toggleCreatePanel()">閉じる</button>
+			<button type="submit" class="btn-blue">登録</button>		
 		</div>
 	</div>
 </form>

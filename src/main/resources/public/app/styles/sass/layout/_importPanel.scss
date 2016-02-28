@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+/** FAQ一括登録画面 */
+.l-import {
+	width: $importPanelWidth;
+	height: 100%;
+	right: 0;
+	z-index: 1000;
+	box-shadow: -2px 0px 1px rgba(0,0,0,0.4);
+	position: absolute;
+	background-color: $sub-green;
+}

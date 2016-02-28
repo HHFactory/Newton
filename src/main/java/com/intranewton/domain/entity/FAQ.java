@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -34,7 +33,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FAQ extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	private String title;
 	@Column(name="content",columnDefinition="TEXT")
 	private String content;
@@ -42,11 +41,12 @@ public class FAQ extends AbstractEntity implements Serializable {
 	@Column(name="useful_count",columnDefinition="int(11) DEFAULT '0'")
 	private Integer usefulCount;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany
 	@JoinTable(
 			name="faq_has_faq_category",
 			joinColumns=@JoinColumn(name="faq_id",referencedColumnName="id"),
-			inverseJoinColumns=@JoinColumn(name="faq_category",referencedColumnName="id")
+			inverseJoinColumns=@JoinColumn(name="faq_category_id",referencedColumnName="id")
 			)
 	private List<FAQCategory> categories;	
+	
 }

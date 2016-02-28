@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NotificationDTO {
+	private Integer id;
 	private String title;
 	private String content;
 	private String filePath;

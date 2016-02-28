@@ -1,10 +1,16 @@
-<div ng-controller="MainController">
+<div class="l-main" ng-controller="MainController">
+	<!-- メニューバー -->
+	<ng-include src="'app/views/menu/menubar.html'" include-replace></ng-include>
 	<!--マニュアルエリア-->
-	<div ng-include="'app/views/manual/manualbar.html'" ></div>
-	<!--FAQエリア-->
-	<div ng-include="'app/views/faq/listFaq.html'" ng-hide="checkModifyFaqList"></div>
-	<div ng-include="'app/views/faq/modifyTaskList.html'" ng-show="checkModifyFaqList" ></div>
+	<ng-include src="'app/views/manual/manual.html'" include-replace></ng-include>
 	<!--お知らせエリア-->
-	<div ng-include="'app/views/notification/listNotification.html'"></div>
-	<div ng-include="'app/views/faq/modifyTaskDetail.html'" ng-show="showModifyFaqDetail"></div>
+	<div ng-show="isShowNotification">
+		<ng-include src="'app/views/notification/listNotification.html'" include-replace></ng-include>
+	</div>
+	<!--FAQエリア-->
+	<ng-include src="'app/views/faq/listFaq.html'" include-replace></ng-include>
+	<!-- FAQ一括登録 -->
+	<div ng-show="isShowFaqImport">
+		<ng-include src="'app/views/faq/importFaqPanel.html'" include-replace></ng-include>
+	</div>
 </div>

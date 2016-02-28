@@ -1,5 +1,5 @@
 /**
- * 
+ * ファイル読み込み
  * @return {[type]} [description]
  */
 (function(){

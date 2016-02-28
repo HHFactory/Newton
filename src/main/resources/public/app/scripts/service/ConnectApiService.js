@@ -8,9 +8,6 @@
 'use strict';
 	
 	function ConnectApiService($http){
-		// var transform = function(data){
-		// 	return $.param(data);
-		// }
 
 		var ConnectAPI = {
 			/**
@@ -34,8 +31,8 @@
 			 * @return {[type]}
 			 */
 			put:function(apiURI,argdata){
-				var putData =$http.put(apiURI,argdata).success(function(data,status,headers,config){					
-					console.log('useful countup');
+				var putData =$http.put(apiURI,argdata).success(function(data,status,headers,config){
+					return status;
 				}).error(function(data,status,headers,config) {
 					return status;
 				});

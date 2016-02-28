@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+/** FAQタイトル用フォントセット（リンクあり） */
+.f-faq__title--link {
+	color: $faq-title-link;
+	margin-bottom: 3px;
+	font-size: 1.3rem;
+	letter-spacing: 0.4px;
+	line-height: 1.3rem;
+}
+
+//faqタイトルセット（リンクなし）
+.f-faq-set__title {
+	font-size: 1.25rem;
+	font-weight: 200;
+	letter-spacing: -1px;
+	line-height: 1.25rem;
+}

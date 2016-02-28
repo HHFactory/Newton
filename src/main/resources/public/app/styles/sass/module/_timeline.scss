@@ -1,15 +1,11 @@
 @charset "UTF-8";
 
+/** お知らせ用セット */
 .timeline {
 	width: 100%;
-	margin: 0px;
-	border-bottom: 2px solid;
-	border-color: $sub-gray;
+	border-radius: 5px;
+	margin-bottom: 5px;
 	background-color: white;
-	&:hover {
-		background-color: darken(white,10%);
-		cursor: pointer;		
-	}
 }
 
 .timeline__header {

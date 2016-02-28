@@ -19,9 +19,17 @@ public class TermRestController {
 	@Autowired
 	TermService termService;
 	
+	/**
+	 * 全用語取得
+	 * @return
+	 */
+	@RequestMapping(value="/api/v1/terms",method=RequestMethod.GET)
+	List<Term> getAllTerms() {
+		return termService.getAllTerms();
+	}
 	
 	/**
-	 * 用語取得
+	 * タイトル検索
 	 * @param title
 	 * @return
 	 */

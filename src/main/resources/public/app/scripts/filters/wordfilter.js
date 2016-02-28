@@ -2,6 +2,9 @@
 angular.module('indexModule')
   .filter('abbreviate', function () {
     return function (text, len, end) {
+      if(!angular.isString(text)){
+        return text;
+      }
       if (len === undefined) {
         // デフォルトは10文字
         len = 10;

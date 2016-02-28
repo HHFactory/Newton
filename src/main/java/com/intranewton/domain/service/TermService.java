@@ -14,6 +14,14 @@ public class TermService {
 	TermRepository termRepository;
 	
 	/**
+	 * 全用語取得
+	 * @return
+	 */
+	public List<Term> getAllTerms(){
+		return termRepository.findAllTermOrderByTitle();
+	}
+	
+	/**
 	 * タイトルのLIKE検索
 	 * @param title
 	 * @return

@@ -1,26 +1,30 @@
+@charset "UTF-8";
 
 /** layout.navigation */
 .l-navbar {
 	position:fixed;
 	top: 0;
-	left: 0; 
+	//left: $menubarWidth; 
 	margin: 0;
-	padding-left: $general-padding-left;
-	padding-right: $general-padding-right;
+	// padding-left: $general-padding-left;
+	// padding-right: $general-padding-right;
 	height: $navbarHeight;
 	width: 100%;
 	background-color:$main-green;
 	display: table;
 }
 
+/** navigation-leftArea */
 .l-navbar--left {
 	display: table-cell;
 	vertical-align: middle;
 	text-align: left;
 	height: 100%;
-
+//	left: $menubarWidth;
+	position: relative;
 }
 
+/** navigation-rightArea */
 .l-navbar--right {
 	display: table-cell;
 	vertical-align: middle;

@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+/** カテゴリ選択パネルベース */
+.category {
+	width: 300px;
+	height: 350px;
+	z-index: 1000;
+	border-radius: 5px;
+	background-color: $sidebar-color;
+	position: absolute;
+	top: -5px;
+	box-shadow: rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+	&:focus {
+		outline: none;
+	}
+}
+
+/** カテゴリ選択パネルヘッダ部 */
+.category__head {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background-color: gray;
+	color: white;
+	text-align: center;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+/** カテゴリ選択済み状態 */
+.is-selected {
+	color: $faq-title-link
+}
+
+.category__header-wrapper {
+	width: 100%;
+	max-height: $categoryWrapperHeight;
+}
+
+.category__search-area {
+	display: table;
+	width: 100%;
+	height: $category-searchbar;
+	line-height: $category-searchbar;
+	background-color: white;
+	padding-right: 15px;
+}
+
+.category__searchbar {
+	width: 260px;
+	height: $category-searchbar;
+	background-color: white;
+	padding-left: $general-padding;
+	padding-right: $general-padding;
+	&:focus{
+		outline: none;
+	}
+}
+
+/**  */
+.category__list {
+	width: 100%;
+	max-height: calc(100% - #{$categoryWrapperHeight});
+	margin-top: 5px;
+	background-color: white;
+	overflow: auto;
+	& > li {
+		list-style: none;
+		height: $category-list;
+		padding-left: $general-padding;
+		padding-right: $general-padding;
+		margin-bottom: 5px;
+		border-bottom: solid 1px $main-bg-gray;
+		line-height: 40px;
+		display: table;
+		width: 100%;
+		&:hover{
+			cursor: pointer;
+		}
+	}
+}
+
+.category__selected {
+	width: 100%;
+	max-height: 80px;
+	overflow: auto;
+	& > li {
+		list-style: none;
+		height: 20px;
+		line-height: 20px;
+		padding-left: $general-padding;
+		padding-right: $general-padding;
+		border-bottom: solid 1px $main-bg-gray;
+		display: table;
+		width: 100%;
+	}
+}
+
+.category__icon {
+	display: table-cell;
+	text-align: right;
+	height: 100%;
+}
+
+/** 横並びタグスタイル */
+.category-list--vertical {
+	width: 100%;
+	overflow-x: auto;
+	height: 20px;
+	line-height: 20px;
+	& > li {
+		list-style: none;
+		display: inline-block;
+		padding-left: 5px;
+		padding-right: 5px;
+		font-size: 0.5em;
+		vertical-align: middle;
+		color: $tag-color;
+	}
+}
+
+.category__footer {
+	width: 100%;
+	height: 40px;
+	display: table;
+	text-align: right;
+	line-height: 40px;
+	padding-right: 15px;
+}
+

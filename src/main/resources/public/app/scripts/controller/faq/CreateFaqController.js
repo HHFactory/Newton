@@ -6,29 +6,38 @@
 (function(){
 'use strict';
 
-	function CreateFaqCtrl($scope,$state,$uibModal,connectApiService,constURI,Upload,$location,$http,$stateParams){
-		//パラメータ取得
+	function CreateFaqCtrl($scope,$state,$uibModal,connectApiService,constURI,Upload,$location,$http,$stateParams,APP_CONF){
+		/** ラベル */
+		$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmit;
+		$scope.buttonLabelUpdate = APP_CONF.buttonLabelUpdate;
+		$scope.columnLabelPreview = APP_CONF.columnLabelPreview;
+		$scope.iconLabelTag = APP_CONF.iconLabelTag;
+
+		/** 選択済みカテゴリリスト　*/
+		$scope.selectedList = [];
+
+		//更新用パラメータ取得
 		if($stateParams.editTarget){
 			$scope.faq = {
 				title: $stateParams.editTarget["title"],
 				content: $stateParams.editTarget["content"],
-				id: $stateParams.editTarget["id"]
+				id: $stateParams.editTarget["id"],
+				categories: $stateParams.editTarget["categories"]
 			}
+
+			$scope.selectedList.push.apply($scope.selectedList,$scope.faq.categories);
+			//更新ボタンを表示
 			$scope.editMode = true;
 		}
 
 		/**
-		 * トークスクリプト登録モーダルを開く
-		 * @return {[type]} [description]
+		 * FAQカテゴリの取得
+		 * @param  {[type]} apiResult
+		 * @return {[type]}           
 		 */
-		$scope.openTalkScriptModal = function() {
-			$uibModal.open({
-				animation: false,
-				backdrop: true,
-				templateUrl: "app/views/template/createModal.html",
-				controller: "FileLoadModalController"
-			});
-		}
+		connectApiService.get(constURI.faqCategory).then(function(apiResult){
+			$scope.categoryList = apiResult.data;
+		});
 
 		/**
 		 * 登録ボタン押下処理 
@@ -36,16 +45,34 @@
 		 * @return {[type]}
 		 */
 		$scope.submit = function(faq){
+			faq.categories = $scope.selectedList;
 			if(!faq.id){
 				//登録
 				connectApiService.post(constURI.faq,faq).then(function(apiResult){
-					console.dir(faq);
-					$state.go('main');
+					if(apiResult.status == 201){
+						swal({
+							title: "登録完了",
+							type: "success",
+							timer: 1000,
+							showConfirmButton: false
+						},function(){
+							swal.close();
+							$state.go('main');
+						});
+					}else{
+						swal({
+							title: "登録失敗",
+							type: "error",
+							timer: 2000,
+							showConfirmButton: false
+						});
+						console.log(apiResult);
+					}
 				});
 			}else {
 				//更新
-				connectApiService.put(constURI.faq,faq).then(function(apiResult){
-					console.dir(apiResult);
+				var targetId = $scope.faq.id;
+				connectApiService.put(constURI.faq+targetId,faq).then(function(apiResult){
 					$state.go('main');
 				});
 			}
@@ -79,27 +106,19 @@
 		 * 画像アップロード処理
 		 */
 		 $scope.upload = function(file) {
-		 	console.log(file);
+		 	var fileName = file.name;
+		 	var basePath = APP_CONF.urlBase + "app/images/";
 		 	Upload.upload({
-		 		url: '/newton-1.0/upload/tmp',
-		 		data: {file:file},
+		 		url: '/newton-1.0/upload/image',
+		 		data: {image:file}
 		 	}).then(function(resp) {
-		 		//success
-		 		console.log($location.path());
-		 		console.log($http.get('/upload/tmp'));
-		 		var fileName = resp['config']['data']['file']['name'];
-		 		var filePath = resp['config']['url'];
-		 		console.log(fileName);
-		 		console.log(filePath);
+		 		var fullFileName = resp['data'];
 		 		var nameTag = "![" + fileName + "]";
-		 		var pathTag = "(" + filePath + "/" + fileName + ")";
+		 		var pathTag = "(" + basePath + fullFileName + ")";
 		 		var imageTag = nameTag + pathTag;
 		 		setMarkdownTag(imageTag);
 		 	},function(resp) {
 		 		//failed
-		 		console.log(resp);
-		 	},function(event) {
-		 		//notice
 		 	});
 		 }
 
@@ -107,21 +126,21 @@
 		 * add <h3>
 		 */
 		$scope.addHeaderTag = function() {
-			setMarkdownTag("### 見出しをここに入力");
+			setMarkdownTag("### 見出し");
 		}
 
 		/**
 		 * add <strong>
 		 */
 		$scope.addStrongTag = function() {
-			setMarkdownTag("**" + "ここに入力" + "**");
+			setMarkdownTag("**" + "強調" + "** ");
 		}
 
 		/**
 		 * add <ol>
 		 */
 		$scope.addOlTag = function(){
-			setMarkdownTag("1. ここに入力");
+			setMarkdownTag("1. リスト");
 		}
 
 		/**
@@ -135,18 +154,18 @@
 		 * add <blockquote>
 		 */
 		$scope.addQuoteTag = function() {
-			setMarkdownTag("> ここから引用を入力");
+			setMarkdownTag("> 引用");
 		}
 
 		/**
 		 * EnterKey押下時に、末尾に半角スペース×2を挿入
 		 */
-		$scope.addNewLineTag = function(){
-			setMarkdownTag("  ");
-		}
-
+		// $scope.$on('clickedEnter',function(event){
+		// 	event.stopPropagation();
+		// 	setMarkdownTag("  ");
+		// });
 	}
 
 	//モジュールへの登録
-	angular.module('indexModule').controller('CreateFaqController',['$scope','$state','$uibModal','connectApiService','constURI','Upload','$location','$http','$stateParams',CreateFaqCtrl]);
+	angular.module('indexModule').controller('CreateFaqController',['$scope','$state','$uibModal','connectApiService','constURI','Upload','$location','$http','$stateParams','APP_CONF',CreateFaqCtrl]);
 })();
