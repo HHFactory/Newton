@@ -37,15 +37,10 @@ public class ManualCategory implements Serializable{
 	private Integer id;
 	private String status;
 	private String name;
-	
-//	@OneToMany
-//	@JoinColumn(name="m_manual_category_id")
-//	private List<Manual> manuals;
-	
+		
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="manual_category_id")
 	private List<Manual> manuals;
-	
 	
 	@OneToMany(mappedBy="children")
 	List<ManualCategoryRelations> children;

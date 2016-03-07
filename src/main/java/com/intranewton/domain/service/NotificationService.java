@@ -8,6 +8,7 @@ package com.intranewton.domain.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,20 +79,11 @@ public class NotificationService {
 		List<Notification> notifications = getEntityByUserName(userName);
 		//更新日で降順ソート
 		Collections.sort(notifications, (n1,  n2) -> Long.compare(n2.getUpdateDatetime().getTime(), n1.getUpdateDatetime().getTime()));
-		List<NotificationDTO> notificationDTOList = new ArrayList<>();
-		for ( Notification notification : notifications ) {
-			NotificationDTO notificationDTO = new NotificationDTO();
-			notificationDTO.setId(notification.getId());
-			notificationDTO.setTitle(notification.getTitle());
-			notificationDTO.setContent(notification.getContent());
-			notificationDTO.setFilePath(notification.getFilePath());
-			notificationDTO.setImportance(notification.getImportance());
-			notificationDTO.setCreateUser(notification.getCreateUser());
-			notificationDTO.setReadMemberList(createReadUserList(notification.getNotificationTargetRoles(), userName));
-			notificationDTO
-			        .setUnreadMemberList(createUnReadUserList(notification.getNotificationTargetRoles(), userName));
-			notificationDTOList.add(notificationDTO);
-		}
+		List<NotificationDTO> notificationDTOList = 
+				notifications.stream()
+							 .map(notification -> new NotificationDTO(notification.getId(),notification.getTitle(),notification.getContent(),notification.getFilePath(),notification.getImportance(),notification.getCreateUser(), null, createReadUserList(notification.getNotificationTargetRoles(), userName),createUnReadUserList(notification.getNotificationTargetRoles(), userName)))
+							 .collect(Collectors.toList());
+		
 		return notificationDTOList;
 	}
 
@@ -103,11 +95,9 @@ public class NotificationService {
 	 */
 	private List<Notification> getEntityByUserName(String userName) {
 		List<NotificationTargetRole> targetRoleList = notificationTargetRoleRepository.findbyTargetUser(userName);
-		List<Notification> notificationList = new ArrayList<>();
-		for ( NotificationTargetRole targetRole : targetRoleList ) {
-			Notification notification = notificationRepository.findByTargetRoles(targetRole);
-			notificationList.add(notification);
-		}
+		List<Notification> notificationList = targetRoleList.stream()
+					  										.map(targetRole -> notificationRepository.findByTargetRoles(targetRole))
+					  										.collect(Collectors.toList());
 		return notificationList;
 	}
 

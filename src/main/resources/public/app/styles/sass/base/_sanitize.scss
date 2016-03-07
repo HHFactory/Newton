@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! sanitize.css v3.0.0 | CC0 1.0 Public Domain | github.com/10up/sanitize.css */
 
 $root-background-color: #FFFFFF !default;
@@ -36,6 +37,7 @@ audio:not([controls]) {
 body {
 	overflow-y: hidden;
 	height: 100vh;
+	font-family:"Avenir Next", Verdana, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック", "Yu Gothic", "メイリオ", Meiryo, Osaka, sans-serif;
 }
 button {
 	overflow: visible; // Internet Explorer 11-
@@ -375,4 +377,9 @@ b,strong {
 	&:focus {
 		clip: auto;
 	}
+}
+
+// ng-cloak
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }

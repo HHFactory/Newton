@@ -15,14 +15,11 @@ import com.intranewton.domain.dto.NotificationDTO;
 import com.intranewton.domain.dto.NotificationParam;
 import com.intranewton.domain.entity.Notification;
 import com.intranewton.domain.service.NotificationService;
-import com.intranewton.elastic.service.NotificationElasticService;
 
 @RestController
 public class NotificationRestController {
 	@Autowired
 	NotificationService notificationService;
-	@Autowired
-	NotificationElasticService notificationElasticService;
 	
 	/**
 	 * 渡したDAOからお知らせを登録する

@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import com.intranewton.domain.common.AbstractEntity;
 
@@ -31,7 +30,7 @@ import lombok.NoArgsConstructor;
 @Where(clause = "status='valid'")
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(indexName = "jdbc", type = "notification")
+//@Document(indexName = "jdbc", type = "notification")
 public class Notification extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 

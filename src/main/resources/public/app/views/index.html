@@ -3,10 +3,14 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+	<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"/> -->
+	<meta name="viewport" content="initial-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="apple-touch-icon" href="">
 	<base href="/newton-1.0/">
+
 	<title>Newton</title>
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/3.1.0/ui-grid.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/3.0.0/ng-tags-input.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
@@ -30,13 +34,14 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/3.1.0/ui-grid.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/11.2.3/ng-file-upload.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-showdown/1.1.0/ng-showdown.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 	<!-- アプリケーションスクリプト -->
 	<script src="app/scripts/app.js"></script>
 	<script src="app/scripts/routes.js"></script>
-	<script src="app/scripts/config/config_azure.js"></script>
-	<!-- <script src="app/scripts/config/config_local.js"></script> -->
+	<!-- <script src="app/scripts/config/config_azure.js"></script> -->
+	<script src="app/scripts/config/config_local.js"></script>
 	<script src="app/scripts/directives/caret.js"></script>
 	<script src="app/scripts/controller/MainController.js"></script>
 	<script src="app/scripts/controller/navigation/NavController.js"></script>
@@ -52,6 +57,7 @@
 	<script src="app/scripts/controller/modal/DictionaryModalController.js"></script>
 	<script src="app/scripts/controller/modal/FileUploadModalController.js"></script>
 	<script src="app/scripts/filters/wordfilter.js"></script>
+	<script src="app/scripts/filters/CategoryFilter.js"></script>
 	<script src="app/scripts/service/ConnectApiService.js"></script>
 	<script src="app/scripts/service/ConstValueService.js"></script>
 	<script src="app/scripts/service/UserService.js"></script>

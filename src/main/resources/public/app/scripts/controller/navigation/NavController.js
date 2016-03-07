@@ -9,15 +9,6 @@
 		var status = {status:"valid"};
 		
 		/**
-		 * 未完了ToDo一覧取得処理
-		 * @param  {[type]} apiResult){			$scope.ToDoList [description]
-		 * @return {[type]}                                [description]
-		 */
-		// connectApiService.get(constURI.getToDoList,status).then(function(apiResult){
-		// 	$scope.ToDoList = apiResult.data;
-		// });
-
-		/**
 		 * 検索処理
 		 */
 		 $scope.search = function(query){
@@ -30,6 +21,9 @@
 		  */
 		 $scope.home = function(){
 		 	$state.go('main');
+		 	$state.reload();
+		 	$scope.query = null;
+		 	sharedService.searchQuery = null;
 		 };
 
 	}

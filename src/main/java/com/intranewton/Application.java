@@ -18,7 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan
 @EnableJpaRepositories(includeFilters=@ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, value=JpaRepository.class))
 @EnableElasticsearchRepositories(includeFilters=@ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE,value=ElasticsearchRepository.class))
-@PropertySource({"classpath:config/Application-azure.properties"})
+@PropertySource({"classpath:config/Application-local.properties"})
 public class Application extends SpringBootServletInitializer{
 	
     @Override

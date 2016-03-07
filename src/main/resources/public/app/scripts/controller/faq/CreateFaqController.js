@@ -24,8 +24,10 @@
 				id: $stateParams.editTarget["id"],
 				categories: $stateParams.editTarget["categories"]
 			}
-
 			$scope.selectedList.push.apply($scope.selectedList,$scope.faq.categories);
+			$scope.categoryList = $scope.selectedList;
+			$scope.parsedMarkdown = marked($scope.faq.content);
+			console.log($scope.categoryList);
 			//更新ボタンを表示
 			$scope.editMode = true;
 		}
@@ -79,12 +81,25 @@
 		};
 
 		/**
-		 * 入力内容プレビュー処理 
+		 * 入力内容プレビュー処理 (showdown)
 		 * @return {[type]}
 		 */
-		$scope.parseMarkDown = function(){
-			$scope.parsedMarkdown = marked($scope.faq.content);
-		};
+		// $scope.parseMarkDown = function(){
+		// 	console.log('showdown');
+		// 	$scope.parsedMarkdown = marked($scope.faq.content);
+		// };
+
+		/**
+		 * 入力内容プレビュー(marked.js)
+		 * @return {[type]} [description]
+		 */
+		$scope.onChange = function(){
+			if($scope.faq.content != null){
+				$scope.parsedMarkdown = marked($scope.faq.content);
+			}else{
+				$scope.parsedMarkdown = "";
+			}
+		}
 
 		/**
 		 * markdown用のタグを現在カーソル位置に挿入

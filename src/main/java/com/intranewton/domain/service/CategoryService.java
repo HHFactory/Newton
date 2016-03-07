@@ -7,16 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.intranewton.domain.entity.FAQCategory;
 import com.intranewton.domain.repository.FAQCategoryRepository;
-import com.intranewton.domain.repository.ManualCategoryRepository;
 
 /**
- * マニュアル、FAQカテゴリ関連サービス
+ * FAQカテゴリ関連サービス
  *
  */
 @Service
 public class CategoryService {
-	@Autowired
-	ManualCategoryRepository categoryRepository;
 	@Autowired
 	FAQCategoryRepository faqCategoryRepository;
 

@@ -9,6 +9,7 @@
 	function ManualCtrl($scope,$uibModal,connectApiService,constURI,sharedService,APP_CONF){
 		/** カラムタイトル */
 		$scope.columnTitle = APP_CONF.columnTitleManual;
+		
 		/**
 		 * 閉じるボタン押下
 		 * @return {Boolean} [description]

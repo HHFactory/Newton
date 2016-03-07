@@ -39,6 +39,18 @@
 		    $scope.checkModifyFaqList = sharedService.checkModifyTask;
 		});
 
+		/**
+		 * マニュアル開閉フラグ監視
+		 * @param  {[type]} 
+		 * @param  {[type]} 
+		 * @return {[type]}  
+		 */
+		$scope.$watch(function(){
+			return sharedService.isShowManual;
+		},function(){
+			$scope.isShowManual = sharedService.isShowManual;
+		});
+
 
 	}	
 

@@ -1,18 +1,20 @@
 <!-- FAQ一覧表示エリア -->
-<div class="l-faq" ng-controller="ListFaqController" ng-class="{'is-slide-right':isShowManual}" >
+<div class="l-faq" ng-controller="ListFaqController">
 	<!-- 画面左-一覧エリア -->
 	<div class="l-faq--left">
 		<div class="col-header">
 			<span class="col-header__item col-header__title">{{columnTitle}}</span>
-			<!-- <a class="" ng-click="isOpenCategory = !isOpenCategory"><i class="fa fa-tag"/></a> -->
+			<a class="" ng-click="isOpenCategory = !isOpenCategory">
+				<i class="fa fa-filter"/>
+			</a>
 	 	</div>
 
 	 	<!-- 一覧表示エリア -->
 	 	<div class="col-contents">
 	 		<!-- カテゴリ選択パネル -->
-			<!-- <div ng-show="isOpenCategory" class="category" hhf-tag-select ng-model="categoryList"></div> -->
+			<div ng-cloak ng-show="isOpenCategory" class="category" hhf-tag-select ng-model="categoryList"></div>
 			<!-- 一覧エリア -->
-			<div class="faq__title" ng-repeat="faq in faqList">
+			<div class="faq__title" ng-repeat="faq in faqList | categoryFilter:selectedList">
 				<a class="f-faq__title--link" ng-click="showDetail(faq)"><i class="fa fa-question-circle"/>{{faq.title}}</a>
 				<ul class="category-list--vertical">
 					<li ng-repeat="category in faq.categories"><i class="fa fa-tag"/>{{category.name}}</li>
@@ -37,7 +39,9 @@
 					<button type="button" ng-click="delete(targetFaq)">{{buttonLabelDelete}}</button>
 				</div>
 			</div>
-			<div class="faq__content" ng-bind-html="content"></div>
+			<div class="faq__content">
+				<div ng-bind-html="content"></div>
+			</div>
 			<div class="l-faq--right__footer">
 				<button type="button" class="btn-white" ng-click="sendModifyReq()">{{buttonLabelModifyReq}}</button>
 				<button type="button" class="btn-blue" ng-click="useful(targetFaq)">{{buttonLabelUseful}}</button>

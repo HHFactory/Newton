@@ -3,8 +3,7 @@
  * @type {String}
  */
 angular.module('indexModule').constant('APP_CONF', {
-	urlBase: 'http://hhfactory.japanwest.cloudapp.azure.com:8080/newton-1.0/',
-	urlBase: 'http://localhost:8080/newton-1.0/',
+	urlBase: 'http://hhfactory.japanwest.cloudapp.azure.com:8080/',
 	columnTitleFaq: "FAQ",
 	columnTitleImportFaq: "FAQ一括登録",
 	columnTitleNotification: "お知らせ",
@@ -21,6 +20,7 @@ angular.module('indexModule').constant('APP_CONF', {
 	buttonLabelClose: "閉じる",
 	buttonLabelIsRead: "既読にする",
 	columnLabelPreview: "プレビュー",
+	iconLabelCreateNotification: "新規お知らせ",
 	iconLabelTag: "タグ追加",
 	iconLabelAddFaq: "FAQ追加",
 	iconLabelImportFaq: "一括登録",

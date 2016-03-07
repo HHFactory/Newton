@@ -20,6 +20,7 @@ angular.module('indexModule').constant('APP_CONF',{
 	buttonLabelClose: "閉じる",
 	buttonLabelIsRead: "既読にする",
 	columnLabelPreview: "プレビュー",
+	iconLabelCreateNotification: "新規お知らせ",
 	iconLabelTag: "タグ追加",
 	iconLabelAddFaq: "FAQ追加",
 	iconLabelImportFaq: "一括登録",

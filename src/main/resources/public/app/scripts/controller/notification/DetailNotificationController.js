@@ -6,10 +6,10 @@
 'use strict';
 	
 	//参照用モーダルコントローラ	
-	function DetailNotificadtionCtrl($scope,detailNotification,connectApiService,constURI,$showdown,$uibModalInstance){
+	function DetailNotificadtionCtrl($scope,detailNotification,connectApiService,constURI,$uibModalInstance){
 		console.log(detailNotification);
 		$scope.title= detailNotification.title;
-		$scope.content = $showdown.makeHtml(detailNotification.content);
+		// $scope.content = $showdown.makeHtml(detailNotification.content);
 		$scope.count = detailNotification.usefulCount;
 
 		/**
@@ -39,5 +39,5 @@
 	}
 
 	//moduleへ登録
-	angular.module('indexModule').controller('DetailNotificationController',['$scope','detailNotification','connectApiService','constURI','$showdown','$uibModalInstance',DetailNotificadtionCtrl]);
+	angular.module('indexModule').controller('DetailNotificationController',['$scope','detailNotification','connectApiService','constURI','$uibModalInstance',DetailNotificadtionCtrl]);
 })();

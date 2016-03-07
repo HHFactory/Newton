@@ -25,6 +25,7 @@
 		$scope.isClose = function(){
 			sharedService.isShowNotification = false;
 		}
+		
 		/**
 		 * お知らせを取得する
 		 * @param  {[type]}

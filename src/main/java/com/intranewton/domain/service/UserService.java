@@ -60,6 +60,7 @@ public class UserService {
 			List<String> userNameList = userRepository.findbyTargetRole(targetRole);
 			targetUserList.addAll(userNameList);
 		}
+		
 		// 重複削除して返却する
 		return targetUserList.stream().distinct().collect(Collectors.toList());
 	}

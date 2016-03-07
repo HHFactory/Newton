@@ -7,9 +7,8 @@
 (function(){
 'use strict';
 
-
-	var hostName = "http://hhfactory.japanwest.cloudapp.azure.com:8080/newton-1.0/";
-	// var hostName = "http://localhost:8080/newton-1.0/";
+	// var hostName = "http://hhfactory.japanwest.cloudapp.azure.com:8080/newton-1.0/";
+	var hostName = "http://localhost:8080/newton-1.0/";
 	angular.module('indexModule').value(
 		'constURI',{
 			//faq
@@ -27,15 +26,12 @@
 			//role&user
 			'roles': hostName + "api/v1/roles",
 			'users': hostName +"api/v1/users",
-			//todo
-			// 'postToDo': hostName +"api/v1/todo",
-			// 'getToDoList': hostName +"api/v1/todos",
-			// 'getToDoListByTargetUser': hostName +"api/v1/targettodos",
 			//term
 			'term': hostName + "api/v1/term",
 			'terms': hostName + "api/v1/terms",
 			//elasticsearch
-			'searchAPI': hostName +"api/v1/elastic/querysearch",
+			'searchAPI': hostName + "api/v1/elastic/querysearch",
+			'searchALL': hostName + "api/v1/elastic/matchall",
 			//upload&delete
 			'deleteFile': hostName + "delete/file"
 		}

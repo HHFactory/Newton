@@ -3,97 +3,98 @@
 /*
  * Normalization
  */
-/* line 33, base/_sanitize.scss */
+/* line 34, base/_sanitize.scss */
 audio:not([controls]) {
   display: none;
 }
 
-/* line 36, base/_sanitize.scss */
+/* line 37, base/_sanitize.scss */
 body {
   overflow-y: hidden;
   height: 100vh;
+  font-family: "Avenir Next", Verdana, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック", "Yu Gothic", "メイリオ", Meiryo, Osaka, sans-serif;
 }
 
-/* line 40, base/_sanitize.scss */
+/* line 42, base/_sanitize.scss */
 button {
   overflow: visible;
   -webkit-appearance: button;
 }
 
-/* line 46, base/_sanitize.scss */
+/* line 48, base/_sanitize.scss */
 details {
   display: block;
 }
 
-/* line 50, base/_sanitize.scss */
+/* line 52, base/_sanitize.scss */
 html {
   -ms-overflow-style: -ms-autohiding-scrollbar;
   overflow-y: hidden;
   -webkit-text-size-adjust: 100%;
 }
 
-/* line 56, base/_sanitize.scss */
+/* line 58, base/_sanitize.scss */
 input {
   -webkit-border-radius: 0;
 }
-/* line 59, base/_sanitize.scss */
+/* line 61, base/_sanitize.scss */
 input[type="button"], input[type="reset"], input[type="submit"] {
   -webkit-appearance: button;
 }
-/* line 63, base/_sanitize.scss */
+/* line 65, base/_sanitize.scss */
 input[type="number"] {
   width: auto;
 }
-/* line 67, base/_sanitize.scss */
+/* line 69, base/_sanitize.scss */
 input[type="search"] {
   -webkit-appearance: textfield;
 }
-/* line 70, base/_sanitize.scss */
+/* line 72, base/_sanitize.scss */
 input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
-/* line 77, base/_sanitize.scss */
+/* line 79, base/_sanitize.scss */
 main {
   display: block;
 }
 
-/* line 81, base/_sanitize.scss */
+/* line 83, base/_sanitize.scss */
 pre {
   overflow: auto;
 }
 
-/* line 85, base/_sanitize.scss */
+/* line 87, base/_sanitize.scss */
 progress {
   display: inline-block;
 }
 
-/* line 89, base/_sanitize.scss */
+/* line 91, base/_sanitize.scss */
 small {
   font-size: 75%;
 }
 
-/* line 93, base/_sanitize.scss */
+/* line 95, base/_sanitize.scss */
 summary {
   display: block;
 }
 
-/* line 97, base/_sanitize.scss */
+/* line 99, base/_sanitize.scss */
 svg:not(:root) {
   overflow: hidden;
 }
 
-/* line 101, base/_sanitize.scss */
+/* line 103, base/_sanitize.scss */
 template {
   display: none;
 }
 
-/* line 105, base/_sanitize.scss */
+/* line 107, base/_sanitize.scss */
 textarea {
   overflow: auto;
 }
 
-/* line 109, base/_sanitize.scss */
+/* line 111, base/_sanitize.scss */
 [hidden] {
   display: none;
 }
@@ -101,7 +102,7 @@ textarea {
 /*
  * Universal inheritance
  */
-/* line 117, base/_sanitize.scss */
+/* line 119, base/_sanitize.scss */
 *,
 ::before,
 ::after {
@@ -112,13 +113,13 @@ textarea {
   box-sizing: border-box;
 }
 
-/* line 128, base/_sanitize.scss */
+/* line 130, base/_sanitize.scss */
 * {
   font-size: inherit;
   line-height: inherit;
 }
 
-/* line 133, base/_sanitize.scss */
+/* line 135, base/_sanitize.scss */
 ::before,
 ::after {
   text-decoration: inherit;
@@ -128,7 +129,7 @@ textarea {
 /*
  * Opinionated defaults
  */
-/* line 147, base/_sanitize.scss */
+/* line 149, base/_sanitize.scss */
 *,
 ::before,
 ::after {
@@ -136,14 +137,14 @@ textarea {
   border-width: 0;
 }
 
-/* line 156, base/_sanitize.scss */
+/* line 158, base/_sanitize.scss */
 * {
   background-repeat: no-repeat;
   margin: 0;
   padding: 0;
 }
 
-/* line 164, base/_sanitize.scss */
+/* line 166, base/_sanitize.scss */
 :root {
   background-color: #FFFFFF;
   box-sizing: border-box;
@@ -153,12 +154,12 @@ textarea {
   text-rendering: optimizeLegibility;
 }
 
-/* line 175, base/_sanitize.scss */
+/* line 177, base/_sanitize.scss */
 a {
   text-decoration: none;
 }
 
-/* line 181, base/_sanitize.scss */
+/* line 183, base/_sanitize.scss */
 audio,
 canvas,
 iframe,
@@ -169,7 +170,7 @@ video {
   vertical-align: middle;
 }
 
-/* line 193, base/_sanitize.scss */
+/* line 195, base/_sanitize.scss */
 button,
 input,
 select,
@@ -177,7 +178,7 @@ textarea {
   background-color: transparent;
 }
 
-/* line 202, base/_sanitize.scss */
+/* line 204, base/_sanitize.scss */
 button,
 input,
 select,
@@ -188,7 +189,7 @@ textarea {
   font-weight: inherit;
 }
 
-/* line 214, base/_sanitize.scss */
+/* line 216, base/_sanitize.scss */
 button,
 [type="button"],
 [type="date"],
@@ -211,7 +212,7 @@ textarea {
   min-height: 1.5em;
 }
 
-/* line 238, base/_sanitize.scss */
+/* line 240, base/_sanitize.scss */
 code,
 kbd,
 pre,
@@ -219,75 +220,75 @@ samp {
   font-family: monospace, monospace;
 }
 
-/* line 247, base/_sanitize.scss */
+/* line 249, base/_sanitize.scss */
 nav ol,
 nav ul {
   list-style: none;
 }
 
-/* line 254, base/_sanitize.scss */
+/* line 256, base/_sanitize.scss */
 select {
   -moz-appearance: none;
   -webkit-appearance: none;
 }
-/* line 258, base/_sanitize.scss */
+/* line 260, base/_sanitize.scss */
 select::-ms-expand {
   display: none;
 }
-/* line 262, base/_sanitize.scss */
+/* line 264, base/_sanitize.scss */
 select::-ms-value {
   color: currentColor;
 }
 
-/* line 269, base/_sanitize.scss */
+/* line 271, base/_sanitize.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 276, base/_sanitize.scss */
+/* line 278, base/_sanitize.scss */
 textarea {
   resize: vertical;
 }
 
-/* line 280, base/_sanitize.scss */
+/* line 282, base/_sanitize.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   color: #111;
   line-height: 1em;
 }
 
-/* line 285, base/_sanitize.scss */
+/* line 287, base/_sanitize.scss */
 h1 {
   font-size: 2.5em;
 }
 
-/* line 288, base/_sanitize.scss */
+/* line 290, base/_sanitize.scss */
 h2 {
   font-size: 2em;
 }
 
-/* line 291, base/_sanitize.scss */
+/* line 293, base/_sanitize.scss */
 h3 {
   font-size: 1.5em;
 }
 
-/* line 294, base/_sanitize.scss */
+/* line 296, base/_sanitize.scss */
 h4 {
   font-size: 1.2em;
 }
 
-/* line 297, base/_sanitize.scss */
+/* line 299, base/_sanitize.scss */
 h5 {
   font-size: 1em;
 }
 
-/* line 300, base/_sanitize.scss */
+/* line 302, base/_sanitize.scss */
 h6 {
   font-size: 0.9em;
 }
 
-/* line 303, base/_sanitize.scss */
+/* line 305, base/_sanitize.scss */
 blockquote {
   color: #666666;
   margin: 0;
@@ -295,7 +296,7 @@ blockquote {
   border-left: 0.5em #EEE solid;
 }
 
-/* line 309, base/_sanitize.scss */
+/* line 311, base/_sanitize.scss */
 hr {
   display: block;
   height: 2px;
@@ -306,7 +307,7 @@ hr {
   padding: 0;
 }
 
-/* line 318, base/_sanitize.scss */
+/* line 320, base/_sanitize.scss */
 pre, code, kbd, samp {
   color: #000;
   font-family: monospace, monospace;
@@ -314,56 +315,61 @@ pre, code, kbd, samp {
   font-size: 0.98em;
 }
 
-/* line 324, base/_sanitize.scss */
+/* line 326, base/_sanitize.scss */
 pre {
   white-space: pre;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
-/* line 329, base/_sanitize.scss */
+/* line 331, base/_sanitize.scss */
 b, strong {
   font-weight: bold;
 }
 
-/* line 338, base/_sanitize.scss */
+/* line 340, base/_sanitize.scss */
 ::-moz-selection {
   background-color: #B3D4FC;
   color: #ffffff;
   text-shadow: none;
 }
 
-/* line 344, base/_sanitize.scss */
+/* line 346, base/_sanitize.scss */
 ::selection {
   background-color: #B3D4FC;
   color: #ffffff;
   text-shadow: none;
 }
 
-/* line 352, base/_sanitize.scss */
+/* line 354, base/_sanitize.scss */
 [aria-busy="true"] {
   cursor: progress;
 }
 
-/* line 358, base/_sanitize.scss */
+/* line 360, base/_sanitize.scss */
 [aria-controls] {
   cursor: pointer;
 }
 
-/* line 364, base/_sanitize.scss */
+/* line 366, base/_sanitize.scss */
 [aria-disabled] {
   cursor: default;
 }
 
-/* line 370, base/_sanitize.scss */
+/* line 372, base/_sanitize.scss */
 [hidden][aria-hidden="false"] {
   clip: rect(0 0 0 0);
   display: inherit;
   position: absolute;
 }
-/* line 375, base/_sanitize.scss */
+/* line 377, base/_sanitize.scss */
 [hidden][aria-hidden="false"]:focus {
   clip: auto;
+}
+
+/* line 383, base/_sanitize.scss */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }
 
 /** color */
@@ -6763,18 +6769,20 @@ input[type="button"].btn-block {
   height: calc(100vh - 50px);
   width: 100%;
   top: 50px;
-  position: relative;
+  position: fixed;
 }
 
 /** layout.sidebar */
-/* line 4, layout/_manual.scss */
+/* line 11, layout/_manual.scss */
 .l-manual {
-  width: 240px;
+  width: 400px;
   height: 100%;
   margin: 0;
   position: absolute;
   background-color: #AFD67F;
-  left: 60px;
+  right: 0;
+  z-index: 1000;
+  box-shadow: -2px 0px 1px rgba(0, 0, 0, 0.4);
 }
 
 /** FAQ一覧画面ベース */
@@ -7442,7 +7450,9 @@ input[type="button"].btn-block {
   width: 50%;
   height: 100%;
   padding-left: 10px;
+  padding-right: 10px;
   overflow: auto;
+  position: relative;
 }
 @media (max-width: 480px) {
   /* line 112, module/_create-view.scss */
@@ -7469,13 +7479,20 @@ input[type="button"].btn-block {
   }
 }
 
-/* line 136, module/_create-view.scss */
+/* line 137, module/_create-view.scss */
+.preview-area__content {
+  height: calc(100% - 30px);
+  position: absolute;
+  overflow: auto;
+}
+
+/* line 143, module/_create-view.scss */
 .preview-text {
   widows: 100%;
   overflow: auto;
 }
 
-/* line 142, module/_create-view.scss */
+/* line 149, module/_create-view.scss */
 .create-view__submit-btn {
   width: 60px;
 }
@@ -7935,63 +7952,59 @@ input[type="button"].btn-block {
   opacity: .8;
 }
 
-/* line 1, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding,
+/* line 2, module/_markdown.scss */
+.preview-area__content > .ng-binding,
+.faq__content > .ng-binding,
 .modal-body > .ng-binding {
   overflow: auto;
   word-wrap: break-word;
-  position: absolute;
-  padding: 0px 6px;
-  height: -webkit-calc(100% - 30px);
-  max-height: -webkit-calc(100% - 30px);
-  height: -moz-calc(100% - 30px);
-  max-height: -moz-calc(100% - 30px);
-  height: -ms-calc(100% - 30px);
-  max-height: -ms-calc(100% - 30px);
-  height: -o-calc(100% - 30px);
-  max-height: -o-calc(100% - 30px);
-  height: calc(100% - 30px);
-  max-height: calc(100% - 30px);
+  width: 100%;
+  height: 100%;
+  white-space: pre-wrap;
+  position: relative;
 }
-/* line 12, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > a,
+/* line 11, module/_markdown.scss */
+.preview-area__content > .ng-binding > a,
+.faq__content > .ng-binding > a,
 .modal-body > .ng-binding > a {
   color: #0645ad;
   text-decoration: none;
 }
-/* line 15, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > a:visited,
+/* line 14, module/_markdown.scss */
+.preview-area__content > .ng-binding > a:visited,
+.faq__content > .ng-binding > a:visited,
 .modal-body > .ng-binding > a:visited {
   color: #0b0080;
 }
-/* line 18, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > a:hover,
+/* line 17, module/_markdown.scss */
+.preview-area__content > .ng-binding > a:hover,
+.faq__content > .ng-binding > a:hover,
 .modal-body > .ng-binding > a:hover {
   color: #06e;
 }
-/* line 21, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > a:active,
+/* line 20, module/_markdown.scss */
+.preview-area__content > .ng-binding > a:active,
+.faq__content > .ng-binding > a:active,
 .modal-body > .ng-binding > a:active {
   color: #faa700;
 }
-/* line 24, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > a:focus,
+/* line 23, module/_markdown.scss */
+.preview-area__content > .ng-binding > a:focus,
+.faq__content > .ng-binding > a:focus,
 .modal-body > .ng-binding > a:focus {
   outline: thin dotted;
 }
-/* line 27, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > a:hover, .preview-area > .ng-isolate-scope > .ng-binding > a:active,
+/* line 26, module/_markdown.scss */
+.preview-area__content > .ng-binding > a:hover, .preview-area__content > .ng-binding > a:active,
+.faq__content > .ng-binding > a:hover,
+.faq__content > .ng-binding > a:active,
 .modal-body > .ng-binding > a:hover,
 .modal-body > .ng-binding > a:active {
   outline: 0;
 }
-/* line 31, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > p,
-.modal-body > .ng-binding > p {
-  margin: 1em 0;
-}
-/* line 34, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > img,
+/* line 30, module/_markdown.scss */
+.preview-area__content > .ng-binding > img,
+.faq__content > .ng-binding > img,
 .modal-body > .ng-binding > img {
   width: 100%;
   max-width: 100%;
@@ -7999,25 +8012,58 @@ input[type="button"].btn-block {
   -ms-interpolation-mode: bicubic;
   vertical-align: middle;
 }
-/* line 41, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > ul, .preview-area > .ng-isolate-scope > .ng-binding ol,
+/* line 37, module/_markdown.scss */
+.preview-area__content > .ng-binding > ul, .preview-area__content > .ng-binding ol,
+.faq__content > .ng-binding > ul,
+.faq__content > .ng-binding ol,
 .modal-body > .ng-binding > ul,
 .modal-body > .ng-binding ol {
   margin: 1em 0;
   padding: 0 0 0 2em;
 }
-/* line 45, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > ul,
+/* line 41, module/_markdown.scss */
+.preview-area__content > .ng-binding > ul,
+.faq__content > .ng-binding > ul,
 .modal-body > .ng-binding > ul {
   list-style: disc;
 }
-/* line 48, module/_markdown.scss */
-.preview-area > .ng-isolate-scope > .ng-binding > li p:last-child,
+/* line 44, module/_markdown.scss */
+.preview-area__content > .ng-binding > li p:last-child,
+.faq__content > .ng-binding > li p:last-child,
 .modal-body > .ng-binding > li p:last-child {
   margin: 0;
 }
+/* line 47, module/_markdown.scss */
+.preview-area__content > .ng-binding > table,
+.faq__content > .ng-binding > table,
+.modal-body > .ng-binding > table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: solid 1px #ccc;
+}
+/* line 52, module/_markdown.scss */
+.preview-area__content > .ng-binding > table tbody > tr,
+.faq__content > .ng-binding > table tbody > tr,
+.modal-body > .ng-binding > table tbody > tr {
+  height: 30px;
+  line-height: 1.2rem;
+  font-size: 1.2rem;
+}
+/* line 57, module/_markdown.scss */
+.preview-area__content > .ng-binding > table > tbody > tr:nth-child(2n+1),
+.faq__content > .ng-binding > table > tbody > tr:nth-child(2n+1),
+.modal-body > .ng-binding > table > tbody > tr:nth-child(2n+1) {
+  background: #D6DBDE;
+}
+/* line 60, module/_markdown.scss */
+.preview-area__content > .ng-binding > table > thead,
+.faq__content > .ng-binding > table > thead,
+.modal-body > .ng-binding > table > thead {
+  background-color: #ccc;
+}
 
-/* line 54, module/_markdown.scss */
+/* line 68, module/_markdown.scss */
 .modal-body > .ng-binding {
   position: relative;
 }
@@ -8195,21 +8241,22 @@ input[type="button"].btn-block {
 .category-list--vertical {
   width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
   height: 20px;
   line-height: 20px;
 }
-/* line 111, module/_category.scss */
+/* line 112, module/_category.scss */
 .category-list--vertical > li {
   list-style: none;
   display: inline-block;
   padding-left: 5px;
   padding-right: 5px;
-  font-size: 0.5em;
+  font-size: 0.8rem;
   vertical-align: middle;
   color: #A2B6C3;
 }
 
-/* line 122, module/_category.scss */
+/* line 123, module/_category.scss */
 .category__footer {
   width: 100%;
   height: 40px;

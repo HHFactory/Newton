@@ -16,9 +16,13 @@ public class ElasticsearchRestController {
 	ElasticSearchService elasticSearchService;
 	
 	@RequestMapping(value="/api/v1/elastic/querysearch",method=RequestMethod.GET)
-	public HashMap<String, Object> searchFaqsAndNotifications(@RequestParam String searchWord){	
-		return elasticSearchService.searchFaqsAndNotifications(searchWord);
+	public HashMap<String, Object> searchFaqs(@RequestParam String searchWord){	
+		return elasticSearchService.searchFaqs(searchWord);
 	}
 	
+	@RequestMapping(value="/api/v1/elastic/matchall",method=RequestMethod.GET)
+	public HashMap<String, Object> matchall(){	
+		return elasticSearchService.searchAll();
+	}
 	
 }

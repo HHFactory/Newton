@@ -5,7 +5,7 @@
 (function(){
 	'use strict';
 
-	function ListFaqCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout,$showdown,APP_CONF){
+	function ListFaqCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout,APP_CONF){
 		/** カラムタイトル */
 		$scope.columnTitle = APP_CONF.columnTitleFaq;
 		/** ラベル */
@@ -27,16 +27,38 @@
 		$scope.$watch(function(){
 			return sharedService.searchQuery;
 		},function(){
-			var searchWord = {searchWord:sharedService.searchQuery};
+			/** mysqlから取得 */
 			if(!sharedService.searchQuery){
-				connectApiService.get(constURI.faqs).then(function(apiResult){
-			 		$scope.faqList = apiResult.data;
+				// connectApiService.get(constURI.faqs).then(function(apiResult){
+			 // 		$scope.faqList = apiResult.data;
+			 // 	});
+			 	connectApiService.get(constURI.searchALL).then(function(apiResult){
+			 		$scope.faqList = apiResult.data["faqList"];
+			 		$scope.categoryList = apiResult.data["faqCategoryList"];
 			 	});
-			}else{
-				connectApiService.get(constURI.searchAPI,searchWord).then(function(apiResult){
-					console.log('elastic result: '+ apiResult.data);
-					$scope.faqList = apiResult.data.faqResult;
-				});
+			}
+			/** elasticsearchから検索 */
+			else{
+				var searchWord = {searchWord:sharedService.searchQuery};
+				var prefix = sharedService.searchQuery.substring(0,1);
+				// ID検索
+				if(prefix == '#'){
+					var targetID = sharedService.searchQuery.substr(1);
+					connectApiService.get(constURI.faqs+targetID).then(function(apiResult){
+						$scope.faqList = apiResult.data;
+					});
+				}
+				// タグ検索
+				else if(prefix == '@'){
+
+				}
+				// キーワード検索
+				else {
+					connectApiService.get(constURI.searchAPI,searchWord).then(function(apiResult){
+						$scope.faqList = apiResult.data["faqList"];
+						$scope.categoryList = apiResult.data["faqCategoryList"];
+					});
+				}
 			}
 		});
 
@@ -51,7 +73,8 @@
 	    	sharedService.isShowNotification = false;
 	    	$scope.targetFaq = faq;
 	    	$scope.usefulCount = faq.usefulCount;
-	    	$scope.content = $showdown.makeHtml(faq.content);
+	    	// $scope.content = $showdown.makeHtml(faq.content);
+	    	$scope.content = marked(faq.content);
 	    }
 
 		/**
@@ -111,17 +134,17 @@
 		 * マニュアルエリア開閉フラグチェック
 		 * @type {Boolean}
 		 */
-		$scope.$watch (function() {
-			return sharedService.isShowManual;
-		},function() {
-			$scope.isShowManual = sharedService.isShowManual;
-		});
+		// $scope.$watch (function() {
+		// 	return sharedService.isShowManual;
+		// },function() {
+		// 	$scope.isShowManual = sharedService.isShowManual;
+		// });
 
 
 
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('ListFaqController',['$scope','$state','connectApiService','constURI','sharedService','$timeout','$showdown','APP_CONF',ListFaqCtrl]);
+	angular.module('indexModule').controller('ListFaqController',['$scope','$state','connectApiService','constURI','sharedService','$timeout','APP_CONF',ListFaqCtrl]);
 })();
 
