@@ -10,9 +10,6 @@
 			restrict: 'EA',
 			templateUrl: 'app/views/template/tagSelectPanel.html',
 			link: function(scope,element,attrs,ctrl){
-				console.log(attrs.ngModel);
-				// scope.categoryList.concat(attrs.src);
-				scope.selectedList = [];
 
 				/**
 				 * 新規カテゴリの追加
@@ -80,5 +77,5 @@
 		}
 	}
 
-	angular.module('indexModule').directive('hhfTagSelect',['$timeout',hhfTagSelect]);
+	angular.module(appName).directive('hhfTagSelect',['$timeout',hhfTagSelect]);
 })();

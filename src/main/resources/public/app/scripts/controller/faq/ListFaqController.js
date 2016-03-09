@@ -1,25 +1,20 @@
 
 /**
- * faq一覧画面Controller
+ * FAQ一覧Controller
  */
 (function(){
 	'use strict';
 
-	function ListFaqCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout,$showdown,APP_CONF){
+	function ListFaqCtrl($scope,connectApiService,constURI,sharedService,APP_CONF){
 		/** カラムタイトル */
 		$scope.columnTitle = APP_CONF.columnTitleFaq;
-		/** ラベル */
-		$scope.buttonLabelEdit = APP_CONF.buttonLabelEdit;
-		$scope.buttonLabelDelete = APP_CONF.buttonLabelDelete;
-		$scope.buttonLabelModifyReq = APP_CONF.buttonLabelModifyReq;
-		$scope.buttonLabelUseful = APP_CONF.buttonLabelUseful;
 
 		/** 選択済みカテゴリリスト　*/
 		$scope.selectedList = [];
 		$scope.categoryList = [];
 
 		/**
-		 * FAQ一覧の取得（及び検索処理)
+		 * 接続先API判定
 		 * @param  {[type]} 
 		 * @param  {[type]} 
 		 * @return {[type]} 
@@ -27,101 +22,67 @@
 		$scope.$watch(function(){
 			return sharedService.searchQuery;
 		},function(){
-			var searchWord = {searchWord:sharedService.searchQuery};
+			/** 全件取得時 */
 			if(!sharedService.searchQuery){
-				connectApiService.get(constURI.faqs).then(function(apiResult){
-			 		$scope.faqList = apiResult.data;
-			 	});
-			}else{
-				connectApiService.get(constURI.searchAPI,searchWord).then(function(apiResult){
-					console.log('elastic result: '+ apiResult.data);
-					$scope.faqList = apiResult.data.faqResult;
-				});
+			 	getData(APP_CONF.urlBase + constURI.searchALL);
+			}
+			/** 検索時 */
+			else{
+				var searchWord = {searchWord:sharedService.searchQuery};
+				var prefix = sharedService.searchQuery.substring(0,1);
+				// ID検索
+				if(prefix == '#'){
+					var targetID = sharedService.searchQuery.substr(1);
+					getData(APP_CONF.urlBase + constURI.faqs+targetID);
+				}
+				// タグ検索
+				else if(prefix == '@'){
+
+				}
+				// キーワード検索
+				else {
+					getData(APP_CONF.urlBase + constURI.searchAPI,searchWord);
+				}
 			}
 		});
 
-	    /**
-	     * FAQタイトルリンク押下処理
-	     * @param  {[type]} faq
-	     * @return {[type]}    
-	     */
-	    $scope.showDetail = function(faq){
-	    	$scope.isShowDetail = true;
-	    	sharedService.isShowManual = false;
-	    	sharedService.isShowNotification = false;
-	    	$scope.targetFaq = faq;
-	    	$scope.usefulCount = faq.usefulCount;
-	    	$scope.content = $showdown.makeHtml(faq.content);
-	    }
-
 		/**
-		 * 編集リンク押下処理
-		 * @param  {[type]} faq 
-		 * @return {[type]}     
+		 * データ取得処理
+		 * @param  {[type]} targetURI [description]
+		 * @return {[type]}           [description]
 		 */
-		$scope.edit = function(faq) {
-			$state.go('createFaq',{editTarget:faq});
-		}
-
-		/**
-		 * 削除リンク押下処理
-		 * @param  {[type]} faq 
-		 * @return {[type]}     
-		 * TODO:処理をまとめる
-		 */
-		$scope.delete = function(faq) {
-			sweetAlert({
-				title: "このFAQを削除しますか?",
-				text: "削除した場合、データの復元はできません",
-				type: "warning",
-				showCancelButton: true,
-				confirmButtonText: "OK",
-				closeOnConfirm: false,
-				showLoaderOnConfirm: true
-			},
-			function(){
-				var targetId = faq.id;
-				connectApiService.delete(constURI.faq + targetId).then(function(resultAPI){
-					if(resultAPI.status == 204){
-						/** FAQリストを再取得 */
-						$timeout(function(){
-							swal("正常に削除されました");
-							$state.reload();
-						},1000);
-					}else{
-						$timeout(function(){
-							swal("削除に失敗しました");
-						},1000);
-					}
-				});
+		var getData = function(targetURI,param){
+			connectApiService.get(targetURI,param).then(function(apiResult){
+				sharedService.faqList = apiResult.data;
+				setScope();
 			});
 		}
 
 		/**
-		 * 役に立ったボタン押下処理
-		 * @return {[type]} [description]
+		 * scopeへデータ反映
 		 */
-		$scope.useful = function(faq){
-			connectApiService.put(constURI.faqs+faq.id).then(function(apiResult){
-				$scope.usefulCount = apiResult.data;
-			});
-		};
+		var setScope = function(){
+			$scope.faqList = sharedService.faqList["faqList"];
+			$scope.categoryList = sharedService.faqList["faqCategoryList"];
+		}
 
 		/**
-		 * マニュアルエリア開閉フラグチェック
-		 * @type {Boolean}
+		 * FAQタイトルリンク押下処理
+		 * @param  {[type]} faq
+		 * @return {[type]}    
 		 */
-		$scope.$watch (function() {
-			return sharedService.isShowManual;
-		},function() {
-			$scope.isShowManual = sharedService.isShowManual;
-		});
-
-
+		$scope.showDetail = function(faq){
+			$scope.isShowDetail = true;
+			sharedService.isShowManual = false;
+			sharedService.isShowNotification = false;
+			$scope.targetFaq = faq;
+			$scope.usefulCount = faq.usefulCount;
+			// $scope.content = marked(faq.content);
+		}
 
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('ListFaqController',['$scope','$state','connectApiService','constURI','sharedService','$timeout','$showdown','APP_CONF',ListFaqCtrl]);
+	angular.module(appName).controller('ListFaqController',['$scope','connectApiService','constURI','sharedService','APP_CONF',ListFaqCtrl]);
 })();
 

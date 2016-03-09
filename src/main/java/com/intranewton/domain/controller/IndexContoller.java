@@ -11,4 +11,5 @@ public class IndexContoller {
 	String indexURL(){		
 		return "app/views/index.html";
 	}
+	
 }

@@ -71,7 +71,5 @@
 	}
 
 	//moduleにfactoryを登録
-	angular.module('indexModule').factory('connectApiService',ConnectApiService);
-
-
+	angular.module(appName).service('connectApiService',['$http',ConnectApiService]);
 })();

@@ -13,5 +13,5 @@
 		}
 	}
 
-	angular.module('indexModule').directive('hhfTooltip',['$uibTooltip','$timeout',HHFTooltip]);
+	angular.module(appName).directive('hhfTooltip',['$uibTooltip','$timeout',HHFTooltip]);
 })();

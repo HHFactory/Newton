@@ -8,17 +8,22 @@
 	
 	function MenuCtrl($scope,$state,$uibModal,sharedService,APP_CONF){
 		/** ラベル */
+		$scope.labelCreateNotification = APP_CONF.iconLabelCreateNotification;
 		$scope.labelNotification = APP_CONF.columnTitleNotification;
 		$scope.labelAddFaq = APP_CONF.iconLabelAddFaq;
 		$scope.labelImportFaq = APP_CONF.iconLabelImportFaq;
 		$scope.labelManual = APP_CONF.columnTitleManual;
 		$scope.labelTerm = APP_CONF.iconLabelTerm;
+
 		/**
 		 * マニュアルアイコン押下処理
 		 * @return {[type]} [description]
 		 */
 		$scope.showManual = function(){
-			sharedService.isShowManual = true;
+			sharedService.isShowNotification = false;
+			sharedService.isShowFaqImport = false;
+			sharedService.isShowCreateNotificationPanel = false;
+			sharedService.isShowManual = !sharedService.isShowManual;
 		};
 
 		/**
@@ -26,8 +31,22 @@
 		 * @return {[type]} [description]
 		 */
 		$scope.showNotification = function(){
+			sharedService.isShowManual = false;
 			sharedService.isShowFaqImport = false;
+			sharedService.isShowCreateNotificationPanel = false;
+			sharedService.isShowNotification = !sharedService.isShowNotification;
+
+		}
+
+		/**
+		 * 新規お知らせアイコン押下処理
+		 * @return {[type]} [description]
+		 */
+		$scope.showCreateNotificationPanel = function(){
+			sharedService.isShowFaqImport = false;
+			sharedService.isShowManual = false;
 			sharedService.isShowNotification = true;
+			sharedService.isShowCreateNotificationPanel = !sharedService.isShowCreateNotificationPanel;
 		}
 
 		/**
@@ -43,7 +62,10 @@
 		 * @return {[type]} 
 		 */
 		$scope.importExcel = function(){
-			sharedService.isShowFaqImport = true;
+			sharedService.isShowManual = false;
+			sharedService.isShowNotification = false;
+			sharedService.isShowCreateNotificationPanel = false;
+			sharedService.isShowFaqImport = !sharedService.isShowFaqImport;
 		}
 
 		 /**
@@ -61,5 +83,5 @@
 	}
 
 
-	angular.module('indexModule').controller('MenuController', ['$scope','$state','$uibModal','sharedService','APP_CONF',MenuCtrl]);
+	angular.module(appName).controller('MenuController', ['$scope','$state','$uibModal','sharedService','APP_CONF',MenuCtrl]);
 })();

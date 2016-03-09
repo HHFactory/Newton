@@ -8,6 +8,7 @@ package com.intranewton.domain.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ public class FaqService {
 	FaqRepository faqRepository;
 	@Autowired
 	FAQCategoryRepository categoryRepository;
+	
 
 	/**
 	 * FAQ全件取得
@@ -30,9 +32,10 @@ public class FaqService {
 	 */
 	public List<FAQ> getFaqList() {
 		List<FAQ> faqs = faqRepository.findAll();
+		
 		return faqs;
 	}
-
+	
 	/**
 	 * FAQ.usefulCountインクリメント処理
 	 * @param id
@@ -59,10 +62,33 @@ public class FaqService {
 	 */
 	public Integer postFaqList(List<FAQ> faqs) {
 		for(FAQ faq:faqs) {
-			faq.setCategories(saveFaqCategory(faq.getCategories()));
-			faqRepository.save(faq);
+			//新規FAQタイトルの場合
+			if(findExistFaqId(faq) == null){
+				faq.setCategories(saveFaqCategory(faq.getCategories()));
+				faqRepository.save(faq);				
+			}
+			//既存FAQタイトルの場合(上書き）
+			else{
+				faq.setId(findExistFaqId(faq));
+				editFaq(faq);
+			}
 		}
 		return 200;
+	}
+	
+	/**
+	 * 既存FAQがあるかチェック
+	 * @param targetFaq
+	 * @return
+	 */
+	private Integer findExistFaqId(FAQ targetFaq) {
+		List<FAQ> existFaqs = faqRepository.findAll();
+		for(FAQ existFaq : existFaqs){
+			if(targetFaq.getTitle().equals(existFaq.getTitle())){
+				return existFaq.getId();
+			}
+		}
+		return null;
 	}
 	
 	/**
@@ -110,13 +136,15 @@ public class FaqService {
 	private List<FAQCategory> saveFaqCategory(List<FAQCategory> argCategoryList){
 		List<FAQCategory> savedCategoryList = new ArrayList<>();
 		List<FAQCategory> existCategoryList = categoryRepository.findAll();
-		List<String> existCategoryNameList = new ArrayList<>();
-		
+		if(argCategoryList == null){
+			return savedCategoryList;
+		}
+		//カテゴリ初回登録チェック
 		if(existCategoryList.size() > 0){
 			//既存カテゴリ名リストを作成
-			for(FAQCategory existCategory:existCategoryList){
-				existCategoryNameList.add(existCategory.getName());
-			}
+			List<String> existCategoryNameList = existCategoryList.stream().map(existCategory -> existCategory.getName()).collect(Collectors.toList());
+			
+			//引数のカテゴリリスト内の新規/既存をチェック
 			for(FAQCategory argCategory:argCategoryList){
 				//既存カテゴリの場合
 				if(existCategoryNameList.contains(argCategory.getName())){
@@ -124,11 +152,13 @@ public class FaqService {
 				}
 				//新規カテゴリの場合
 				else{
+					argCategory.setStatus("valid");
 					savedCategoryList.add(categoryRepository.save(argCategory));
 				}
-			}
+			}				
 		}else{
 			for(FAQCategory argCategory:argCategoryList){
+				argCategory.setStatus("valid");
 				savedCategoryList.add(categoryRepository.save(argCategory));
 			}
 		}

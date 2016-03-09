@@ -1,8 +1,17 @@
 @charset "UTF-8";
 
+// /** layout.sidebar */
+// .l-manual {
+// 	@include l-column-set($manualAreaWidth);
+// 	background-color: $manual-backcolor;
+// 	left: $menubarWidth;
+// }
+
 /** layout.sidebar */
 .l-manual {
-	@include l-column-set($manualAreaWidth);
+	@include l-column-set($rightPanelWidth);
 	background-color: $manual-backcolor;
-	left: $menubarWidth;
+	right: 0;
+	z-index: 1000;
+	box-shadow: -2px 0px 1px rgba(0,0,0,0.4);
 }

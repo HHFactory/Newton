@@ -75,6 +75,10 @@
 	background-color: $main-blue;
 }
 
+.importance--none {
+	display: none;
+}
+
 .timeline__footer {
 	display: table;
 	width: 100%;

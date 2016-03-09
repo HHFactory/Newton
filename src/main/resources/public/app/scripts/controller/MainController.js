@@ -2,7 +2,7 @@
 (function(){
 	'use strict';
 	
-	function MainCtrl($scope,sharedService){	
+	function MainCtrl($scope,sharedService,connectApiService,constURI){
 
 		/**
 		 * お知らせ開閉フラグ監視
@@ -29,21 +29,22 @@
 		});
 
 		/**
-		 * FAQ一覧、修正対象リスト画面の切り替え	
-		 * @type {[type]}
+		 * マニュアル開閉フラグ監視
+		 * @param  {[type]} 
+		 * @param  {[type]} 
+		 * @return {[type]}  
 		 */
-		$scope.checkModifyFaqList = sharedService.checkModifyTask;
-		$scope.$watch(function() {
-		    return sharedService.checkModifyTask;
-		}, function() {
-		    $scope.checkModifyFaqList = sharedService.checkModifyTask;
+		$scope.$watch(function(){
+			return sharedService.isShowManual;
+		},function(){
+			$scope.isShowManual = sharedService.isShowManual;
 		});
 
 
 	}	
 
 	//moduleへ登録
-	angular.module('indexModule').controller('MainController',['$scope','sharedService',MainCtrl]);
+	angular.module(appName).controller('MainController',['$scope','sharedService','connectApiService','constURI',MainCtrl]);
 })();
 
 

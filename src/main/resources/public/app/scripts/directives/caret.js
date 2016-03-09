@@ -42,6 +42,7 @@ angular.module('eb.caret',[]).directive('ebCaret', function() {
       });
 
       scope.$watch('ebCaret.set', function(newVal) {
+        console.log('ssss');
         if (typeof newVal === 'undefined') {
           return;
         }

@@ -83,5 +83,5 @@
 		};
 	}
 
-	angular.module('indexModule').directive('hhfTree',['$parse',HHFTree]).directive('hhfTreeNode',['$parse',HHFTreeNode]);
+	angular.module(appName).directive('hhfTree',['$parse',HHFTree]).directive('hhfTreeNode',['$parse',HHFTreeNode]);
 })()

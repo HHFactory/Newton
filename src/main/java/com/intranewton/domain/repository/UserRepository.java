@@ -12,7 +12,7 @@ import com.intranewton.domain.entity.User;
 /**
  * m_userテーブルリポジトリ
  */
-public interface UserRepository extends JpaRepository<User, Integer>{
+public interface UserRepository extends JpaRepository<User, String>{
 	//ロールリストから該当するユーザを取得する
 	@Query("SELECT u.name FROM User u Where :targetRole MEMBER OF u.roleList")
 	public List<String> findbyTargetRole(@Param("targetRole") Role targetRole);

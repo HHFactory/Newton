@@ -8,7 +8,6 @@
 @import "base/icon";
 @import "base/util";
 @import "assets/stylesheets/bootstrap";
-@import "base/scss/font-awesome";
 @import "base/errorSet";
 
 @import "layout/footer/";
@@ -39,5 +38,6 @@
 @import "module/search-result";
 @import "module/telmode";
 @import "module/category";
+// @import "module/overlay";
 
 @import "state/is-open-sidebar";

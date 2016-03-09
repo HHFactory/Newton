@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('indexModule').config(['$uibTooltipProvider',function($uibTooltipProvider){
+angular.module(appName).config(['$uibTooltipProvider',function($uibTooltipProvider){
 	$uibTooltipProvider.setTriggers({
 		'show':'hide'
 	});

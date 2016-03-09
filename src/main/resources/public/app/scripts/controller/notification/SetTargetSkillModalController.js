@@ -3,18 +3,18 @@
 (function(){
 'use strict';
 
-	function SetTargetSkillModalCtrl($scope,$modalInstance,targetSkill,connectApiService,constURI){
+	function SetTargetSkillModalCtrl($scope,$modalInstance,targetSkill,connectApiService,constURI,APP_CONF){
 		$scope.selection = [];
 		if(targetSkill.length > 0){
 			$scope.selection.push(targetSkill.skill);
-		};	
+		};
 
 		/**
 		 * スキルリストの取得
 		 * @param  {[type]} resultAPI){			$scope.targetSkills [description]
 		 * @return {[type]}                                    [description]
 		 */
-		connectApiService.get(constURI.roles).then(function(resultAPI){
+		connectApiService.get(APP_CONF.urlBase + constURI.roles).then(function(resultAPI){
 			$scope.targetSkills = resultAPI.data;
 		});
 
@@ -25,13 +25,11 @@
 		 */
 		$scope.toggleSelection = function toggleSelection(targetSkill) {
 		    var idx = $scope.selection.indexOf(targetSkill.skill);
-		    console.log('index:'+idx);
 		    if (idx > -1) {
 		        $scope.selection.splice(idx, 1);
 		    }
 		    else {
 		        $scope.selection.push(targetSkill.skill);
-		        console.log($scope.selection);
 		    }
 		};
 
@@ -53,6 +51,6 @@
 	}
 
 	//moduleへ登録する
-	angular.module('indexModule').controller('SetTargetSkillModalController',['$scope','$modalInstance','connectApiService','constURI',SetTargetSkillModalCtrl]);
+	angular.module(appName).controller('SetTargetSkillModalController',['$scope','$modalInstance','connectApiService','constURI','APP_CONF',SetTargetSkillModalCtrl]);
 })();
 

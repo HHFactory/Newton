@@ -58,8 +58,7 @@ public class FileStorageController {
 		manualService.deleteFileInfo(targetId);
 		//ファイル削除処理
 		String filePath = fileDirectory + targetFileName;
-		FileStorageService fileStorageService = new FileStorageService();
-		fileStorageService.deleteFile(filePath);
+		new FileStorageService().deleteFile(filePath);
 	}
 	
 	/**

@@ -2,21 +2,12 @@
 (function(){
 	'use strict';
 
-	function NavCtrl($scope,$state,connectApiService,constURI,sharedService,$uibModal){
+	function NavCtrl($scope,$state,sharedService){
 
 		//テスト用変数
 		var targetUser = {userName:"user1"};
 		var status = {status:"valid"};
 		
-		/**
-		 * 未完了ToDo一覧取得処理
-		 * @param  {[type]} apiResult){			$scope.ToDoList [description]
-		 * @return {[type]}                                [description]
-		 */
-		// connectApiService.get(constURI.getToDoList,status).then(function(apiResult){
-		// 	$scope.ToDoList = apiResult.data;
-		// });
-
 		/**
 		 * 検索処理
 		 */
@@ -30,10 +21,13 @@
 		  */
 		 $scope.home = function(){
 		 	$state.go('main');
+		 	$scope.query = null;
+		 	sharedService.searchQuery = null;
+		 	// $state.reload();
 		 };
 
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('NavController',['$scope','$state','connectApiService','constURI','sharedService','$uibModal',NavCtrl]);
+	angular.module(appName).controller('NavController',['$scope','$state','sharedService', NavCtrl]);
 })();
