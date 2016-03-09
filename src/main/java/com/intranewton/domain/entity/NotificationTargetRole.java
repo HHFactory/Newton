@@ -2,6 +2,7 @@ package com.intranewton.domain.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -37,5 +38,8 @@ public class NotificationTargetRole implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="notification_id")
 	private Notification notification;
+	
+	@Column(name="notification_id",insertable=false,updatable=false)
+	private Integer notificationId;
 
 }

@@ -1,15 +1,16 @@
 <!-- お知らせ詳細モーダル -->
-
 <div class="modal-header">
 	<div class="modal-title">
 		<h3>{{title}}</h3>
 	</div>
 </div>
-
 <div class="modal-body">
+	<div class="button--group">
+		<!-- <button type="button" ng-click="edit(targetId)">{{buttonLabelEdit}}</button> -->
+		<button type="button" ng-click="delete(targetId)">{{buttonLabelDelete}}</button>
+	</div>
 	<div ng-bind-html="content"></div>
 </div>
-
 <div class="modal-footer">
 	<button class="btn btn-default" ng-click="cancel()">閉じる</button>
 	<button class="btn btn-primary" ng-click="isReaded()">既読にする</button>

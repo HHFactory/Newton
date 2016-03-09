@@ -70,15 +70,16 @@
 		 * @return {[type]} 
 		 */
 		var createCategoryList = function(categoryStr){
-			var categoryList = [];
-			var categoryName = categoryStr.split(",");
-			console.log(categoryName);
-			for(var i =0; i<categoryName.length; i++){
-				var category = {};
-				category["id"] = "";
-				category["name"] = categoryName[i];
-				category["status"] = "valid";
-				categoryList.push(category);
+			if(categoryStr){
+				var categoryList = [];
+				var categoryName = categoryStr.split(",");
+				for(var i =0; i<categoryName.length; i++){
+					var category = {};
+					category["id"] = "";
+					category["name"] = categoryName[i];
+					category["status"] = "valid";
+					categoryList.push(category);
+				}
 			}
 			return categoryList;
 		}
@@ -91,8 +92,9 @@
 		 */
 		$scope.submit = function(faqData) {
 			var postParm = formatPostParam(faqData);
+			$scope.loading = true;
 			if(validFlag === true){
-				connectApiService.post(constURI.faqs,postParm).then(function(apiResult){
+				connectApiService.post(APP_CONF.urlBase + constURI.faqs,postParm).then(function(apiResult){
 					if(apiResult.status == 201){
 						swal({
 							title: "登録完了",
@@ -112,6 +114,8 @@
 							showConfirmButton: false
 						});
 					}
+				}).finally(function(){
+					$scope.loading = false;
 				});
 			}
 		}
@@ -126,5 +130,5 @@
 
 	}
 
-	angular.module('indexModule').controller('ImportFaqController',['$scope','$state','connectApiService','constURI','$timeout','sharedService','APP_CONF',ImportFaqCtrl]);
+	angular.module(appName).controller('ImportFaqController',['$scope','$state','connectApiService','constURI','$timeout','sharedService','APP_CONF',ImportFaqCtrl]);
 })();

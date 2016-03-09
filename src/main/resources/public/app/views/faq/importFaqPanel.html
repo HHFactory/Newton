@@ -2,16 +2,17 @@
 <div class="l-import" ng-controller="ImportFaqController">
 	<!-- ページ上部 -->
 	<div class="col-header">
-		<span class="col-header__item col-header__title">{{columnTitle}}</span>
+		<span class="col-header__title">{{columnTitle}}</span>
 		<a class="col-header__icon" ng-click="isClose()"><i class="fa fa-times"/></a>
 	</div>
-	<!--  -->
+	<!-- 読み込み表示部 -->
 	<div class="col-contents">
 		<form ng-submit="submit(faqData)" name="submitForm">
 			<input type="file" ng-file-select="onFileSelect($files)">
 			<div class="grid-base" ui-grid="{data:faqData}" ui-grid-resize-columns></div>
 			<div class="col-footer">
-				<button type="submit" class="btn-blue">{{buttonLabelSubmit}}</button>				
+				<button type="submit" class="btn-blue" ng-hide="loading">{{buttonLabelSubmit}}</button>
+				<button type="submit" class="btn-blue" ng-disabled="loading" ng-show="loading"><i class="fa fa-spinner fa-spin"/>登録中</button>
 			</div>
 		</form>
 	</div>

@@ -128,8 +128,6 @@ $tagIconHeight: 40px;
 		max-width: 600px;
     }
 	height: 100%;
-	padding-left: 10px;
-	padding-right: 10px;
 	overflow: auto;
 	position: relative;
 }
@@ -138,6 +136,8 @@ $tagIconHeight: 40px;
 	height: calc(100% - #{$item-list-height});
 	position: absolute;
 	overflow: auto;
+	width: 100%;
+	padding: 0px 10px;
 }
 
 .preview-text {

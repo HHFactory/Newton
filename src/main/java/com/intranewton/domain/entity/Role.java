@@ -15,7 +15,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * m_roleテーブルエンティティ
+ * roleテーブルエンティティ
  */
 @Data
 @AllArgsConstructor

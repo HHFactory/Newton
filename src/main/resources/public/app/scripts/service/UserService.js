@@ -9,12 +9,13 @@
 	function UserService(){
 		var readMemberList = [];
 		var unreadMemberList =[];
+
+		/**
+		 * 既読者・未読者リストを作成する
+		 * @param  {[type]}
+		 * @return {[type]}
+		 */
 		var userService = {
-			/**
-			 * 既読者・未読者リストを作成する
-			 * @param  {[type]}
-			 * @return {[type]}
-			 */
 			createReadUserList:function(argData){
 				if( !argData )
 					return false;
@@ -36,5 +37,5 @@
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').factory('UserService',UserService);
+	angular.module(appName).factory('UserService',UserService);
 })();

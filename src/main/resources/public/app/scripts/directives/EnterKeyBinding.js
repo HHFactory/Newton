@@ -21,5 +21,5 @@
 	    };
 	}
 
-    angular.module('indexModule').directive('enterDetect',[EnterKeyDetect]);
+    angular.module(appName).directive('enterDetect',[EnterKeyDetect]);
 })();

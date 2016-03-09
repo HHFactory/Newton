@@ -48,5 +48,5 @@
 		}
 	} 
 
-	angular.module('indexModule').controller('FileUploadModalController',['$scope','$state','Upload','$uibModalInstance','connectApiService','constURI','params',FileUploadCtrl]);
+	angular.module(appName).controller('FileUploadModalController',['$scope','$state','Upload','$uibModalInstance','connectApiService','constURI','params',FileUploadCtrl]);
 })();

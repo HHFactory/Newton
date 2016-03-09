@@ -6,7 +6,7 @@
 (function(){
 'use strict';
 	
-	function ManualCtrl($scope,$uibModal,connectApiService,constURI,sharedService,APP_CONF){
+	function ManualCtrl($scope,$state,$uibModal,connectApiService,constURI,sharedService,APP_CONF){
 		/** カラムタイトル */
 		$scope.columnTitle = APP_CONF.columnTitleManual;
 		
@@ -23,8 +23,9 @@
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
-		connectApiService.get(constURI.manuals).then(function(resultAPI){
-			$scope.data = resultAPI.data;
+		connectApiService.get(APP_CONF.urlBase + constURI.manuals).then(function(apiResult){
+			sharedService.manualList = apiResult.data;
+			$scope.data = sharedService.manualList;
 		});
 
 
@@ -39,21 +40,6 @@
 				animation: false
 			});
 		}
-
-		/**
-		 * 子カテゴリを追加
-		 * @param  {[type]} scope [description]
-		 * @return {[type]}       [description]
-		 */
-		$scope.newSubItem = function (scope,itemName) {
-			var nodeData = scope.$modelValue;
-			console.dir(scope.$modelValue);
-			nodeData.children.push({
-				id: "",
-				name: itemName,
-				children: []
-			});
-		};
 
 		/**
 		 * ファイルを追加するカテゴリ情報を受け取る
@@ -103,15 +89,15 @@
 		 */
 		var deleteFile = function(manual){
 			var param = {id:manual["id"], name:manual["fullFileName"]};
-			connectApiService.delete(constURI.deleteFile,param).then(function(resultAPI){
-				//TODO:１つにまとめる
-				connectApiService.get(constURI.manuals).then(function(resultAPI){
-					$scope.data = resultAPI.data;
-				});
+			connectApiService.delete(APP_CONF.urlBase + constURI.deleteFile,param).then(function(resultAPI){
+				// connectApiService.get(constURI.manuals).then(function(resultAPI){
+				// 	$scope.data = resultAPI.data;
+				// });
+				$state.reload();
 			});
 		}
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('ManualController',['$scope','$uibModal','connectApiService','constURI','sharedService','APP_CONF',ManualCtrl]);
+	angular.module(appName).controller('ManualController',['$scope','$state','$uibModal','connectApiService','constURI','sharedService','APP_CONF',ManualCtrl]);
 })();

@@ -83,5 +83,5 @@
 	}
 
 
-	angular.module('indexModule').controller('MenuController', ['$scope','$state','$uibModal','sharedService','APP_CONF',MenuCtrl]);
+	angular.module(appName).controller('MenuController', ['$scope','$state','$uibModal','sharedService','APP_CONF',MenuCtrl]);
 })();

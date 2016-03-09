@@ -21,6 +21,7 @@
 				<li><a ng-click="addOlTag()"><i class="fa fa-list-ol"/></a></li>
 				<li><a ng-click="addHrTag()"><i class="fa fa-minus"/></a></li>
 				<li><a ng-click="addQuoteTag()"><i class="fa fa-quote-right"/></a></li>
+				<li><a ng-click="addTableTag()"><i class="fa fa-table"/></a></li>
 			</ul>
 
 			<!-- カテゴリ選択パネル -->
@@ -35,9 +36,8 @@
 		<!-- markdownプレビュー -->
 		<div class="preview-area">
 			<p>{{columnLabelPreview}}</p>
-			<!-- <p markdown-to-html="faq.content"></p> -->
 			<div class="preview-area__content">
-				<div ng-bind-html="parsedMarkdown" ></div>
+				<div hhf-markdown-to-html="faq.content"></div>
 			</div>
 		</div>
 	</div>
@@ -48,8 +48,12 @@
 		<input type="hidden" ng-model="faq.status" ng-init="faq.status='valid'"/>
 		<input type="hidden" ng-init="faq.usefulCount='0'">
 		<div class="create-view__footer__item">
-			<button type="submit" class="btn-blue" ng-hide="editMode" ng-disabled="submitForm.$invalid">{{buttonLabelSubmit}}</button>
+			<button type="submit" class="btn-blue" ng-hide="editMode" ng-disabled="submitForm.$invalid">
+				<span ng-show="loading"><i class="fa fa-spinner fa-spin"/></span>
+				{{buttonLabelSubmit}}
+			</button>
+
 			<button type="submit" class="btn-blue" ng-show="editMode" ng-disabled="submitForm.$invalid">{{buttonLabelUpdate}}</button>
 		</div>
-	</div>	
+	</div>
 </form>

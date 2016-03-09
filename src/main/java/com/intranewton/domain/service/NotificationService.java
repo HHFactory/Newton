@@ -146,9 +146,17 @@ public class NotificationService {
 	 * @param id
 	 * @param userName
 	 */
-//	public void readNotification(Integer id, String userName){
-//		notificationTargetRoleRepository.isRead(id, userName);
-//	}
+	public void readNotification(Integer id, String userName){
+		notificationTargetRoleRepository.isRead(id, userName);
+	}
+	
+	/**
+	 * 削除処理
+	 * @param id
+	 */
+	public void deleteNotification(Integer id){
+		notificationRepository.delete(id);
+	}
 
 
 }

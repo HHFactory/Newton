@@ -20,6 +20,7 @@ import com.intranewton.domain.entity.FAQCategory;
 import com.intranewton.domain.repository.FAQCategoryRepository;
 import com.intranewton.domain.repository.FaqRepository;
 import com.intranewton.elastic.document.FaqDoc;
+import com.intranewton.elastic.repository.FAQElasticsearchRepository;
 
 /**
  * elasticsearchを使った検索処理
@@ -33,6 +34,8 @@ public class ElasticSearchService {
 	private FAQCategoryRepository categoryRepository;
 	@Autowired
 	FaqRepository faqRepository;
+	@Autowired
+	FAQElasticsearchRepository elasticsearchRepository;
 	
 	/**
 	 * FAQリスト、FAQカテゴリリストを返却する
@@ -47,6 +50,10 @@ public class ElasticSearchService {
 		return searchResultMap;
 	}
 	
+	/**
+	 * 全件取得処理
+	 * @return
+	 */
 	public HashMap<String, Object> searchAll(){
 		HashMap<String, Object> searchResultMap = new HashMap<>();
 		List<FAQ> faqList = faqRepository.findAll();
@@ -70,19 +77,6 @@ public class ElasticSearchService {
 		return convertToFaqList(faqDocs);
 	}
 	
-	/**
-	 * 全件取得
-	 * @return
-	 */
-	private List<FAQ> matchAll(){
-		SearchQuery query = new NativeSearchQueryBuilder()
-				.withQuery(QueryBuilders.matchAllQuery())
-				.withSort(SortBuilders.fieldSort("useful_count").order(SortOrder.DESC))
-				.build();
-		List<FaqDoc> faqDocs = elasticsearchTemplate.queryForList(query, FaqDoc.class);
-		return convertToFaqList(faqDocs);
-	}
-		
 	/**
 	 * ES取得データを元に、DBから対象FAQを取得しリスト化して返却
 	 * 
@@ -141,5 +135,13 @@ public class ElasticSearchService {
 												.map(category -> new FaqCategoryDTO(category.getId(), category.getName()))
 												.collect(Collectors.toList());
 		return categoryList;
+	}
+	
+	/**
+	 * 対象documentの削除
+	 * @param id
+	 */
+	public void deleteFaqDoc(Integer id){
+		elasticsearchRepository.delete(id);
 	}
 }

@@ -136,6 +136,9 @@ public class FaqService {
 	private List<FAQCategory> saveFaqCategory(List<FAQCategory> argCategoryList){
 		List<FAQCategory> savedCategoryList = new ArrayList<>();
 		List<FAQCategory> existCategoryList = categoryRepository.findAll();
+		if(argCategoryList == null){
+			return savedCategoryList;
+		}
 		//カテゴリ初回登録チェック
 		if(existCategoryList.size() > 0){
 			//既存カテゴリ名リストを作成
@@ -152,7 +155,7 @@ public class FaqService {
 					argCategory.setStatus("valid");
 					savedCategoryList.add(categoryRepository.save(argCategory));
 				}
-			}
+			}				
 		}else{
 			for(FAQCategory argCategory:argCategoryList){
 				argCategory.setStatus("valid");

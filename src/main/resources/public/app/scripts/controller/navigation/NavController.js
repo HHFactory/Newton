@@ -2,7 +2,7 @@
 (function(){
 	'use strict';
 
-	function NavCtrl($scope,$state,connectApiService,constURI,sharedService,$uibModal){
+	function NavCtrl($scope,$state,sharedService){
 
 		//テスト用変数
 		var targetUser = {userName:"user1"};
@@ -21,13 +21,13 @@
 		  */
 		 $scope.home = function(){
 		 	$state.go('main');
-		 	$state.reload();
 		 	$scope.query = null;
 		 	sharedService.searchQuery = null;
+		 	// $state.reload();
 		 };
 
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('NavController',['$scope','$state','connectApiService','constURI','sharedService','$uibModal',NavCtrl]);
+	angular.module(appName).controller('NavController',['$scope','$state','sharedService', NavCtrl]);
 })();

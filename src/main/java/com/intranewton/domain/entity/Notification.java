@@ -30,7 +30,6 @@ import lombok.NoArgsConstructor;
 @Where(clause = "status='valid'")
 @NoArgsConstructor
 @AllArgsConstructor
-//@Document(indexName = "jdbc", type = "notification")
 public class Notification extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 

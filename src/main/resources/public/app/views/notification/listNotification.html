@@ -2,17 +2,18 @@
 <div class="l-notification" ng-controller="ListNotificationController">
 	<!-- ヘッダエリア -->
 	<div class="col-header">
-		<span class="col-header__item col-header__title">{{columnTitle}}</span>
-<!-- 		<a href="" class="col-header__item col-header__title">未読</a>
-		<a href="" class="col-header__item col-header__title">既読</a> -->
+		<span class="col-header__title">{{columnTitle}}</span>
+		<a class="col-header__item" ng-click="unreadFilter()">
+		<span class="badge" ng-if="unreadCount > 0">{{unreadCount}}</span>未読
+		</a>
+		<a class="col-header__item" ng-click="readFilter()">既読</a>
  		<a class="col-header__icon" ng-click="isClose()"><i class="fa fa-times"/></a>
  	</div>
 	
 	<!-- 一覧表示エリア -->
  	<div class="col-contents--padding" >
  		<!-- お知らせパネル -->
-
-		<div class="timeline" ng-repeat="notification in notifications" >
+		<div class="timeline" ng-repeat="notification in notifications">
 			<div class="timeline__header">
 				<div class="header__item timeline__title">{{notification.title}}</div>
 			</div>

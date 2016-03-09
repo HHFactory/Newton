@@ -77,5 +77,5 @@
 		}
 	}
 
-	angular.module('indexModule').directive('hhfTagSelect',['$timeout',hhfTagSelect]);
+	angular.module(appName).directive('hhfTagSelect',['$timeout',hhfTagSelect]);
 })();

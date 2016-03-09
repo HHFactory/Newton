@@ -1,6 +1,5 @@
-// .preview-area > .ng-isolate-scope > .ng-binding, 
-.preview-area__content > .ng-binding,
-.faq__content > .ng-binding,
+
+.preview-area__content > .ng-isolate-scope > .ng-binding,
 .modal-body > .ng-binding {
     overflow: auto;
     word-wrap: break-word;
@@ -54,7 +53,7 @@
         line-height: 1.2rem;
         font-size: 1.2rem;
       }
-      & > tbody > tr:nth-child(2n+1) {
+      & > tbody > tr:nth-child(2n) {
         background: #D6DBDE;
       }
       & > thead {
@@ -62,11 +61,18 @@
       }
 
     }
-
 }
 
 .modal-body > .ng-binding {
   position: relative;
+}
+
+.code-area {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  display: block;
+  padding: 0px 15px;
 }
 
 

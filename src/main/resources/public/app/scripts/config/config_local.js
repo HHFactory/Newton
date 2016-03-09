@@ -2,7 +2,7 @@
  * local用コンフィグファイル
  * @type {String}
  */
-angular.module('indexModule').constant('APP_CONF',{
+angular.module(appName).constant('APP_CONF',{
 	urlBase: 'http://localhost:8080/newton-1.0/',
 	columnTitleFaq: "FAQ",
 	columnTitleImportFaq: "FAQ一括登録",

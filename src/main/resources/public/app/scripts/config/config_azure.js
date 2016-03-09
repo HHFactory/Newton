@@ -2,8 +2,8 @@
  * Azure接続時用コンフィグファイル
  * @type {String}
  */
-angular.module('indexModule').constant('APP_CONF', {
-	urlBase: 'http://hhfactory.japanwest.cloudapp.azure.com:8080/',
+angular.module(appName).constant('APP_CONF', {
+	urlBase: 'http://hhfactory.japanwest.cloudapp.azure.com:8080/newton-1.0/',
 	columnTitleFaq: "FAQ",
 	columnTitleImportFaq: "FAQ一括登録",
 	columnTitleNotification: "お知らせ",

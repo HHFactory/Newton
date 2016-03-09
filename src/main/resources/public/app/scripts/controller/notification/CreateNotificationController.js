@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 
-	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout){
+	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout,APP_CONF){
 
 		/**
 		 * 宛先リスト取得処理
@@ -13,7 +13,7 @@
 		 * @return {list} targetSkill      
 		 */
 		$scope.loadSkills = function(query) {
-			return connectApiService.get(constURI.roles).then(function(apiResult){
+			return connectApiService.get(APP_CONF.urlBase + constURI.roles).then(function(apiResult){
 				var targetSkill = [];
 				var loadSkillList = apiResult.data;
 				for(var i = 0; i < loadSkillList.length; i = (i+1)) {
@@ -34,7 +34,7 @@
 		$scope.submit = function(notification) {
 			notification.targetUserList = getSkillNameList($scope.selectSkillList);
 			notification.filePath = "";
-			connectApiService.post(constURI.notification,notification).then(function(resultAPI){
+			connectApiService.post(APP_CONF.urlBase + constURI.notification,notification).then(function(resultAPI){
 				if(resultAPI.status == 201){
 					$timeout(function(){
 						$state.reload();
@@ -71,5 +71,5 @@
 	}
 
 	//moduleへ登録
-	angular.module('indexModule').controller('CreateNotificationController',['$scope','$state','connectApiService','constURI','sharedService','$timeout',CreateNotificationCtrl]);
+	angular.module(appName).controller('CreateNotificationController',['$scope','$state','connectApiService','constURI','sharedService','$timeout','APP_CONF',CreateNotificationCtrl]);
 })();
