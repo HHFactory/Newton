@@ -18,7 +18,7 @@
 		 * @return {[type]}     
 		 */
 		$scope.edit = function(faq) {
-			$state.go('createFaq',{editTarget:faq});
+			$state.go('updateFaq',{editTarget:faq});
 		}
 
 		/**

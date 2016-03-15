@@ -11,6 +11,7 @@
 		 */
 		$scope.search = function(query){
 			sharedService.searchQuery = query;
+			$state.go('main');
 		}
 		 
 		/**

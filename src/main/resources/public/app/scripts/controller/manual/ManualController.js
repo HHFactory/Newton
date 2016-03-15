@@ -1,6 +1,5 @@
-
 /**
- * manualbar.controller
+ * manual.controller
  * @return {[type]} [description]
  */
 (function(){
@@ -27,7 +26,6 @@
 			sharedService.manualList = apiResult.data;
 			$scope.data = sharedService.manualList;
 		});
-
 
 		/**
 		 * ファイル登録モーダルを開く
@@ -90,9 +88,6 @@
 		var deleteFile = function(manual){
 			var param = {id:manual["id"], name:manual["fullFileName"]};
 			connectApiService.delete(APP_CONF.urlBase + constURI.deleteFile,param).then(function(resultAPI){
-				// connectApiService.get(constURI.manuals).then(function(resultAPI){
-				// 	$scope.data = resultAPI.data;
-				// });
 				$state.reload();
 			});
 		}

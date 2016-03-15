@@ -11,7 +11,12 @@ angular.module(appName)
 			.state('createFaq',{
 				url:"/create",
 				templateUrl: "app/views/faq/createFaq.html",
-				controller: "CreateFaqController",
+				controller: "CreateFaqController"
+			})
+			.state('updateFaq',{
+				url: "/update",
+				templateUrl: "app/views/faq/createFaq.html",
+				controller: "UpdateFaqController",
 				params: {
 					'editTarget': null
 				}
