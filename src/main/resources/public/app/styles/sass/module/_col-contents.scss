@@ -4,7 +4,7 @@
 .col-contents {
 	width: 100%;
 	height: calc(100% - #{$colHeaderHeight});
-	overflow: auto;
+	overflow: hidden;
 }
 
 /** padding付き */

@@ -33,14 +33,16 @@ import lombok.NoArgsConstructor;
 public class FAQ extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Column(nullable=false)
 	private String title;
 	
-	@Column(name="content",columnDefinition="TEXT")
+	@Column(columnDefinition="TEXT",nullable=false)
 	private String content;
 	
+	@Column(nullable=true,columnDefinition="TEXT")
 	private String talkScript;
 	
-	@Column(name="useful_count",columnDefinition="int(11) DEFAULT '0'")
+	@Column(columnDefinition="int(11) DEFAULT '0'",nullable=false)
 	private Integer usefulCount;
 	
 	@ManyToMany

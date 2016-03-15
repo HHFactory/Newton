@@ -17,7 +17,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * m_notification_target_roleテーブルエンティティ
+ * notification_target_roleテーブルエンティティ
  */
 @Entity
 @Table(name="notification_target_role")
@@ -31,7 +31,10 @@ public class NotificationTargetRole implements Serializable{
 	@GeneratedValue
 	private Integer id;
 	
+	@Column(nullable=false)
 	private String targetUser;
+	
+	@Column(nullable=false,columnDefinition="bit(1)")
 	private boolean readFlag;
 	
 	@JsonIgnore
@@ -39,7 +42,7 @@ public class NotificationTargetRole implements Serializable{
 	@JoinColumn(name="notification_id")
 	private Notification notification;
 	
-	@Column(name="notification_id",insertable=false,updatable=false)
-	private Integer notificationId;
+//	@Column(name="notification_id",insertable=false,updatable=false,nullable=false)
+//	private Integer notificationId;
 
 }

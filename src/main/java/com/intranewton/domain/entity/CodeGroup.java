@@ -3,6 +3,7 @@ package com.intranewton.domain.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,8 +33,11 @@ public class CodeGroup implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
+	@Column(nullable=false)
 	private String name;
+	
 	@OneToMany(fetch=FetchType.LAZY)
-	@JoinColumn(name="code_group_id")
+	@JoinColumn(name="code_group_id",nullable=false)
 	List<Code> codes;
 }

@@ -452,6 +452,21 @@ textarea:hover, input[type="text"]:hover {
   height: 100%;
 }
 
+/* line 53, base/_util.scss */
+.scroll-area {
+  width: calc(100% + 17px);
+  height: 100%;
+  overflow: auto;
+  padding-right: 17px;
+}
+
+/* line 60, base/_util.scss */
+.scrollbar-hidden, .hidden-scrollbar-area {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -3412,6 +3427,135 @@ a.badge:hover, a.badge:focus {
   border: solid 2px #cf363d;
 }
 
+/* line 3, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding,
+.faq__content > .ng-isolate-scope > .ng-binding,
+.modal-body > .ng-binding {
+  overflow: auto;
+  word-wrap: break-word;
+  width: 100%;
+  height: 100%;
+  white-space: pre-wrap;
+  position: relative;
+}
+/* line 12, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > a,
+.faq__content > .ng-isolate-scope > .ng-binding > a,
+.modal-body > .ng-binding > a {
+  color: #0645ad;
+  text-decoration: none;
+}
+/* line 15, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > a:visited,
+.faq__content > .ng-isolate-scope > .ng-binding > a:visited,
+.modal-body > .ng-binding > a:visited {
+  color: #0b0080;
+}
+/* line 18, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > a:hover,
+.faq__content > .ng-isolate-scope > .ng-binding > a:hover,
+.modal-body > .ng-binding > a:hover {
+  color: #06e;
+}
+/* line 21, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > a:active,
+.faq__content > .ng-isolate-scope > .ng-binding > a:active,
+.modal-body > .ng-binding > a:active {
+  color: #faa700;
+}
+/* line 24, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > a:focus,
+.faq__content > .ng-isolate-scope > .ng-binding > a:focus,
+.modal-body > .ng-binding > a:focus {
+  outline: thin dotted;
+}
+/* line 27, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > a:hover, .preview-area__content > .ng-isolate-scope > .ng-binding > a:active,
+.faq__content > .ng-isolate-scope > .ng-binding > a:hover,
+.faq__content > .ng-isolate-scope > .ng-binding > a:active,
+.modal-body > .ng-binding > a:hover,
+.modal-body > .ng-binding > a:active {
+  outline: 0;
+}
+/* line 31, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > img,
+.faq__content > .ng-isolate-scope > .ng-binding > img,
+.modal-body > .ng-binding > img {
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+}
+/* line 38, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > ul, .preview-area__content > .ng-isolate-scope > .ng-binding ol,
+.faq__content > .ng-isolate-scope > .ng-binding > ul,
+.faq__content > .ng-isolate-scope > .ng-binding ol,
+.modal-body > .ng-binding > ul,
+.modal-body > .ng-binding ol {
+  margin: 1em 0;
+  padding: 0 0 0 2em;
+}
+/* line 42, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > ul,
+.faq__content > .ng-isolate-scope > .ng-binding > ul,
+.modal-body > .ng-binding > ul {
+  list-style: disc;
+}
+/* line 45, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > li p:last-child,
+.faq__content > .ng-isolate-scope > .ng-binding > li p:last-child,
+.modal-body > .ng-binding > li p:last-child {
+  margin: 0;
+}
+/* line 48, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > table,
+.faq__content > .ng-isolate-scope > .ng-binding > table,
+.modal-body > .ng-binding > table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: solid 1px #ccc;
+}
+/* line 53, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > table tbody > tr,
+.faq__content > .ng-isolate-scope > .ng-binding > table tbody > tr,
+.modal-body > .ng-binding > table tbody > tr {
+  height: 30px;
+  line-height: 1.2rem;
+  font-size: 1.2rem;
+}
+/* line 58, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > table > tbody > tr:nth-child(2n),
+.faq__content > .ng-isolate-scope > .ng-binding > table > tbody > tr:nth-child(2n),
+.modal-body > .ng-binding > table > tbody > tr:nth-child(2n) {
+  background: #D6DBDE;
+}
+/* line 61, base/_markdown.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding > table > thead,
+.faq__content > .ng-isolate-scope > .ng-binding > table > thead,
+.modal-body > .ng-binding > table > thead {
+  background-color: #ccc;
+}
+
+/* line 68, base/_markdown.scss */
+.modal-body > .ng-binding {
+  position: relative;
+}
+
+/** <code> */
+/* line 73, base/_markdown.scss */
+.code-area {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  display: block;
+  padding: 0px 15px;
+  min-height: 50px;
+  max-height: 150px;
+  overflow: auto;
+}
+
 /** layout.footer */
 /* line 3, layout/_footer.scss */
 .l-footer {
@@ -3509,10 +3653,12 @@ a.badge:hover, a.badge:focus {
   margin: 0;
   position: absolute;
   right: 0;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 /** FAQ一覧画面-右部フッター */
-/* line 24, layout/_faq.scss */
+/* line 26, layout/_faq.scss */
 .l-faq--right__footer {
   width: 100%;
   height: 40px;
@@ -3520,36 +3666,11 @@ a.badge:hover, a.badge:focus {
   line-height: 40px;
 }
 
-/* line 31, layout/_faq.scss */
-.has-narrow-width {
-  width: -webkit-calc(100% - 640px);
-  width: -moz-calc(100% - 640px);
-  width: -ms-calc(100% - 640px);
-  width: -o-calc(100% - 640px);
-  width: calc(100% - 640px);
-}
-
-/* line 37, layout/_faq.scss */
-.l-faq--search {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  position: absolute;
-  background-color: #F5F8FA;
-}
-
-/* line 42, layout/_faq.scss */
-.l-search-result {
-  height: calc(100vh - 50px);
-  width: 100%;
-  position: relative;
-  background-color: white;
-}
-
 /** FAQ一覧タイトル用 */
-/* line 50, layout/_faq.scss */
+/* line 52, layout/_faq.scss */
 .faq__title {
   width: 100%;
+  height: 50px;
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 3px;
@@ -3557,32 +3678,62 @@ a.badge:hover, a.badge:focus {
 }
 
 /** FAQ詳細パネル */
-/* line 59, layout/_faq.scss */
+/* line 62, layout/_faq.scss */
 .faq__detail {
-  width: calc(100% - 20px);
+  width: 100%;
   height: calc(100% - 40px);
   border: solid 1px #D6DBDE;
   border-radius: 5px;
   background-color: white;
   top: 40px;
   padding: 15px;
-  position: absolute;
+  position: relative;
 }
 
 /** FAQ詳細パネルヘッダ */
-/* line 71, layout/_faq.scss */
+/* line 74, layout/_faq.scss */
 .faq__detail__header {
   width: 100%;
   height: 100px;
+}
+
+/** FAQ詳細パネルヘッダ(タイトル行) */
+/* line 80, layout/_faq.scss */
+.faq__detail__header--title {
   display: table;
+  width: 100%;
+}
+
+/** FAQ詳細ヘッダ-タイトル */
+/* line 86, layout/_faq.scss */
+.header__item--title {
+  display: table-cell;
+}
+
+/** FAQ詳細ヘッダ-アイコン */
+/* line 91, layout/_faq.scss */
+.header__item--icon {
+  display: table-cell;
+  text-align: center;
 }
 
 /** FAQ詳細本文 */
-/* line 78, layout/_faq.scss */
+/* line 97, layout/_faq.scss */
 .faq__content {
   width: 100%;
   height: calc(100% - (100px + 40px));
+  overflow: hidden;
+}
+/* line 101, layout/_faq.scss */
+.faq__content > .ng-isolate-scope {
+  height: 100%;
+}
+/* line 105, layout/_faq.scss */
+.faq__content > .ng-isolate-scope > .ng-binding {
+  width: calc(100% + 17px);
+  height: 100%;
   overflow: auto;
+  padding-right: 17px;
 }
 
 /** お知らせ一覧 */
@@ -3716,7 +3867,7 @@ a.badge:hover, a.badge:focus {
 .col-contents, .col-contents--padding {
   width: 100%;
   height: calc(100% - 40px);
-  overflow: auto;
+  overflow: hidden;
 }
 
 /** padding付き */
@@ -4070,13 +4221,13 @@ a.badge:hover, a.badge:focus {
   margin: auto;
 }
 
-/** FAQタイトル */
+/** FAQタイトルinput text */
 /* line 64, module/_create-view.scss */
 .create-view__text {
   width: calc(100% - 40px - 10px);
   height: 40px;
   background-color: white;
-  border: 1px solid;
+  border: 1px solid #ccc;
   border-color: gray;
   border-radius: 5px;
   padding-left: 10px;
@@ -4089,7 +4240,8 @@ a.badge:hover, a.badge:focus {
   outline: none;
 }
 
-/* line 80, module/_create-view.scss */
+/** FAQ回答内容入力textarea */
+/* line 81, module/_create-view.scss */
 .create-view__textarea {
   height: 130px;
   width: 100%;
@@ -4097,100 +4249,104 @@ a.badge:hover, a.badge:focus {
   padding-left: 5px;
   resize: none;
   overflow: auto;
-  width: 50%;
-  height: -webkit-calc(100% - 30px);
-  max-height: -webkit-calc(100% - 30px);
-  height: -moz-calc(100% - 30px);
-  max-height: -moz-calc(100% - 30px);
-  height: -ms-calc(100% - 30px);
-  max-height: -ms-calc(100% - 30px);
-  height: -o-calc(100% - 30px);
-  max-height: -o-calc(100% - 30px);
-  height: calc(100% - 30px);
-  max-height: calc(100% - 30px);
-  border: 1px solid;
-  border-color: gray;
-  position: absolute;
+  width: calc(100% + 17px);
+  height: 100%;
   overflow: auto;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 17px;
 }
 /* line 41, module/_input-text.scss */
 .create-view__textarea:focus {
   outline: none;
 }
 
-/* line 95, module/_create-view.scss */
+/** アイコンリスト */
+/* line 91, module/_create-view.scss */
 .textarea__item-list {
   width: 100%;
   height: 30px;
   font-size: 18px;
 }
-/* line 99, module/_create-view.scss */
+/* line 95, module/_create-view.scss */
 .textarea__item-list > li {
   display: inline-block;
-  border: 1px solid;
-  border-color: #F5F5F5;
 }
 
-/* line 106, module/_create-view.scss */
+/** 画面左部 */
+/* line 101, module/_create-view.scss */
 .write-area {
   display: table-cell;
   width: 50%;
   height: 100%;
+  position: absolute;
 }
 
-/* line 112, module/_create-view.scss */
+/** 画面右部 */
+/* line 109, module/_create-view.scss */
 .preview-area {
   display: table-cell;
   width: 50%;
   height: 100%;
-  overflow: auto;
   position: relative;
 }
 @media (max-width: 480px) {
-  /* line 112, module/_create-view.scss */
+  /* line 109, module/_create-view.scss */
   .preview-area {
     max-width: 220px;
   }
 }
 @media (max-width: 767px) {
-  /* line 112, module/_create-view.scss */
+  /* line 109, module/_create-view.scss */
   .preview-area {
     max-width: 320px;
   }
 }
 @media (max-width: 979px) and (min-width: 1200px) {
-  /* line 112, module/_create-view.scss */
+  /* line 109, module/_create-view.scss */
   .preview-area {
     max-width: 400px;
   }
 }
 @media (min-width: 1200px) {
-  /* line 112, module/_create-view.scss */
+  /* line 109, module/_create-view.scss */
   .preview-area {
     max-width: 600px;
   }
 }
 
-/* line 135, module/_create-view.scss */
+/** プレビュー本文エリア */
+/* line 132, module/_create-view.scss */
 .preview-area__content {
   height: calc(100% - 30px);
   position: absolute;
-  overflow: auto;
+  overflow: hidden;
   width: 100%;
-  padding: 0px 10px;
 }
-
-/* line 143, module/_create-view.scss */
-.preview-text {
-  widows: 100%;
+/* line 137, module/_create-view.scss */
+.preview-area__content > .ng-isolate-scope {
+  height: 100%;
+}
+/* line 140, module/_create-view.scss */
+.preview-area__content > .ng-isolate-scope > .ng-binding {
+  width: calc(100% + 17px);
   overflow: auto;
+  height: 100%;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 17px;
 }
 
-/* line 149, module/_create-view.scss */
+/* line 150, module/_create-view.scss */
 .create-view__submit-btn {
   width: 60px;
+}
+
+/** スクロールバー非表示箇所の親div */
+/* line 156, module/_create-view.scss */
+.hidden-scrollbar-area {
+  height: calc(100% - 30px);
+  border: solid 1px #ccc;
+  border-radius: 5px;
 }
 
 /**
@@ -4270,6 +4426,9 @@ a.badge:hover, a.badge:focus {
   padding-left: 5px;
   resize: none;
   overflow: auto;
+  width: calc(100% + 17px);
+  overflow: auto;
+  padding-right: 17px;
 }
 /* line 41, module/_input-text.scss */
 .create-panel__contents:focus {
@@ -4444,7 +4603,6 @@ a.badge:hover, a.badge:focus {
 .grid-base {
   width: 100%;
   height: 500px;
-  overflow: auto;
 }
 
 /** お知らせ用セット */
@@ -4457,6 +4615,12 @@ a.badge:hover, a.badge:focus {
 }
 
 /* line 11, module/_timeline.scss */
+.timeline--padding {
+  padding-left: 10px;
+  padding-right: calc(10px + 17px);
+}
+
+/* line 15, module/_timeline.scss */
 .timeline__header {
   display: table;
   width: 100%;
@@ -4465,13 +4629,13 @@ a.badge:hover, a.badge:focus {
   padding-right: 15px;
 }
 
-/* line 19, module/_timeline.scss */
+/* line 23, module/_timeline.scss */
 .header__item, .header__item--right {
   display: table-cell;
   vertical-align: middle;
 }
 
-/* line 24, module/_timeline.scss */
+/* line 28, module/_timeline.scss */
 .header__item--tag {
   display: table-cell;
   vertical-align: middle;
@@ -4482,19 +4646,19 @@ a.badge:hover, a.badge:focus {
   color: white;
 }
 
-/* line 34, module/_timeline.scss */
+/* line 38, module/_timeline.scss */
 .header__item--right {
   text-align: right;
 }
 
-/* line 39, module/_timeline.scss */
+/* line 43, module/_timeline.scss */
 .timeline__title {
   font-weight: bold;
   color: #292f33;
   font-size: 16px;
 }
 
-/* line 45, module/_timeline.scss */
+/* line 49, module/_timeline.scss */
 .timeline__content {
   font-size: 14px;
   color: #292f33;
@@ -4505,40 +4669,40 @@ a.badge:hover, a.badge:focus {
   margin-bottom: 10px;
 }
 
-/* line 55, module/_timeline.scss */
+/* line 59, module/_timeline.scss */
 .timeline__item--user-name {
   font-size: 13px;
   color: #8899a6;
 }
 
-/* line 60, module/_timeline.scss */
+/* line 64, module/_timeline.scss */
 .timeline__item--number {
   font-size: 16px;
   color: #8899a6;
   margin-left: 3px;
 }
 
-/* line 66, module/_timeline.scss */
+/* line 70, module/_timeline.scss */
 .importance--high {
   background-color: red;
 }
 
-/* line 70, module/_timeline.scss */
+/* line 74, module/_timeline.scss */
 .importance--middle {
   background-color: #cfc736;
 }
 
-/* line 74, module/_timeline.scss */
+/* line 78, module/_timeline.scss */
 .importance--low {
   background-color: #36a3cf;
 }
 
-/* line 78, module/_timeline.scss */
+/* line 82, module/_timeline.scss */
 .importance--none {
   display: none;
 }
 
-/* line 82, module/_timeline.scss */
+/* line 86, module/_timeline.scss */
 .timeline__footer {
   display: table;
   width: 100%;
@@ -4549,7 +4713,7 @@ a.badge:hover, a.badge:focus {
   margin-bottom: 2px;
 }
 
-/* line 92, module/_timeline.scss */
+/* line 96, module/_timeline.scss */
 .footer__item {
   display: table-cell;
   font-size: 18px;
@@ -4651,114 +4815,6 @@ a.badge:hover, a.badge:focus {
   pointer-events: none;
   z-index: 999;
   opacity: .8;
-}
-
-/* line 2, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding,
-.modal-body > .ng-binding {
-  overflow: auto;
-  word-wrap: break-word;
-  width: 100%;
-  height: 100%;
-  white-space: pre-wrap;
-  position: relative;
-}
-/* line 10, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > a,
-.modal-body > .ng-binding > a {
-  color: #0645ad;
-  text-decoration: none;
-}
-/* line 13, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > a:visited,
-.modal-body > .ng-binding > a:visited {
-  color: #0b0080;
-}
-/* line 16, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > a:hover,
-.modal-body > .ng-binding > a:hover {
-  color: #06e;
-}
-/* line 19, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > a:active,
-.modal-body > .ng-binding > a:active {
-  color: #faa700;
-}
-/* line 22, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > a:focus,
-.modal-body > .ng-binding > a:focus {
-  outline: thin dotted;
-}
-/* line 25, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > a:hover, .preview-area__content > .ng-isolate-scope > .ng-binding > a:active,
-.modal-body > .ng-binding > a:hover,
-.modal-body > .ng-binding > a:active {
-  outline: 0;
-}
-/* line 29, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > img,
-.modal-body > .ng-binding > img {
-  width: 100%;
-  max-width: 100%;
-  border: 0;
-  -ms-interpolation-mode: bicubic;
-  vertical-align: middle;
-}
-/* line 36, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > ul, .preview-area__content > .ng-isolate-scope > .ng-binding ol,
-.modal-body > .ng-binding > ul,
-.modal-body > .ng-binding ol {
-  margin: 1em 0;
-  padding: 0 0 0 2em;
-}
-/* line 40, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > ul,
-.modal-body > .ng-binding > ul {
-  list-style: disc;
-}
-/* line 43, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > li p:last-child,
-.modal-body > .ng-binding > li p:last-child {
-  margin: 0;
-}
-/* line 46, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > table,
-.modal-body > .ng-binding > table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  border: solid 1px #ccc;
-}
-/* line 51, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > table tbody > tr,
-.modal-body > .ng-binding > table tbody > tr {
-  height: 30px;
-  line-height: 1.2rem;
-  font-size: 1.2rem;
-}
-/* line 56, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > table > tbody > tr:nth-child(2n),
-.modal-body > .ng-binding > table > tbody > tr:nth-child(2n) {
-  background: #D6DBDE;
-}
-/* line 59, module/_markdown.scss */
-.preview-area__content > .ng-isolate-scope > .ng-binding > table > thead,
-.modal-body > .ng-binding > table > thead {
-  background-color: #ccc;
-}
-
-/* line 66, module/_markdown.scss */
-.modal-body > .ng-binding {
-  position: relative;
-}
-
-/* line 70, module/_markdown.scss */
-.code-area {
-  width: 100%;
-  border-radius: 5px;
-  background-color: #f7f7f7;
-  display: block;
-  padding: 0px 15px;
 }
 
 /* line 3, module/_search-result.scss */
@@ -4959,8 +5015,14 @@ a.badge:hover, a.badge:focus {
   padding-right: 15px;
 }
 
+/** 幅100％状態 */
+/* line 4, state/_state.scss */
+.is-full-width {
+  width: 100%;
+}
+
 /** 右へスライド */
-/* line 4, state/_is-open-sidebar.scss */
+/* line 9, state/_state.scss */
 .is-slide-right {
   -webkit-transition: transform 0.1s ease;
   -o-transition: transform 0.1s ease;
@@ -4990,7 +5052,7 @@ a.badge:hover, a.badge:focus {
 }
 
 /** 左へスライド */
-/* line 13, state/_is-open-sidebar.scss */
+/* line 18, state/_state.scss */
 .is-slide-left {
   -webkit-transition: transform 0.1s ease;
   -o-transition: transform 0.1s ease;
@@ -5019,7 +5081,8 @@ a.badge:hover, a.badge:focus {
   width: 100%;
 }
 
-/* line 21, state/_is-open-sidebar.scss */
+/** 上へスライド */
+/* line 27, state/_state.scss */
 .is-slide-top {
   -webkit-transition: transform 0.1s ease;
   -o-transition: transform 0.1s ease;

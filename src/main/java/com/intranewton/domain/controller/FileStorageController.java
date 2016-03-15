@@ -1,5 +1,7 @@
 package com.intranewton.domain.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.intranewton.domain.service.FileStorageService;
 import com.intranewton.domain.service.ManualService;
+import com.intranewton.elastic.restcontroller.ElasticsearchRestController;
 
 @Controller
 public class FileStorageController {
@@ -25,6 +28,9 @@ public class FileStorageController {
 	/** 画像保存先 **/
 	@Value("${imagedirectory.path}")
 	private String imageDirectory;
+	
+	private static final Logger logger  = LoggerFactory.getLogger(ElasticsearchRestController.class);
+
 	
 	/**
 	 * ファイルアップロード
@@ -43,7 +49,7 @@ public class FileStorageController {
 				manualService.postFileInfo(fileName, categoryID);
 			}
 		}else{
-			System.out.println("file empty");
+			logger.error("file is not selected");
 		}
 	}
 	
@@ -59,6 +65,7 @@ public class FileStorageController {
 		//ファイル削除処理
 		String filePath = fileDirectory + targetFileName;
 		new FileStorageService().deleteFile(filePath);
+		logger.info(targetFileName + "file deleted");
 	}
 	
 	/**
@@ -74,7 +81,8 @@ public class FileStorageController {
 			//アップロードしたファイル名を返却
 			return fileStorageService.uploadFile(image, imageDirectory);
 		}else{
-			return "image empty";
+			logger.error("image is not selected");
+			return "image is not selected";
 		}
 	}
 	
@@ -89,6 +97,7 @@ public class FileStorageController {
 		for(String fileName:fileNameList){
 			String filePath = imageDirectory + fileName; 
 			fileStorageService.deleteFile(filePath);
+			logger.info(fileName + "image deleted");
 		}
 	}
 	

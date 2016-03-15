@@ -58,13 +58,17 @@ public class NotificationService {
 		notification.setContent(notificationParam.getContent());
 		notification.setFilePath(notificationParam.getFilePath());
 		notification.setImportance(notificationParam.getImportance());
-		List<NotificationTargetRole> targetRoleList = new ArrayList<>();
-		for ( String targetUser : notificationParam.getTargetUserList() ) {
-			NotificationTargetRole targetRole = new NotificationTargetRole();
-			targetRole.setNotification(notification);
-			targetRole.setTargetUser(targetUser);
-			targetRoleList.add(targetRole);
-		}
+		
+		//targetUserListからNotificationTargetRoleリストを生成
+		List<NotificationTargetRole> targetRoleList = 
+				   notificationParam.getTargetUserList().stream()
+														.map(targetUser -> {
+															NotificationTargetRole targetRole = new NotificationTargetRole();
+															targetRole.setNotification(notification);
+															targetRole.setTargetUser(targetUser);
+															return targetRole;
+														})
+														.collect(Collectors.toList());
 		notification.setNotificationTargetRoles(targetRoleList);
 		return notification;
 	}
@@ -110,13 +114,12 @@ public class NotificationService {
 	 */
 	private List<String> createReadUserList(List<NotificationTargetRole> targetRoleList,String userName) {
 		List<String> readUserList = new ArrayList<>();
-		if ( !(targetRoleList.size() > 0) ) {
-			return readUserList;			
-		}
-		for ( NotificationTargetRole targetRole : targetRoleList ) {
-			if ( targetRole.isReadFlag() ) {
-				readUserList.add(targetRole.getTargetUser());
-			}
+		//listのnullチェック
+		if(!targetRoleList.isEmpty()){
+			readUserList = targetRoleList.stream()
+										 .filter(targetRole -> targetRole.isReadFlag())//readFlag = trueで抽出
+										 .map(targetRole -> targetRole.getTargetUser())//ユーザ名リストの生成
+										 .collect(Collectors.toList());			
 		}
 		return readUserList;
 	}
@@ -128,15 +131,15 @@ public class NotificationService {
 	 * @param userName
 	 * @return 未読ユーザ名のリスト
 	 */
-	private List<String> createUnReadUserList(List<NotificationTargetRole> targetRoleList,String userName) {
+	private List<String> createUnReadUserList(List<NotificationTargetRole> targetRoleList,String userName) {		
 		List<String> unreadUserList = new ArrayList<>();
-		if ( !(targetRoleList.size() > 0) ){
-			return unreadUserList;
-		}
-		for ( NotificationTargetRole targetRole : targetRoleList ) {
-			if ( !targetRole.isReadFlag() ) {
-				unreadUserList.add(targetRole.getTargetUser());
-			}
+		//listのnullチェック
+		if(!targetRoleList.isEmpty()){
+			//
+			unreadUserList =  targetRoleList.stream()
+											.filter(targetRole -> !targetRole.isReadFlag())//readFlag = falseで抽出
+											.map(targetRole -> targetRole.getTargetUser())//ユーザ名リストの生成
+											.collect(Collectors.toList());
 		}
 		return unreadUserList;
 	}
@@ -157,6 +160,5 @@ public class NotificationService {
 	public void deleteNotification(Integer id){
 		notificationRepository.delete(id);
 	}
-
 
 }

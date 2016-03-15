@@ -14,6 +14,7 @@
 		$scope.buttonLabel = APP_CONF.buttonLabelCreateNotification;
 		/** ユーザ情報 */
 		var userID = {userName:"user1"};
+		var sizeLimit = 100;
 
 		/**
 		 * 閉じるアイコン押下処理
@@ -24,7 +25,7 @@
 		}
 
 		/**
-		お知らせパネル開閉フラグ監視
+		 * お知らせ登録パネル開閉フラグ監視
 		 * @param  {[type]} 
 		 * @param  {[type]} 
 		 * @return {[type]} 
@@ -34,6 +35,17 @@
 		},function(){
 			$scope.isShowCreatePanel = sharedService.isShowCreateNotificationPanel;
 		})
+
+		/**
+		 * 次ページ読み込み処理
+		 * @return {[type]} [description]
+		 */
+		$scope.loadMore = function(){
+			console.log('notification load more');
+			if($scope.notifications){
+				var page = $scope.notifications.legth/sizeLimit;
+			}
+		}
 		
 		/**
 		 * お知らせを取得する
@@ -104,7 +116,7 @@
 		}
 
 		/**
-		 * 共通フィルタリング処理
+		 * フィルタリング処理
 		 * @param  {[type]} targetList [description]
 		 * @return {[type]}            [description]
 		 */

@@ -23,7 +23,11 @@
 				</tr>
 				<!-- 本文 -->
 				<tr class="create-panel__row">
-					<td colspan="2"><textarea class="create-panel__contents" rows="24" ng-change="parseMarkDown()" ng-model="notification.content" placeholder="お知らせ本文を入力してください"></textarea></td>
+					<td colspan="2">
+						<div class="scrollbar-hidden">
+							<textarea class="create-panel__contents" rows="24" ng-change="parseMarkDown()" ng-model="notification.content" placeholder="お知らせ本文を入力してください"></textarea>
+						</div>
+					</td>
 				</tr>
 			</tbody>
 			<tfoot>

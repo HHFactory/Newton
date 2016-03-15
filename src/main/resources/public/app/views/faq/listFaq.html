@@ -3,7 +3,7 @@
 	<!-- 一覧エリア -->
 	<div class="l-faq--left">
 		<div class="col-header">
-			<span class="col-header__title">{{columnTitle}}</span>
+			<span class="col-header__title">{{columnTitle}} [{{listCount}}件]</span>
 			<a class="" ng-click="isOpenCategory = !isOpenCategory">
 				<i class="fa fa-filter"/>
 			</a>
@@ -12,20 +12,28 @@
 	 	<div class="col-contents">
 	 		<!-- カテゴリ選択パネル -->
 			<div ng-cloak ng-show="isOpenCategory" class="category" hhf-tag-select ng-model="categoryList"></div>
-			<div class="faq__title" ng-repeat="faq in faqList | categoryFilter:selectedList">
-				<a class="f-faq__title--link" ng-click="showDetail(faq)" hhf-focus><i class="fa fa-question-circle"/>{{faq.title}}</a>
-				<ul class="category-list--vertical">
-					<li ng-repeat="category in faq.categories"><i class="fa fa-tag"/>{{category.name}}</li>
-				</ul>
+			<!-- FAQリスト -->
+			<div class="scroll-area">
+				<div infinite-scroll="loadMore()" infinite-scroll-parent="true" infinite-scroll-immediate-check="false" >
+					<div class="faq__title" ng-repeat="faq in faqList | categoryFilter:selectedList">
+						<a class="f-faq__title--link" ng-click="showDetail(faq)" hhf-focus><i class="fa fa-question-circle"/>{{faq.title}}</a>
+						<ul class="category-list--vertical">
+							<li ng-repeat="category in faq.categories"><i class="fa fa-tag"/>{{category.name}}</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- 画面右部-FAQ詳細エリア -->
-	<div class="l-faq--right" ng-class="{'is-slide-left':isWideMode}" ng-show="isShowDetail" ng-controller="DetailFaqController">
+	<div class="l-faq--right" ng-class="{'is-full-width':isFullWidth}" ng-show="isShowDetail" ng-controller="DetailFaqController">
 		<div class="faq__detail">
 			<div class="faq__detail__header">
-				<h3>{{targetFaq.title}}</h3>
+				<div class="faq__detail__header--title">
+					<h3 class="header__item--title">{{targetFaq.title}}</h3>
+					<a class="header__item--icon" ng-click="isFullWidth = !isFullWidth"><i ng-hide="isFullWidth" class="fa fa-search-plus"/><i ng-show="isFullWidth" class="fa fa-search-minus" /></a>
+				</div>
 				<ul class="category-list--vertical">
 					<span>#{{targetFaq.id}}</span>
 					<i class="fa fa-heart-o"/>{{usefulCount}}

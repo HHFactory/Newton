@@ -7,12 +7,16 @@ package com.intranewton.domain.service;
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.intranewton.domain.dto.FaqCategoryDTO;
 import com.intranewton.domain.entity.FAQ;
 import com.intranewton.domain.entity.FAQCategory;
 import com.intranewton.domain.repository.FAQCategoryRepository;
@@ -24,18 +28,18 @@ public class FaqService {
 	FaqRepository faqRepository;
 	@Autowired
 	FAQCategoryRepository categoryRepository;
-	
+	/** 1ページあたりのデータ数*/
+	private static final int limit = 100;
 
 	/**
 	 * FAQ全件取得
 	 * @return
 	 */
-	public List<FAQ> getFaqList() {
-		List<FAQ> faqs = faqRepository.findAll();
-		
-		return faqs;
+	public HashMap<String, Object> getFaqList(int page) {
+		Pageable pageable = new PageRequest(page, limit);
+		return convertReturnMap(faqRepository.findAll(pageable).getContent());
 	}
-	
+		
 	/**
 	 * FAQ.usefulCountインクリメント処理
 	 * @param id
@@ -60,7 +64,7 @@ public class FaqService {
 	 * FAQリストからの新規登録
 	 * @param faqs
 	 */
-	public Integer postFaqList(List<FAQ> faqs) {
+	public void postFaqList(List<FAQ> faqs) {
 		for(FAQ faq:faqs) {
 			//新規FAQタイトルの場合
 			if(findExistFaqId(faq) == null){
@@ -73,7 +77,6 @@ public class FaqService {
 				editFaq(faq);
 			}
 		}
-		return 200;
 	}
 	
 	/**
@@ -130,13 +133,14 @@ public class FaqService {
 	
 	/**
 	 * FAQ登録前のカテゴリ整形処理
-	 * @param argCategoryList
+	 * @param selectedCategoryList
 	 * @return
 	 */
-	private List<FAQCategory> saveFaqCategory(List<FAQCategory> argCategoryList){
+	private List<FAQCategory> saveFaqCategory(List<FAQCategory> selectedCategoryList){
 		List<FAQCategory> savedCategoryList = new ArrayList<>();
 		List<FAQCategory> existCategoryList = categoryRepository.findAll();
-		if(argCategoryList == null){
+		//カテゴリが選択されていない場合は空リストを返す
+		if(selectedCategoryList == null || selectedCategoryList.isEmpty()){
 			return savedCategoryList;
 		}
 		//カテゴリ初回登録チェック
@@ -145,24 +149,51 @@ public class FaqService {
 			List<String> existCategoryNameList = existCategoryList.stream().map(existCategory -> existCategory.getName()).collect(Collectors.toList());
 			
 			//引数のカテゴリリスト内の新規/既存をチェック
-			for(FAQCategory argCategory:argCategoryList){
+			for(FAQCategory selectedCategory:selectedCategoryList){
 				//既存カテゴリの場合
-				if(existCategoryNameList.contains(argCategory.getName())){
-					savedCategoryList.add(categoryRepository.findByName(argCategory.getName()));
+				if(existCategoryNameList.contains(selectedCategory.getName())){
+					savedCategoryList.add(categoryRepository.findByName(selectedCategory.getName()));
 				}
 				//新規カテゴリの場合
 				else{
-					argCategory.setStatus("valid");
-					savedCategoryList.add(categoryRepository.save(argCategory));
+					selectedCategory.setStatus("valid");
+					savedCategoryList.add(categoryRepository.save(selectedCategory));
 				}
 			}				
 		}else{
-			for(FAQCategory argCategory:argCategoryList){
-				argCategory.setStatus("valid");
-				savedCategoryList.add(categoryRepository.save(argCategory));
+			for(FAQCategory selectedCategory:selectedCategoryList){
+				selectedCategory.setStatus("valid");
+				savedCategoryList.add(categoryRepository.save(selectedCategory));
 			}
 		}
 		return savedCategoryList;
 	}
-		
+	
+	/**
+	 * 重複なしのカテゴリリスト作成処理
+	 * @param faqList
+	 * @return
+	 */
+	private List<FaqCategoryDTO> getDistinctCategoryList(List<FAQ> faqList){
+		//FAQリストから重複のないカテゴリリストを作成
+		List<FaqCategoryDTO> categoryList =  faqList.stream()
+													.flatMap(faq -> faq.getCategories().stream())
+													.distinct()
+													.map(category -> new FaqCategoryDTO(category.getId(), category.getName()))
+													.collect(Collectors.toList());
+		return categoryList;
+	}
+	
+	/**
+	 * ESから取得したデータをクライアント返却用にmapに詰める
+	 * @param targetData
+	 * @return
+	 */
+	public HashMap<String, Object> convertReturnMap(List<FAQ> targetData){
+		HashMap<String, Object> searchResultMap = new HashMap<>();
+		searchResultMap.put("faqList", targetData);
+		searchResultMap.put("faqCategoryList", getDistinctCategoryList(targetData));
+		return searchResultMap;
+	}
+
 }

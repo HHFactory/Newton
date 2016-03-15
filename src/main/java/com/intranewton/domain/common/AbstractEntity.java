@@ -20,16 +20,18 @@ public class AbstractEntity {
 	@GeneratedValue
 	public Integer id;
 	
-	@Column(name="create_datetime",columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	@Column(nullable=false,columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Timestamp createDatetime;
 	
+	@Column(nullable=false)
 	private String createUser;
 	
-	@Column(name="update_datetime",columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	@Column(nullable=false,columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private Timestamp updateDatetime;
 	
+	@Column(nullable=false)
 	private String updateUser;
 	
-	@Column(name="status",columnDefinition="char(8) DEFAULT 'valid'")
+	@Column(nullable=false,columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
 }

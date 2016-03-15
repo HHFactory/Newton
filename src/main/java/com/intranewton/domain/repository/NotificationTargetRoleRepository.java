@@ -21,7 +21,7 @@ public interface NotificationTargetRoleRepository extends JpaRepository<Notifica
 	List<NotificationTargetRole> findbyTargetUser(@Param("targetUser") String targetUser);
 	
 	//指定したユーザ、お知らせIDから既読にする
-	@Query("UPDATE NotificationTargetRole nt SET nt.readFlag = 1 WHERE nt.notificationId = :targetId AND nt.targetUser = :targetUser")
+	@Query("UPDATE NotificationTargetRole nt SET nt.readFlag = 1 WHERE nt.notification.id = :targetId AND nt.targetUser = :targetUser")
 	@Modifying
 	@Transactional
 	public void isRead(@Param("targetId") Integer notificationId, @Param("targetUser") String targetUser);

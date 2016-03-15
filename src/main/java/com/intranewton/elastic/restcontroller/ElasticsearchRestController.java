@@ -16,18 +16,27 @@ import com.intranewton.elastic.service.ElasticSearchService;
 public class ElasticsearchRestController {
 	@Autowired
 	ElasticSearchService elasticSearchService;
+	
 	private static final Logger logger  = LoggerFactory.getLogger(ElasticsearchRestController.class);
 	
-	
-	@RequestMapping(value="/api/v1/elastic/querysearch",method=RequestMethod.GET)
-	public HashMap<String, Object> searchFaqs(@RequestParam String searchWord){	
-		return elasticSearchService.searchFaqs(searchWord);
+	/**
+	 * キーワード検索時API
+	 * @param searchWord
+	 * @return
+	 */
+	@RequestMapping(value="/api/v1/elastic/querysearch/",method=RequestMethod.GET)
+	public HashMap<String, Object> searchFaqs(@RequestParam String searchWord, @RequestParam int page) {	
+		logger.info("search by:"+ searchWord);
+		return elasticSearchService.searchFaqs(searchWord,page);
 	}
 	
-	@RequestMapping(value="/api/v1/elastic/matchall",method=RequestMethod.GET)
-	public HashMap<String, Object> matchall(){	
-		logger.info("call faq alldata");
-		return elasticSearchService.searchAll();
-	}
+//	/**
+//	 * 一覧取得時API
+//	 * @return
+//	 */
+//	@RequestMapping(value="/api/v1/elastic/matchall/",method=RequestMethod.GET)
+//	public HashMap<String, Object> matchall(@RequestParam int page) {
+//		return elasticSearchService.searchAll(page);
+//	}
 	
 }

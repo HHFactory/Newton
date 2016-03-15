@@ -8,6 +8,10 @@
 	background-color: white;
 }
 
+.timeline--padding {
+	padding-left: 10px;
+	padding-right: calc(10px + #{$scrollbarWidth});
+}
 .timeline__header {
 	display: table;
 	width: 100%;
