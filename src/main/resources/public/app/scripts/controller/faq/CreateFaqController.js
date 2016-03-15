@@ -50,5 +50,5 @@
 	}
 
 	//モジュールへの登録
-	angular.module(appName).controller('CreateFaqController',['$scope','$state','$controller','connectApiService','constURI','Upload','$stateParams','APP_CONF',CreateFaqCtrl]);
+	angular.module(appName).controller('CreateFaqController',['$scope','$state','$controller','connectApiService','constURI','APP_CONF',CreateFaqCtrl]);
 })();
