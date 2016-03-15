@@ -57,6 +57,9 @@ $cellCount: 2;
 
 .create-panel__contents {
 	@include textarea-base(200px);
+	width: calc(100% + #{$scrollbarWidth});
+	overflow: auto;
+	padding-right: $scrollbarWidth;
 }
 
 

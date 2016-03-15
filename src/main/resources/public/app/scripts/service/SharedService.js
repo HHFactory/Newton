@@ -3,7 +3,7 @@
 
 	function sharedService(){
 		return {
-			faqList: null,
+			faqList: {faqList:[],faqCategoryList:[]},
 			manualList: null,
 			notificationList: null,
 			isShowManual: false,

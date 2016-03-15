@@ -31,7 +31,7 @@ public class ManualService {
 	 */
 	public List<ManualDTO> getManualCategories() {
 		List<ManualCategory> categories = categoryRepository.findAll();
-
+		//ManualCategoryからManualDTOに変換
 		List<ManualDTO> manualDTOs =  categories.stream()
 												.filter(category -> category.getParents().size() ==1 && category.getParents().get(0).getPathLength() == 0)//自身のアイテムは含めない
 												.map(category -> new ManualDTO(category.getId(), category.getName(), category.getManuals(), getCategoryChildItem(category.getChildren())))

@@ -21,7 +21,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * m_notificationテーブルエンティティ
+ * notificationテーブルエンティティ
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -32,11 +32,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Notification extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@Column(nullable=false)
 	private String title;
-	@Column(name="content",columnDefinition="TEXT")
+	
+	@Column(nullable=true,columnDefinition="TEXT")
 	private String content;
+	
+	@Column(nullable=true)
 	private String filePath;
+	
+	@Column(nullable=true)
 	private Integer importance;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

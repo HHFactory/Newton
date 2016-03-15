@@ -40,6 +40,7 @@ public class FAQCategory implements Serializable{
 	@Column(nullable=false,columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
 	
+	@Column(nullable=false)
 	private String name;
 	
 	@JsonIgnoreProperties(value="categories")

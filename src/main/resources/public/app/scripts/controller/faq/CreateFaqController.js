@@ -83,15 +83,6 @@
 		};
 
 		/**
-		 * 入力内容プレビュー処理 (showdown)
-		 * @return {[type]}
-		 */
-		// $scope.parseMarkDown = function(){
-		// 	console.log('showdown');
-		// 	$scope.parsedMarkdown = marked($scope.faq.content);
-		// };
-
-		/**
 		 * 入力内容プレビュー(marked.js)
 		 * @return {[type]} [description]
 		 */
@@ -124,9 +115,9 @@
 		 */
 		 $scope.upload = function(file) {
 		 	var fileName = file.name;
-		 	var basePath = APP_CONF.urlBase + "app/images/";
+		 	var basePath = APP_CONF.imageFolderPath;
 		 	Upload.upload({
-		 		url: '/newton-1.0/upload/image',
+		 		url: APP_CONF.urlBase + '/upload/image',
 		 		data: {image:file}
 		 	}).then(function(resp) {
 		 		var fullFileName = resp['data'];

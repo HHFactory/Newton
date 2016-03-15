@@ -1,14 +1,11 @@
 
 /**
-* 各種APIのURIを定義する定数Service
+* 各種apiのURIを定義する定数Service
 * @Param
 * @Return
 */
 (function(){
 'use strict';
-
-	// var hostName = "http://hhfactory.japanwest.cloudapp.azure.com:8080/newton-1.0/";
-	// var hostName = "http://localhost:8080/newton-1.0/";
 	angular.module(appName).value(
 		'constURI',{
 			//faq
@@ -30,8 +27,8 @@
 			'term': "api/v1/term",
 			'terms': "api/v1/terms",
 			//elasticsearch
-			'searchAPI': "api/v1/elastic/querysearch",
-			'searchALL': "api/v1/elastic/matchall",
+			'searchAPI': "api/v1/elastic/querysearch/",
+			// 'searchALL': "api/v1/elastic/matchall/",
 			//upload&delete
 			'deleteFile': "delete/file"
 		}

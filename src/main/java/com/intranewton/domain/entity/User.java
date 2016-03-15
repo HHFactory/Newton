@@ -35,8 +35,9 @@ public class User implements Serializable{
 	@Id
 	private String name;
 
-	@Column(name="status",columnDefinition="char(8) DEFAULT 'valid'")
+	@Column(nullable=false,columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
+	
 	private String encodedPassword;
 	private String mailAddress;
 	@ManyToMany(fetch=FetchType.LAZY)
@@ -46,5 +47,4 @@ public class User implements Serializable{
 			inverseJoinColumns=@JoinColumn(name="role_id",referencedColumnName="id")
 			)
 	private List<Role> roleList;
-
 }

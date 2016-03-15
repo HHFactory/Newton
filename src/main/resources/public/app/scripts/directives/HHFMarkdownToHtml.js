@@ -20,7 +20,7 @@
 					markedHTML = marked(newValue);
 					var renderer = new marked.Renderer();
 					renderer.html = customRenderer(markedHTML);
-		        	scope.trustedHtml = $sanitize(renderer.html);
+		        	scope.trustedHtml = renderer.html;
 		        	
 			    } else {
 			    	scope.trustedHtml = "";
@@ -34,7 +34,7 @@
 		if(markedHTML.indexOf("<code>") == -1){
 			return markedHTML;
 		}
-		afterRenderer = marked(markedHTML.replace("<code>","<code class='code-area'>"));
+		afterRenderer = markedHTML.replace("<code>","<code class='code-area'>");
 		return afterRenderer;
 	}
 

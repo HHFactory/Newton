@@ -3,7 +3,8 @@
  * @type {String}
  */
 angular.module(appName).constant('APP_CONF',{
-	urlBase: 'http://localhost:8080/newton-1.0/',
+	urlBase: 'http://localhost:8080/newton/',
+	imageFolderPath: 'http://localhost:8080/newton/app/images/',
 	columnTitleFaq: "FAQ",
 	columnTitleImportFaq: "FAQ一括登録",
 	columnTitleNotification: "お知らせ",
