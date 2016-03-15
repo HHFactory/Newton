@@ -16,7 +16,6 @@
 				 * @param {[type]} tmpCategory 
 				 */
 				 scope.addCategory = function(categoryName){
-				 	console.log(categoryName);
 				 	var tmpCategory = {};
 				 	tmpCategory["name"] = categoryName;
 				 	tmpCategory["id"] = "";

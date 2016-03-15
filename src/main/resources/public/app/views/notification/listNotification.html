@@ -41,7 +41,7 @@
 
 		<!-- 新規登録パネル -->
 		<!-- <a class="open-create-notification" ng-click="openPanel()"><i class="fa fa-pencil-square-o"/><span>{{buttonLabel}}</span></a> -->
-		<div ng-show="isShowCreatePanel">
+		<div ng-cloak ng-show="isShowCreatePanel" class="l-notification--create">
 			<ng-include src="'app/views/notification/createNotificationPanel.html'" include-replace></ng-include>
 		</div>
 	</div>

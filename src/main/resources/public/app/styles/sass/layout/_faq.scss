@@ -82,15 +82,27 @@
 	width: 100%;
 }
 
-/** FAQ詳細ヘッダ-タイトル */
+/** ヘッダ-タイトル */
 .header__item--title {
 	display: table-cell;
 }
 
-/** FAQ詳細ヘッダ-アイコン */
+/** ヘッダ-アイコン */
 .header__item--icon {
 	display: table-cell;
 	text-align: center;
+}
+
+/** フッターアイテム */
+.panel-footer__item {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+/** フッターアイテム(右) */
+.panel-footer__item--right {
+	display: table-cell;
+	text-align: right;
 }
 
 /** FAQ詳細本文 */

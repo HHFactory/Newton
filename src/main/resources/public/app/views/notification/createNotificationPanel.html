@@ -1,49 +1,39 @@
 <!-- 新規お知らせ登録パネル -->
-<div class="l-notification--create" ng-controller="CreateNotificationController">
-	<form class="form-without-margin" ng-submit="submit(notification)" style="margin-top:0px; margin-bottom:0px;">
-		<table class="create-panel">
-			<thead>
-				<tr>
-					<th>新規お知らせ</th>
-					<th><a href="" ng-click="closePanel()"><i class="fa fa-times"/></a></th>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- 宛先 -->
-				<tr class="create-panel__row" >　
- 					<td>
- 						<tags-input ng-model="selectSkillList" placeholder="お知らせ対象を選択" replace-spaces-with-dashes="false">
- 							<auto-complete source="loadSkills($query)" min-length="0" max-results="10" debounce-delay="0"></auto-complete>
- 						</tags-input>
- 					</td>
-				</tr>
-				<!-- タイトル -->
-				<tr class="create-panel__row">
-					<td colspan="2"><input class="create-panel__title" type="text" placeholder="タイトル" ng-model="notification.title"></td>
-				</tr>
-				<!-- 本文 -->
-				<tr class="create-panel__row">
-					<td colspan="2">
-						<div class="scrollbar-hidden">
-							<textarea class="create-panel__contents" rows="24" ng-change="parseMarkDown()" ng-model="notification.content" placeholder="お知らせ本文を入力してください"></textarea>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<!-- 重要度 -->
-				<tr class="create-panel__footer-row">
-					<td  colspan="2">
-						<span>重要度</span>
-						<label><input type="radio" ng-model="notification.importance" ng-value="3">高</label>
-						<label><input type="radio" ng-model="notification.importance" ng-value="2">中</label>
-						<label><input type="radio" ng-model="notification.importance" ng-value="1">低</label>
-						<button class="btn-blue" type="submit">送信</button>
-						<input type="hidden" ng-model="notification.createUser" ng-init="notification.createUser='user1'" />
-						<input type="hidden" ng-model="notification.updateUser" ng-init="notification.updateUser='user1'" />
-					</td>
-				</tr>
-			</tfoot>
-		</table>
-	</form>
-</div>
+<form class="create-panel" ng-controller="CreateNotificationController" name="submitForm" ng-submit="submit(notification)" novalidate>
+	<!-- パネルヘッダ -->
+	<div class="create-panel__header">
+		<div class="header__item--title">{{createPanelHeader}}</div>
+		<div class="header__item--icon"><a ng-click="closePanel()"><i class="fa fa-times"/></a></div>
+	</div>
+	
+	<!-- 本文エリア -->
+	<div class="create-panel__content">
+		<!-- 宛先 -->
+		<tags-input ng-model="selectSkillList" placeholder="お知らせ対象を選択" replace-spaces-with-dashes="false">
+			<auto-complete source="loadSkills($query)" min-length="0" max-results="10" debounce-delay="0" required="true"></auto-complete>
+		</tags-input>
+		<!-- お知らせタイトル -->
+		<input type="text" name="title" placeholder="タイトル" class="create-panel__title" ng-model="notification.title" required="true" ng-maxlength="50" uib-tooltip="50字以内にしてください" tooltip-placement="bottom" tooltip-enable="submitForm.title.$error.maxlength">
+		<!-- お知らせ本文 -->
+		<textarea name="content" rows="24" ng-model="notification.content" placeholder="本文" class="create-panel__contents"></textarea>
+	</div>
+
+	<!-- パネルフッター -->
+	<div class="create-panel__footer">
+		<div class="panel-footer__item">
+			<span>重要度</span>
+			<label><input type="radio" ng-model="notification.importance" ng-value="3">高</label>
+			<label><input type="radio" ng-model="notification.importance" ng-value="2">中</label>
+			<label><input type="radio" ng-model="notification.importance" ng-value="1">低</label>
+			<input type="hidden" ng-model="notification.createUser" ng-init="notification.createUser='user1'" />
+			<input type="hidden" ng-model="notification.updateUser" ng-init="notification.updateUser='user1'" />
+		</div>
+		<div class="panel-footer__item--right">
+			<button type="submit" class="btn-blue" ng-disabled="submitForm.$invalid || loading">
+				<span ng-show="loading"><i class="fa fa-spinner fa-spin"/></span>
+				{{sendButton}}
+			</button>
+		</div>
+
+	</div>
+</form>
