@@ -4,14 +4,20 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Paths;
-import java.util.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.intranewton.elastic.restcontroller.ElasticsearchRestController;
+
 public class FileStorageService {
-	
+	/** ロガー*/
+	private static final Logger logger  = LoggerFactory.getLogger(ElasticsearchRestController.class);
+
 	/**
 	 * ファイルアップロード処理
 	 * @param uploadFile
@@ -43,12 +49,12 @@ public class FileStorageService {
 		File targetFile = new File(filePath);
 		if(targetFile.exists()){
 			if(targetFile.delete()){
-				System.out.println("ファイルが正常に削除されました。");
+				logger.info("ファイルが正常に削除されました");
 			}else{
-				System.out.println("ファイルの削除に失敗しました。");
+				logger.info("ファイルの削除に失敗しました");
 			}
 		}else{
-			System.out.println("ファイルが見つかりません");
+			logger.error("削除対象ファイルが見つかりません");
 		}
 	}
 	

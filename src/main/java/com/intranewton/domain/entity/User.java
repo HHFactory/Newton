@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -21,7 +20,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * m_userテーブルエンティティ
+ * userテーブルエンティティ
  */
 @Data
 @EqualsAndHashCode(callSuper=false)
@@ -34,19 +33,18 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue
-	private Integer id;
-	@Column(name="status",columnDefinition="char(8) DEFAULT 'valid'")
-	private String status;
 	private String name;
-	private String password;
+
+	@Column(nullable=false,columnDefinition="char(8) DEFAULT 'valid'")
+	private String status;
+	
+	private String encodedPassword;
 	private String mailAddress;
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
 			name="user_has_role",
-			joinColumns=@JoinColumn(name="user_id",referencedColumnName="id"),
+			joinColumns=@JoinColumn(name="user_name",referencedColumnName="name"),
 			inverseJoinColumns=@JoinColumn(name="role_id",referencedColumnName="id")
 			)
 	private List<Role> roleList;
-
 }

@@ -34,10 +34,17 @@ public class Manual implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer id;
-	@Column(name="status",columnDefinition="char(8) DEFAULT 'valid'")
+	
+	@Column(nullable=false,columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
+	
+	@Column(nullable=false)
 	private String fileName;
+	
+	@Column(nullable=false)
 	private String fullFileName;
+	
+	@Column(nullable=false)
 	private String filePath;
 	
 	@JsonIgnore

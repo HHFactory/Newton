@@ -18,6 +18,8 @@
 .l-faq--right {
 	@include l-column-set($faqDetailAreaWidth);
 	right: 0;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 /** FAQ一覧画面-右部フッター */
@@ -28,27 +30,28 @@
 	line-height: $faqRightFooterHeight
 }
 
-.has-narrow-width {
-  @each $prefix in $set-prefix {
-    width: #{$prefix}calc(100% - #{$manualAreaWidth + $notificationAreaWidth});
-  }
-}
+// .has-narrow-width {
+//   @each $prefix in $set-prefix {
+//     width: #{$prefix}calc(100% - #{$manualAreaWidth + $notificationAreaWidth});
+//   }
+// }
 
-.l-faq--search {
-	@include l-column-set(100%);
-	background-color: $main-bg-gray;
-}
+// .l-faq--search {
+// 	@include l-column-set(100%);
+// 	background-color: $main-bg-gray;
+// }
 
-.l-search-result {
-	height: calc(100vh - #{$navbarHeight});
-	width: 100%;
-	position: relative;
-	background-color: white;
-}
+// .l-search-result {
+// 	height: calc(100vh - #{$navbarHeight});
+// 	width: 100%;
+// 	position: relative;
+// 	background-color: white;
+// }
 
 /** FAQ一覧タイトル用 */
 .faq__title {
 	width: 100%;
+	height: 50px;
 	padding-left: $general-padding;
 	padding-right: $general-padding;
 	padding-top: 3px;
@@ -57,27 +60,53 @@
 
 /** FAQ詳細パネル */
 .faq__detail {
-	width: calc(100% - 20px);
+	width: 100%;
 	height: calc(100% - #{$colHeaderHeight});
 	border: solid 1px $border-gray;
 	border-radius: 5px;
 	background-color: white;
 	top: $colHeaderHeight;
 	padding: 15px;
-	position: absolute;
+	position: relative;
 }
 
 /** FAQ詳細パネルヘッダ */
 .faq__detail__header {
 	width: 100%;
 	height: 100px;
+}
+
+/** FAQ詳細パネルヘッダ(タイトル行) */
+.faq__detail__header--title {
 	display: table;
+	width: 100%;
+}
+
+/** FAQ詳細ヘッダ-タイトル */
+.header__item--title {
+	display: table-cell;
+}
+
+/** FAQ詳細ヘッダ-アイコン */
+.header__item--icon {
+	display: table-cell;
+	text-align: center;
 }
 
 /** FAQ詳細本文 */
 .faq__content {
 	width: 100%;
 	height: calc(100% - (#{$faqDetailHeader} + #{$faqRightFooterHeight}));
-	overflow: auto;
+	overflow: hidden;
+	& > .ng-isolate-scope {
+
+		height: 100%;
+	} 
+	& > .ng-isolate-scope > .ng-binding {
+		width: calc(100% + #{$scrollbarWidth});
+		height: 100%;
+		overflow: auto;
+		padding-right: $scrollbarWidth;
+	}
 }
 

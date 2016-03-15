@@ -2,7 +2,9 @@
 	<!-- メニューバー -->
 	<ng-include src="'app/views/menu/menubar.html'" include-replace></ng-include>
 	<!--マニュアルエリア-->
-	<ng-include src="'app/views/manual/manual.html'" include-replace></ng-include>
+	<div ng-show="isShowManual">
+		<ng-include src="'app/views/manual/manual.html'" include-replace></ng-include>
+	</div>
 	<!--お知らせエリア-->
 	<div ng-show="isShowNotification">
 		<ng-include src="'app/views/notification/listNotification.html'" include-replace></ng-include>

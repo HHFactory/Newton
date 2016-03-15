@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 
-	function FileUploadCtrl($scope,$state,Upload,$uibModalInstance,connectApiService,constURI,params) {
+	function FileUploadCtrl($scope,$state,Upload,$uibModalInstance,connectApiService,constURI,params,$timeout,APP_CONF) {
 		
 		//登録先カテゴリ名を引数から取得
 		$scope.categoryName = params.node["name"];
@@ -26,7 +26,7 @@
 		 */
 		var upload = function(file,categoryID){
 			Upload.upload({
-				url: '/newton-1.0/upload/file',
+				url: APP_CONF.urlBase + '/upload/file',
 				data: {
 					file:file,
 					categoryID:categoryID
@@ -43,10 +43,12 @@
 					$state.reload();
 				});
 			},function(resp) {
-				console.log(resp.status);
+				$timeout(function(){
+					swal("登録に失敗しました");
+				},1000);
 			});
 		}
 	} 
 
-	angular.module('indexModule').controller('FileUploadModalController',['$scope','$state','Upload','$uibModalInstance','connectApiService','constURI','params',FileUploadCtrl]);
+	angular.module(appName).controller('FileUploadModalController',['$scope','$state','Upload','$uibModalInstance','connectApiService','constURI','params','$timeout','APP_CONF',FileUploadCtrl]);
 })();

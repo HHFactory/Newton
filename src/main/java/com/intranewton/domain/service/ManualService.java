@@ -1,7 +1,7 @@
 package com.intranewton.domain.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,21 +31,11 @@ public class ManualService {
 	 */
 	public List<ManualDTO> getManualCategories() {
 		List<ManualCategory> categories = categoryRepository.findAll();
-
-		List<ManualDTO> manualDTOs = new ArrayList<>();
-		//親カテゴリ->子カテゴリ->孫カテゴリ・・・となるように整形
-		for ( ManualCategory category : categories ) {
-			//自分自身のアイテムは含めない
-			if(category.getParents().size() == 1 && category.getParents().get(0).getPathLength() == 0) {
-				ManualDTO dto = new ManualDTO();
-				dto.setId(category.getId());
-				dto.setName(category.getName());
-				dto.setManuals(category.getManuals());
-				//子要素を取得する
-				dto.setChildren(getCategoryChildItem(category.getChildren()));
-				manualDTOs.add(dto);				
-			}
-		}
+		//ManualCategoryからManualDTOに変換
+		List<ManualDTO> manualDTOs =  categories.stream()
+												.filter(category -> category.getParents().size() ==1 && category.getParents().get(0).getPathLength() == 0)//自身のアイテムは含めない
+												.map(category -> new ManualDTO(category.getId(), category.getName(), category.getManuals(), getCategoryChildItem(category.getChildren())))
+												.collect(Collectors.toList());
 		return manualDTOs;
 	}
 			
@@ -54,20 +44,12 @@ public class ManualService {
 	 * @param targetRelations
 	 * @return
 	 */
-	private List<ManualDTO> getCategoryChildItem(List<ManualCategoryRelations> targetRelations) {
-		List<ManualDTO> children = new ArrayList<>();
-		for(ManualCategoryRelations relation : targetRelations){
-			//1つ下の子要素のみ取得
-			if ( relation.getPathLength() == 1 ) {
-				ManualDTO child = new ManualDTO();
-				ManualCategory category = categoryRepository.findManualCategoryByID(relation.getDescendantId());
-				child.setId(category.getId());
-				child.setName(category.getName());
-				child.setManuals(category.getManuals());
-				child.setChildren(getCategoryChildItem(category.getChildren()));
-				children.add(child);
-			}
-		}
+	private List<ManualDTO> getCategoryChildItem(List<ManualCategoryRelations> targetRelations) {		
+		List<ManualDTO> children =  targetRelations.stream()
+													.filter(relation -> relation.getPathLength() == 1)//1つ下の子要素のみ取得
+													.map(relation -> categoryRepository.findManualCategoryByID(relation.getDescendantId()))
+													.map(category -> new ManualDTO( category.getId(), category.getName(), category.getManuals(), getCategoryChildItem(category.getChildren()) ))
+													.collect(Collectors.toList());
 		return children;
 	}
 	
@@ -98,21 +80,5 @@ public class ManualService {
 	public void deleteFileInfo(Integer targetId) {
 		manualRepository.delete(targetId);
 	}
-	
-	
-	/**
-	 * m_manualテーブルjson確認用
-	 */
-	public List<Manual> getAllManual() {
-		return manualRepository.findAll();
-	}
-	
-	/**
-	 * m_manual_categoryテーブルjson確認用
-	 * @return
-	 */
-	public List<ManualCategory> getAllManualCategories() {
-		return categoryRepository.findAll();
-	}
-	
+		
 }

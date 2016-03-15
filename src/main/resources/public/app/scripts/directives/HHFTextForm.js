@@ -43,5 +43,5 @@
 	}
 
 
-	angular.module('indexModule').directive('hhfTextForm',[HHFTextForm]);
+	angular.module(appName).directive('hhfTextForm',[HHFTextForm]);
 })();

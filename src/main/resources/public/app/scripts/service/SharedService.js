@@ -3,10 +3,9 @@
 
 	function sharedService(){
 		return {
-			data: null,
-			checkModifyTask: false,
-			showModifyFaqDetail: false,
-			modifyFaqDetail: null,
+			faqList: {faqList:[],faqCategoryList:[]},
+			manualList: null,
+			notificationList: null,
 			isShowManual: false,
 			isShowNotification: false,
 			isShowCreateNotificationPanel: false,
@@ -15,5 +14,5 @@
 		};
 	}
 
-	angular.module('indexModule').factory('sharedService',sharedService);
+	angular.module(appName).factory('sharedService',sharedService);
 })();

@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+/** 幅100％状態 */
+.is-full-width {
+	width: 100%;
+}
+
 /** 右へスライド */
 .is-slide-right {
 	@each $prefix in $set-prefix {
@@ -18,10 +23,11 @@
 	}
 }
 
+/** 上へスライド */
 .is-slide-top {
 	@each $prefix in $set-prefix {
 		@include transition(transform 0.1s ease);
 		#{$prefix}transform-origin: 0% 100%;
 		#{$prefix}transform: translateY(-300px);
-	}	
+	}
 }

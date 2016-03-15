@@ -36,12 +36,14 @@ public class FAQCategory implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
 	@Column(nullable=false,columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
+	
+	@Column(nullable=false)
 	private String name;
 	
 	@JsonIgnoreProperties(value="categories")
 	@ManyToMany(mappedBy="categories",cascade={CascadeType.PERSIST,CascadeType.MERGE})
 	List<FAQ> faqs;
-	
 }

@@ -8,6 +8,7 @@ package com.intranewton.domain.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,13 +58,17 @@ public class NotificationService {
 		notification.setContent(notificationParam.getContent());
 		notification.setFilePath(notificationParam.getFilePath());
 		notification.setImportance(notificationParam.getImportance());
-		List<NotificationTargetRole> targetRoleList = new ArrayList<>();
-		for ( String targetUser : notificationParam.getTargetUserList() ) {
-			NotificationTargetRole targetRole = new NotificationTargetRole();
-			targetRole.setNotification(notification);
-			targetRole.setTargetUser(targetUser);
-			targetRoleList.add(targetRole);
-		}
+		
+		//targetUserListからNotificationTargetRoleリストを生成
+		List<NotificationTargetRole> targetRoleList = 
+				   notificationParam.getTargetUserList().stream()
+														.map(targetUser -> {
+															NotificationTargetRole targetRole = new NotificationTargetRole();
+															targetRole.setNotification(notification);
+															targetRole.setTargetUser(targetUser);
+															return targetRole;
+														})
+														.collect(Collectors.toList());
 		notification.setNotificationTargetRoles(targetRoleList);
 		return notification;
 	}
@@ -78,20 +83,11 @@ public class NotificationService {
 		List<Notification> notifications = getEntityByUserName(userName);
 		//更新日で降順ソート
 		Collections.sort(notifications, (n1,  n2) -> Long.compare(n2.getUpdateDatetime().getTime(), n1.getUpdateDatetime().getTime()));
-		List<NotificationDTO> notificationDTOList = new ArrayList<>();
-		for ( Notification notification : notifications ) {
-			NotificationDTO notificationDTO = new NotificationDTO();
-			notificationDTO.setId(notification.getId());
-			notificationDTO.setTitle(notification.getTitle());
-			notificationDTO.setContent(notification.getContent());
-			notificationDTO.setFilePath(notification.getFilePath());
-			notificationDTO.setImportance(notification.getImportance());
-			notificationDTO.setCreateUser(notification.getCreateUser());
-			notificationDTO.setReadMemberList(createReadUserList(notification.getNotificationTargetRoles(), userName));
-			notificationDTO
-			        .setUnreadMemberList(createUnReadUserList(notification.getNotificationTargetRoles(), userName));
-			notificationDTOList.add(notificationDTO);
-		}
+		List<NotificationDTO> notificationDTOList = 
+				notifications.stream()
+							 .map(notification -> new NotificationDTO(notification.getId(),notification.getTitle(),notification.getContent(),notification.getFilePath(),notification.getImportance(),notification.getCreateUser(), null, createReadUserList(notification.getNotificationTargetRoles(), userName),createUnReadUserList(notification.getNotificationTargetRoles(), userName)))
+							 .collect(Collectors.toList());
+		
 		return notificationDTOList;
 	}
 
@@ -103,11 +99,9 @@ public class NotificationService {
 	 */
 	private List<Notification> getEntityByUserName(String userName) {
 		List<NotificationTargetRole> targetRoleList = notificationTargetRoleRepository.findbyTargetUser(userName);
-		List<Notification> notificationList = new ArrayList<>();
-		for ( NotificationTargetRole targetRole : targetRoleList ) {
-			Notification notification = notificationRepository.findByTargetRoles(targetRole);
-			notificationList.add(notification);
-		}
+		List<Notification> notificationList = targetRoleList.stream()
+					  										.map(targetRole -> notificationRepository.findByTargetRoles(targetRole))
+					  										.collect(Collectors.toList());
 		return notificationList;
 	}
 
@@ -120,13 +114,12 @@ public class NotificationService {
 	 */
 	private List<String> createReadUserList(List<NotificationTargetRole> targetRoleList,String userName) {
 		List<String> readUserList = new ArrayList<>();
-		if ( !(targetRoleList.size() > 0) ) {
-			return readUserList;			
-		}
-		for ( NotificationTargetRole targetRole : targetRoleList ) {
-			if ( targetRole.isReadFlag() ) {
-				readUserList.add(targetRole.getTargetUser());
-			}
+		//listのnullチェック
+		if(!targetRoleList.isEmpty()){
+			readUserList = targetRoleList.stream()
+										 .filter(targetRole -> targetRole.isReadFlag())//readFlag = trueで抽出
+										 .map(targetRole -> targetRole.getTargetUser())//ユーザ名リストの生成
+										 .collect(Collectors.toList());			
 		}
 		return readUserList;
 	}
@@ -138,15 +131,15 @@ public class NotificationService {
 	 * @param userName
 	 * @return 未読ユーザ名のリスト
 	 */
-	private List<String> createUnReadUserList(List<NotificationTargetRole> targetRoleList,String userName) {
+	private List<String> createUnReadUserList(List<NotificationTargetRole> targetRoleList,String userName) {		
 		List<String> unreadUserList = new ArrayList<>();
-		if ( !(targetRoleList.size() > 0) ){
-			return unreadUserList;
-		}
-		for ( NotificationTargetRole targetRole : targetRoleList ) {
-			if ( !targetRole.isReadFlag() ) {
-				unreadUserList.add(targetRole.getTargetUser());
-			}
+		//listのnullチェック
+		if(!targetRoleList.isEmpty()){
+			//
+			unreadUserList =  targetRoleList.stream()
+											.filter(targetRole -> !targetRole.isReadFlag())//readFlag = falseで抽出
+											.map(targetRole -> targetRole.getTargetUser())//ユーザ名リストの生成
+											.collect(Collectors.toList());
 		}
 		return unreadUserList;
 	}
@@ -156,9 +149,16 @@ public class NotificationService {
 	 * @param id
 	 * @param userName
 	 */
-//	public void readNotification(Integer id, String userName){
-//		notificationTargetRoleRepository.isRead(id, userName);
-//	}
-
+	public void readNotification(Integer id, String userName){
+		notificationTargetRoleRepository.isRead(id, userName);
+	}
+	
+	/**
+	 * 削除処理
+	 * @param id
+	 */
+	public void deleteNotification(Integer id){
+		notificationRepository.delete(id);
+	}
 
 }

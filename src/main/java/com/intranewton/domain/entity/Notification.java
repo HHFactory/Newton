@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import com.intranewton.domain.common.AbstractEntity;
 
@@ -22,7 +21,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * m_notificationテーブルエンティティ
+ * notificationテーブルエンティティ
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -31,14 +30,19 @@ import lombok.NoArgsConstructor;
 @Where(clause = "status='valid'")
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(indexName = "jdbc", type = "notification")
 public class Notification extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@Column(nullable=false)
 	private String title;
-	@Column(name="content",columnDefinition="TEXT")
+	
+	@Column(nullable=true,columnDefinition="TEXT")
 	private String content;
+	
+	@Column(nullable=true)
 	private String filePath;
+	
+	@Column(nullable=true)
 	private Integer importance;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

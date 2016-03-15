@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('indexModule')
+angular.module(appName)
 	.config(["$stateProvider",function($stateProvider){
 		$stateProvider
 			.state('main',{

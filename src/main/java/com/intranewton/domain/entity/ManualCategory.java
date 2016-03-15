@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,17 +36,16 @@ public class ManualCategory implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
+	@Column(nullable=false,columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
+	
+	@Column(nullable=false)
 	private String name;
-	
-//	@OneToMany
-//	@JoinColumn(name="m_manual_category_id")
-//	private List<Manual> manuals;
-	
+		
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="manual_category_id")
 	private List<Manual> manuals;
-	
 	
 	@OneToMany(mappedBy="children")
 	List<ManualCategoryRelations> children;

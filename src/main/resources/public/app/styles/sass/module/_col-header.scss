@@ -17,9 +17,10 @@
 }
 
 .col-header__item {
-	display: teble-cell;
+	display: table-cell;
 	vertical-align: middle;
-	margin-right: 10px;
+	color: $faq-title-link;
+	text-align: center;
 }
 
 /** ヘッダ部アイコン */
@@ -31,7 +32,8 @@
 .col-header__title {
 	font-size: 1.2rem;
 	font-weight: bold;
-	margin-left: $general-padding;
+	display: table-cell;
+	padding-left: $general-padding;
 }
 
 .col-header__title-normal {

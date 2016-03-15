@@ -11,8 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
-import org.springframework.data.elasticsearch.annotations.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.intranewton.domain.common.AbstractEntity;
 
 import lombok.AllArgsConstructor;
@@ -28,17 +28,21 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "faq")
 @Where(clause = "status='valid'")
-@Document(indexName = "jdbc",type = "jdbc")
 @NoArgsConstructor
 @AllArgsConstructor
 public class FAQ extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Column(nullable=false)
 	private String title;
-	@Column(name="content",columnDefinition="TEXT")
+	
+	@Column(columnDefinition="TEXT",nullable=false)
 	private String content;
+	
+	@Column(nullable=true,columnDefinition="TEXT")
 	private String talkScript;
-	@Column(name="useful_count",columnDefinition="int(11) DEFAULT '0'")
+	
+	@Column(columnDefinition="int(11) DEFAULT '0'",nullable=false)
 	private Integer usefulCount;
 	
 	@ManyToMany
@@ -47,6 +51,7 @@ public class FAQ extends AbstractEntity implements Serializable {
 			joinColumns=@JoinColumn(name="faq_id",referencedColumnName="id"),
 			inverseJoinColumns=@JoinColumn(name="faq_category_id",referencedColumnName="id")
 			)
+	@JsonIgnoreProperties(value="faqs")
 	private List<FAQCategory> categories;	
 	
 }

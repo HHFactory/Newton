@@ -15,7 +15,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * m_roleテーブルエンティティ
+ * roleテーブルエンティティ
  */
 @Data
 @AllArgsConstructor
@@ -29,8 +29,11 @@ public class Role implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer id;
-	@Column(name="status",columnDefinition="char(8) DEFAULT 'valid'")
+	
+	@Column(nullable=false,columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
+	
+	@Column(nullable=false)
 	private String skillName;
 
 }

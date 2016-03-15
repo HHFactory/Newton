@@ -25,5 +25,5 @@
         }
     };
 
-    angular.module('indexModule').directive("ngFileSelect",[FileSelect]);
+    angular.module(appName).directive("ngFileSelect",[FileSelect]);
 })();

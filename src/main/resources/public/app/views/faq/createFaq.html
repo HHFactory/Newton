@@ -2,18 +2,16 @@
 <form class="create-view" name="submitForm" ng-controller="CreateFaqController" ng-submit="submit(faq)" novalidate>
 	<!-- タイトルエリア -->
 	<div class="create-view__header">
-		<!-- TODO:directiveにする -->
 		<a class="create-view__header__icon" ng-click="isOpenCategory = !isOpenCategory">
 			<i class="fa fa-tag"/>
 			<p>{{iconLabelTag}}</p>
 		</a>
 		<input class="create-view__text" type="text" name="title" required="true" ng-maxlength="40" placeholder="FAQタイトルを入力してください" ng-model="faq.title" uib-tooltip="40字以内にしてください" tooltip-placement="bottom" tooltip-enable="submitForm.title.$error.maxlength"/>
-		<!-- directive化 -->
-		<!-- <hhf-text-form name="title" placeholder="FAQタイトルを入力してください" ng-model="faq.title" required="true" ng-maxlength="50"></hhf-text-form> -->
 	</div>
 	<!-- 入力エリア -->
 	<div class="create-view__contents">
 		<div class="write-area">
+			<!-- アイコンリスト -->
 			<ul class="textarea__item-list">
 				<li><a ng-click="addImage()" ngf-select="upload($file)" ngf-pattern="'image/*'"><i class="fa fa-picture-o"/></a></li>
 				<li><a ng-click="addHeaderTag()"><i class="fa fa-header"/></a></li>
@@ -21,21 +19,25 @@
 				<li><a ng-click="addOlTag()"><i class="fa fa-list-ol"/></a></li>
 				<li><a ng-click="addHrTag()"><i class="fa fa-minus"/></a></li>
 				<li><a ng-click="addQuoteTag()"><i class="fa fa-quote-right"/></a></li>
+				<li><a ng-click="addTableTag()"><i class="fa fa-table"/></a></li>
 			</ul>
-
 			<!-- カテゴリ選択パネル -->
-			<div ng-show="isOpenCategory" class="category" ng-class="{'is-selected': isSelected}" hhf-tag-select ng-model="categoryList"></div>
+			<div ng-cloak ng-show="isOpenCategory" class="category" ng-class="{'is-selected': isSelected}" hhf-tag-select ng-model="categoryList"></div>
 
 			<!-- 回答入力エリア -->
-			<textarea class="create-view__textarea" name="content" required="required" rows="24" ng-model="faq.content" placeholder="FAQ本文を入力してください" eb-caret="cursorPosition"></textarea>
-			<label ng-show="submitForm.content.$touched && submitForm.content.$pristine">
-				<span ng-if="submitForm.content.$error.required">必須項目</span>
-			</label>
+			<div class="hidden-scrollbar-area">
+				<textarea class="create-view__textarea" name="content" required="required" rows="24" ng-model="faq.content" placeholder="FAQ本文を入力してください" eb-caret="cursorPosition" ng-change="onChange()"></textarea>
+<!-- 				<label ng-show="submitForm.content.$touched && submitForm.content.$pristine">
+					<span ng-if="submitForm.content.$error.required">必須項目</span>
+				</label> -->
+			</div>
 		</div>
 		<!-- markdownプレビュー -->
 		<div class="preview-area">
 			<p>{{columnLabelPreview}}</p>
-			<p markdown-to-html="faq.content"></p>
+			<div class="preview-area__content">
+				<div hhf-markdown-to-html="faq.content"></div>
+			</div>
 		</div>
 	</div>
 	<!-- ページ下部ボタンエリア -->
@@ -45,8 +47,15 @@
 		<input type="hidden" ng-model="faq.status" ng-init="faq.status='valid'"/>
 		<input type="hidden" ng-init="faq.usefulCount='0'">
 		<div class="create-view__footer__item">
-			<button type="submit" class="btn-blue" ng-hide="editMode" ng-disabled="submitForm.$invalid">{{buttonLabelSubmit}}</button>
-			<button type="submit" class="btn-blue" ng-show="editMode" ng-disabled="submitForm.$invalid">{{buttonLabelUpdate}}</button>
+			<button type="submit" class="btn-blue" ng-hide="editMode" ng-disabled="submitForm.$invalid">
+				<span ng-show="loading"><i class="fa fa-spinner fa-spin"/></span>
+				{{buttonLabelSubmit}}
+			</button>
+
+			<button type="submit" class="btn-blue" ng-show="editMode" ng-disabled="submitForm.$invalid">
+				<span ng-show="loading"><i class="fa fa-spinner fa-spin"/></span>
+				{{buttonLabelUpdate}}
+			</button>
 		</div>
-	</div>	
+	</div>
 </form>

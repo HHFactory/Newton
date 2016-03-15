@@ -6,7 +6,7 @@
 (function(){
 'use strict';
 	
-	function DictionaryCtrl($scope,connectApiService,constURI,$timeout) {
+	function DictionaryCtrl($scope,$state,connectApiService,constURI,$timeout,APP_CONF) {
 		$scope.isShowCreatePanel = false;
 		
 		/**
@@ -14,7 +14,7 @@
 		 * @param  {[type]} apiResult)
 		 * @return {[type]}           
 		 */
-		connectApiService.get(constURI.terms).then(function(apiResult){
+		connectApiService.get(APP_CONF.urlBase + constURI.terms).then(function(apiResult){
 			$scope.termList = apiResult.data;
 		});
 
@@ -33,11 +33,7 @@
 		 * @return {[type]} [description]
 		 */
 		$scope.toggleCreatePanel = function() {
-			if($scope.isShowCreatePanel == false) {
-				$scope.isShowCreatePanel = true;
-			}else{
-				$scope.isShowCreatePanel = false;
-			}
+			$scope.isShowCreatePanel = !$scope.isShowCreatePanel;
 		}
 
 		/**
@@ -46,15 +42,14 @@
 		 * @return {[type]}      [description]
 		 */
 		$scope.submit = function(term) {
-			console.dir(term);
 			term.status = "valid";
-			connectApiService.post(constURI.term,term).then(function(apiResult){
+			connectApiService.post(APP_CONF.urlBase + constURI.term,term).then(function(apiResult){
 				if(apiResult.status == 201){
-					console.log(apiResult.data);
 					$scope.isShowCreatePanel = false;
-					connectApiService.get(constURI.terms).then(function(apiResult){
-						$scope.termList = apiResult.data;
-					});
+					// connectApiService.get(constURI.terms).then(function(apiResult){
+					// 	$scope.termList = apiResult.data;
+					// });
+					$state.reload();
 				}else{
 					$timeout(function(){
 						swal("登録に失敗しました");
@@ -67,5 +62,5 @@
 	}
 
 	//moduleへの登録
-	angular.module('indexModule').controller('DictionaryModalController',['$scope','connectApiService','constURI','$timeout',DictionaryCtrl]);
+	angular.module(appName).controller('DictionaryModalController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF',DictionaryCtrl]);
 })();

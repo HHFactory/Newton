@@ -8,8 +8,8 @@
 @import "base/icon";
 @import "base/util";
 @import "assets/stylesheets/bootstrap";
-@import "base/scss/font-awesome";
 @import "base/errorSet";
+@import "base/markdown";
 
 @import "layout/footer/";
 @import "layout/navbar";
@@ -35,9 +35,8 @@
 @import "module/timeline";
 @import "module/tree-view";
 @import "module/uitree-view";
-@import "module/markdown";
 @import "module/search-result";
 @import "module/telmode";
 @import "module/category";
 
-@import "state/is-open-sidebar";
+@import "state/state";

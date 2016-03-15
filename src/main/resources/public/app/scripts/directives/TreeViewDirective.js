@@ -49,5 +49,5 @@
 		}
 	}
 
-	angular.module('indexModule').directive('nwtTreeView',['$compile','$timeout',TreeViewDirective]);
+	angular.module(appName).directive('nwtTreeView',['$compile','$timeout',TreeViewDirective]);
 })();

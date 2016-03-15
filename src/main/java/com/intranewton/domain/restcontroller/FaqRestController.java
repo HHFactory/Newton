@@ -1,4 +1,5 @@
 package com.intranewton.domain.restcontroller;
+import java.util.HashMap;
 /*
  * FAQ関連のrestcontroller
  * FAQServiceを呼び出す
@@ -6,6 +7,8 @@ package com.intranewton.domain.restcontroller;
  */
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,23 +22,36 @@ import org.springframework.web.bind.annotation.RestController;
 import com.intranewton.domain.entity.FAQ;
 import com.intranewton.domain.entity.FAQCategory;
 import com.intranewton.domain.service.FaqService;
-import com.intranewton.elastic.service.FAQElasticsearchService;
+import com.intranewton.elastic.service.ElasticSearchService;
 
 @RestController
 public class FaqRestController {
 	@Autowired
 	FaqService faqService;
 	@Autowired
-	FAQElasticsearchService faqElasticService;
+	ElasticSearchService elasticSearchService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(FaqRestController.class);
 	
 	/**
-	 * 全てのFAQを取得する
-	 * @return FAQ List
+	 * FAQ一覧取得	
+	 * @param page
+	 * @return
 	 */
 	@RequestMapping(value="/api/v1/faqs/",method=RequestMethod.GET)
-	List<FAQ> findAllFaqs(){
-		List<FAQ> faqs = faqService.getFaqList();
-		return faqs;
+	public HashMap<String, Object> findAllFaqs(@RequestParam int page){
+		return faqService.getFaqList(page);
+	}
+	
+	/**
+	 * IDで取得
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/api/v1/faqs/{id}",method=RequestMethod.GET)
+	public HashMap<String, Object> findOne(@PathVariable Integer id){
+		logger.info("search by:#" + id);
+		return elasticSearchService.findOne(id);
 	}
 	
 	/**
@@ -43,7 +59,7 @@ public class FaqRestController {
 	 * @return
 	 */
 	@RequestMapping(value="/api/v1/faqcategories",method=RequestMethod.GET)
-	List<FAQCategory> findAllCategories() {
+	public List<FAQCategory> findAllCategories() {
 		return faqService.findAllCategories();
 	}
 	
@@ -67,7 +83,8 @@ public class FaqRestController {
 	 */
 	@RequestMapping(value="/api/v1/faq/",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	FAQ postFaq(@RequestBody FAQ faq){	
+	public FAQ postFaq(@RequestBody FAQ faq){	
+		logger.info("new FAQ created");
 		return faqService.createFaq(faq);
 	}
 		
@@ -78,8 +95,8 @@ public class FaqRestController {
 	 */
 	@RequestMapping(value="/api/v1/faqs/",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	Integer postFaqList(@RequestBody List<FAQ> faqs) {
-		return faqService.postFaqList(faqs);
+	public void postFaqList(@RequestBody List<FAQ> faqs) {
+		faqService.postFaqList(faqs);
 	}
 	
 	/**
@@ -91,37 +108,20 @@ public class FaqRestController {
 	@RequestMapping(value="/api/v1/faq/{id}",method=RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.CREATED)
 	public FAQ editFaq(@PathVariable Integer id, @RequestBody FAQ targetFaq) {
+		logger.info("#" + id + "FAQ updated");
 		targetFaq.setId(id);
 		return faqService.editFaq(targetFaq);
 	}
 	
 	/**
-	 * FAQ削除処理
+	 * FAQ削除処理(DB,ES両方削除）
 	 * @param id
 	 */
 	@RequestMapping(value="/api/v1/faq/{id}",method=RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteFaq(@PathVariable Integer id) {
+		logger.info("#" + id + "FAQ deleted");
 		faqService.deleteFaq(id);
-	}
-	
-	/**
-	 * elasticsearchでFAQを全て取得する
-	 * @return FAQ iterable
-	 */
-	@RequestMapping(value="/api/v1/elastic/allfaqs",method=RequestMethod.GET)
-	Iterable<FAQ> findallfaqs(){		
-		return faqElasticService.findAllFaqsbyElasticsearch();
-	}
-	
-	/**
-	 * elasticsearch titleと本文からの検索
-	 * @param title
-	 * @return
-	 */
-	@RequestMapping(value="/api/v1/elastic/faqs",method=RequestMethod.GET)
-	List<FAQ> findTitleOrContent(@RequestParam String title){
-		return faqElasticService.findbyTitleOrContent(title,title);
-	}
-	
+		elasticSearchService.deleteFaqDoc(id);
+	}	
 }

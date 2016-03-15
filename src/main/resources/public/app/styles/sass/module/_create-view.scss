@@ -60,12 +60,12 @@ $tagIconHeight: 40px;
 	margin: auto;
 }
 
-/** FAQタイトル */
+/** FAQタイトルinput text */
 .create-view__text {
 	width: calc(100% - #{$tagIconHeight} - 10px);
 	height: 40px;
 	background-color: white;
-	border: 1px solid;
+	border: 1px solid #ccc;
 	border-color: gray;
 	border-radius: 5px;
 	padding-left: 10px;
@@ -77,38 +77,35 @@ $tagIconHeight: 40px;
 	}
 }
 
+/** FAQ回答内容入力textarea */
 .create-view__textarea {
 	@include textarea-base();
-	width: 50%;
-	@each $prefix in $set-prefix {
-		height: #{$prefix}calc(100% - #{$item-list-height});
-		max-height: #{$prefix}calc(100% - #{$item-list-height});
-	}
-	border: 1px solid;
-	border-color: gray;
-	position: absolute;
+	width: calc(100% + #{$scrollbarWidth});
+	height: 100%;
 	overflow: auto;
-	padding: 5px 10px;
-	border-radius: 5px;
+	padding-left: 10px;
+	padding-right: $scrollbarWidth;
 }
 
+/** アイコンリスト */
 .textarea__item-list {
 	width: 100%;
 	height: $item-list-height;
 	font-size: 18px;
 	& > li {
 		display: inline-block;
-		border: 1px solid;
-		border-color: $sub-gray;		
 	}
 }
 
+/** 画面左部 */
 .write-area {
 	display: table-cell;
 	width: 50%;
 	height: 100%;
+	position: absolute;
 }
 
+/** 画面右部 */
 .preview-area {
 	display: table-cell;
 	width: 50%;
@@ -128,18 +125,38 @@ $tagIconHeight: 40px;
 		max-width: 600px;
     }
 	height: 100%;
-	padding-left: 10px;
-	overflow: auto;
-	
+	position: relative;
 }
 
-.preview-text {
-//	white-space: pre-wrap;
-	widows: 100%;
-	overflow: auto;
+/** プレビュー本文エリア */
+.preview-area__content {
+	height: calc(100% - #{$item-list-height});
+	position: absolute;
+	overflow: hidden;
+	width: 100%;
+	& > .ng-isolate-scope {
+		height: 100%;
+	}
+	& > .ng-isolate-scope > .ng-binding {
+		width: calc(100% + #{$scrollbarWidth});
+		overflow: auto;
+		height: 100%;
+		padding-top: 10px;
+		padding-left: 10px;
+		padding-right: $scrollbarWidth;
+	}
 }
 
 .create-view__submit-btn {
 	@extend .btn-green;
 	width: 60px;
 }
+
+/** スクロールバー非表示箇所の親div */
+.hidden-scrollbar-area {
+	@extend .scrollbar-hidden;
+	height: calc(100% - #{$item-list-height});
+	border: solid 1px #ccc;
+	border-radius: 5px;
+}
+

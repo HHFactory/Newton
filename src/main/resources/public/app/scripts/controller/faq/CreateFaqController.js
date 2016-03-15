@@ -1,12 +1,12 @@
 
 /**
- * FAQ新規登録画面Controller
+ * FAQ登録/更新Controller
  * 
  */
 (function(){
 'use strict';
 
-	function CreateFaqCtrl($scope,$state,$uibModal,connectApiService,constURI,Upload,$location,$http,$stateParams,APP_CONF){
+	function CreateFaqCtrl($scope,$state,connectApiService,constURI,Upload,$stateParams,APP_CONF){
 		/** ラベル */
 		$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmit;
 		$scope.buttonLabelUpdate = APP_CONF.buttonLabelUpdate;
@@ -24,8 +24,9 @@
 				id: $stateParams.editTarget["id"],
 				categories: $stateParams.editTarget["categories"]
 			}
-
 			$scope.selectedList.push.apply($scope.selectedList,$scope.faq.categories);
+			$scope.categoryList = $scope.selectedList;
+			$scope.parsedMarkdown = marked($scope.faq.content);
 			//更新ボタンを表示
 			$scope.editMode = true;
 		}
@@ -35,7 +36,7 @@
 		 * @param  {[type]} apiResult
 		 * @return {[type]}           
 		 */
-		connectApiService.get(constURI.faqCategory).then(function(apiResult){
+		connectApiService.get(APP_CONF.urlBase + constURI.faqCategory).then(function(apiResult){
 			$scope.categoryList = apiResult.data;
 		});
 
@@ -46,9 +47,10 @@
 		 */
 		$scope.submit = function(faq){
 			faq.categories = $scope.selectedList;
+			$scope.loading = true;
+			// 登録処理
 			if(!faq.id){
-				//登録
-				connectApiService.post(constURI.faq,faq).then(function(apiResult){
+				connectApiService.post(APP_CONF.urlBase + constURI.faq,faq).then(function(apiResult){
 					if(apiResult.status == 201){
 						swal({
 							title: "登録完了",
@@ -66,25 +68,31 @@
 							timer: 2000,
 							showConfirmButton: false
 						});
-						console.log(apiResult);
 					}
+				}).finally(function(){
+					$scope.loading = false;
 				});
-			}else {
-				//更新
+			}
+			// 更新処理
+			else {
 				var targetId = $scope.faq.id;
-				connectApiService.put(constURI.faq+targetId,faq).then(function(apiResult){
+				connectApiService.put(APP_CONF.urlBase + constURI.faq+targetId,faq).then(function(apiResult){
 					$state.go('main');
 				});
 			}
 		};
 
 		/**
-		 * 入力内容プレビュー処理 
-		 * @return {[type]}
+		 * 入力内容プレビュー(marked.js)
+		 * @return {[type]} [description]
 		 */
-		$scope.parseMarkDown = function(){
-			$scope.parsedMarkdown = marked($scope.faq.content);
-		};
+		$scope.onChange = function(){
+			if($scope.faq.content != null){
+				$scope.parsedMarkdown = marked($scope.faq.content);
+			}else{
+				$scope.parsedMarkdown = "";
+			}
+		}
 
 		/**
 		 * markdown用のタグを現在カーソル位置に挿入
@@ -107,9 +115,9 @@
 		 */
 		 $scope.upload = function(file) {
 		 	var fileName = file.name;
-		 	var basePath = APP_CONF.urlBase + "app/images/";
+		 	var basePath = APP_CONF.imageFolderPath;
 		 	Upload.upload({
-		 		url: '/newton-1.0/upload/image',
+		 		url: APP_CONF.urlBase + '/upload/image',
 		 		data: {image:file}
 		 	}).then(function(resp) {
 		 		var fullFileName = resp['data'];
@@ -157,6 +165,12 @@
 			setMarkdownTag("> 引用");
 		}
 
+		$scope.addTableTag = function() {
+			setMarkdownTag("|aa|bb|cc|");
+			setMarkdownTag("|:-|:-|:-|");
+			setMarkdownTag("|aa|bb|cc|");
+		}
+
 		/**
 		 * EnterKey押下時に、末尾に半角スペース×2を挿入
 		 */
@@ -167,5 +181,5 @@
 	}
 
 	//モジュールへの登録
-	angular.module('indexModule').controller('CreateFaqController',['$scope','$state','$uibModal','connectApiService','constURI','Upload','$location','$http','$stateParams','APP_CONF',CreateFaqCtrl]);
+	angular.module(appName).controller('CreateFaqController',['$scope','$state','connectApiService','constURI','Upload','$stateParams','APP_CONF',CreateFaqCtrl]);
 })();

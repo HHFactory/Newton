@@ -1,43 +1,36 @@
 
 /**
-* 各種APIのURIを定義する定数Service
+* 各種apiのURIを定義する定数Service
 * @Param
 * @Return
 */
 (function(){
 'use strict';
-
-
-	var hostName = "http://hhfactory.japanwest.cloudapp.azure.com:8080/newton-1.0/";
-	// var hostName = "http://localhost:8080/newton-1.0/";
-	angular.module('indexModule').value(
+	angular.module(appName).value(
 		'constURI',{
 			//faq
-			'faq': hostName + "api/v1/faq/",
-			'faqs': hostName + "api/v1/faqs/",
-			'modifyFaqs': hostName + "api/v1/modifyfaqs/",
-			'faqCategory': hostName + "api/v1/category/faq/",
+			'faq': "api/v1/faq/",
+			'faqs': "api/v1/faqs/",
+			'modifyFaqs': "api/v1/modifyfaqs/",
+			'faqCategory': "api/v1/category/faq/",
 			//notification
-			'notification': hostName + "api/v1/notification/",
-			'notifications': hostName + "api/v1/notifications/",
+			'notification': "api/v1/notification/",
+			'notifications': "api/v1/notifications/",
 			//manual
-			'manual': hostName +"api/v1/manual",
-			'manuals': hostName + "api/v1/manuals",
-			'manualCategory': hostName + "api/v1/manualcategory",
+			'manual': "api/v1/manual",
+			'manuals': "api/v1/manuals",
+			'manualCategory': "api/v1/manualcategory",
 			//role&user
-			'roles': hostName + "api/v1/roles",
-			'users': hostName +"api/v1/users",
-			//todo
-			// 'postToDo': hostName +"api/v1/todo",
-			// 'getToDoList': hostName +"api/v1/todos",
-			// 'getToDoListByTargetUser': hostName +"api/v1/targettodos",
+			'roles': "api/v1/roles",
+			'users': "api/v1/users",
 			//term
-			'term': hostName + "api/v1/term",
-			'terms': hostName + "api/v1/terms",
+			'term': "api/v1/term",
+			'terms': "api/v1/terms",
 			//elasticsearch
-			'searchAPI': hostName +"api/v1/elastic/querysearch",
+			'searchAPI': "api/v1/elastic/querysearch/",
+			// 'searchALL': "api/v1/elastic/matchall/",
 			//upload&delete
-			'deleteFile': hostName + "delete/file"
+			'deleteFile': "delete/file"
 		}
 	);
 
