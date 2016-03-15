@@ -10,6 +10,8 @@
 		$scope.columnTitle = APP_CONF.columnTitleImportFaq;
 		/** ラベル */
 		$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmit;
+		$scope.buttonLabelClear = APP_CONF.buttonLabelClear;
+		$scope.fileUrl = APP_CONF.importFaqTemplateFilePath;
 
 		/**  */
 		var columnDefs = [];
@@ -50,7 +52,7 @@
 				var faq = {};
 				faq["title"] = faqData[i]["FAQタイトル"];
 				faq["content"] = faqData[i]["回答内容"];
-				faq["categories"] = createCategoryList(faqData[i]["カテゴリ"]);
+				faq["categories"] = createCategoryList(faqData[i]["タグ"]);
 				faq["createUser"] = "user1";
 				faq["updateUser"] = "user1";
 				faq["usefulCount"] = "0";
@@ -92,8 +94,9 @@
 		 */
 		$scope.submit = function(faqData) {
 			var postParm = formatPostParam(faqData);
-			$scope.loading = true;
 			if(validFlag === true){
+				$scope.loading = true;
+				$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmitting;
 				connectApiService.post(APP_CONF.urlBase + constURI.faqs,postParm).then(function(apiResult){
 					if(apiResult.status == 201){
 						swal({
@@ -115,10 +118,21 @@
 						});
 					}
 				}).finally(function(){
+					$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmit;
 					$scope.loading = false;
 				});
 			}
 		}
+
+		/**
+		 * クリアボタン押下処理
+		 * @return {[type]} [description]
+		 */
+		// $scope.clear = function(){
+		// 	$timeout(function(){
+		// 		$scope.faqData = null;
+		// 	});
+		// }
 
 		/**
 		 * 閉じるアイコン押下処理

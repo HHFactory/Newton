@@ -22,6 +22,8 @@
 
 /** treeview-chid__item */
 .tree__node__item {
+	width: 100%;
+	display: table;
 	padding-left: 20px;
 }
 
@@ -30,3 +32,11 @@
 	text-align: right;
 	vertical-align: middle;
 }
+
+.tree__nodes__item--left {
+	display: table-cell;
+	text-align: left;
+	vertical-align: middle;	
+}
+
+

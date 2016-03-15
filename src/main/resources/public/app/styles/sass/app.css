@@ -3704,31 +3704,45 @@ a.badge:hover, a.badge:focus {
   width: 100%;
 }
 
-/** FAQ詳細ヘッダ-タイトル */
+/** ヘッダ-タイトル */
 /* line 86, layout/_faq.scss */
 .header__item--title {
   display: table-cell;
 }
 
-/** FAQ詳細ヘッダ-アイコン */
+/** ヘッダ-アイコン */
 /* line 91, layout/_faq.scss */
 .header__item--icon {
   display: table-cell;
   text-align: center;
 }
 
-/** FAQ詳細本文 */
+/** フッターアイテム */
 /* line 97, layout/_faq.scss */
+.panel-footer__item {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/** フッターアイテム(右) */
+/* line 103, layout/_faq.scss */
+.panel-footer__item--right {
+  display: table-cell;
+  text-align: right;
+}
+
+/** FAQ詳細本文 */
+/* line 109, layout/_faq.scss */
 .faq__content {
   width: 100%;
   height: calc(100% - (100px + 40px));
   overflow: hidden;
 }
-/* line 101, layout/_faq.scss */
+/* line 113, layout/_faq.scss */
 .faq__content > .ng-isolate-scope {
   height: 100%;
 }
-/* line 105, layout/_faq.scss */
+/* line 117, layout/_faq.scss */
 .faq__content > .ng-isolate-scope > .ng-binding {
   width: calc(100% + 17px);
   height: 100%;
@@ -3884,7 +3898,7 @@ a.badge:hover, a.badge:focus {
   height: 40px;
   bottom: 0px;
   line-height: 40px;
-  position: absolute;
+  position: relative;
   text-align: right;
   padding-right: 15px;
 }
@@ -4352,59 +4366,53 @@ a.badge:hover, a.badge:focus {
 /**
  * お知らせ登録パネル用スタイル
  */
-/* line 10, module/_create-panel.scss */
+/** お知らせパネル全体 */
+/* line 11, module/_create-panel.scss */
 .create-panel {
   width: 100%;
   height: 100%;
   background-color: white;
-  margin-top: -20px;
 }
-/* line 15, module/_create-panel.scss */
-.create-panel > thead {
-  border-radius: 3px;
+
+/** お知らせヘッダ部 */
+/* line 18, module/_create-panel.scss */
+.create-panel__header {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   background-color: black;
   color: white;
-  font-size: 14px;
   height: 20px;
-}
-/* line 21, module/_create-panel.scss */
-.create-panel > thead > tr > th {
-  padding-left: 5px;
-}
-/* line 23, module/_create-panel.scss */
-.create-panel > thead > tr > th > a {
-  color: white;
-  text-align: right;
-}
-
-/* line 31, module/_create-panel.scss */
-.create-panel__row {
-  height: 30px;
-  width: 100%;
-  border-bottom: 2px solid;
-  border-color: #F5F8FA;
-  font-size: 14px;
-}
-/* line 37, module/_create-panel.scss */
-.create-panel__row > td {
   padding-left: 5px;
   padding-right: 5px;
+  display: table;
 }
 
-/* line 43, module/_create-panel.scss */
-.create-panel__content-row {
+/** お知らせコンテンツ部 */
+/* line 31, module/_create-panel.scss */
+.create-panel__content {
+  width: 100%;
+  border-left: solid 1px #ccc;
+  border-right: solid 1px #ccc;
   padding-left: 10px;
-}
-
-/* line 47, module/_create-panel.scss */
-.create-panel__footer-row {
-  height: 40px;
   padding-right: 10px;
-  background-color: #F5F5F5;
-  text-align: right;
+  overflow: hidden;
 }
 
-/* line 54, module/_create-panel.scss */
+/** お知らせフッタ部分 */
+/* line 41, module/_create-panel.scss */
+.create-panel__footer {
+  height: 40px;
+  line-height: 40px;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: #F5F5F5;
+  display: table;
+  width: 100%;
+}
+
+/** お知らせタイトル */
+/* line 52, module/_create-panel.scss */
 .create-panel__title {
   width: 100%;
   height: 30px;
@@ -4412,12 +4420,14 @@ a.badge:hover, a.badge:focus {
   padding-left: 5px;
   border-style: none;
   resize: none;
+  border-bottom: solid 1px #ccc;
 }
 /* line 28, module/_input-text.scss */
 .create-panel__title:focus {
   outline: none;
 }
 
+/** お知らせ本文 */
 /* line 58, module/_create-panel.scss */
 .create-panel__contents {
   height: 200px;
@@ -4429,6 +4439,7 @@ a.badge:hover, a.badge:focus {
   width: calc(100% + 17px);
   overflow: auto;
   padding-right: 17px;
+  padding-top: 5px;
 }
 /* line 41, module/_input-text.scss */
 .create-panel__contents:focus {
@@ -4746,13 +4757,22 @@ a.badge:hover, a.badge:focus {
 /** treeview-chid__item */
 /* line 24, module/_tree-view.scss */
 .tree__node__item {
+  width: 100%;
+  display: table;
   padding-left: 20px;
 }
 
-/* line 28, module/_tree-view.scss */
+/* line 30, module/_tree-view.scss */
 .tree__nodes__item--right {
   display: table-cell;
   text-align: right;
+  vertical-align: middle;
+}
+
+/* line 36, module/_tree-view.scss */
+.tree__nodes__item--left {
+  display: table-cell;
+  text-align: left;
   vertical-align: middle;
 }
 

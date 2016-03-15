@@ -11,8 +11,9 @@
 			<input type="file" ng-file-select="onFileSelect($files)">
 			<div class="grid-base" ui-grid="{data:faqData}" ui-grid-resize-columns></div>
 			<div class="col-footer">
-				<button type="submit" class="btn-blue" ng-hide="loading">{{buttonLabelSubmit}}</button>
-				<button type="submit" class="btn-blue" ng-disabled="loading" ng-show="loading"><i class="fa fa-spinner fa-spin"/>登録中</button>
+				<a ng-href="{{fileUrl}}" title="">テンプレートをダウンロード</a>
+				<!-- <button type="button" ng-click="clear()" class="btn-white">{{buttonLabelClear}}</button> -->
+				<button type="submit" class="btn-blue" ng-disabled="loading"><i ng-show="loading"class="fa fa-spinner fa-spin"/>{{buttonLabelSubmit}}</button>
 			</div>
 		</form>
 	</div>

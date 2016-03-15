@@ -7,12 +7,18 @@
 
 <!-- 子カテゴリ -->
 <ol ng-show="isCollapsed" class="tree__node"></ol>
+
 <!-- マニュアル -->
-<ul ng-show="isCollapsed" class="tree__node" >
+<ul ng-show="isCollapsed" class="tree__node">
 	<li class="tree__node__item" ng-repeat="manual in nwtTreeView.manuals" ng-mouseenter="isShowDelIcon = true" ng-mouseleave="isShowDelIcon = false">
-		<i class="fa fa-file-text-o"/><a ng-href="{{manual.filePath}}" target="_blank">{{manual.fileName}}</a>
-		<a class="tree__nodes__item--right" ng-click="delete(manual)" ng-show="isShowDelIcon"><i class="fa fa-trash-o"/></a>
-	</li>	
+		<div class="tree__nodes__item--left">
+			<i class="fa fa-file-text-o"/>
+			<a ng-href="{{manual.filePath}}" target="_blank">{{manual.fileName}}</a>
+		</div>
+		<div class="tree__nodes__item--right">
+			<a ng-click="delete(manual)" ng-show="isShowDelIcon"><i class="fa fa-trash-o"/></a>
+		</div>
+	</li>
 </ul>
 
 

@@ -1,6 +1,5 @@
-
 /**
- * [description]
+ * listNotification.html controller
  * @return {[type]}
  */
 (function(){

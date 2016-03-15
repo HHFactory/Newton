@@ -6,7 +6,10 @@
 'use strict';
 
 	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout,APP_CONF){
-
+		/** ラベル */
+		$scope.createPanelHeader = APP_CONF.headerLabelCreateNotification;
+		$scope.sendButton = APP_CONF.buttonLabelSend;
+		
 		/**
 		 * 宛先リスト取得処理
 		 * @param  {obj} query 
@@ -32,6 +35,8 @@
 		 * TODO:websocket
 		 */
 		$scope.submit = function(notification) {
+			$scope.loading = true;
+			$scope.sendButton = APP_CONF.buttonLabelSending;
 			notification.targetUserList = getSkillNameList($scope.selectSkillList);
 			notification.filePath = "";
 			connectApiService.post(APP_CONF.urlBase + constURI.notification,notification).then(function(resultAPI){
@@ -45,6 +50,9 @@
 						swal("お知らせに失敗しました");
 					},1000);
 				}
+			}).finally(function(){
+				$scope.loading = false;
+				$scope.sendButton = APP_CONF.buttonLabelSend;
 			});
 		};
 
