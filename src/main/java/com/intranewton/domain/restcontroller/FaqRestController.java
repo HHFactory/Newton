@@ -109,7 +109,6 @@ public class FaqRestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public FAQ editFaq(@PathVariable Integer id, @RequestBody FAQ targetFaq) {
 		logger.info("#" + id + "FAQ updated");
-		targetFaq.setId(id);
 		return faqService.editFaq(targetFaq);
 	}
 	

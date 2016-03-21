@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 
-	function CreateFaqCtrl($scope,$state,$controller,connectApiService,constURI,APP_CONF){
+	function CreateFaqCtrl($scope,$state,$controller,connectApiService,constURI,APP_CONF,URL_CONF){
 		/** ベースコントローラインスタンスの生成 */
 		angular.extend(this, $controller('BaseFaqController', {$scope: $scope}));
 		/** ラベル設定 */
@@ -22,26 +22,11 @@
 
 			// ボタンラベルを変更
 			$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmitting;
-			connectApiService.post(APP_CONF.urlBase + constURI.faq,faq).then(function(apiResult){
-				if(apiResult.status == 201){
-					swal({
-						title: "登録完了",
-						type: "success",
-						timer: 1000,
-						showConfirmButton: false
-					},function(){
-						swal.close();
-						$state.go('main');
-					});
-				}else{
-					swal({
-						title: "登録失敗",
-						type: "error",
-						timer: 2000,
-						showConfirmButton: false
-					});
-				}
-			}).finally(function(){
+			connectApiService.post(URL_CONF.urlBase + constURI.faq,faq)
+			.success(function(apiResult){
+				$state.go('main');
+			})
+			.finally(function(){
 				$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmit;
 				$scope.loading = false;
 			});
@@ -50,5 +35,5 @@
 	}
 
 	//モジュールへの登録
-	angular.module(appName).controller('CreateFaqController',['$scope','$state','$controller','connectApiService','constURI','APP_CONF',CreateFaqCtrl]);
+	angular.module(appName).controller('CreateFaqController',['$scope','$state','$controller','connectApiService','constURI','APP_CONF','URL_CONF',CreateFaqCtrl]);
 })();

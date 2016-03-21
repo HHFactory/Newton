@@ -30,24 +30,6 @@
 	line-height: $faqRightFooterHeight
 }
 
-// .has-narrow-width {
-//   @each $prefix in $set-prefix {
-//     width: #{$prefix}calc(100% - #{$manualAreaWidth + $notificationAreaWidth});
-//   }
-// }
-
-// .l-faq--search {
-// 	@include l-column-set(100%);
-// 	background-color: $main-bg-gray;
-// }
-
-// .l-search-result {
-// 	height: calc(100vh - #{$navbarHeight});
-// 	width: 100%;
-// 	position: relative;
-// 	background-color: white;
-// }
-
 /** FAQ一覧タイトル用 */
 .faq__title {
 	width: 100%;

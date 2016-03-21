@@ -7,7 +7,7 @@
 (function(){
 'use strict';
 	
-	function ConnectApiService($http){
+	function ConnectApiService($http,$timeout){
 
 		var ConnectAPI = {
 			/**
@@ -16,10 +16,10 @@
 			 * @return {[type]}
 			 */
 			get: function(apiURI,param){
-				var getData = $http.get(apiURI,{params:param}).success(function(data,status,headers,config){		
-					return data;
+				var getData = $http.get(apiURI,{params:param}).success(function(data,status,headers,config){
+					// return data;
 				}).error(function(data,status,headers,config){
-					return status;
+					swal("データ取得に失敗しました");
 				});
 				return getData;
 			},
@@ -32,9 +32,9 @@
 			 */
 			put:function(apiURI,argdata){
 				var putData =$http.put(apiURI,argdata).success(function(data,status,headers,config){
-					return status;
+
 				}).error(function(data,status,headers,config) {
-					return status;
+					swal("更新に失敗しました");
 				});
 				return putData;
 			},
@@ -45,9 +45,18 @@
 			 */
 			post:function(apiURI,argdata){
 				var postData = $http.post(apiURI,argdata).success(function(data,status,headers,config){
-					return status;
+					$timeout(function(){
+						swal({
+							title: "登録完了",
+							type: "success",
+							timer: 1000,
+							showConfirmButton: false
+						},function(){
+							swal.close();
+						});
+					});
 				}).error(function(data,status,headers,config){
-					return status;
+					swal("登録に失敗しました");
 				});
 				return postData;
 			},
@@ -60,9 +69,18 @@
 			 */
 			delete:function(apiURI,param){
 				var deleteData = $http.delete(apiURI, {params:param}).success(function(data,status,headers,config){
-					return status;
+					$timeout(function(){
+						swal({
+							title: "正常に削除されました",
+							type: "success",
+							timer: 1000,
+							showConfirmButton: false
+						},function(){
+							swal.close();
+						});
+					});
 				}).error(function(data,status,headers,config){
-					return status;
+					swal("削除に失敗しました");
 				});
 				return deleteData;
 			}
@@ -71,5 +89,5 @@
 	}
 
 	//moduleにfactoryを登録
-	angular.module(appName).service('connectApiService',['$http',ConnectApiService]);
+	angular.module('connectApiService',[]).service('connectApiService',['$http','$timeout',ConnectApiService]);
 })();

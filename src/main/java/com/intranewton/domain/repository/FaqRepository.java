@@ -20,8 +20,8 @@ public interface FaqRepository extends JpaRepository<FAQ, Integer>{
 	 * @return
 	 */
 	@Query("UPDATE FAQ faq SET faq.usefulCount = faq.usefulCount + 1 WHERE faq.id=?")
-	@Modifying
+	@Modifying//更新処理であることを明示
 	@Transactional
 	Integer countUpUsefulCount(Integer id);
-
+	
 }

@@ -1,26 +1,32 @@
 <!-- メニューバー -->
 <div class="l-menu" ng-controller="MenuController">
 	<div class="l-menu__list">
+		<!-- お知らせ -->
 		<a class="menu__icon" ng-click="showNotification()">
 			<i class="fa fa-info-circle"/>
 			<p>{{labelNotification}}</p>
 		</a>
+		<!-- 新規お知らせ -->
 		<a class="menu__icon" ng-click="showCreateNotificationPanel()">
 			<i class="fa fa-pencil-square-o"/>
 			<p>{{labelCreateNotification}}</p>
-		</a>		
+		</a>
+		<!-- 新規FAQ -->
 		<a class="menu__icon" ng-click="createFaq()">
 			<i class="fa fa-plus"/>
 			<p>{{labelAddFaq}}</p>
 		</a>
+		<!-- FAQ一括登録 -->
 		<a class="menu__icon" ng-click="importExcel()">
 			<i class="fa fa-cloud-upload"/>
 			<p>{{labelImportFaq}}</p>
 		</a>
+		<!-- マニュアル -->
 		<a class="menu__icon" ng-click="showManual()">
 			<i class="fa fa-file-text-o"/>
 			<p>{{labelManual}}</p>
 		</a>
+		<!-- 用語集(別ウィンドウ) -->
 		<a class="menu__icon" ng-click="openDictionary()">
 			<i class="fa fa-book"/>
 			<p>{{labelTerm}}</p>

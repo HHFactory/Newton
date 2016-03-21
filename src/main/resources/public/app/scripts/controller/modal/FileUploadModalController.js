@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 
-	function FileUploadCtrl($scope,$state,Upload,$uibModalInstance,connectApiService,constURI,params,$timeout,APP_CONF) {
+	function FileUploadCtrl($scope,$state,Upload,$uibModalInstance,connectApiService,constURI,params,$timeout,APP_CONF,URL_CONF) {
 		
 		//登録先カテゴリ名を引数から取得
 		$scope.categoryName = params.node["name"];
@@ -26,7 +26,7 @@
 		 */
 		var upload = function(file,categoryID){
 			Upload.upload({
-				url: APP_CONF.urlBase + '/upload/file',
+				url: URL_CONF.urlBase + '/upload/file',
 				data: {
 					file:file,
 					categoryID:categoryID
@@ -50,5 +50,5 @@
 		}
 	} 
 
-	angular.module(appName).controller('FileUploadModalController',['$scope','$state','Upload','$uibModalInstance','connectApiService','constURI','params','$timeout','APP_CONF',FileUploadCtrl]);
+	angular.module(appName).controller('FileUploadModalController',['$scope','$state','Upload','$uibModalInstance','connectApiService','constURI','params','$timeout','APP_CONF','URL_CONF',FileUploadCtrl]);
 })();

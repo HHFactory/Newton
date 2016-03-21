@@ -5,7 +5,7 @@
 (function(){
 	'use strict';
 
-	function ListFaqCtrl($scope,connectApiService,constURI,sharedService,APP_CONF){
+	function ListFaqCtrl($scope,connectApiService,constURI,sharedService,APP_CONF,URL_CONF){
 		/** カラムタイトル */
 		$scope.columnTitle = APP_CONF.columnTitleFaq;
 		/** 選択済みカテゴリリスト　*/
@@ -34,7 +34,7 @@
 
 			// 検索ワードが空の場合
 			if(!sharedService.searchQuery){
-			 	getData(APP_CONF.urlBase + constURI.faqs,searchParam);
+			 	getData(URL_CONF.urlBase + constURI.faqs,searchParam);
 			}
 			// 検索ワードが入力されている場合
 			else{
@@ -43,11 +43,11 @@
 				// ID検索
 				if(prefix == '#'){
 					var targetID = sharedService.searchQuery.substr(1);
-					getData(APP_CONF.urlBase + constURI.faqs+targetID);
+					getData(URL_CONF.urlBase + constURI.faqs+targetID);
 				}
 				// キーワード検索
 				else {
-					getData(APP_CONF.urlBase + constURI.searchAPI,searchParam);
+					getData(URL_CONF.urlBase + constURI.searchAPI,searchParam);
 				}
 			}
 		});
@@ -63,11 +63,11 @@
 				searchParam = {searchWord: sharedService.searchQuery, page: page+1};
 				// 検索ワード入力時
 				if(sharedService.searchQuery){
-					getData(APP_CONF.urlBase + constURI.searchAPI,searchParam);
+					getData(URL_CONF.urlBase + constURI.searchAPI,searchParam);
 				}
 				// 検索ワードが空の場合
 				else{
-					getData(APP_CONF.urlBase + constURI.faqs,searchParam);
+					getData(URL_CONF.urlBase + constURI.faqs,searchParam);
 				}
 			}
 		}
@@ -114,6 +114,6 @@
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('ListFaqController',['$scope','connectApiService','constURI','sharedService','APP_CONF',ListFaqCtrl]);
+	angular.module(appName).controller('ListFaqController',['$scope','connectApiService','constURI','sharedService','APP_CONF','URL_CONF',ListFaqCtrl]);
 })();
 

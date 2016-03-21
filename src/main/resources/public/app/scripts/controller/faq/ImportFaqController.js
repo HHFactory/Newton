@@ -5,13 +5,13 @@
 (function(){
 'use strict';
 	
-	function ImportFaqCtrl($scope,$state,connectApiService,constURI,$timeout,sharedService,APP_CONF){
+	function ImportFaqCtrl($scope,$state,connectApiService,constURI,$timeout,sharedService,APP_CONF,URL_CONF){
 		/** カラムタイトル */
 		$scope.columnTitle = APP_CONF.columnTitleImportFaq;
 		/** ラベル */
 		$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmit;
 		$scope.buttonLabelClear = APP_CONF.buttonLabelClear;
-		$scope.fileUrl = APP_CONF.importFaqTemplateFilePath;
+		$scope.fileUrl = URL_CONF.importFaqTemplateFilePath;
 
 		/**  */
 		var columnDefs = [];
@@ -97,7 +97,7 @@
 			if(validFlag === true){
 				$scope.loading = true;
 				$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmitting;
-				connectApiService.post(APP_CONF.urlBase + constURI.faqs,postParm).then(function(apiResult){
+				connectApiService.post(URL_CONF.urlBase + constURI.faqs,postParm).then(function(apiResult){
 					if(apiResult.status == 201){
 						swal({
 							title: "登録完了",
@@ -125,16 +125,6 @@
 		}
 
 		/**
-		 * クリアボタン押下処理
-		 * @return {[type]} [description]
-		 */
-		// $scope.clear = function(){
-		// 	$timeout(function(){
-		// 		$scope.faqData = null;
-		// 	});
-		// }
-
-		/**
 		 * 閉じるアイコン押下処理
 		 * @return {Boolean} [description]
 		 */
@@ -144,5 +134,5 @@
 
 	}
 
-	angular.module(appName).controller('ImportFaqController',['$scope','$state','connectApiService','constURI','$timeout','sharedService','APP_CONF',ImportFaqCtrl]);
+	angular.module(appName).controller('ImportFaqController',['$scope','$state','connectApiService','constURI','$timeout','sharedService','APP_CONF','URL_CONF',ImportFaqCtrl]);
 })();

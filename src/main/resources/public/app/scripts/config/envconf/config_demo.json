@@ -1,0 +1,8 @@
+{
+  "URL_CONF": {
+    "urlBase": "http://hhfactory.azurewebsites.net/newton/",
+	"imageFolderPath": "http://hhfactory.azurewebsites.net/images/",
+	"importFaqTemplateFilePath": "http://hhfactory.azurewebsites.net/files/template.xlsx",
+	"termHtmlPath": "http://hhfactory.azurewebsites.net/newton/term#/"
+  }
+}

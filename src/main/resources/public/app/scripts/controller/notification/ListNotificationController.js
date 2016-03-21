@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 
-	function ListNotificationCtrl($scope,connectApiService,constURI,sharedService,$uibModal,APP_CONF){
+	function ListNotificationCtrl($scope,connectApiService,constURI,sharedService,$uibModal,APP_CONF,URL_CONF){
 		/** カラムタイトル */
 		$scope.columnTitle = APP_CONF.columnTitleNotification;
 		/** ラベル */
@@ -51,7 +51,7 @@
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
-		connectApiService.get(APP_CONF.urlBase + constURI.notifications,userID).then(function(apiResult){
+		connectApiService.get(URL_CONF.urlBase + constURI.notifications,userID).then(function(apiResult){
 			sharedService.notificationList = apiResult.data;
 			setScope();
 		});
@@ -135,6 +135,6 @@
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('ListNotificationController',['$scope','connectApiService','constURI','sharedService','$uibModal','APP_CONF',ListNotificationCtrl]);
+	angular.module(appName).controller('ListNotificationController',['$scope','connectApiService','constURI','sharedService','$uibModal','APP_CONF','URL_CONF',ListNotificationCtrl]);
 })();
 

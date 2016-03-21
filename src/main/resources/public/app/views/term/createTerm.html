@@ -1,0 +1,18 @@
+<!-- 用語登録エリア -->
+<form class="term__content" name="submitForm" ng-submit="submit(term)">
+	<!-- 用語タイトル -->
+	<input class="term__text" type="text" placeholder="用語タイトルを入力してください" ng-model="term.title" name="title" required="true" ng-maxlength="100" uib-tooltip="100字以内にしてください" tooltip-placement="bottom" tooltip-enable="submitForm.title.$error.maxlength">
+	<!-- 用語内容 -->
+	<textarea class="term__textarea" placeholder="用語内容入力テスト" ng-model="term.content"></textarea>
+
+	<!-- ボタンエリア -->
+	<div class="term__content__footer">
+		<!-- キャンセルボタン -->
+		<button type="button" class="btn-white" ng-click="closeCreateArea()">{{buttonLabelCancel}}</button>
+		<!-- 登録ボタン -->
+		<button type="submit" class="btn-blue" ng-disabled="submitForm.$invalid || loading">
+			<span ng-show="loading"><i class="fa fa-spinner fa-spin"/></span>
+			{{buttonLabelSubmit}}
+		</button>
+	</div>
+</form>

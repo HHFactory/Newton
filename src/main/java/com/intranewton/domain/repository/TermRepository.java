@@ -19,6 +19,10 @@ public interface TermRepository extends JpaRepository<Term, Integer>{
 	@Query("SELECT t FROM Term t WHERE t.title LIKE %:title%")
 	List<Term> searchTerm(@Param("title") String title);
 	
-	@Query("SELECT t FROM Term t ORDER BY CAST(t.title AS char)")
+	/**
+	 * 用語集の全件取得
+	 * @return
+	 */
+	@Query("SELECT t FROM Term t ORDER BY t.title")
 	List<Term> findAllTermOrderByTitle();
 }

@@ -55,5 +55,5 @@
 	 	return self.indexOf(value) === index;
 	 }
 
-	angular.module(appName).filter('categoryFilter',[CategoryFilter]);
+	angular.module(appName).filter('categoryFilter',CategoryFilter);
 })();

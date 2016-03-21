@@ -1,0 +1,8 @@
+{
+  "URL_CONF": {
+    "urlBase": "http://localhost:8080/newton/",
+	"imageFolderPath": "http://localhost:8080/newton/app/images/",
+	"importFaqTemplateFilePath": "http://localhost:8080/newton/app/files/template.xlsx",
+	"termHtmlPath": "http://localhost:8080/newton/term#/"
+  }
+}

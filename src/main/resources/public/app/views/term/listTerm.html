@@ -1,0 +1,16 @@
+<!-- 用語集一覧 -->
+<div class="term__content">
+	<div class="term__content--left">
+		<ul class="term__content--left__list">
+			<li ng-repeat="term in termList | filter:query" ng-click="openContent(term)">{{term.title}}</li>
+		</ul>
+	</div>
+	<div class="term__content--right">
+		<h3>{{title}}</h3>
+		<div class="button--group" ng-show="isShowContent">
+			<button type="button" ng-click="edit(targetTerm)">{{buttonLabelEdit}}</button>
+			<button type="button" ng-click="delete(targetTerm)">{{buttonLabelDelete}}</button>
+		</div>
+		{{content}}
+	</div>
+</div>

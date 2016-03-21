@@ -6,7 +6,7 @@
 */
 (function(){
 'use strict';
-	angular.module(appName).value(
+	angular.module('connectURI',[]).value(
 		'constURI',{
 			//faq
 			'faq': "api/v1/faq/",
@@ -24,8 +24,8 @@
 			'roles': "api/v1/roles",
 			'users': "api/v1/users",
 			//term
-			'term': "api/v1/term",
-			'terms': "api/v1/terms",
+			'term': "api/v1/term/",
+			'terms': "api/v1/terms/",
 			//elasticsearch
 			'searchAPI': "api/v1/elastic/querysearch/",
 			// 'searchALL': "api/v1/elastic/matchall/",
