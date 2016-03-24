@@ -1,0 +1,8 @@
+{
+  "URL_CONF": {
+    "urlBase": "http://hhfactory.japanwest.cloudapp.azure.com:8080/newton/",
+	"imageFolderPath": "http://hhfactory.japanwest.cloudapp.azure.com:8080/app/images/",
+	"importFaqTemplateFilePath": "http://hhfactory.japanwest.cloudapp.azure.com:8080/files/template.xlsx",
+	"termHtmlPath": "http://hhfactory.japanwest.cloudapp.azure.com:8080/newton/term#/"
+  }
+}

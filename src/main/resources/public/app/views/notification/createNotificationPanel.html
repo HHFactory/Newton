@@ -9,8 +9,8 @@
 	<!-- 本文エリア -->
 	<div class="create-panel__content">
 		<!-- 宛先 -->
-		<tags-input ng-model="selectSkillList" placeholder="お知らせ対象を選択" replace-spaces-with-dashes="false">
-			<auto-complete source="loadSkills($query)" min-length="0" max-results="10" debounce-delay="0" required="true"></auto-complete>
+		<tags-input ng-model="selectSkillList" placeholder="お知らせ対象を選択" replace-spaces-with-dashes="false" required="true">
+			<auto-complete source="loadSkills($query)" min-length="0" max-results="10" debounce-delay="0" ></auto-complete>
 		</tags-input>
 		<!-- お知らせタイトル -->
 		<input type="text" name="title" placeholder="タイトル" class="create-panel__title" ng-model="notification.title" required="true" ng-maxlength="50" uib-tooltip="50字以内にしてください" tooltip-placement="bottom" tooltip-enable="submitForm.title.$error.maxlength">

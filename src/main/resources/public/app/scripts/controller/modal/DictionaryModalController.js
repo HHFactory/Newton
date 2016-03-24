@@ -6,7 +6,7 @@
 (function(){
 'use strict';
 	
-	function DictionaryCtrl($scope,$state,connectApiService,constURI,$timeout,APP_CONF) {
+	function DictionaryCtrl($scope,$state,connectApiService,constURI,$timeout,APP_CONF,URL_CONF) {
 		$scope.isShowCreatePanel = false;
 		
 		/**
@@ -14,7 +14,7 @@
 		 * @param  {[type]} apiResult)
 		 * @return {[type]}           
 		 */
-		connectApiService.get(APP_CONF.urlBase + constURI.terms).then(function(apiResult){
+		connectApiService.get(URL_CONF.urlBase + constURI.terms).then(function(apiResult){
 			$scope.termList = apiResult.data;
 		});
 
@@ -43,7 +43,7 @@
 		 */
 		$scope.submit = function(term) {
 			term.status = "valid";
-			connectApiService.post(APP_CONF.urlBase + constURI.term,term).then(function(apiResult){
+			connectApiService.post(URL_CONF.urlBase + constURI.term,term).then(function(apiResult){
 				if(apiResult.status == 201){
 					$scope.isShowCreatePanel = false;
 					// connectApiService.get(constURI.terms).then(function(apiResult){
@@ -62,5 +62,5 @@
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('DictionaryModalController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF',DictionaryCtrl]);
+	angular.module(appName).controller('DictionaryModalController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF','URL_CONF',DictionaryCtrl]);
 })();

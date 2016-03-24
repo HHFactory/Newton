@@ -45,8 +45,10 @@ public class FaqService {
 	 * @param id
 	 * @return
 	 */
-	public Integer countUpUsefulCount( Integer id ) {
-		return faqRepository.countUpUsefulCount(id);
+	public FAQ countUpUsefulCount( Integer id ) {
+		FAQ targetFaq = faqRepository.findOne(id);
+		targetFaq.setUsefulCount(targetFaq.getUsefulCount() + 1);
+		return faqRepository.save(targetFaq);
 	}
 
 	/**

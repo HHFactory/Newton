@@ -3,7 +3,7 @@
 (function(){
 'use strict';
 
-	function SetTargetSkillModalCtrl($scope,$modalInstance,targetSkill,connectApiService,constURI,APP_CONF){
+	function SetTargetSkillModalCtrl($scope,$modalInstance,targetSkill,connectApiService,constURI,APP_CONF,URL_CONF){
 		$scope.selection = [];
 		if(targetSkill.length > 0){
 			$scope.selection.push(targetSkill.skill);
@@ -14,7 +14,7 @@
 		 * @param  {[type]} resultAPI){			$scope.targetSkills [description]
 		 * @return {[type]}                                    [description]
 		 */
-		connectApiService.get(APP_CONF.urlBase + constURI.roles).then(function(resultAPI){
+		connectApiService.get(URL_CONF.urlBase + constURI.roles).then(function(resultAPI){
 			$scope.targetSkills = resultAPI.data;
 		});
 
@@ -51,6 +51,6 @@
 	}
 
 	//moduleへ登録する
-	angular.module(appName).controller('SetTargetSkillModalController',['$scope','$modalInstance','connectApiService','constURI','APP_CONF',SetTargetSkillModalCtrl]);
+	angular.module(appName).controller('SetTargetSkillModalController',['$scope','$modalInstance','connectApiService','constURI','APP_CONF','URL_CONF',SetTargetSkillModalCtrl]);
 })();
 

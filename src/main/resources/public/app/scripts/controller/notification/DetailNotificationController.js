@@ -6,13 +6,12 @@
 'use strict';
 	
 	//参照用モーダルコントローラ	
-	function DetailNotificadtionCtrl($scope,$state,detailNotification,connectApiService,constURI,$uibModalInstance,APP_CONF,$timeout){
+	function DetailNotificadtionCtrl($scope,$state,detailNotification,connectApiService,constURI,$uibModalInstance,APP_CONF,URL_CONF,$timeout){
 		/** ラベル */
 		$scope.buttonLabelEdit = APP_CONF.buttonLabelEdit;
 		$scope.buttonLabelDelete = APP_CONF.buttonLabelDelete;
 		/** 表示内容 */
 		$scope.title= detailNotification.title;
-		// $scope.content = $showdown.makeHtml(detailNotification.content);
 		$scope.content = marked(detailNotification.content);
 		$scope.count = detailNotification.usefulCount;
 		$scope.targetId = detailNotification.id;
@@ -31,7 +30,7 @@
 		 */
 		$scope.isReaded = function(){
 			var userName = "user1";
-			connectApiService.put(APP_CONF.urlBase + constURI.notification+detailNotification.id,userName).then(function(apiResult){
+			connectApiService.put(URL_CONF.urlBase + constURI.notification+detailNotification.id,userName).then(function(apiResult){
 				if(apiResult.status == 200){
 					$uibModalInstance.close();
 					$state.reload();
@@ -59,7 +58,7 @@
 				showLoaderOnConfirm: true
 			},
 			function(){
-				connectApiService.delete(APP_CONF.urlBase + constURI.notifications + targetId).then(function(resultAPI){
+				connectApiService.delete(URL_CONF.urlBase + constURI.notifications + targetId).then(function(resultAPI){
 					if(resultAPI.status == 204){
 						/** お知らせ一覧を再取得 */
 						$timeout(function(){
@@ -78,5 +77,5 @@
 	}
 
 	//moduleへ登録
-	angular.module(appName).controller('DetailNotificationController',['$scope','$state','detailNotification','connectApiService','constURI','$uibModalInstance','APP_CONF','$timeout',DetailNotificadtionCtrl]);
+	angular.module(appName).controller('DetailNotificationController',['$scope','$state','detailNotification','connectApiService','constURI','$uibModalInstance','APP_CONF','URL_CONF','$timeout',DetailNotificadtionCtrl]);
 })();

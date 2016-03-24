@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 	
-	function ManualCtrl($scope,$state,$uibModal,connectApiService,constURI,sharedService,APP_CONF){
+	function ManualCtrl($scope,$state,$uibModal,connectApiService,constURI,sharedService,APP_CONF,URL_CONF){
 		/** カラムタイトル */
 		$scope.columnTitle = APP_CONF.columnTitleManual;
 		
@@ -22,7 +22,7 @@
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
-		connectApiService.get(APP_CONF.urlBase + constURI.manuals).then(function(apiResult){
+		connectApiService.get(URL_CONF.urlBase + constURI.manuals).then(function(apiResult){
 			sharedService.manualList = apiResult.data;
 			$scope.data = sharedService.manualList;
 		});
@@ -87,12 +87,12 @@
 		 */
 		var deleteFile = function(manual){
 			var param = {id:manual["id"], name:manual["fullFileName"]};
-			connectApiService.delete(APP_CONF.urlBase + constURI.deleteFile,param).then(function(resultAPI){
+			connectApiService.delete(URL_CONF.urlBase + constURI.deleteFile,param).then(function(resultAPI){
 				$state.reload();
 			});
 		}
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('ManualController',['$scope','$state','$uibModal','connectApiService','constURI','sharedService','APP_CONF',ManualCtrl]);
+	angular.module(appName).controller('ManualController',['$scope','$state','$uibModal','connectApiService','constURI','sharedService','APP_CONF','URL_CONF',ManualCtrl]);
 })();

@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 
-	function BaseFaqCtrl($scope,$state,connectApiService,constURI,Upload,APP_CONF){
+	function BaseFaqCtrl($scope,$state,connectApiService,constURI,Upload,APP_CONF,URL_CONF){
 		/** ラベル設定 */
 		$scope.columnLabelPreview = APP_CONF.columnLabelPreview;
 		$scope.iconLabelTag = APP_CONF.iconLabelTag;
@@ -33,7 +33,7 @@
 		 * @param  {[type]} apiResult
 		 * @return {[type]}           
 		 */
-		connectApiService.get(APP_CONF.urlBase + constURI.faqCategory).then(function(apiResult){
+		connectApiService.get(URL_CONF.urlBase + constURI.faqCategory).then(function(apiResult){
 			$scope.categoryList = apiResult.data;
 		});
 
@@ -42,18 +42,20 @@
 		 */
 		$scope.upload = function(file) {
 			var fileName = file.name;
-			var basePath = APP_CONF.imageFolderPath;
+			var basePath = URL_CONF.imageFolderPath;
 			Upload.upload({
-				url: APP_CONF.urlBase + '/upload/image',
+				url: URL_CONF.urlBase + '/upload/image',
 				data: {image:file}
-			}).then(function(resp) {
-				var fullFileName = resp['data'];
+			})
+			.success(function(resp){
 				var nameTag = "![" + fileName + "]";
-				var pathTag = "(" + basePath + fullFileName + ")";
+				var pathTag = "(" + basePath + resp + ")";
 				var imageTag = nameTag + pathTag;
 				setMarkdownTag(imageTag);
-			},function(resp) {
-				console.log("image upload failed");
+			})
+			.error(function(resp){
+				console.log(resp);
+				swal("ファイルサイズが大きすぎます");
 			});
 		}
 
@@ -119,5 +121,5 @@
 
 	}
 
-	angular.module(appName).controller('BaseFaqController',['$scope','$state','connectApiService','constURI','Upload','APP_CONF',BaseFaqCtrl]);
+	angular.module(appName).controller('BaseFaqController',['$scope','$state','connectApiService','constURI','Upload','APP_CONF','URL_CONF',BaseFaqCtrl]);
 })();

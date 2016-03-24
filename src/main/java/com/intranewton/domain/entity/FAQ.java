@@ -24,10 +24,10 @@ import lombok.NoArgsConstructor;
  * FAQテーブルエンティティ
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper=false)
 @Entity
-@Table(name = "faq")
-@Where(clause = "status='valid'")
+@Table(name="faq")
+@Where(clause="status='valid'")
 @NoArgsConstructor
 @AllArgsConstructor
 public class FAQ extends AbstractEntity implements Serializable {
@@ -52,6 +52,7 @@ public class FAQ extends AbstractEntity implements Serializable {
 			inverseJoinColumns=@JoinColumn(name="faq_category_id",referencedColumnName="id")
 			)
 	@JsonIgnoreProperties(value="faqs")
-	private List<FAQCategory> categories;	
+	private List<FAQCategory> categories;
+	
 	
 }

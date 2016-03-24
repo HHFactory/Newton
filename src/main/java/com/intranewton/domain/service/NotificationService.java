@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.intranewton.domain.dto.NotificationDTO;
@@ -34,6 +36,9 @@ public class NotificationService {
 	RoleRepository roleRepository;
 	@Autowired
 	UserService userService;
+	
+	/** 1ページあたりのデータ数*/
+	private static final int limit = 10;
 
 	/**
 	 * 渡されたパラメータのスキル名リストをユーザ名リストに変換し、お知らせとして登録する
@@ -79,8 +84,9 @@ public class NotificationService {
 	 * @param userName
 	 * @return notificationDTO list
 	 */
-	public List<NotificationDTO> getDTObyUserName(String userName) {
-		List<Notification> notifications = getEntityByUserName(userName);
+	public List<NotificationDTO> getDTObyUserName(String userName,int page) {
+		List<Notification> notifications = getEntityByUserName(userName,page);
+		
 		//更新日で降順ソート
 		Collections.sort(notifications, (n1,  n2) -> Long.compare(n2.getUpdateDatetime().getTime(), n1.getUpdateDatetime().getTime()));
 		List<NotificationDTO> notificationDTOList = 
@@ -97,8 +103,9 @@ public class NotificationService {
 	 * @param userName
 	 * @return notification list
 	 */
-	private List<Notification> getEntityByUserName(String userName) {
-		List<NotificationTargetRole> targetRoleList = notificationTargetRoleRepository.findbyTargetUser(userName);
+	private List<Notification> getEntityByUserName(String userName,int page) {
+		Pageable pageable = new PageRequest(page, limit);
+		List<NotificationTargetRole> targetRoleList = notificationTargetRoleRepository.findByTargetUser(userName, pageable).getContent();
 		List<Notification> notificationList = targetRoleList.stream()
 					  										.map(targetRole -> notificationRepository.findByTargetRoles(targetRole))
 					  										.collect(Collectors.toList());

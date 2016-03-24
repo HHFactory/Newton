@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 
-	function DetailFaqCtrl($scope,$state,connectApiService,constURI,$timeout,APP_CONF){
+	function DetailFaqCtrl($scope,$state,connectApiService,constURI,$timeout,APP_CONF,URL_CONF){
 		/** ラベル */
 		$scope.buttonLabelEdit = APP_CONF.buttonLabelEdit;
 		$scope.buttonLabelDelete = APP_CONF.buttonLabelDelete;
@@ -39,18 +39,11 @@
 			},
 			function(){
 				var targetId = faq.id;
-				connectApiService.delete(APP_CONF.urlBase + constURI.faq + targetId).then(function(resultAPI){
-					if(resultAPI.status == 204){
-						/** FAQリストを再取得 */
-						$timeout(function(){
-							swal("正常に削除されました");
-							$state.reload();
-						},1000);
-					}else{
-						$timeout(function(){
-							swal("削除に失敗しました");
-						},1000);
-					}
+				connectApiService.delete(URL_CONF.urlBase + constURI.faq + targetId).then(function(resultAPI){
+					$timeout(function(){
+						swal("正常に削除されました");
+						$state.reload();
+					},1000);
 				});
 			});
 		}
@@ -60,14 +53,12 @@
 		 * @return {[type]} [description]
 		 */
 		$scope.useful = function(faq){
-			connectApiService.put(APP_CONF.urlBase + constURI.faqs+faq.id).then(function(apiResult){
+			connectApiService.put(URL_CONF.urlBase + constURI.faqs+faq.id).then(function(apiResult){
 				$scope.usefulCount = apiResult.data;
 			});
 		};
 
 	}
 
-
-
-	angular.module(appName).controller('DetailFaqController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF',DetailFaqCtrl]);
+	angular.module(appName).controller('DetailFaqController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF','URL_CONF',DetailFaqCtrl]);
 })();

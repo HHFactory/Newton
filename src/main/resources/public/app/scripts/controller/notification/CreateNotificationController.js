@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 
-	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout,APP_CONF){
+	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout,APP_CONF,URL_CONF){
 		/** ラベル */
 		$scope.createPanelHeader = APP_CONF.headerLabelCreateNotification;
 		$scope.sendButton = APP_CONF.buttonLabelSend;
@@ -16,7 +16,7 @@
 		 * @return {list} targetSkill      
 		 */
 		$scope.loadSkills = function(query) {
-			return connectApiService.get(APP_CONF.urlBase + constURI.roles).then(function(apiResult){
+			return connectApiService.get(URL_CONF.urlBase + constURI.roles).then(function(apiResult){
 				var targetSkill = [];
 				var loadSkillList = apiResult.data;
 				for(var i = 0; i < loadSkillList.length; i = (i+1)) {
@@ -39,17 +39,9 @@
 			$scope.sendButton = APP_CONF.buttonLabelSending;
 			notification.targetUserList = getSkillNameList($scope.selectSkillList);
 			notification.filePath = "";
-			connectApiService.post(APP_CONF.urlBase + constURI.notification,notification).then(function(resultAPI){
-				if(resultAPI.status == 201){
-					$timeout(function(){
-						$state.reload();
-						sharedService.isShowCreateNotificationPanel = false;
-					});
-				}else{
-					$timeout(function(){
-						swal("お知らせに失敗しました");
-					},1000);
-				}
+			connectApiService.post(URL_CONF.urlBase + constURI.notification,notification).then(function(resultAPI){
+				$state.reload();
+				sharedService.isShowCreateNotificationPanel = false;
 			}).finally(function(){
 				$scope.loading = false;
 				$scope.sendButton = APP_CONF.buttonLabelSend;
@@ -79,5 +71,5 @@
 	}
 
 	//moduleへ登録
-	angular.module(appName).controller('CreateNotificationController',['$scope','$state','connectApiService','constURI','sharedService','$timeout','APP_CONF',CreateNotificationCtrl]);
+	angular.module(appName).controller('CreateNotificationController',['$scope','$state','connectApiService','constURI','sharedService','$timeout','APP_CONF','URL_CONF',CreateNotificationCtrl]);
 })();

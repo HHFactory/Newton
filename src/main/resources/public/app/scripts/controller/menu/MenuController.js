@@ -6,7 +6,7 @@
 (function(){
 'use strict';
 	
-	function MenuCtrl($scope,$state,$uibModal,sharedService,APP_CONF){
+	function MenuCtrl($scope,$state,$uibModal,$window,sharedService,APP_CONF,URL_CONF){
 		/** ラベル */
 		$scope.labelCreateNotification = APP_CONF.iconLabelCreateNotification;
 		$scope.labelNotification = APP_CONF.columnTitleNotification;
@@ -14,6 +14,9 @@
 		$scope.labelImportFaq = APP_CONF.iconLabelImportFaq;
 		$scope.labelManual = APP_CONF.columnTitleManual;
 		$scope.labelTerm = APP_CONF.iconLabelTerm;
+
+		/** 別ウィンドウ */
+		$scope.$window = $window;
 
 		/**
 		 * マニュアルアイコン押下処理
@@ -68,20 +71,15 @@
 			sharedService.isShowFaqImport = !sharedService.isShowFaqImport;
 		}
 
-		 /**
-		  * 辞書アイコン押下処理
-		  * @return {[type]} [description]
-		  */
-		$scope.openDictionary = function() {
-			$uibModal.open({
-				templateUrl: "app/views/template/dictionaryModal.html",
-				controller: "DictionaryModalController",
-				animation: false
-			});
+		/**
+		 * 辞書アイコン押下処理（別ウィンドウを立ち上げ）
+		 * @return {[type]} [description]
+		 */
+		$scope.openDictionary = function(){
+			$window.open(URL_CONF.termHtmlPath,'Term','width=600,height=400,location=no,resizable=yes,scrollbars=no,menubar=no,toolbar=no');
 		}
 
 	}
 
-
-	angular.module(appName).controller('MenuController', ['$scope','$state','$uibModal','sharedService','APP_CONF',MenuCtrl]);
+	angular.module(appName).controller('MenuController', ['$scope','$state','$uibModal','$window','sharedService','APP_CONF','URL_CONF',MenuCtrl]);
 })();

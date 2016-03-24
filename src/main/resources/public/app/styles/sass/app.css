@@ -467,6 +467,12 @@ textarea:hover, input[type="text"]:hover {
   overflow: hidden;
 }
 
+/** 改行スタイル */
+/* line 67, base/_util.scss */
+.pre-line {
+  white-space: pre-line;
+}
+
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -3057,7 +3063,7 @@ a.badge:hover, a.badge:focus {
 }
 
 /* line 90, assets/stylesheets/bootstrap/_modals.scss */
-.modal-title {
+.modal-title, .modal__title {
   margin: 0;
   line-height: 1.42857;
 }
@@ -3667,10 +3673,10 @@ a.badge:hover, a.badge:focus {
 }
 
 /** FAQ一覧タイトル用 */
-/* line 52, layout/_faq.scss */
+/* line 34, layout/_faq.scss */
 .faq__title {
   width: 100%;
-  height: 50px;
+  max-height: 120px;
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 3px;
@@ -3678,7 +3684,7 @@ a.badge:hover, a.badge:focus {
 }
 
 /** FAQ詳細パネル */
-/* line 62, layout/_faq.scss */
+/* line 44, layout/_faq.scss */
 .faq__detail {
   width: 100%;
   height: calc(100% - 40px);
@@ -3691,58 +3697,58 @@ a.badge:hover, a.badge:focus {
 }
 
 /** FAQ詳細パネルヘッダ */
-/* line 74, layout/_faq.scss */
+/* line 56, layout/_faq.scss */
 .faq__detail__header {
   width: 100%;
   height: 100px;
 }
 
 /** FAQ詳細パネルヘッダ(タイトル行) */
-/* line 80, layout/_faq.scss */
+/* line 62, layout/_faq.scss */
 .faq__detail__header--title {
   display: table;
   width: 100%;
 }
 
 /** ヘッダ-タイトル */
-/* line 86, layout/_faq.scss */
+/* line 68, layout/_faq.scss */
 .header__item--title {
   display: table-cell;
 }
 
 /** ヘッダ-アイコン */
-/* line 91, layout/_faq.scss */
+/* line 73, layout/_faq.scss */
 .header__item--icon {
   display: table-cell;
   text-align: center;
 }
 
 /** フッターアイテム */
-/* line 97, layout/_faq.scss */
+/* line 79, layout/_faq.scss */
 .panel-footer__item {
   display: table-cell;
   vertical-align: middle;
 }
 
 /** フッターアイテム(右) */
-/* line 103, layout/_faq.scss */
+/* line 85, layout/_faq.scss */
 .panel-footer__item--right {
   display: table-cell;
   text-align: right;
 }
 
 /** FAQ詳細本文 */
-/* line 109, layout/_faq.scss */
+/* line 91, layout/_faq.scss */
 .faq__content {
   width: 100%;
   height: calc(100% - (100px + 40px));
   overflow: hidden;
 }
-/* line 113, layout/_faq.scss */
+/* line 95, layout/_faq.scss */
 .faq__content > .ng-isolate-scope {
   height: 100%;
 }
-/* line 117, layout/_faq.scss */
+/* line 99, layout/_faq.scss */
 .faq__content > .ng-isolate-scope > .ng-binding {
   width: calc(100% + 17px);
   height: 100%;
@@ -4466,6 +4472,11 @@ a.badge:hover, a.badge:focus {
 }
 
 /* line 20, module/_modal.scss */
+.modal__title {
+  word-break: break-all;
+}
+
+/* line 25, module/_modal.scss */
 .modal__footer {
   width: 100%;
   height: 40px;
@@ -4474,7 +4485,7 @@ a.badge:hover, a.badge:focus {
   text-align: right;
 }
 
-/* line 28, module/_modal.scss */
+/* line 33, module/_modal.scss */
 .modal__textarea {
   height: 200px;
   width: 100%;
@@ -4486,128 +4497,6 @@ a.badge:hover, a.badge:focus {
 /* line 41, module/_input-text.scss */
 .modal__textarea:focus {
   outline: none;
-}
-
-/* line 35, module/_modal.scss */
-.dict-modal {
-  width: 100%;
-  height: 400px;
-}
-
-/* line 40, module/_modal.scss */
-.dict-modal__header {
-  width: 100%;
-  height: 40px;
-  display: table;
-  background-color: #f2f2f2;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-size: 14px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-/* line 52, module/_modal.scss */
-.dict-modal__header__item {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: left;
-}
-
-/* line 58, module/_modal.scss */
-.dict-modal__content {
-  width: 100%;
-  height: -webkit-calc(100% - 40px);
-  height: -moz-calc(100% - 40px);
-  height: -ms-calc(100% - 40px);
-  height: -o-calc(100% - 40px);
-  height: calc(100% - 40px);
-  display: table;
-  table-layout: fixed;
-}
-
-/* line 68, module/_modal.scss */
-.dict-modal__content--left {
-  display: table-cell;
-  width: 30%;
-  height: 100%;
-  padding-left: 15px;
-  border-right: 3px solid;
-  border-color: #F5F5F5;
-}
-
-/* line 77, module/_modal.scss */
-.dict-modal__content--right {
-  display: table-cell;
-  width: 70%;
-  height: calc(100% - 40px);
-  padding: 5px 15px;
-  overflow: auto;
-  position: absolute;
-}
-
-/* line 86, module/_modal.scss */
-.dict-modal__item-list {
-  list-style: none;
-  height: 100%;
-  overflow: auto;
-}
-/* line 88, module/_modal.scss */
-.dict-modal__item-list > li:hover {
-  background-color: #36a3cf;
-}
-/* line 91, module/_modal.scss */
-.dict-modal__item-list > li {
-  margin-bottom: 10px;
-}
-
-/* line 99, module/_modal.scss */
-.dict-modal__textarea {
-  height: 130px;
-  width: 100%;
-  background-color: white;
-  padding-left: 5px;
-  resize: none;
-  overflow: auto;
-  height: -webkit-calc(100% - 80px);
-  height: -moz-calc(100% - 80px);
-  height: -ms-calc(100% - 80px);
-  height: -o-calc(100% - 80px);
-  height: calc(100% - 80px);
-  padding-left: 10px;
-  padding-right: 10px;
-}
-/* line 41, module/_input-text.scss */
-.dict-modal__textarea:focus {
-  outline: none;
-}
-
-/* line 108, module/_modal.scss */
-.dict-modal__text {
-  width: 100%;
-  height: 40px;
-  background-color: white;
-  padding-left: 5px;
-  border-style: none;
-  resize: none;
-  margin-bottom: 2px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-bottom: solid 1px #D6DBDE;
-}
-/* line 28, module/_input-text.scss */
-.dict-modal__text:focus {
-  outline: none;
-}
-
-/* line 116, module/_modal.scss */
-.dict-modal__footer {
-  width: 100%;
-  height: 40px;
-  text-align: right;
-  line-height: 40px;
-  bottom: 0px;
-  position: absolute;
 }
 
 /* line 3, module/_grid.scss */
@@ -4623,15 +4512,16 @@ a.badge:hover, a.badge:focus {
   border-radius: 5px;
   margin-bottom: 5px;
   background-color: white;
+  position: relative;
 }
 
-/* line 11, module/_timeline.scss */
+/* line 12, module/_timeline.scss */
 .timeline--padding {
   padding-left: 10px;
   padding-right: calc(10px + 17px);
 }
 
-/* line 15, module/_timeline.scss */
+/* line 16, module/_timeline.scss */
 .timeline__header {
   display: table;
   width: 100%;
@@ -4640,13 +4530,13 @@ a.badge:hover, a.badge:focus {
   padding-right: 15px;
 }
 
-/* line 23, module/_timeline.scss */
+/* line 24, module/_timeline.scss */
 .header__item, .header__item--right {
   display: table-cell;
   vertical-align: middle;
 }
 
-/* line 28, module/_timeline.scss */
+/* line 29, module/_timeline.scss */
 .header__item--tag {
   display: table-cell;
   vertical-align: middle;
@@ -4657,19 +4547,20 @@ a.badge:hover, a.badge:focus {
   color: white;
 }
 
-/* line 38, module/_timeline.scss */
+/* line 39, module/_timeline.scss */
 .header__item--right {
   text-align: right;
 }
 
-/* line 43, module/_timeline.scss */
+/* line 44, module/_timeline.scss */
 .timeline__title {
   font-weight: bold;
   color: #292f33;
   font-size: 16px;
+  word-break: break-all;
 }
 
-/* line 49, module/_timeline.scss */
+/* line 51, module/_timeline.scss */
 .timeline__content {
   font-size: 14px;
   color: #292f33;
@@ -4678,53 +4569,59 @@ a.badge:hover, a.badge:focus {
   padding-right: 15px;
   margin-top: 5px;
   margin-bottom: 10px;
+  white-space: pre-line;
+}
+/* line 60, module/_timeline.scss */
+.timeline__content:hover {
+  cursor: pointer;
 }
 
-/* line 59, module/_timeline.scss */
+/* line 65, module/_timeline.scss */
 .timeline__item--user-name {
   font-size: 13px;
   color: #8899a6;
 }
 
-/* line 64, module/_timeline.scss */
+/* line 70, module/_timeline.scss */
 .timeline__item--number {
   font-size: 16px;
   color: #8899a6;
   margin-left: 3px;
 }
 
-/* line 70, module/_timeline.scss */
+/* line 76, module/_timeline.scss */
 .importance--high {
   background-color: red;
 }
 
-/* line 74, module/_timeline.scss */
+/* line 80, module/_timeline.scss */
 .importance--middle {
   background-color: #cfc736;
 }
 
-/* line 78, module/_timeline.scss */
+/* line 84, module/_timeline.scss */
 .importance--low {
   background-color: #36a3cf;
 }
 
-/* line 82, module/_timeline.scss */
+/* line 88, module/_timeline.scss */
 .importance--none {
   display: none;
 }
 
-/* line 86, module/_timeline.scss */
+/* line 92, module/_timeline.scss */
 .timeline__footer {
   display: table;
   width: 100%;
   height: 20px;
+  bottom: 0;
   padding-left: 15px;
   padding-right: 15px;
   margin-top: 5px;
   margin-bottom: 2px;
 }
 
-/* line 96, module/_timeline.scss */
+/* line 103, module/_timeline.scss */
 .footer__item {
   display: table-cell;
   font-size: 18px;
@@ -5033,6 +4930,161 @@ a.badge:hover, a.badge:focus {
   text-align: right;
   line-height: 40px;
   padding-right: 15px;
+}
+
+/** 用語集ベーススタイル */
+/* line 7, module/_term.scss */
+.term__base {
+  width: 100%;
+  height: 100%;
+}
+
+/** 用語集ヘッダ部スタイル */
+/* line 13, module/_term.scss */
+.term__header {
+  width: 100%;
+  height: 40px;
+  display: table;
+  background-color: #f2f2f2;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/** 用語集ヘッダアイテム（左） */
+/* line 23, module/_term.scss */
+.term__header__item--left {
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/** 用語集ヘッダアイテム(右) */
+/* line 30, module/_term.scss */
+.term__header__item--right {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/** 用語追加アイコン */
+/* line 37, module/_term.scss */
+.add-term-icon {
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/** 用語集コンテンツ部レイアウト */
+/* line 44, module/_term.scss */
+.l-term__content {
+  width: 100%;
+  height: calc(100% - 40px);
+  display: table;
+  table-layout: fixed;
+  position: absolute;
+}
+
+/** 本文ヘッダ */
+/* line 53, module/_term.scss */
+.term__content--header {
+  width: 100%;
+  height: 50px;
+}
+
+/** 用語集本文 */
+/* line 59, module/_term.scss */
+.term__content {
+  white-space: pre-line;
+  overflow: auto;
+  width: 100%;
+  height: calc(100% - 50px);
+}
+
+/** 用語集コンテンツ部（左） */
+/* line 67, module/_term.scss */
+.term__content--left {
+  display: table-cell;
+  width: 30%;
+  height: 100%;
+  padding-left: 15px;
+  padding-top: 10px;
+  border-right: 3px solid;
+  border-color: #F5F5F5;
+}
+
+/** 用語集コンテンツ部（右) */
+/* line 78, module/_term.scss */
+.term__content--right {
+  display: table-cell;
+  width: 70%;
+  height: 100%;
+  padding: 10px 15px;
+  word-wrap: break-word;
+}
+
+/** 用語集コンテンツ部（左）アイテム */
+/* line 87, module/_term.scss */
+.term__content--left__list {
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+/* line 90, module/_term.scss */
+.term__content--left__list > li:hover {
+  background-color: #36a3cf;
+}
+/* line 93, module/_term.scss */
+.term__content--left__list > li {
+  margin-bottom: 10px;
+}
+
+/** 用語集タイトル入力エリア */
+/* line 101, module/_term.scss */
+.term__text {
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  padding-left: 5px;
+  border-style: none;
+  resize: none;
+  margin-bottom: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: solid 1px #D6DBDE;
+}
+/* line 28, module/_input-text.scss */
+.term__text:focus {
+  outline: none;
+}
+
+/** 用語集内容入力エリア */
+/* line 110, module/_term.scss */
+.term__textarea {
+  height: 130px;
+  width: 100%;
+  background-color: white;
+  padding-left: 5px;
+  resize: none;
+  overflow: auto;
+  height: calc(100% - 80px);
+  padding-left: 10px;
+  padding-right: 10px;
+}
+/* line 41, module/_input-text.scss */
+.term__textarea:focus {
+  outline: none;
+}
+
+/** 用語集フッターエリア */
+/* line 118, module/_term.scss */
+.term__content__footer {
+  width: 100%;
+  height: 40px;
+  text-align: right;
+  line-height: 40px;
+  bottom: 0px;
+  position: absolute;
 }
 
 /** 幅100％状態 */

@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 
-	function FileUploadCtrl($scope,$state,Upload,$uibModalInstance,connectApiService,constURI,params,$timeout,APP_CONF) {
+	function FileUploadCtrl($scope,$state,Upload,$uibModalInstance,connectApiService,constURI,params,$timeout,APP_CONF,URL_CONF) {
 		
 		//登録先カテゴリ名を引数から取得
 		$scope.categoryName = params.node["name"];
@@ -26,12 +26,13 @@
 		 */
 		var upload = function(file,categoryID){
 			Upload.upload({
-				url: APP_CONF.urlBase + '/upload/file',
+				url: URL_CONF.urlBase + '/upload/file',
 				data: {
 					file:file,
 					categoryID:categoryID
 				}
-			}).then(function(resp) {
+			})
+			.success(function(resp){
 				$uibModalInstance.close(resp);
 				swal({
 					title: "アップロード完了",
@@ -42,13 +43,14 @@
 					swal.close();
 					$state.reload();
 				});
-			},function(resp) {
+			})
+			.error(function(resp){
 				$timeout(function(){
 					swal("登録に失敗しました");
-				},1000);
+				});
 			});
 		}
 	} 
 
-	angular.module(appName).controller('FileUploadModalController',['$scope','$state','Upload','$uibModalInstance','connectApiService','constURI','params','$timeout','APP_CONF',FileUploadCtrl]);
+	angular.module(appName).controller('FileUploadModalController',['$scope','$state','Upload','$uibModalInstance','connectApiService','constURI','params','$timeout','APP_CONF','URL_CONF',FileUploadCtrl]);
 })();

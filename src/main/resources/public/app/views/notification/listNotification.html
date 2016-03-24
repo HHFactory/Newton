@@ -12,31 +12,34 @@
 	
 	<!-- 一覧表示エリア -->
  	<div class="col-contents" >
- 		<div class="scroll-area timeline--padding" infinite-scroll="loadMore()" infinite-scroll-parent="true" infinite-scroll-immediate-check="false">
-	 		<!-- お知らせパネル -->
-			<div class="timeline" ng-repeat="notification in notifications">
-				<div class="timeline__header">
-					<div class="header__item timeline__title">{{notification.title}}</div>
-				</div>
-				<div class="timeline__header">
-					<div class="header__item timeline__item--user-name">@{{notification.createUser}}</div>
-					<div class="header__item--tag" ng-class="setTagColor(notification)"><i class="fa fa-tag"/>{{labelImportant}}{{notification.importance}}</div>
-				</div>
-				<div class="timeline__content" ng-click="open(notification)">{{notification.content|abbreviate:150}}</div>
-				<div class="timeline__footer">
-					<div class="footer__item">
-						<i class="fa fa-envelope-o"/><span class="timeline__item--number">{{notification.readMemberList.length}}</span>
-						<a ng-click="isOpenMemberList = !isOpenMemberList">
-							<i class="fa fa-envelope"/>
-							<span class="timeline__item--number">{{notification.unreadMemberList.length}}</span>
-						</a>
+ 		<div class="scroll-area timeline--padding">
+	 		<div infinite-scroll="loadMore()" infinite-scroll-parent="true" infinite-scroll-immediate-check="false">
+		 		<!-- お知らせ本文 -->
+				<div class="timeline" ng-repeat="notification in notifications">
+					<div class="timeline__header">
+						<div class="header__item timeline__title">{{notification.title}}</div>
 					</div>
+					<div class="timeline__header">
+						<div class="header__item timeline__item--user-name">@{{notification.createUser}}</div>
+						<div class="header__item--tag" ng-class="setTagColor(notification)"><i class="fa fa-tag"/>{{labelImportant}}{{notification.importance}}</div>
+					</div>
+					<div class="timeline__content" ng-click="open(notification)">{{notification.content|abbreviate:150}}</div>
+					<div class="timeline__footer">
+						<div class="footer__item">
+							<i class="fa fa-envelope-o"/><span class="timeline__item--number">{{notification.readMemberList.length}}</span>
+							<a ng-click="isOpenMemberList = !isOpenMemberList">
+								<i class="fa fa-envelope"/>
+								<span class="timeline__item--number">{{notification.unreadMemberList.length}}</span>
+							</a>
+						</div>
 
-					<div ng-show="isOpenMemberList">
-						<ng-include src="'app/views/template/memberList.html'"></ng-include>
+						<div ng-show="isOpenMemberList">
+							<ng-include src="'app/views/template/memberList.html'"></ng-include>
+						</div>
 					</div>
 				</div>
-			</div>
+	 		</div>
+
  		</div>
 
 		<!-- 新規登録パネル -->

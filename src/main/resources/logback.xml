@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    	<!-- log4jdbc -->
+    	<logger name="jdbc.audit" level="OFF"/>
+    	<logger name="jdbc.resultset" level="OFF"/>
+  		<logger name="jdbc.resultsettable" level="OFF"/>
+  		<logger name="jdbc.sqltiming" level="ERROR"/>
+  		<logger name="jdbc.sqlonly" level="ERROR"/>
+  		<logger name="jdbc.connection" level="OFF"/>
+  		
+    	<appender name="FILE"
+	      	class="ch.qos.logback.core.rolling.RollingFileAppender">
+	      	<File>logging.log</File>
+	      	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      		<FileNamePattern>/log/logging.%d{yyyy-MM-dd}.log</FileNamePattern>
+	      		<MaxHistory>30</MaxHistory>
+	      	</rollingPolicy>
+	      	<layout class="ch.qos.logback.classic.PatternLayout">
+	      		<Pattern>%d [%thread] %-5level %logger{35} - %msg%n
+	      		</Pattern>
+	      	</layout>
+      	</appender>
+
+    	<appender name="ALERT"
+	      	class="ch.qos.logback.core.rolling.RollingFileAppender">
+	      	<File>./log/alert_log</File>
+	      	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      		<FileNamePattern>/log/alert_log.%d{yyyy-MM-dd}</FileNamePattern>
+	      	</rollingPolicy>
+	      	<layout class="ch.qos.logback.classic.PatternLayout">
+	      		<Pattern>%d [%thread] %-5level %logger{35} - %msg%n
+	      		</Pattern>
+	      	</layout>
+	      	<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+	      		<level>ERROR</level>
+	      	</filter>
+      	</appender>
+    
+    	<root level="INFO">
+	        <appender-ref ref="FILE" />
+	        <appender-ref ref="ALERT" />
+	     </root>
+</configuration>
