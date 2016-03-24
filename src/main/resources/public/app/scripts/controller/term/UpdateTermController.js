@@ -32,7 +32,7 @@
 		$scope.submit = function(term){
 			$scope.loading= true;
 			$scope.buttonLabelSubmit = APP_CONF.buttonLabelUpdating;
-			connectApiService.put(URL_CONF.urlBase + constURI.terms+term.id,term).then(function(){
+			connectApiService.put(URL_CONF.urlBase + constURI.terms+term.id,term).success(function(){
 				$state.go('listTerm');
 			}).finally(function(){
 				$scope.loading = false;

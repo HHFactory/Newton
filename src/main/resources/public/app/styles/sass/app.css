@@ -467,6 +467,12 @@ textarea:hover, input[type="text"]:hover {
   overflow: hidden;
 }
 
+/** 改行スタイル */
+/* line 67, base/_util.scss */
+.pre-line {
+  white-space: pre-line;
+}
+
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -3057,7 +3063,7 @@ a.badge:hover, a.badge:focus {
 }
 
 /* line 90, assets/stylesheets/bootstrap/_modals.scss */
-.modal-title {
+.modal-title, .modal__title {
   margin: 0;
   line-height: 1.42857;
 }
@@ -3670,7 +3676,7 @@ a.badge:hover, a.badge:focus {
 /* line 34, layout/_faq.scss */
 .faq__title {
   width: 100%;
-  height: 50px;
+  max-height: 120px;
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 3px;
@@ -4466,6 +4472,11 @@ a.badge:hover, a.badge:focus {
 }
 
 /* line 20, module/_modal.scss */
+.modal__title {
+  word-break: break-all;
+}
+
+/* line 25, module/_modal.scss */
 .modal__footer {
   width: 100%;
   height: 40px;
@@ -4474,7 +4485,7 @@ a.badge:hover, a.badge:focus {
   text-align: right;
 }
 
-/* line 28, module/_modal.scss */
+/* line 33, module/_modal.scss */
 .modal__textarea {
   height: 200px;
   width: 100%;
@@ -4501,15 +4512,16 @@ a.badge:hover, a.badge:focus {
   border-radius: 5px;
   margin-bottom: 5px;
   background-color: white;
+  position: relative;
 }
 
-/* line 11, module/_timeline.scss */
+/* line 12, module/_timeline.scss */
 .timeline--padding {
   padding-left: 10px;
   padding-right: calc(10px + 17px);
 }
 
-/* line 15, module/_timeline.scss */
+/* line 16, module/_timeline.scss */
 .timeline__header {
   display: table;
   width: 100%;
@@ -4518,13 +4530,13 @@ a.badge:hover, a.badge:focus {
   padding-right: 15px;
 }
 
-/* line 23, module/_timeline.scss */
+/* line 24, module/_timeline.scss */
 .header__item, .header__item--right {
   display: table-cell;
   vertical-align: middle;
 }
 
-/* line 28, module/_timeline.scss */
+/* line 29, module/_timeline.scss */
 .header__item--tag {
   display: table-cell;
   vertical-align: middle;
@@ -4535,19 +4547,20 @@ a.badge:hover, a.badge:focus {
   color: white;
 }
 
-/* line 38, module/_timeline.scss */
+/* line 39, module/_timeline.scss */
 .header__item--right {
   text-align: right;
 }
 
-/* line 43, module/_timeline.scss */
+/* line 44, module/_timeline.scss */
 .timeline__title {
   font-weight: bold;
   color: #292f33;
   font-size: 16px;
+  word-break: break-all;
 }
 
-/* line 49, module/_timeline.scss */
+/* line 51, module/_timeline.scss */
 .timeline__content {
   font-size: 14px;
   color: #292f33;
@@ -4556,53 +4569,59 @@ a.badge:hover, a.badge:focus {
   padding-right: 15px;
   margin-top: 5px;
   margin-bottom: 10px;
+  white-space: pre-line;
+}
+/* line 60, module/_timeline.scss */
+.timeline__content:hover {
+  cursor: pointer;
 }
 
-/* line 59, module/_timeline.scss */
+/* line 65, module/_timeline.scss */
 .timeline__item--user-name {
   font-size: 13px;
   color: #8899a6;
 }
 
-/* line 64, module/_timeline.scss */
+/* line 70, module/_timeline.scss */
 .timeline__item--number {
   font-size: 16px;
   color: #8899a6;
   margin-left: 3px;
 }
 
-/* line 70, module/_timeline.scss */
+/* line 76, module/_timeline.scss */
 .importance--high {
   background-color: red;
 }
 
-/* line 74, module/_timeline.scss */
+/* line 80, module/_timeline.scss */
 .importance--middle {
   background-color: #cfc736;
 }
 
-/* line 78, module/_timeline.scss */
+/* line 84, module/_timeline.scss */
 .importance--low {
   background-color: #36a3cf;
 }
 
-/* line 82, module/_timeline.scss */
+/* line 88, module/_timeline.scss */
 .importance--none {
   display: none;
 }
 
-/* line 86, module/_timeline.scss */
+/* line 92, module/_timeline.scss */
 .timeline__footer {
   display: table;
   width: 100%;
   height: 20px;
+  bottom: 0;
   padding-left: 15px;
   padding-right: 15px;
   margin-top: 5px;
   margin-bottom: 2px;
 }
 
-/* line 96, module/_timeline.scss */
+/* line 103, module/_timeline.scss */
 .footer__item {
   display: table-cell;
   font-size: 18px;
@@ -4914,14 +4933,14 @@ a.badge:hover, a.badge:focus {
 }
 
 /** 用語集ベーススタイル */
-/* line 6, module/_term.scss */
+/* line 7, module/_term.scss */
 .term__base {
   width: 100%;
   height: 100%;
 }
 
 /** 用語集ヘッダ部スタイル */
-/* line 12, module/_term.scss */
+/* line 13, module/_term.scss */
 .term__header {
   width: 100%;
   height: 40px;
@@ -4932,7 +4951,7 @@ a.badge:hover, a.badge:focus {
 }
 
 /** 用語集ヘッダアイテム（左） */
-/* line 22, module/_term.scss */
+/* line 23, module/_term.scss */
 .term__header__item--left {
   display: table-cell;
   text-align: left;
@@ -4940,7 +4959,7 @@ a.badge:hover, a.badge:focus {
 }
 
 /** 用語集ヘッダアイテム(右) */
-/* line 29, module/_term.scss */
+/* line 30, module/_term.scss */
 .term__header__item--right {
   display: table-cell;
   vertical-align: middle;
@@ -4948,16 +4967,16 @@ a.badge:hover, a.badge:focus {
 }
 
 /** 用語追加アイコン */
-/* line 36, module/_term.scss */
+/* line 37, module/_term.scss */
 .add-term-icon {
   background-color: white;
   border-radius: 5px;
   padding: 5px;
 }
 
-/** 用語集コンテンツ部スタイル */
-/* line 43, module/_term.scss */
-.term__content {
+/** 用語集コンテンツ部レイアウト */
+/* line 44, module/_term.scss */
+.l-term__content {
   width: 100%;
   height: calc(100% - 40px);
   display: table;
@@ -4965,8 +4984,24 @@ a.badge:hover, a.badge:focus {
   position: absolute;
 }
 
+/** 本文ヘッダ */
+/* line 53, module/_term.scss */
+.term__content--header {
+  width: 100%;
+  height: 50px;
+}
+
+/** 用語集本文 */
+/* line 59, module/_term.scss */
+.term__content {
+  white-space: pre-line;
+  overflow: auto;
+  width: 100%;
+  height: calc(100% - 50px);
+}
+
 /** 用語集コンテンツ部（左） */
-/* line 52, module/_term.scss */
+/* line 67, module/_term.scss */
 .term__content--left {
   display: table-cell;
   width: 30%;
@@ -4978,35 +5013,34 @@ a.badge:hover, a.badge:focus {
 }
 
 /** 用語集コンテンツ部（右) */
-/* line 63, module/_term.scss */
+/* line 78, module/_term.scss */
 .term__content--right {
   display: table-cell;
   width: 70%;
   height: 100%;
   padding: 10px 15px;
-  overflow: auto;
   word-wrap: break-word;
 }
 
 /** 用語集コンテンツ部（左）アイテム */
-/* line 73, module/_term.scss */
+/* line 87, module/_term.scss */
 .term__content--left__list {
   list-style: none;
   width: 100%;
   height: 100%;
   overflow: auto;
 }
-/* line 76, module/_term.scss */
+/* line 90, module/_term.scss */
 .term__content--left__list > li:hover {
   background-color: #36a3cf;
 }
-/* line 79, module/_term.scss */
+/* line 93, module/_term.scss */
 .term__content--left__list > li {
   margin-bottom: 10px;
 }
 
 /** 用語集タイトル入力エリア */
-/* line 87, module/_term.scss */
+/* line 101, module/_term.scss */
 .term__text {
   width: 100%;
   height: 40px;
@@ -5025,7 +5059,7 @@ a.badge:hover, a.badge:focus {
 }
 
 /** 用語集内容入力エリア */
-/* line 96, module/_term.scss */
+/* line 110, module/_term.scss */
 .term__textarea {
   height: 130px;
   width: 100%;
@@ -5043,7 +5077,7 @@ a.badge:hover, a.badge:focus {
 }
 
 /** 用語集フッターエリア */
-/* line 104, module/_term.scss */
+/* line 118, module/_term.scss */
 .term__content__footer {
   width: 100%;
   height: 40px;

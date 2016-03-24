@@ -70,9 +70,8 @@ public class FaqRestController {
 	 */
 	@RequestMapping(value="/api/v1/faqs/{id}",method=RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
-	public Integer countUpUsefulCount(@PathVariable Integer id){		
-		faqService.countUpUsefulCount(id);
-		Integer usefulcount = faqService.findFaqById(id).getUsefulCount();
+	public Integer countUpUsefulCount(@PathVariable Integer id){
+		Integer usefulcount = faqService.countUpUsefulCount(id).getUsefulCount();
 		return usefulcount;
 	}
 	

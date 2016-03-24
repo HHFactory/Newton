@@ -57,9 +57,9 @@
 		 * @return {[type]} [description]
 		 */
 		$scope.loadMore = function(){
-			console.log('faq load more');
-			if($scope.listCount){
-				var page = $scope.listCount/sizeLimit;
+			if($scope.listCount && $scope.listCount % sizeLimit == 0){
+				console.log('load faq more');
+				var page = searchParam["page"];
 				searchParam = {searchWord: sharedService.searchQuery, page: page+1};
 				// 検索ワード入力時
 				if(sharedService.searchQuery){

@@ -31,7 +31,8 @@
 					file:file,
 					categoryID:categoryID
 				}
-			}).then(function(resp) {
+			})
+			.success(function(resp){
 				$uibModalInstance.close(resp);
 				swal({
 					title: "アップロード完了",
@@ -42,10 +43,11 @@
 					swal.close();
 					$state.reload();
 				});
-			},function(resp) {
+			})
+			.error(function(resp){
 				$timeout(function(){
 					swal("登録に失敗しました");
-				},1000);
+				});
 			});
 		}
 	} 

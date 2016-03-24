@@ -38,8 +38,8 @@ public class NotificationRestController {
 	 * @return　notificationDTO List
 	 */
 	@RequestMapping(value="/api/v1/notifications/",method=RequestMethod.GET)
-	public List<NotificationDTO> findDTObyUserName(@RequestParam(required=false) String userName){
-		return notificationService.getDTObyUserName(userName);
+	public List<NotificationDTO> findDTObyUserName(@RequestParam(required=false) String userName,@RequestParam int page){
+		return notificationService.getDTObyUserName(userName,page);
 	}
 	
 	/**

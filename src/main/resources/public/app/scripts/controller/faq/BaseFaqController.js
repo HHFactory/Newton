@@ -46,14 +46,16 @@
 			Upload.upload({
 				url: URL_CONF.urlBase + '/upload/image',
 				data: {image:file}
-			}).then(function(resp) {
-				var fullFileName = resp['data'];
+			})
+			.success(function(resp){
 				var nameTag = "![" + fileName + "]";
-				var pathTag = "(" + basePath + fullFileName + ")";
+				var pathTag = "(" + basePath + resp + ")";
 				var imageTag = nameTag + pathTag;
 				setMarkdownTag(imageTag);
-			},function(resp) {
-				console.log("image upload failed");
+			})
+			.error(function(resp){
+				console.log(resp);
+				swal("ファイルサイズが大きすぎます");
 			});
 		}
 

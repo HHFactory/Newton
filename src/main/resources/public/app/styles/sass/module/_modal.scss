@@ -17,6 +17,11 @@
 	border-color: gray;
 }
 
+.modal__title {
+	@extend .modal-title;
+	word-break: break-all;
+}
+
 .modal__footer {
 	width: 100%;
 	height: 40px;

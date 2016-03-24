@@ -1046,7 +1046,7 @@ var termApp = 'termModule';
 	angular.module(appName).factory("fileReader",['$q','$log',fileReader]);
 })();
 angular.module('URL_CONF', [])
-.constant('URL_CONF', {"urlBase":"http://hhfactory.azurewebsites.net/newton/","imageFolderPath":"http://hhfactory.azurewebsites.net/images/","importFaqTemplateFilePath":"http://hhfactory.azurewebsites.net/files/template.xlsx","termHtmlPath":"http://hhfactory.azurewebsites.net/newton/term#/"});
+.constant('URL_CONF', {"urlBase":"http://localhost:8080/newton/","imageFolderPath":"http://localhost:8080/newton/app/images/","importFaqTemplateFilePath":"http://localhost:8080/newton/app/files/template.xlsx","termHtmlPath":"http://localhost:8080/newton/term#/"});
 
 /**
  * FAQ登録/更新ベースコントローラ
@@ -1096,14 +1096,16 @@ angular.module('URL_CONF', [])
 			Upload.upload({
 				url: URL_CONF.urlBase + '/upload/image',
 				data: {image:file}
-			}).then(function(resp) {
-				var fullFileName = resp['data'];
+			})
+			.success(function(resp){
 				var nameTag = "![" + fileName + "]";
-				var pathTag = "(" + basePath + fullFileName + ")";
+				var pathTag = "(" + basePath + resp + ")";
 				var imageTag = nameTag + pathTag;
 				setMarkdownTag(imageTag);
-			},function(resp) {
-				console.log("image upload failed");
+			})
+			.error(function(resp){
+				console.log(resp);
+				swal("ファイルサイズが大きすぎます");
 			});
 		}
 
@@ -1472,9 +1474,9 @@ angular.module('URL_CONF', [])
 		 * @return {[type]} [description]
 		 */
 		$scope.loadMore = function(){
-			console.log('faq load more');
-			if($scope.listCount){
-				var page = $scope.listCount/sizeLimit;
+			if($scope.listCount && $scope.listCount % sizeLimit == 0){
+				console.log('load faq more');
+				var page = searchParam["page"];
 				searchParam = {searchWord: sharedService.searchQuery, page: page+1};
 				// 検索ワード入力時
 				if(sharedService.searchQuery){
@@ -1863,7 +1865,8 @@ angular.module('URL_CONF', [])
 					file:file,
 					categoryID:categoryID
 				}
-			}).then(function(resp) {
+			})
+			.success(function(resp){
 				$uibModalInstance.close(resp);
 				swal({
 					title: "アップロード完了",
@@ -1874,10 +1877,11 @@ angular.module('URL_CONF', [])
 					swal.close();
 					$state.reload();
 				});
-			},function(resp) {
+			})
+			.error(function(resp){
 				$timeout(function(){
 					swal("登録に失敗しました");
-				},1000);
+				});
 			});
 		}
 	} 
@@ -2088,8 +2092,8 @@ angular.module('URL_CONF', [])
 		$scope.labelImportant = APP_CONF.labelImportance;
 		$scope.buttonLabel = APP_CONF.buttonLabelCreateNotification;
 		/** ユーザ情報 */
-		var userID = {userName:"user1"};
-		var sizeLimit = 100;
+		var apiParams = {userName:"user1",page:0};
+		var sizeLimit = 10;
 
 		/**
 		 * 閉じるアイコン押下処理
@@ -2112,25 +2116,31 @@ angular.module('URL_CONF', [])
 		})
 
 		/**
-		 * 次ページ読み込み処理
-		 * @return {[type]} [description]
-		 */
-		$scope.loadMore = function(){
-			console.log('notification load more');
-			if($scope.notifications){
-				var page = $scope.notifications.legth/sizeLimit;
-			}
-		}
-		
-		/**
 		 * お知らせを取得する
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
-		connectApiService.get(URL_CONF.urlBase + constURI.notifications,userID).then(function(apiResult){
+		connectApiService.get(URL_CONF.urlBase + constURI.notifications,apiParams).then(function(apiResult){
 			sharedService.notificationList = apiResult.data;
 			setScope();
 		});
+
+		/**
+		 * 次ページ読み込み処理
+		 * @return {[type]} [description]
+		 */
+		$scope.loadMore = function(){
+			if($scope.notifications && $scope.notifications.length % sizeLimit == 0){
+				console.log('notification load more');
+				var page = apiParams["page"];
+				apiParams = {userName:"user1",page:page + 1};
+				connectApiService.get(URL_CONF.urlBase + constURI.notifications,apiParams).then(function(apiResult){
+					sharedService.notificationList.push.apply(sharedService.notificationList,apiResult.data);
+				}).finally(function(){
+					setScope();
+				});
+			}
+		}
 
 		/**
 		 * scope反映処理
@@ -2200,7 +2210,7 @@ angular.module('URL_CONF', [])
 			for(var i=0; i<sharedService.notificationList.length; i++){
 				var readMemberList = sharedService.notificationList[i][targetList];
 				for(var j=0; j<readMemberList.length; j++){
-					if(readMemberList[j] == userID["userName"]){
+					if(readMemberList[j] == apiParams["userName"]){
 						filteredList.push(sharedService.notificationList[i]);
 					}
 				}
@@ -2416,7 +2426,7 @@ angular.module('URL_CONF', [])
 		$scope.submit = function(term){
 			$scope.loading= true;
 			$scope.buttonLabelSubmit = APP_CONF.buttonLabelUpdating;
-			connectApiService.put(URL_CONF.urlBase + constURI.terms+term.id,term).then(function(){
+			connectApiService.put(URL_CONF.urlBase + constURI.terms+term.id,term).success(function(){
 				$state.go('listTerm');
 			}).finally(function(){
 				$scope.loading = false;

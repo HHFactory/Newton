@@ -12,8 +12,8 @@
 		$scope.labelImportant = APP_CONF.labelImportance;
 		$scope.buttonLabel = APP_CONF.buttonLabelCreateNotification;
 		/** ユーザ情報 */
-		var userID = {userName:"user1"};
-		var sizeLimit = 100;
+		var apiParams = {userName:"user1",page:0};
+		var sizeLimit = 10;
 
 		/**
 		 * 閉じるアイコン押下処理
@@ -36,25 +36,31 @@
 		})
 
 		/**
-		 * 次ページ読み込み処理
-		 * @return {[type]} [description]
-		 */
-		$scope.loadMore = function(){
-			console.log('notification load more');
-			if($scope.notifications){
-				var page = $scope.notifications.legth/sizeLimit;
-			}
-		}
-		
-		/**
 		 * お知らせを取得する
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
-		connectApiService.get(URL_CONF.urlBase + constURI.notifications,userID).then(function(apiResult){
+		connectApiService.get(URL_CONF.urlBase + constURI.notifications,apiParams).then(function(apiResult){
 			sharedService.notificationList = apiResult.data;
 			setScope();
 		});
+
+		/**
+		 * 次ページ読み込み処理
+		 * @return {[type]} [description]
+		 */
+		$scope.loadMore = function(){
+			if($scope.notifications && $scope.notifications.length % sizeLimit == 0){
+				console.log('notification load more');
+				var page = apiParams["page"];
+				apiParams = {userName:"user1",page:page + 1};
+				connectApiService.get(URL_CONF.urlBase + constURI.notifications,apiParams).then(function(apiResult){
+					sharedService.notificationList.push.apply(sharedService.notificationList,apiResult.data);
+				}).finally(function(){
+					setScope();
+				});
+			}
+		}
 
 		/**
 		 * scope反映処理
@@ -124,7 +130,7 @@
 			for(var i=0; i<sharedService.notificationList.length; i++){
 				var readMemberList = sharedService.notificationList[i][targetList];
 				for(var j=0; j<readMemberList.length; j++){
-					if(readMemberList[j] == userID["userName"]){
+					if(readMemberList[j] == apiParams["userName"]){
 						filteredList.push(sharedService.notificationList[i]);
 					}
 				}

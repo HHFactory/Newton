@@ -33,7 +33,7 @@
 /** FAQ一覧タイトル用 */
 .faq__title {
 	width: 100%;
-	height: 50px;
+	max-height: 120px;
 	padding-left: $general-padding;
 	padding-right: $general-padding;
 	padding-top: 3px;
