@@ -2319,6 +2319,18 @@ angular.module('URL_CONF', [])
 		}
 
 		/**
+		 * filterされたlistカウントを監視
+		 * @param  {[type]} newValue                  [description]
+		 * @param  {[type]} oldValue){			if(newValue [description]
+		 * @return {[type]}                           [description]
+		 */
+		$scope.$watch('filtered.length',function(newValue,oldValue){
+			if(newValue == 0){
+				$scope.isShowContent = false;
+			}
+		});
+
+		/**
 		 * 新規登録アイコン押下
 		 * @return {[type]} [description]
 		 */

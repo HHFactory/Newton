@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+$headerHeight: 40px;
+$contentHeaderHeight: 50px;
+
+/** 用語集ベーススタイル */
+.term__base {
+	width: 100%;
+	height: 100%;
+}
+
+/** 用語集ヘッダ部スタイル */
+.term__header {
+	width: 100%;
+	height: $headerHeight;
+	display: table;
+	background-color: $sidebar-color;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/** 用語集ヘッダアイテム（左） */
+.term__header__item--left {
+	display: table-cell;
+	text-align: left;
+	vertical-align: middle;
+}
+
+/** 用語集ヘッダアイテム(右) */
+.term__header__item--right {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+/** 用語追加アイコン */
+.add-term-icon {
+	background-color: white;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+/** 用語集コンテンツ部レイアウト */
+.l-term__content {
+	width: 100%;
+	height: calc(100% - #{$headerHeight});
+	display: table;
+	table-layout: fixed;
+	position: absolute;
+}
+
+/** 本文ヘッダ */
+.term__content--header {
+	width: 100%;
+	height: $contentHeaderHeight;
+}
+
+/** 用語集本文 */
+.term__content {
+	white-space: pre-line;
+	overflow: auto;
+	width: 100%;
+	height: calc(100% - #{$contentHeaderHeight});
+}
+
+/** 用語集コンテンツ部（左） */
+.term__content--left {
+	display: table-cell;
+	width: 30%;
+	height: 100%;
+	padding-left: 15px;
+	padding-top: 10px;
+	border-right: 3px solid;
+	border-color: $sub-gray;
+	position: absolute;
+}
+
+/** 用語集コンテンツ部（右) */
+.term__content--right {
+	display: table-cell;
+	width: 70%;
+	height: 100%;
+	padding: 10px 15px;
+	word-wrap: break-word;
+}
+
+/** 用語集コンテンツ部（左）アイテム */
+.term__content--left__list {
+	list-style: none;
+	width: 100%;
+	& > li:hover {
+		background-color: $main-blue;
+	}
+	& > li {
+		margin-bottom: 10px;
+	}
+	height: 100%;
+	overflow: auto;
+}
+
+/** 用語集タイトル入力エリア */
+.term__text {
+	@include text-base(40px);
+	margin-bottom: 2px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-bottom:  solid 1px $border-gray;	
+}
+
+/** 用語集内容入力エリア */
+.term__textarea {
+	@include textarea-base();
+	height: calc(100% - #{$headerHeight * 2});
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/** 用語集フッターエリア */
+.term__content__footer {
+	width: 100%;
+	height: $headerHeight;
+	text-align: right;
+	line-height: $headerHeight;
+	bottom: 0px;
+	position: absolute;
+}
+

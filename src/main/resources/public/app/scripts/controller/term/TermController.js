@@ -35,6 +35,18 @@
 		}
 
 		/**
+		 * filterされたlistカウントを監視
+		 * @param  {[type]} newValue 
+		 * @param  {[type]} oldValue)
+		 * @return {[type]}          
+		 */
+		$scope.$watch('filtered.length',function(newValue,oldValue){
+			if(newValue == 0){
+				$scope.isShowContent = false;
+			}
+		});
+
+		/**
 		 * 新規登録アイコン押下
 		 * @return {[type]} [description]
 		 */
