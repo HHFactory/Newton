@@ -18,3 +18,11 @@ out
 .project
 .classpath
 .settings/org.eclipse.jdt.core.prefs
+.properties
+/node_modules
+/src/main/resources/public/app/styles/sass/.sass-cache
+/src/main/resources/public/app/images
+/src/main/resources/public/app/files
+/.settings
+*.log
+/log

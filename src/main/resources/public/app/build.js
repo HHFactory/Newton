@@ -1046,7 +1046,7 @@ var termApp = 'termModule';
 	angular.module(appName).factory("fileReader",['$q','$log',fileReader]);
 })();
 angular.module('URL_CONF', [])
-.constant('URL_CONF', {"urlBase":"http://localhost:8080/newton/","imageFolderPath":"http://localhost:8080/newton/app/images/","importFaqTemplateFilePath":"http://localhost:8080/newton/app/files/template.xlsx","termHtmlPath":"http://localhost:8080/newton/term#/"});
+.constant('URL_CONF', {"urlBase":"http://vxc-hhfactory.japanwest.cloudapp.azure.com:8080/newton/","imageFolderPath":"http://vxc-hhfactory.japanwest.cloudapp.azure.com:8080/app/images/","importFaqTemplateFilePath":"http://vxc-hhfactory.japanwest.cloudapp.azure.com:8080/app/files/template.xlsx","termHtmlPath":"http://vxc-hhfactory.japanwest.cloudapp.azure.com:8080/newton/term#/"});
 
 /**
  * FAQ登録/更新ベースコントローラ
@@ -1104,7 +1104,6 @@ angular.module('URL_CONF', [])
 				setMarkdownTag(imageTag);
 			})
 			.error(function(resp){
-				console.log(resp);
 				swal("ファイルサイズが大きすぎます");
 			});
 		}
@@ -1931,7 +1930,8 @@ angular.module('URL_CONF', [])
 		/** ラベル */
 		$scope.createPanelHeader = APP_CONF.headerLabelCreateNotification;
 		$scope.sendButton = APP_CONF.buttonLabelSend;
-		
+		$scope.selectSkillList = [];
+
 		/**
 		 * 宛先リスト取得処理
 		 * @param  {obj} query 
@@ -2320,9 +2320,9 @@ angular.module('URL_CONF', [])
 
 		/**
 		 * filterされたlistカウントを監視
-		 * @param  {[type]} newValue                  [description]
-		 * @param  {[type]} oldValue){			if(newValue [description]
-		 * @return {[type]}                           [description]
+		 * @param  {[type]} newValue 
+		 * @param  {[type]} oldValue)
+		 * @return {[type]}          
 		 */
 		$scope.$watch('filtered.length',function(newValue,oldValue){
 			if(newValue == 0){
