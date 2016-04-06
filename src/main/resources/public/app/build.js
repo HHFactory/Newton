@@ -5,6 +5,11 @@ var appName = 'indexModule';
 })();
 
 
+var loginModule = "loginModule";
+(function(){
+'use strict';
+	angular.module(loginModule,['connectApiService','connectURI','httpConfig','APP_CONF','URL_CONF']);
+})();
 (function(){
 'use strict';
 
@@ -37,7 +42,7 @@ var appName = 'indexModule';
 var termApp = 'termModule';
 (function(){
 "use strict";
-	angular.module(termApp, ['connectApiService','connectURI','APP_CONF','URL_CONF','httpConfig','ui.router','ui.bootstrap']);
+	angular.module(termApp, ['connectApiService','connectURI','APP_CONF','URL_CONF','httpConfig','ui.router','ui.bootstrap','hhfAndSearch']);
 })();
 
 (function(){
@@ -109,6 +114,8 @@ var termApp = 'termModule';
 (function(){
 'use strict';
   angular.module('httpConfig',[]).config(["$httpProvider",function($httpProvider) {
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     $httpProvider.interceptors.push(["$q", function ($q) {
         return {
           requestError: function(rejection){
@@ -704,6 +711,46 @@ var termApp = 'termModule';
 })();
 
 /**
+ * 用語集and検索用filter
+ * @return
+ */
+(function(){
+	'use strict';
+
+	function andSearchFilter(filterFilter){
+		return function(list,searchQuery){
+			if(searchQuery.title){
+				// 全角スペースを半角スペースに置換
+				var query = searchQuery.title.replace(/　/g, " ");
+			}
+
+	        // 検索フォームに文字が入力されている場合
+	        if (query) {
+	            // 検索対象ワードの配列を作成
+	            var queryWordArray = query.split(" ");
+	            var filteredList = [];
+	           
+	            queryWordArray.forEach(function(searchWord){
+			        	// １つ目の検索ワード結果はそのまま格納
+			        	if(filteredList.length == 0){
+			        		filteredList.push.apply(filteredList,filterFilter(list,searchWord));
+			        	}
+			        	// ２つ目以降の検索ワードは1つ前の検索結果リストに対して行う
+			        	else{
+			        		filteredList = filterFilter(filteredList,searchWord);
+			        	}
+			        });
+
+	            return filteredList;
+	        }else{
+	        	return list;
+	        }
+	    }
+	}
+
+	angular.module('hhfAndSearch',[]).filter("andSearchFilter",['filterFilter',andSearchFilter]);
+})();
+/**
  * FAQカテゴリフィルタ
  * @return {[type]} [description]
  */
@@ -923,7 +970,8 @@ var termApp = 'termModule';
 			'searchAPI': "api/v1/elastic/querysearch/",
 			// 'searchALL': "api/v1/elastic/matchall/",
 			//upload&delete
-			'deleteFile': "delete/file"
+			'deleteFile': "delete/file",
+			'login': "login"
 		}
 	);
 
@@ -1046,7 +1094,7 @@ var termApp = 'termModule';
 	angular.module(appName).factory("fileReader",['$q','$log',fileReader]);
 })();
 angular.module('URL_CONF', [])
-.constant('URL_CONF', {"urlBase":"http://vxc-hhfactory.japanwest.cloudapp.azure.com:8080/newton/","imageFolderPath":"http://vxc-hhfactory.japanwest.cloudapp.azure.com:8080/app/images/","importFaqTemplateFilePath":"http://vxc-hhfactory.japanwest.cloudapp.azure.com:8080/app/files/template.xlsx","termHtmlPath":"http://vxc-hhfactory.japanwest.cloudapp.azure.com:8080/newton/term#/"});
+.constant('URL_CONF', {"urlBase":"http://localhost:8080/newton/","imageFolderPath":"http://localhost:8080/newton/app/images/","importFaqTemplateFilePath":"http://localhost:8080/newton/app/files/template.xlsx","termHtmlPath":"http://localhost:8080/newton/term#/"});
 
 /**
  * FAQ登録/更新ベースコントローラ
@@ -1582,6 +1630,25 @@ angular.module('URL_CONF', [])
 	angular.module(appName).controller('UpdateFaqController', ['$scope','$state','$stateParams','$controller','connectApiService','constURI','APP_CONF','URL_CONF',UpdateFaqCtrl]);
 })();
 /**
+ * ログイン用コントローラ
+ * @return {[type]} [description]
+ */
+(function(){
+'use strict';
+	
+	function LoginCtrl($scope,connectApiService,constURI,APP_CONF,URL_CONF){
+		$scope.login = function(loginInfo){
+			connectApiService.post(URL_CONF.urlBase + constURI.login,loginInfo).then(function(apiResult){
+				console.log(URL_CONF.urlBase + constURI.login);
+				console.log(apiResult);
+			});
+		}
+	}
+
+
+	angular.module(loginModule).controller('LoginController',['$scope','connectApiService','constURI','APP_CONF','URL_CONF',LoginCtrl]);
+})();
+/**
  * manual.controller
  * @return {[type]} [description]
  */
@@ -1930,7 +1997,6 @@ angular.module('URL_CONF', [])
 		/** ラベル */
 		$scope.createPanelHeader = APP_CONF.headerLabelCreateNotification;
 		$scope.sendButton = APP_CONF.buttonLabelSend;
-		$scope.selectSkillList = [];
 
 		/**
 		 * 宛先リスト取得処理
