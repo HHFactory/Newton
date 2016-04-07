@@ -6,6 +6,7 @@
 'use strict';
 
 	function BaseFaqCtrl($scope,$state,connectApiService,constURI,Upload,APP_CONF,URL_CONF){
+
 		/** ラベル設定 */
 		$scope.columnLabelPreview = APP_CONF.columnLabelPreview;
 		$scope.iconLabelTag = APP_CONF.iconLabelTag;
@@ -13,7 +14,7 @@
 		$scope.selectedList = [];
 
 		/**
-		タグ選択状態を監視
+		 * タグ選択状態を監視
 		 * @param  {[type]} )
 		 * @return {[type]}  
 		 */
@@ -44,7 +45,7 @@
 			var fileName = file.name;
 			var basePath = URL_CONF.imageFolderPath;
 			Upload.upload({
-				url: URL_CONF.urlBase + '/upload/image',
+				url: URL_CONF.urlBase + 'upload/image',
 				data: {image:file}
 			})
 			.success(function(resp){
@@ -54,7 +55,6 @@
 				setMarkdownTag(imageTag);
 			})
 			.error(function(resp){
-				console.log(resp);
 				swal("ファイルサイズが大きすぎます");
 			});
 		}

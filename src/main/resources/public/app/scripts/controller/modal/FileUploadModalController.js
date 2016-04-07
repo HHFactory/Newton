@@ -26,7 +26,7 @@
 		 */
 		var upload = function(file,categoryID){
 			Upload.upload({
-				url: URL_CONF.urlBase + '/upload/file',
+				url: URL_CONF.urlBase + 'upload/file',
 				data: {
 					file:file,
 					categoryID:categoryID
