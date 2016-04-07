@@ -24,7 +24,8 @@ var loginModule = "loginModule";
 		.state('createFaq',{
 			url:"/create",
 			templateUrl: "app/views/faq/createFaq.html",
-			controller: "CreateFaqController"
+			controller: "CreateFaqController",
+			controllerAs: "CreateFaqCtrl"
 		})
 		.state('updateFaq',{
 			url: "/update",
@@ -1104,6 +1105,7 @@ angular.module('URL_CONF', [])
 'use strict';
 
 	function BaseFaqCtrl($scope,$state,connectApiService,constURI,Upload,APP_CONF,URL_CONF){
+
 		/** ラベル設定 */
 		$scope.columnLabelPreview = APP_CONF.columnLabelPreview;
 		$scope.iconLabelTag = APP_CONF.iconLabelTag;
@@ -1111,7 +1113,7 @@ angular.module('URL_CONF', [])
 		$scope.selectedList = [];
 
 		/**
-		タグ選択状態を監視
+		 * タグ選択状態を監視
 		 * @param  {[type]} )
 		 * @return {[type]}  
 		 */
@@ -1142,7 +1144,7 @@ angular.module('URL_CONF', [])
 			var fileName = file.name;
 			var basePath = URL_CONF.imageFolderPath;
 			Upload.upload({
-				url: URL_CONF.urlBase + '/upload/image',
+				url: URL_CONF.urlBase + 'upload/image',
 				data: {image:file}
 			})
 			.success(function(resp){
@@ -1926,7 +1928,7 @@ angular.module('URL_CONF', [])
 		 */
 		var upload = function(file,categoryID){
 			Upload.upload({
-				url: URL_CONF.urlBase + '/upload/file',
+				url: URL_CONF.urlBase + 'upload/file',
 				data: {
 					file:file,
 					categoryID:categoryID
@@ -2200,11 +2202,16 @@ angular.module('URL_CONF', [])
 				console.log('notification load more');
 				var page = apiParams["page"];
 				apiParams = {userName:"user1",page:page + 1};
-				connectApiService.get(URL_CONF.urlBase + constURI.notifications,apiParams).then(function(apiResult){
-					sharedService.notificationList.push.apply(sharedService.notificationList,apiResult.data);
-				}).finally(function(){
-					setScope();
-				});
+				connectApiService.get(URL_CONF.urlBase + constURI.notifications,apiParams)
+					.then(function(apiResult){
+						// console.log(apiResult);
+						// sharedService.notificationList.push.apply(sharedService.notificationList,apiResult.data);
+
+						sharedService.notificationList = sharedService.notificationList.concat(apiResult.data);
+					}).finally(function(){
+						setScope();
+					});
+
 			}
 		}
 
@@ -2212,8 +2219,10 @@ angular.module('URL_CONF', [])
 		 * scope反映処理
 		 */
 		var setScope = function(){
+
 			$scope.notifications = sharedService.notificationList;
 			$scope.unreadCount = filterNotification("unreadMemberList").length;
+			$scope.notificationsCount = $scope.notifications.length;
 		}
 
 		/**

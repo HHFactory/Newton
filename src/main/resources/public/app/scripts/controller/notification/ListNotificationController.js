@@ -54,11 +54,13 @@
 				console.log('notification load more');
 				var page = apiParams["page"];
 				apiParams = {userName:"user1",page:page + 1};
-				connectApiService.get(URL_CONF.urlBase + constURI.notifications,apiParams).then(function(apiResult){
-					sharedService.notificationList.push.apply(sharedService.notificationList,apiResult.data);
-				}).finally(function(){
-					setScope();
-				});
+				connectApiService.get(URL_CONF.urlBase + constURI.notifications,apiParams)
+					.then(function(apiResult){
+						sharedService.notificationList = sharedService.notificationList.concat(apiResult.data);
+					}).finally(function(){
+						setScope();
+					});
+
 			}
 		}
 
@@ -68,6 +70,7 @@
 		var setScope = function(){
 			$scope.notifications = sharedService.notificationList;
 			$scope.unreadCount = filterNotification("unreadMemberList").length;
+			$scope.notificationsCount = $scope.notifications.length;
 		}
 
 		/**

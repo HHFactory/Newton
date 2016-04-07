@@ -6,7 +6,6 @@ package com.intranewton.domain.service;
  */
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -88,9 +87,10 @@ public class NotificationService {
 		List<Notification> notifications = getEntityByUserName(userName,page);
 		
 		//更新日で降順ソート
-		Collections.sort(notifications, (n1,  n2) -> Long.compare(n2.getUpdateDatetime().getTime(), n1.getUpdateDatetime().getTime()));
+//		Collections.sort(notifications, (n1,  n2) -> Long.compare(n2.getCreateDatetime().getTime(), n1.getCreateDatetime().getTime()));
 		List<NotificationDTO> notificationDTOList = 
 				notifications.stream()
+							 .sorted((n1,n2) -> n2.getCreateDatetime().compareTo(n1.getCreateDatetime()))
 							 .map(notification -> new NotificationDTO(notification.getId(),notification.getTitle(),notification.getContent(),notification.getFilePath(),notification.getImportance(),notification.getCreateUser(), null, createReadUserList(notification.getNotificationTargetRoles(), userName),createUnReadUserList(notification.getNotificationTargetRoles(), userName)))
 							 .collect(Collectors.toList());
 		
@@ -105,7 +105,7 @@ public class NotificationService {
 	 */
 	private List<Notification> getEntityByUserName(String userName,int page) {
 		Pageable pageable = new PageRequest(page, limit);
-		List<NotificationTargetRole> targetRoleList = notificationTargetRoleRepository.findByTargetUser(userName, pageable).getContent();
+		List<NotificationTargetRole> targetRoleList = notificationTargetRoleRepository.findByTargetUserOrderByNotificationIdDesc(userName, pageable).getContent();
 		List<Notification> notificationList = targetRoleList.stream()
 					  										.map(targetRole -> notificationRepository.findByTargetRoles(targetRole))
 					  										.collect(Collectors.toList());

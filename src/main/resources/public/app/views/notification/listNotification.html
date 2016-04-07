@@ -2,7 +2,7 @@
 <div class="l-notification" ng-controller="ListNotificationController">
 	<!-- ヘッダエリア -->
 	<div class="col-header">
-		<span class="col-header__title">{{columnTitle}}</span>
+		<span class="col-header__title">{{columnTitle}} {{notificationsCount}}件</span>
 		<a class="col-header__item" ng-click="unreadFilter()">
 		<span class="badge" ng-if="unreadCount > 0">{{unreadCount}}</span>未読
 		</a>
