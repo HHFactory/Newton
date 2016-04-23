@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.intranewton.domain.dto.LoginUserDetails;
 import com.intranewton.domain.entity.User;
 import com.intranewton.domain.repository.UserRepository;
 
@@ -15,10 +16,10 @@ public class LoginUserDetailsService implements UserDetailsService{
 	UserRepository userRepository;
 	
 	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException{
-		User user = userRepository.findOne(userName);
+	public UserDetails loadUserByUsername(String mailaddress) throws UsernameNotFoundException{
+		User user = userRepository.findOne(mailaddress);
 		if(user == null){
-			throw new UsernameNotFoundException("ユーザ名とパスワードが一致していません");
+			throw new UsernameNotFoundException("対象のユーザ情報がありません");
 		}
 		return new LoginUserDetails(user);
 	}

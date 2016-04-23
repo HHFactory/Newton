@@ -4,12 +4,12 @@
  */
 (function(){
 'use strict';
-  angular.module('httpConfig',[]).config(["$httpProvider",function($httpProvider) {
+  angular.module('httpConfig',[]).config(["$httpProvider","$locationProvider",function($httpProvider,$locationProvider) {
     $httpProvider.interceptors.push(function ($q) {
         return {
           requestError: function(rejection){
             console.log(rejection);
-            swal("サーバーへのリクエストが正しくありません");
+            // swal("サーバーへのリクエストが正しくありません");
           },
           responseError: function(rejection) {
             console.log(rejection);
@@ -19,7 +19,8 @@
             return $q.reject(rejection);
           }
         }
-    })
+    });
+
   }]);
 })();
 

@@ -53,6 +53,4 @@ public class FAQ extends AbstractEntity implements Serializable {
 			)
 	@JsonIgnoreProperties(value="faqs")
 	private List<FAQCategory> categories;
-	
-	
 }

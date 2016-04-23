@@ -13,5 +13,5 @@
 			searchQuery: null
 		};
 	}
-	angular.module(appName).factory('sharedService',sharedService);
+	angular.module(indexModule).factory('sharedService',sharedService);
 })();

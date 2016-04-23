@@ -60,5 +60,5 @@
 
 	}
 
-	angular.module(appName).controller('DetailFaqController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF','URL_CONF',DetailFaqCtrl]);
+	angular.module(indexModule).controller('DetailFaqController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF','URL_CONF',DetailFaqCtrl]);
 })();

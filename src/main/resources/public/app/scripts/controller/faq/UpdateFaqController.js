@@ -43,5 +43,5 @@
 	}
 
 
-	angular.module(appName).controller('UpdateFaqController', ['$scope','$state','$stateParams','$controller','connectApiService','constURI','APP_CONF','URL_CONF',UpdateFaqCtrl]);
+	angular.module(indexModule).controller('UpdateFaqController', ['$scope','$state','$stateParams','$controller','connectApiService','constURI','APP_CONF','URL_CONF',UpdateFaqCtrl]);
 })();

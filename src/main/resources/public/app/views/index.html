@@ -15,10 +15,9 @@
 	<link rel="stylesheet" href="webjars/angular-loading-bar/0.8.0/loading-bar.min.css">
 	<link rel="stylesheet" href="app/styles/css/app.min.css">
 </head>
-<body>
-	<!-- ナビゲーションバー　-->
-	<ng-include src="'app/views/navigation/navbar.html'" include-replace></ng-include>
-	<!-- メインエリア	 -->
+<body ng-controller="MainController">
+
+	<div ng-include="'app/views/navigation/navbar.html'" ng-show="authorized" ng-cloak></div>
 	<div ui-view></div>
 
     <!-- 外部スクリプト -->
@@ -36,6 +35,7 @@
 	<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 	<script src="webjars/angular-loading-bar/0.8.0/loading-bar.min.js"></script>
 	<script src="webjars/ng-infinite-scroller-origin/1.2.1/build/ng-infinite-scroll.min.js"></script>
+	<script src="app/scripts/library/ngStorage.min.js"></script>
 	<!-- アプリケーションスクリプト -->
 	<script src="app/build.js"></script>
 </body>

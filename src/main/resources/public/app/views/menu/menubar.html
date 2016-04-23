@@ -7,27 +7,27 @@
 			<p>{{labelNotification}}</p>
 		</a>
 		<!-- 新規お知らせ -->
-		<a class="menu__icon" ng-click="showCreateNotificationPanel()">
+		<a class="menu__icon" ng-click="showCreateNotificationPanel()" ng-if="hasPermission('createNotification')">
 			<i class="fa fa-pencil-square-o"/>
 			<p>{{labelCreateNotification}}</p>
 		</a>
 		<!-- 新規FAQ -->
-		<a class="menu__icon" ng-click="createFaq()">
+		<a class="menu__icon" ng-click="createFaq()" ng-if="hasPermission('createFaq')">
 			<i class="fa fa-plus"/>
 			<p>{{labelAddFaq}}</p>
 		</a>
 		<!-- FAQ一括登録 -->
-		<a class="menu__icon" ng-click="importExcel()">
+		<a class="menu__icon" ng-click="importExcel()" ng-if="hasPermission('createFaq')">
 			<i class="fa fa-cloud-upload"/>
 			<p>{{labelImportFaq}}</p>
 		</a>
 		<!-- マニュアル -->
-		<a class="menu__icon" ng-click="showManual()">
+		<a class="menu__icon" ng-click="showManual()" ng-if="hasPermission('createManual')">
 			<i class="fa fa-file-text-o"/>
 			<p>{{labelManual}}</p>
 		</a>
 		<!-- 用語集(別ウィンドウ) -->
-		<a class="menu__icon" ng-click="openDictionary()">
+		<a class="menu__icon" ng-click="openDictionary()" ng-if="hasPermission('createTerm')">
 			<i class="fa fa-book"/>
 			<p>{{labelTerm}}</p>
 		</a>

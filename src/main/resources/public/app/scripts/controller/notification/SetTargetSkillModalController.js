@@ -51,6 +51,6 @@
 	}
 
 	//moduleへ登録する
-	angular.module(appName).controller('SetTargetSkillModalController',['$scope','$modalInstance','connectApiService','constURI','APP_CONF','URL_CONF',SetTargetSkillModalCtrl]);
+	angular.module(indexModule).controller('SetTargetSkillModalController',['$scope','$modalInstance','connectApiService','constURI','APP_CONF','URL_CONF',SetTargetSkillModalCtrl]);
 })();
 

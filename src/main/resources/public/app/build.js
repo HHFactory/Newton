@@ -1,42 +1,59 @@
-var appName = 'indexModule';
+var indexModule = 'indexModule';
 (function(){
 	'use strict';
-	angular.module(appName,['connectApiService','connectURI','APP_CONF','URL_CONF','httpConfig','ui.bootstrap','ui.router','ngSanitize','ui.grid','ui.grid.resizeColumns','ngTagsInput','ngFileUpload','eb.caret','angular-loading-bar','infinite-scroll']);
+	angular.module(indexModule,['connectApiService','connectURI','APP_CONF','URL_CONF','httpConfig','ui.bootstrap','ui.router','ngSanitize','ui.grid','ui.grid.resizeColumns','ngTagsInput','ngFileUpload','eb.caret','angular-loading-bar','infinite-scroll','ngStorage']);
 })();
 
 
 var loginModule = "loginModule";
 (function(){
 'use strict';
-	angular.module(loginModule,['connectApiService','connectURI','httpConfig','APP_CONF','URL_CONF']);
+	angular.module(loginModule,['connectApiService','connectURI','APP_CONF','URL_CONF','ngStorage']);
 })();
+/**
+ * ui.router設定ファイル
+ * @return
+ */
 (function(){
 'use strict';
 
-	angular.module(appName)
-	.config(["$stateProvider",function($stateProvider){
+	angular.module(indexModule)
+	.config(["$stateProvider","$urlRouterProvider","$httpProvider","$locationProvider",function($stateProvider,$urlRouterProvider,$httpProvider,$locationProvider){
 		$stateProvider
-		.state('main',{
-			url:"/",
-			templateUrl:"app/views/mainView.html",
-			controller:"MainController"
-		})
-		.state('createFaq',{
-			url:"/create",
-			templateUrl: "app/views/faq/createFaq.html",
-			controller: "CreateFaqController",
-			controllerAs: "CreateFaqCtrl"
-		})
-		.state('updateFaq',{
-			url: "/update",
-			templateUrl: "app/views/faq/createFaq.html",
-			controller: "UpdateFaqController",
-			params: {
-				'editTarget': null
-			}
-		});
+			/** ログイン画面 */
+			.state('login',{
+				url: "/",
+				templateUrl: "app/views/loginform.html",
+				controller: "LoginController",
+				controllerAs: "LoginCtrl"
+			})
+			/** ログイン後メイン画面 */
+			.state('main',{
+				url:"/index",
+				templateUrl: "app/views/mainView.html",
+				controller:"MainController"
+			})
+			/** FAQ登録画面 */
+			.state('createFaq',{
+				url:"/create",
+				templateUrl: "app/views/faq/createFaq.html",
+				controller: "CreateFaqController"
+			})
+			/** FAQ更新画面 */
+			.state('updateFaq',{
+				url: "/update",
+				templateUrl: "app/views/faq/createFaq.html",
+				controller: "UpdateFaqController",
+				params: {
+					'editTarget': null
+				}
+			});
+
+		$urlRouterProvider.otherwise('/');
+		$httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+		$locationProvider.html5Mode(true).hashPrefix();
 	}]);
-	
+
 })();
 
 
@@ -98,6 +115,7 @@ var termApp = 'termModule';
 		buttonLabelClose: "閉じる",
 		buttonLabelCancel: "キャンセル",
 		buttonLabelIsRead: "既読にする",
+		buttonLabelLogin: "ログイン",
 		columnLabelPreview: "プレビュー",
 		iconLabelCreateNotification: "新規お知らせ",
 		iconLabelTag: "タグ追加",
@@ -114,14 +132,12 @@ var termApp = 'termModule';
  */
 (function(){
 'use strict';
-  angular.module('httpConfig',[]).config(["$httpProvider",function($httpProvider) {
-    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+  angular.module('httpConfig',[]).config(["$httpProvider","$locationProvider",function($httpProvider,$locationProvider) {
     $httpProvider.interceptors.push(["$q", function ($q) {
         return {
           requestError: function(rejection){
             console.log(rejection);
-            swal("サーバーへのリクエストが正しくありません");
+            // swal("サーバーへのリクエストが正しくありません");
           },
           responseError: function(rejection) {
             console.log(rejection);
@@ -131,7 +147,8 @@ var termApp = 'termModule';
             return $q.reject(rejection);
           }
         }
-    }])
+    }]);
+
   }]);
 })();
 
@@ -141,7 +158,7 @@ var termApp = 'termModule';
  */
 (function(){
 	'use strict';
-	angular.module(appName).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+	angular.module(indexModule).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
 		// 読み込み時のサークルを非表示
 		cfpLoadingBarProvider.includeSpinner = false;
 		cfpLoadingBarProvider.latencyThreshold = 0;
@@ -154,7 +171,7 @@ var termApp = 'termModule';
  */
 (function(){
 	'use strict';
-	angular.module(appName).config(['$uibTooltipProvider',function($uibTooltipProvider){
+	angular.module(indexModule).config(['$uibTooltipProvider',function($uibTooltipProvider){
 		$uibTooltipProvider.setTriggers({
 			'show':'hide'
 		});
@@ -167,7 +184,7 @@ var termApp = 'termModule';
  */
 (function(){
 'use strict';
-  angular.module(appName)
+  angular.module(indexModule)
   .config(['$provide',function($provide) {
     // directiveを置き換える場合はdirective名の末尾に"Directive"を付ける
     $provide.decorator('ngClickDirective', ["$delegate", "$parse", "$q", function($delegate, $parse, $q) {
@@ -206,59 +223,47 @@ var termApp = 'termModule';
 })();
 
 
-//MainController
+/**
+ * 画面遷移時の認可チェックを行う
+ * 
+ * @return 
+ */
 (function(){
 	'use strict';
-	
-	function MainCtrl($scope,sharedService,connectApiService,constURI){
 
-		/**
-		 * お知らせ開閉フラグ監視
-		 * @param  {[type]} 
-		 * @param  {[type]} 
-		 * @return {[type]}  
-		 */
-		$scope.$watch(function(){
-			return sharedService.isShowNotification;
-		},function(){
-			$scope.isShowNotification = sharedService.isShowNotification;
+	function run($rootScope,$state,$localStorage,LoginUserService){
+		$rootScope.$on('$stateChangeStart',function(e,toState,toParams,fromState,fromParams){
+			// 管理者ページに遷移する場合
+			if(toState.name == 'admin'){
+				// admin権限がない場合は遷移させない
+				if(!LoginUserService.hasPermission('manageUser')){
+					e.preventDefault();
+					alert('権限がありません');
+				}
+			}
+
+			// ログインページに遷移する場合（ブラウザバック時の対応として）
+			if(toState.name == 'login'){
+				// ログイン状態の場合は、ログイン画面まで遷移させない
+				if($localStorage.userinfo){
+					e.preventDefault();
+					$state.go('main'); //ホーム画面に遷移
+				}
+			}
+
+			// ホーム画面に遷移する場合（未ログイン時にホーム画面へのURLを直接入力された場合の対応として）
+			if(toState.name == 'main'){
+				if(!$localStorage.userinfo){
+					e.preventDefault();
+					$state.go('login');
+				}
+			}
+
 		});
-		
-		/**
-		 * FAQ一括登録開閉フラグ監視
-		 * @param  {[type]}
-		 * @param  {[type]}
-		 * @return {[type]}
-		 */
-		$scope.$watch(function(){
-			return sharedService.isShowFaqImport;
-		},function(){
-			$scope.isShowFaqImport = sharedService.isShowFaqImport;
-		});
+	}
 
-		/**
-		 * マニュアル開閉フラグ監視
-		 * @param  {[type]} 
-		 * @param  {[type]} 
-		 * @return {[type]}  
-		 */
-		$scope.$watch(function(){
-			return sharedService.isShowManual;
-		},function(){
-			$scope.isShowManual = sharedService.isShowManual;
-		});
-
-
-	}	
-
-	//moduleへ登録
-	angular.module(appName).controller('MainController',['$scope','sharedService','connectApiService','constURI',MainCtrl]);
+	angular.module(indexModule).run(['$rootScope','$state','$localStorage','LoginUserService',run]);
 })();
-
-
-
-
-
 /**
  * EnterKey押下を検知するdirective
  * 
@@ -282,7 +287,7 @@ var termApp = 'termModule';
 	    };
 	}
 
-    angular.module(appName).directive('enterDetect',[EnterKeyDetect]);
+    angular.module(indexModule).directive('enterDetect',[EnterKeyDetect]);
 })();
 /**
  * FAQ一括登録ファイル選択directive
@@ -311,7 +316,7 @@ var termApp = 'termModule';
         }
     };
 
-    angular.module(appName).directive("ngFileSelect",[FileSelect]);
+    angular.module(indexModule).directive("ngFileSelect",[FileSelect]);
 })();
 (function(){
 'use strict';
@@ -328,7 +333,7 @@ var termApp = 'termModule';
 		}
 	}
 
-	angular.module(appName).directive('hhfFocus',['$timeout',hhfFocus]);
+	angular.module(indexModule).directive('hhfFocus',['$timeout',hhfFocus]);
 })();
 (function(){
 'use strict';
@@ -370,7 +375,7 @@ var termApp = 'termModule';
 		return afterRenderer;
 	}
 
-	angular.module(appName).directive('hhfMarkdownToHtml',['$sanitize','$sce',HHFMarkdownToHtml]);
+	angular.module(indexModule).directive('hhfMarkdownToHtml',['$sanitize','$sce',HHFMarkdownToHtml]);
 })();
 /**
  * タグ選択パネル
@@ -450,7 +455,7 @@ var termApp = 'termModule';
 		}
 	}
 
-	angular.module(appName).directive('hhfTagSelect',['$timeout',hhfTagSelect]);
+	angular.module(indexModule).directive('hhfTagSelect',['$timeout',hhfTagSelect]);
 })();
 /**
  * 必須チェック&文字数チェック機能を持ったtextフィールド
@@ -497,7 +502,7 @@ var termApp = 'termModule';
 	}
 
 
-	angular.module(appName).directive('hhfTextForm',[HHFTextForm]);
+	angular.module(indexModule).directive('hhfTextForm',[HHFTextForm]);
 })();
 /**
  * マニュアルカテゴリ階層directive
@@ -584,7 +589,7 @@ var termApp = 'termModule';
 		};
 	}
 
-	angular.module(appName).directive('hhfTree',['$parse',HHFTree]).directive('hhfTreeNode',['$parse',HHFTreeNode]);
+	angular.module(indexModule).directive('hhfTree',['$parse',HHFTree]).directive('hhfTreeNode',['$parse',HHFTreeNode]);
 })();
 (function(){
 'use strict';
@@ -599,7 +604,7 @@ var termApp = 'termModule';
 		}
 	}
 
-	angular.module(appName).directive('includeReplace',[IncludeReplace]);
+	angular.module(indexModule).directive('includeReplace',[IncludeReplace]);
 })();
 (function(){
 'use strict';
@@ -652,7 +657,7 @@ var termApp = 'termModule';
 		}
 	}
 
-	angular.module(appName).directive('nwtTreeView',['$compile','$timeout',TreeViewDirective]);
+	angular.module(indexModule).directive('nwtTreeView',['$compile','$timeout',TreeViewDirective]);
 })();
 (function(){
 'use strict';
@@ -808,13 +813,13 @@ var termApp = 'termModule';
 	 	return self.indexOf(value) === index;
 	 }
 
-	angular.module(appName).filter('categoryFilter',CategoryFilter);
+	angular.module(indexModule).filter('categoryFilter',CategoryFilter);
 })();
 
 //指定文字数を越えると...で表示させる
 (function(){
 'use strict';
-  angular.module(appName)
+  angular.module(indexModule)
   .filter('abbreviate',function () {
     return function (text, len, end) {
       if(!angular.isString(text)){
@@ -846,6 +851,8 @@ var termApp = 'termModule';
  * License: MIT
  */
 !function(){"use strict";angular.module("angular-loading-bar",["cfp.loadingBarInterceptor"]),angular.module("chieffancypants.loadingBar",["cfp.loadingBarInterceptor"]),angular.module("cfp.loadingBarInterceptor",["cfp.loadingBar"]).config(["$httpProvider",function(a){var b=["$q","$cacheFactory","$timeout","$rootScope","$log","cfpLoadingBar",function(b,c,d,e,f,g){function h(){d.cancel(j),g.complete(),l=0,k=0}function i(b){var d,e=c.get("$http"),f=a.defaults;!b.cache&&!f.cache||b.cache===!1||"GET"!==b.method&&"JSONP"!==b.method||(d=angular.isObject(b.cache)?b.cache:angular.isObject(f.cache)?f.cache:e);var g=void 0!==d?void 0!==d.get(b.url):!1;return void 0!==b.cached&&g!==b.cached?b.cached:(b.cached=g,g)}var j,k=0,l=0,m=g.latencyThreshold;return{request:function(a){return a.ignoreLoadingBar||i(a)||(e.$broadcast("cfpLoadingBar:loading",{url:a.url}),0===k&&(j=d(function(){g.start()},m)),k++,g.set(l/k)),a},response:function(a){return a&&a.config?(a.config.ignoreLoadingBar||i(a.config)||(l++,e.$broadcast("cfpLoadingBar:loaded",{url:a.config.url,result:a}),l>=k?h():g.set(l/k)),a):(f.error("Broken interceptor detected: Config object not supplied in response:\n https://github.com/chieffancypants/angular-loading-bar/pull/50"),a)},responseError:function(a){return a&&a.config?(a.config.ignoreLoadingBar||i(a.config)||(l++,e.$broadcast("cfpLoadingBar:loaded",{url:a.config.url,result:a}),l>=k?h():g.set(l/k)),b.reject(a)):(f.error("Broken interceptor detected: Config object not supplied in rejection:\n https://github.com/chieffancypants/angular-loading-bar/pull/50"),b.reject(a))}}}];a.interceptors.push(b)}]),angular.module("cfp.loadingBar",[]).provider("cfpLoadingBar",function(){this.autoIncrement=!0,this.includeSpinner=!0,this.includeBar=!0,this.latencyThreshold=100,this.startSize=.02,this.parentSelector="body",this.spinnerTemplate='<div id="loading-bar-spinner"><div class="spinner-icon"></div></div>',this.loadingBarTemplate='<div id="loading-bar"><div class="bar"><div class="peg"></div></div></div>',this.$get=["$injector","$document","$timeout","$rootScope",function(a,b,c,d){function e(){k||(k=a.get("$animate"));var e=b.find(n).eq(0);c.cancel(m),r||(d.$broadcast("cfpLoadingBar:started"),r=!0,v&&k.enter(o,e,angular.element(e[0].lastChild)),u&&k.enter(q,e,angular.element(e[0].lastChild)),f(w))}function f(a){if(r){var b=100*a+"%";p.css("width",b),s=a,t&&(c.cancel(l),l=c(function(){g()},250))}}function g(){if(!(h()>=1)){var a=0,b=h();a=b>=0&&.25>b?(3*Math.random()+3)/100:b>=.25&&.65>b?3*Math.random()/100:b>=.65&&.9>b?2*Math.random()/100:b>=.9&&.99>b?.005:0;var c=h()+a;f(c)}}function h(){return s}function i(){s=0,r=!1}function j(){k||(k=a.get("$animate")),d.$broadcast("cfpLoadingBar:completed"),f(1),c.cancel(m),m=c(function(){var a=k.leave(o,i);a&&a.then&&a.then(i),k.leave(q)},500)}var k,l,m,n=this.parentSelector,o=angular.element(this.loadingBarTemplate),p=o.find("div").eq(0),q=angular.element(this.spinnerTemplate),r=!1,s=0,t=this.autoIncrement,u=this.includeSpinner,v=this.includeBar,w=this.startSize;return{start:e,set:f,status:h,inc:g,complete:j,autoIncrement:this.autoIncrement,includeSpinner:this.includeSpinner,latencyThreshold:this.latencyThreshold,parentSelector:this.parentSelector,startSize:this.startSize}}]})}();
+/*! ngStorage 0.3.0 | Copyright (c) 2014 Gias Kay Lee | MIT License */!function(){"use strict";function a(a){var b={prefix:"ngStorage-",prefixLength:10};return{setPrefix:function(a){b.prefix=a,b.prefixLength=a.length},$get:["$rootScope","$window","$log","$timeout",function(c,d,e,f){function g(){var b=d[a];if(b&&"localStorage"===a){var c="__"+Math.round(1e7*Math.random());try{b.setItem(c,c),b.removeItem(c)}catch(f){e.warn("This browser does not support Web Storage!"),b=void 0}}return b}var h,i,j=g(),k={$default:function(a){for(var b in a)angular.isDefined(k[b])||(k[b]=a[b]);return k},$reset:function(a){for(var b in k)"$"===b[0]||delete k[b];return k.$default(a)},$save:function(){if(f.cancel(i),!angular.equals(k,h)){angular.forEach(k,function(a,c){angular.isDefined(a)&&"$"!==c[0]&&j.setItem(b.prefix+c,angular.toJson(a)),delete h[c]});for(var a in h)j.removeItem(b.prefix+a);h=angular.copy(k)}},$supported:!!j};if(!j){var l,m={};j={setItem:function(a,b){return m[a]=String(b)},getItem:function(a){return m.hasOwnProperty(a)?m[a]:l},removeItem:function(a){return delete m[a]},clear:function(){return m={}},length:0}}for(var n,o=0,p=j.length;p>o;o++)(n=j.key(o))&&b.prefix===n.slice(0,b.prefixLength)&&(k[n.slice(b.prefixLength)]=angular.fromJson(j.getItem(n)));return h=angular.copy(k),c.$watch(function(){i||(i=f(function(){k.$save()},100))}),"localStorage"===a&&d.addEventListener&&d.addEventListener("storage",function(a){b.prefix===a.key.slice(0,b.prefixLength)&&(a.newValue?k[a.key.slice(b.prefixLength)]=angular.fromJson(a.newValue):delete k[a.key.slice(b.prefixLength)],h=angular.copy(k),c.$apply())}),k}]}}angular.module("ngStorage",[]).provider("$localStorage",a("localStorage")).provider("$sessionStorage",a("sessionStorage"))}();
+
 
 /***
 * パラメータとして渡されたAPIとの接続処理をするService
@@ -867,7 +874,7 @@ var termApp = 'termModule';
 				var getData = $http.get(apiURI,{params:param}).success(function(data,status,headers,config){
 					// return data;
 				}).error(function(data,status,headers,config){
-					swal("データ取得に失敗しました");
+					// swal("データ取得に失敗しました");
 				});
 				return getData;
 			},
@@ -904,7 +911,7 @@ var termApp = 'termModule';
 						});
 					});
 				}).error(function(data,status,headers,config){
-					swal("登録に失敗しました");
+					// swal("登録に失敗しました");
 				});
 				return postData;
 			},
@@ -969,13 +976,45 @@ var termApp = 'termModule';
 			'terms': "api/v1/terms/",
 			//elasticsearch
 			'searchAPI': "api/v1/elastic/querysearch/",
-			// 'searchALL': "api/v1/elastic/matchall/",
-			//upload&delete
+			//others
 			'deleteFile': "delete/file",
-			'login': "login"
+			'login': "api/login",
+			'loginuser': "api/login/principal",
+			'teams': "api/v1/teams/"
 		}
 	);
 
+})();
+/**
+ * ログインユーザ情報に関するサービス
+ * 
+ * @return
+ */
+(function(){
+	'use strict';
+
+	function LoginUserService($localStorage){
+
+		var loginUserService = {
+			/**
+			 * 指定された権限を持っているかチェック
+			 * @param  {[type]}  targetPermission
+			 * @return {Boolean}                 
+			 */
+			hasPermission: function(targetPermission){
+				for(var i=0; i<$localStorage.userinfo.permissions.length; i++){
+					if($localStorage.userinfo.permissions[i] === targetPermission){
+						return true;
+					}
+				}
+				return false;
+			}
+		}
+
+		return loginUserService;
+	}
+
+	angular.module(indexModule).factory('LoginUserService',['$localStorage',LoginUserService]);
 })();
 (function(){
 'use strict';
@@ -992,7 +1031,7 @@ var termApp = 'termModule';
 			searchQuery: null
 		};
 	}
-	angular.module(appName).factory('sharedService',sharedService);
+	angular.module(indexModule).factory('sharedService',sharedService);
 })();
 
 /**
@@ -1033,7 +1072,7 @@ var termApp = 'termModule';
 	}
 
 	//moduleへの登録
-	angular.module(appName).factory('UserService',UserService);
+	angular.module(indexModule).factory('UserService',UserService);
 })();
 /**
  * ファイル読み込み
@@ -1092,10 +1131,128 @@ var termApp = 'termModule';
     };
 
 	
-	angular.module(appName).factory("fileReader",['$q','$log',fileReader]);
+	angular.module(indexModule).factory("fileReader",['$q','$log',fileReader]);
 })();
+//HomeController
+(function(){
+	'use strict';
+	
+	function HomeCtrl($scope,$state,$localStorage,sharedService,connectApiService,constURI){
+
+		/**
+		 * お知らせ開閉フラグ監視
+		 * @param  {[type]} 
+		 * @param  {[type]} 
+		 * @return {[type]}  
+		 */
+		$scope.$watch(function(){
+			return sharedService.isShowNotification;
+		},function(){
+			$scope.isShowNotification = sharedService.isShowNotification;
+		});
+		
+		/**
+		 * FAQ一括登録開閉フラグ監視
+		 * @param  {[type]}
+		 * @param  {[type]}
+		 * @return {[type]}
+		 */
+		$scope.$watch(function(){
+			return sharedService.isShowFaqImport;
+		},function(){
+			$scope.isShowFaqImport = sharedService.isShowFaqImport;
+		});
+
+		/**
+		 * マニュアル開閉フラグ監視
+		 * @param  {[type]} 
+		 * @param  {[type]} 
+		 * @return {[type]}  
+		 */
+		$scope.$watch(function(){
+			return sharedService.isShowManual;
+		},function(){
+			$scope.isShowManual = sharedService.isShowManual;
+		});
+
+	}
+
+	//moduleへ登録
+	angular.module(indexModule).controller('HomeController',['$scope','$state','$localStorage','sharedService','connectApiService','constURI',HomeCtrl]);
+})();
+
+
+
+
+
+//MainController
+(function(){
+	'use strict';
+	
+	function MainCtrl($scope,$state,$localStorage,sharedService,connectApiService,constURI){
+
+		/**
+		 * ログインユーザ情報監視
+		 * @param  
+		 * @param  
+		 * @return 
+		 */
+		$scope.$watch(function(){
+			return $localStorage.userinfo;
+		},function(){
+			if($localStorage.userinfo){
+				$scope.authorized = true;
+			}
+		});
+
+		/**
+		 * お知らせ開閉フラグ監視
+		 * @param  {[type]} 
+		 * @param  {[type]} 
+		 * @return {[type]}  
+		 */
+		$scope.$watch(function(){
+			return sharedService.isShowNotification;
+		},function(){
+			$scope.isShowNotification = sharedService.isShowNotification;
+		});
+
+		/**
+		 * FAQ一括登録開閉フラグ監視
+		 * @param  {[type]}
+		 * @param  {[type]}
+		 * @return {[type]}
+		 */
+		$scope.$watch(function(){
+			return sharedService.isShowFaqImport;
+		},function(){
+			$scope.isShowFaqImport = sharedService.isShowFaqImport;
+		});
+
+		/**
+		 * マニュアル開閉フラグ監視
+		 * @param  {[type]} 
+		 * @param  {[type]} 
+		 * @return {[type]}  
+		 */
+		$scope.$watch(function(){
+			return sharedService.isShowManual;
+		},function(){
+			$scope.isShowManual = sharedService.isShowManual;
+		});
+
+	}
+
+	//moduleへ登録
+	angular.module(indexModule).controller('MainController',['$scope','$state','$localStorage','sharedService','connectApiService','constURI',MainCtrl]);
+})();
+
+
+
+
+
 angular.module('URL_CONF', [])
-.constant('URL_CONF', {"urlBase":"http://localhost:8080/newton/","imageFolderPath":"http://localhost:8080/newton/app/images/","importFaqTemplateFilePath":"http://localhost:8080/newton/app/files/template.xlsx","termHtmlPath":"http://localhost:8080/newton/term#/"});
+.constant('URL_CONF', {"urlBase":"http://localhost:8080/newton/","imageFolderPath":"http://localhost:8080/newton/app/images/","importFaqTemplateFilePath":"http://localhost:8080/newton/app/files/template.xlsx","termHtmlPath":"http://localhost:8080/newton/term#/","indexHtmlPath":"http://localhost:8080/newton/index#/"});
 
 /**
  * FAQ登録/更新ベースコントローラ
@@ -1220,7 +1377,7 @@ angular.module('URL_CONF', [])
 
 	}
 
-	angular.module(appName).controller('BaseFaqController',['$scope','$state','connectApiService','constURI','Upload','APP_CONF','URL_CONF',BaseFaqCtrl]);
+	angular.module(indexModule).controller('BaseFaqController',['$scope','$state','connectApiService','constURI','Upload','APP_CONF','URL_CONF',BaseFaqCtrl]);
 })();
 /**
  * FAQ登録Controller
@@ -1247,19 +1404,19 @@ angular.module('URL_CONF', [])
 			// ボタンラベルを変更
 			$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmitting;
 			connectApiService.post(URL_CONF.urlBase + constURI.faq,faq)
-			.success(function(apiResult){
-				$state.go('main');
-			})
-			.finally(function(){
-				$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmit;
-				$scope.loading = false;
-			});
+				.success(function(apiResult){
+					$state.go('main');
+				})
+				.finally(function(){
+					$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmit;
+					$scope.loading = false;
+				});
 			console.log('faq created');
 		};
 	}
 
 	//モジュールへの登録
-	angular.module(appName).controller('CreateFaqController',['$scope','$state','$controller','connectApiService','constURI','APP_CONF','URL_CONF',CreateFaqCtrl]);
+	angular.module(indexModule).controller('CreateFaqController',['$scope','$state','$controller','connectApiService','constURI','APP_CONF','URL_CONF',CreateFaqCtrl]);
 })();
 
 /**
@@ -1324,7 +1481,7 @@ angular.module('URL_CONF', [])
 
 	}
 
-	angular.module(appName).controller('DetailFaqController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF','URL_CONF',DetailFaqCtrl]);
+	angular.module(indexModule).controller('DetailFaqController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF','URL_CONF',DetailFaqCtrl]);
 })();
 /**
  * FAQ一括登録用コントローラ
@@ -1462,7 +1619,7 @@ angular.module('URL_CONF', [])
 
 	}
 
-	angular.module(appName).controller('ImportFaqController',['$scope','$state','connectApiService','constURI','$timeout','sharedService','APP_CONF','URL_CONF',ImportFaqCtrl]);
+	angular.module(indexModule).controller('ImportFaqController',['$scope','$state','connectApiService','constURI','$timeout','sharedService','APP_CONF','URL_CONF',ImportFaqCtrl]);
 })();
 /**
  * listFaq.html Controller
@@ -1580,7 +1737,7 @@ angular.module('URL_CONF', [])
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('ListFaqController',['$scope','connectApiService','constURI','sharedService','APP_CONF','URL_CONF',ListFaqCtrl]);
+	angular.module(indexModule).controller('ListFaqController',['$scope','connectApiService','constURI','sharedService','APP_CONF','URL_CONF',ListFaqCtrl]);
 })();
 
 
@@ -1629,26 +1786,42 @@ angular.module('URL_CONF', [])
 	}
 
 
-	angular.module(appName).controller('UpdateFaqController', ['$scope','$state','$stateParams','$controller','connectApiService','constURI','APP_CONF','URL_CONF',UpdateFaqCtrl]);
+	angular.module(indexModule).controller('UpdateFaqController', ['$scope','$state','$stateParams','$controller','connectApiService','constURI','APP_CONF','URL_CONF',UpdateFaqCtrl]);
 })();
 /**
  * ログイン用コントローラ
- * @return {[type]} [description]
+ * 
+ * @return
  */
 (function(){
 'use strict';
-	
-	function LoginCtrl($scope,connectApiService,constURI,APP_CONF,URL_CONF){
-		$scope.login = function(loginInfo){
-			connectApiService.post(URL_CONF.urlBase + constURI.login,loginInfo).then(function(apiResult){
-				console.log(URL_CONF.urlBase + constURI.login);
-				console.log(apiResult);
-			});
+
+	function LoginCtrl($state,$localStorage,connectApiService,constURI,APP_CONF){
+		var self = this;
+		/** ラベル設定 */
+		self.buttonLabel = APP_CONF.buttonLabelLogin;
+
+		/**
+		 * ログインボタン押下処理
+		 * @param  {[type]} loginInfo [description]
+		 * @return {[type]}           [description]
+		 */
+		self.login = function(loginInfo){
+			self.loading = true;
+			connectApiService.post(constURI.login,loginInfo)
+				.success(function(apiResult){
+					$localStorage.userinfo = apiResult;
+					$localStorage.$save();
+					$state.go('main');
+				})
+				.error(function(apiResult){
+					self.error = true;
+				});
 		}
+
 	}
 
-
-	angular.module(loginModule).controller('LoginController',['$scope','connectApiService','constURI','APP_CONF','URL_CONF',LoginCtrl]);
+	angular.module(indexModule).controller('LoginController',['$state','$localStorage','connectApiService','constURI','APP_CONF',LoginCtrl]);
 })();
 /**
  * manual.controller
@@ -1746,7 +1919,7 @@ angular.module('URL_CONF', [])
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('ManualController',['$scope','$state','$uibModal','connectApiService','constURI','sharedService','APP_CONF','URL_CONF',ManualCtrl]);
+	angular.module(indexModule).controller('ManualController',['$scope','$state','$uibModal','connectApiService','constURI','sharedService','APP_CONF','URL_CONF',ManualCtrl]);
 })();
 
 
@@ -1757,7 +1930,7 @@ angular.module('URL_CONF', [])
 (function(){
 'use strict';
 	
-	function MenuCtrl($scope,$state,$uibModal,$window,sharedService,APP_CONF,URL_CONF){
+	function MenuCtrl($scope,$state,$uibModal,$window,sharedService,LoginUserService,APP_CONF,URL_CONF){
 		/** ラベル */
 		$scope.labelCreateNotification = APP_CONF.iconLabelCreateNotification;
 		$scope.labelNotification = APP_CONF.columnTitleNotification;
@@ -1768,6 +1941,15 @@ angular.module('URL_CONF', [])
 
 		/** 別ウィンドウ */
 		$scope.$window = $window;
+
+		/**
+		 * 権限チェック(ボタン表示制御用)
+		 * @param  {[type]}  targetPermission 
+		 * @return {Boolean}                  
+		 */
+		$scope.hasPermission = function(targetPermission){
+			return LoginUserService.hasPermission(targetPermission);
+		}
 
 		/**
 		 * マニュアルアイコン押下処理
@@ -1789,7 +1971,6 @@ angular.module('URL_CONF', [])
 			sharedService.isShowFaqImport = false;
 			sharedService.isShowCreateNotificationPanel = false;
 			sharedService.isShowNotification = !sharedService.isShowNotification;
-
 		}
 
 		/**
@@ -1832,7 +2013,7 @@ angular.module('URL_CONF', [])
 
 	}
 
-	angular.module(appName).controller('MenuController', ['$scope','$state','$uibModal','$window','sharedService','APP_CONF','URL_CONF',MenuCtrl]);
+	angular.module(indexModule).controller('MenuController', ['$scope','$state','$uibModal','$window','sharedService','LoginUserService','APP_CONF','URL_CONF',MenuCtrl]);
 })();
 
 /**
@@ -1898,7 +2079,7 @@ angular.module('URL_CONF', [])
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('DictionaryModalController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF','URL_CONF',DictionaryCtrl]);
+	angular.module(indexModule).controller('DictionaryModalController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF','URL_CONF',DictionaryCtrl]);
 })();
 /**
  * マニュアルファイルアップロードモーダルコントローラ
@@ -1954,7 +2135,7 @@ angular.module('URL_CONF', [])
 		}
 	} 
 
-	angular.module(appName).controller('FileUploadModalController',['$scope','$state','Upload','$uibModalInstance','connectApiService','constURI','params','$timeout','APP_CONF','URL_CONF',FileUploadCtrl]);
+	angular.module(indexModule).controller('FileUploadModalController',['$scope','$state','Upload','$uibModalInstance','connectApiService','constURI','params','$timeout','APP_CONF','URL_CONF',FileUploadCtrl]);
 })();
 /**
  * navbar.html用Controller
@@ -1963,7 +2144,22 @@ angular.module('URL_CONF', [])
 (function(){
 	'use strict';
 
-	function NavCtrl($scope,$state,sharedService){
+	function NavCtrl($scope,$state,sharedService,$localStorage,connectApiService,constURI,URL_CONF){
+
+		/**
+		 * ユーザ情報の取得
+		 * @param  {[type]} 
+		 * @param  {[type]} 
+		 * @return {[type]} 
+		 */
+		$scope.$watch(function(){
+			return $localStorage.userinfo;
+		},function(newVal,oldVal){
+			if($localStorage.userinfo){
+				$scope.username = $localStorage.userinfo.userName;
+			}
+		});
+
 		/**
 		 * 検索処理
 		 */
@@ -1985,7 +2181,7 @@ angular.module('URL_CONF', [])
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('NavController',['$scope','$state','sharedService', NavCtrl]);
+	angular.module(indexModule).controller('NavController',['$scope','$state','sharedService','$localStorage','connectApiService','constURI','URL_CONF',NavCtrl]);
 })();
 
 /**
@@ -1995,27 +2191,27 @@ angular.module('URL_CONF', [])
 (function(){
 'use strict';
 
-	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout,APP_CONF,URL_CONF){
+	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout,$localStorage,APP_CONF,URL_CONF){
 		/** ラベル */
 		$scope.createPanelHeader = APP_CONF.headerLabelCreateNotification;
 		$scope.sendButton = APP_CONF.buttonLabelSend;
 
 		/**
 		 * 宛先リスト取得処理
-		 * @param  {obj} query 
-		 * @return {list} targetSkill      
+		 * @param  {[type]} query
+		 * @return {[type]}      
 		 */
-		$scope.loadSkills = function(query) {
-			return connectApiService.get(URL_CONF.urlBase + constURI.roles).then(function(apiResult){
-				var targetSkill = [];
-				var loadSkillList = apiResult.data;
-				for(var i = 0; i < loadSkillList.length; i = (i+1)) {
-					var skill = {};
-					skill["text"] = loadSkillList[i]["skillName"];
-					targetSkill.push(skill);
-				}
-				return targetSkill;
-			});
+		$scope.teamList = function(query) {
+			return connectApiService.get(URL_CONF.urlBase + constURI.teams)
+									.then(function(apiResult){
+										/** TeamEntityList -> nameList */
+										var teamNameList = [];
+										var loadTeamList = apiResult.data;
+										for(var i = 0; i < loadTeamList.length; i++){
+											teamNameList.push(loadTeamList[i]["name"]);
+										}
+										return teamNameList;
+									});
 		};
 
 		/**
@@ -2025,17 +2221,31 @@ angular.module('URL_CONF', [])
 		 * TODO:websocket
 		 */
 		$scope.submit = function(notification) {
+			/** ボタン表示制御 */
 			$scope.loading = true;
 			$scope.sendButton = APP_CONF.buttonLabelSending;
-			notification.targetUserList = getSkillNameList($scope.selectSkillList);
+			
+			/** 選択したチーム */
+			notification.targetTeamList = getSkillNameList($scope.selectTeamList);
 			notification.filePath = "";
-			connectApiService.post(URL_CONF.urlBase + constURI.notification,notification).then(function(resultAPI){
-				$state.reload();
-				sharedService.isShowCreateNotificationPanel = false;
-			}).finally(function(){
-				$scope.loading = false;
-				$scope.sendButton = APP_CONF.buttonLabelSend;
-			});
+
+			/** 登録・更新者 */
+			notification.createUser = $localStorage.userinfo.userName;
+			notification.updateUser = $localStorage.userinfo.userName;
+
+			/** 登録処理 */
+			connectApiService
+				.post(URL_CONF.urlBase + constURI.notification,notification)
+				/** 画面をリロードし、お知らせ登録パネルを非表示 */
+				.then(function(resultAPI){
+					$state.reload();
+					sharedService.isShowCreateNotificationPanel = false;
+				})
+				/** ボタン表示を元に戻す（不要かも） */
+				.finally(function(){
+					$scope.loading = false;
+					$scope.sendButton = APP_CONF.buttonLabelSend;
+				});
 		};
 
 		/**
@@ -2061,7 +2271,7 @@ angular.module('URL_CONF', [])
 	}
 
 	//moduleへ登録
-	angular.module(appName).controller('CreateNotificationController',['$scope','$state','connectApiService','constURI','sharedService','$timeout','APP_CONF','URL_CONF',CreateNotificationCtrl]);
+	angular.module(indexModule).controller('CreateNotificationController',['$scope','$state','connectApiService','constURI','sharedService','$timeout','$localStorage','APP_CONF','URL_CONF',CreateNotificationCtrl]);
 })();
 
 /**
@@ -2072,7 +2282,7 @@ angular.module('URL_CONF', [])
 'use strict';
 	
 	//参照用モーダルコントローラ	
-	function DetailNotificadtionCtrl($scope,$state,detailNotification,connectApiService,constURI,$uibModalInstance,APP_CONF,URL_CONF,$timeout){
+	function DetailNotificadtionCtrl($scope,$state,detailNotification,connectApiService,constURI,$uibModalInstance,$localStorage,APP_CONF,URL_CONF,$timeout){
 		/** ラベル */
 		$scope.buttonLabelEdit = APP_CONF.buttonLabelEdit;
 		$scope.buttonLabelDelete = APP_CONF.buttonLabelDelete;
@@ -2095,7 +2305,7 @@ angular.module('URL_CONF', [])
 		 * @return {Boolean} [description]
 		 */
 		$scope.isReaded = function(){
-			var userName = "user1";
+			var userName = $localStorage.userinfo.userName;
 			connectApiService.put(URL_CONF.urlBase + constURI.notification+detailNotification.id,userName).then(function(apiResult){
 				if(apiResult.status == 200){
 					$uibModalInstance.close();
@@ -2143,7 +2353,7 @@ angular.module('URL_CONF', [])
 	}
 
 	//moduleへ登録
-	angular.module(appName).controller('DetailNotificationController',['$scope','$state','detailNotification','connectApiService','constURI','$uibModalInstance','APP_CONF','URL_CONF','$timeout',DetailNotificadtionCtrl]);
+	angular.module(indexModule).controller('DetailNotificationController',['$scope','$state','detailNotification','connectApiService','constURI','$uibModalInstance','$localStorage','APP_CONF','URL_CONF','$timeout',DetailNotificadtionCtrl]);
 })();
 
 /**
@@ -2153,15 +2363,15 @@ angular.module('URL_CONF', [])
 (function(){
 'use strict';
 
-	function ListNotificationCtrl($scope,connectApiService,constURI,sharedService,$uibModal,APP_CONF,URL_CONF){
+	function ListNotificationCtrl($scope,connectApiService,constURI,sharedService,$uibModal,$localStorage,APP_CONF,URL_CONF){
 		/** カラムタイトル */
 		$scope.columnTitle = APP_CONF.columnTitleNotification;
 		/** ラベル */
 		$scope.labelImportant = APP_CONF.labelImportance;
 		$scope.buttonLabel = APP_CONF.buttonLabelCreateNotification;
 		/** ユーザ情報 */
-		var apiParams = {userName:"user1",page:0};
-		var sizeLimit = 10;
+		var apiParams = {userName:$localStorage.userinfo.userName,page:0};
+		var sizeLimit = 20;
 
 		/**
 		 * 閉じるアイコン押下処理
@@ -2188,10 +2398,12 @@ angular.module('URL_CONF', [])
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
-		connectApiService.get(URL_CONF.urlBase + constURI.notifications,apiParams).then(function(apiResult){
-			sharedService.notificationList = apiResult.data;
-			setScope();
-		});
+		connectApiService
+			.get(URL_CONF.urlBase + constURI.notifications,apiParams)
+			.then(function(apiResult){
+				sharedService.notificationList = apiResult.data;
+				setScope();
+			});
 
 		/**
 		 * 次ページ読み込み処理
@@ -2204,14 +2416,10 @@ angular.module('URL_CONF', [])
 				apiParams = {userName:"user1",page:page + 1};
 				connectApiService.get(URL_CONF.urlBase + constURI.notifications,apiParams)
 					.then(function(apiResult){
-						// console.log(apiResult);
-						// sharedService.notificationList.push.apply(sharedService.notificationList,apiResult.data);
-
 						sharedService.notificationList = sharedService.notificationList.concat(apiResult.data);
 					}).finally(function(){
 						setScope();
 					});
-
 			}
 		}
 
@@ -2219,7 +2427,6 @@ angular.module('URL_CONF', [])
 		 * scope反映処理
 		 */
 		var setScope = function(){
-
 			$scope.notifications = sharedService.notificationList;
 			$scope.unreadCount = filterNotification("unreadMemberList").length;
 			$scope.notificationsCount = $scope.notifications.length;
@@ -2292,11 +2499,10 @@ angular.module('URL_CONF', [])
 			}
 			return filteredList; 
 		}
-
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('ListNotificationController',['$scope','connectApiService','constURI','sharedService','$uibModal','APP_CONF','URL_CONF',ListNotificationCtrl]);
+	angular.module(indexModule).controller('ListNotificationController',['$scope','connectApiService','constURI','sharedService','$uibModal','$localStorage','APP_CONF','URL_CONF',ListNotificationCtrl]);
 })();
 
 
@@ -2353,7 +2559,7 @@ angular.module('URL_CONF', [])
 	}
 
 	//moduleへ登録する
-	angular.module(appName).controller('SetTargetSkillModalController',['$scope','$modalInstance','connectApiService','constURI','APP_CONF','URL_CONF',SetTargetSkillModalCtrl]);
+	angular.module(indexModule).controller('SetTargetSkillModalController',['$scope','$modalInstance','connectApiService','constURI','APP_CONF','URL_CONF',SetTargetSkillModalCtrl]);
 })();
 
 

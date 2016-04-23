@@ -5,7 +5,22 @@
 (function(){
 	'use strict';
 
-	function NavCtrl($scope,$state,sharedService){
+	function NavCtrl($scope,$state,sharedService,$localStorage,connectApiService,constURI,URL_CONF){
+
+		/**
+		 * ユーザ情報の取得
+		 * @param  {[type]} 
+		 * @param  {[type]} 
+		 * @return {[type]} 
+		 */
+		$scope.$watch(function(){
+			return $localStorage.userinfo;
+		},function(newVal,oldVal){
+			if($localStorage.userinfo){
+				$scope.username = $localStorage.userinfo.userName;
+			}
+		});
+
 		/**
 		 * 検索処理
 		 */
@@ -27,5 +42,5 @@
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('NavController',['$scope','$state','sharedService', NavCtrl]);
+	angular.module(indexModule).controller('NavController',['$scope','$state','sharedService','$localStorage','connectApiService','constURI','URL_CONF',NavCtrl]);
 })();

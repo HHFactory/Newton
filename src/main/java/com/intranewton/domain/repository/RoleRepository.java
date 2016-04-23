@@ -15,6 +15,6 @@ import com.intranewton.domain.entity.Role;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer>{
 	//スキルリストから該当するロールを取得
-	@Query("SELECT r FROM Role r WHERE r.skillName IN :targetSkillList")
+	@Query("SELECT r FROM Role r WHERE r.name IN :targetSkillList")
 	public List<Role> findBySkillList(@Param("targetSkillList") List<String> targetSkillList);	
 }

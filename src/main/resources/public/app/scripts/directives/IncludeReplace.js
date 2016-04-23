@@ -11,5 +11,5 @@
 		}
 	}
 
-	angular.module(appName).directive('includeReplace',[IncludeReplace]);
+	angular.module(indexModule).directive('includeReplace',[IncludeReplace]);
 })();

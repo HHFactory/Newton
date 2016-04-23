@@ -16,13 +16,11 @@ import com.intranewton.domain.entity.NotificationTargetRole;
  */
 @Repository
 public interface NotificationTargetRoleRepository extends JpaRepository<NotificationTargetRole, Integer>{
-	//指定したユーザ名に紐づくお知らせを取得する
-//	@Query("SELECT nt FROM NotificationTargetRole nt WHERE nt.targetUser = :targetUser LIMIT :page,100")
-//	List<NotificationTargetRole> findbyTargetUser(@Param("targetUser") String targetUser,@Param("page") int page);
+
+	//指定したユーザ名に紐づくお知らせを取得する（お知らせID降順）
 	Page<NotificationTargetRole> findByTargetUserOrderByNotificationIdDesc(String targetuser,Pageable pageable);
 	
-	
-	//指定したユーザ、お知らせIDから既読にする
+	//指定したユーザのお知らせを既読にする
 	@Query("UPDATE NotificationTargetRole nt SET nt.readFlag = 1 WHERE nt.notification.id = :targetId AND nt.targetUser = :targetUser")
 	@Modifying
 	@Transactional

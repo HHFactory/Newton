@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.intranewton.domain.entity.Role;
 import com.intranewton.domain.entity.User;
 import com.intranewton.domain.repository.RoleRepository;
+import com.intranewton.domain.repository.TeamRepository;
 import com.intranewton.domain.repository.UserRepository;
 
 @Service
@@ -18,6 +19,8 @@ public class UserService {
 	UserRepository userRepository;
 	@Autowired
 	RoleRepository roleRepository;
+	@Autowired
+	TeamRepository teamRepository;
 
 	/**
 	 * user entityの取得
@@ -48,19 +51,19 @@ public class UserService {
 	}
 
 	/**
-	 * 渡されたスキル名リストから、対象ユーザを取得する
+	 * 渡されたチームリストから、対象ユーザを取得する
 	 * 
-	 * @param targetSkillList
+	 * @param targetTeamList
 	 * @return user名リスト
 	 */
-	public List<String> getTargetUsersbySkills( List<String> targetSkillList ) {
-		List<Role> roleList = roleRepository.findBySkillList(targetSkillList);
+	public List<String> getTargetUsersByTeamName( List<String> targetTeamList ) {
+		List<Role> roleList = roleRepository.findBySkillList(targetTeamList);
 		List<String> targetUserList = new ArrayList<>();
 		for ( Role targetRole : roleList ) {
 			List<String> userNameList = userRepository.findbyTargetRole(targetRole);
 			targetUserList.addAll(userNameList);
 		}
-		
+			
 		// 重複削除して返却する
 		return targetUserList.stream().distinct().collect(Collectors.toList());
 	}

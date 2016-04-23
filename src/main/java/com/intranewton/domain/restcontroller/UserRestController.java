@@ -57,7 +57,7 @@ public class UserRestController {
 	 */
 	@RequestMapping(value="/api/v1/targetusers",method=RequestMethod.GET)
 	List<String> findUsersbySkills(@RequestParam List<String> targetSkill){
-		return userService.getTargetUsersbySkills(targetSkill);
+		return userService.getTargetUsersByTeamName(targetSkill);
 	}
 	
 	/**

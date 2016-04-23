@@ -55,5 +55,5 @@
     };
 
 	
-	angular.module(appName).factory("fileReader",['$q','$log',fileReader]);
+	angular.module(indexModule).factory("fileReader",['$q','$log',fileReader]);
 })();

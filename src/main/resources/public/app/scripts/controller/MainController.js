@@ -2,7 +2,21 @@
 (function(){
 	'use strict';
 	
-	function MainCtrl($scope,sharedService,connectApiService,constURI){
+	function MainCtrl($scope,$state,$localStorage,sharedService,connectApiService,constURI){
+
+		/**
+		 * ログインユーザ情報監視
+		 * @param  
+		 * @param  
+		 * @return 
+		 */
+		$scope.$watch(function(){
+			return $localStorage.userinfo;
+		},function(){
+			if($localStorage.userinfo){
+				$scope.authorized = true;
+			}
+		});
 
 		/**
 		 * お知らせ開閉フラグ監視
@@ -15,7 +29,7 @@
 		},function(){
 			$scope.isShowNotification = sharedService.isShowNotification;
 		});
-		
+
 		/**
 		 * FAQ一括登録開閉フラグ監視
 		 * @param  {[type]}
@@ -40,11 +54,10 @@
 			$scope.isShowManual = sharedService.isShowManual;
 		});
 
-
-	}	
+	}
 
 	//moduleへ登録
-	angular.module(appName).controller('MainController',['$scope','sharedService','connectApiService','constURI',MainCtrl]);
+	angular.module(indexModule).controller('MainController',['$scope','$state','$localStorage','sharedService','connectApiService','constURI',MainCtrl]);
 })();
 
 

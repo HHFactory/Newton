@@ -9,8 +9,8 @@
 	<!-- 本文エリア -->
 	<div class="create-panel__content">
 		<!-- 宛先 -->
-		<tags-input ng-model="selectSkillList" placeholder="お知らせ対象を選択" replace-spaces-with-dashes="false" min-tags="1">
-			<auto-complete source="loadSkills($query)" max-results="10" debounce-delay="0"></auto-complete>
+		<tags-input ng-model="selectTeamList" placeholder="お知らせ対象を選択" replace-spaces-with-dashes="false" min-tags="1">
+			<auto-complete source="teamList($query)" min-length="0" max-results="10" debounce-delay="0"></auto-complete>
 		</tags-input>
 		<!-- お知らせタイトル -->
 		<input type="text" name="title" placeholder="タイトル" class="create-panel__title" ng-model="notification.title" required="true" ng-maxlength="50" uib-tooltip="50字以内にしてください" tooltip-placement="bottom" tooltip-enable="submitForm.title.$error.maxlength">
@@ -25,8 +25,8 @@
 			<label><input type="radio" ng-model="notification.importance" ng-value="3">高</label>
 			<label><input type="radio" ng-model="notification.importance" ng-value="2">中</label>
 			<label><input type="radio" ng-model="notification.importance" ng-value="1">低</label>
-			<input type="hidden" ng-model="notification.createUser" ng-init="notification.createUser='user1'" />
-			<input type="hidden" ng-model="notification.updateUser" ng-init="notification.updateUser='user1'" />
+			<!-- <input type="hidden" ng-model="notification.createUser" ng-init="notification.createUser='user1'" /> -->
+			<!-- <input type="hidden" ng-model="notification.updateUser" ng-init="notification.updateUser='user1'" /> -->
 		</div>
 		<div class="panel-footer__item--right">
 			<button type="submit" class="btn-blue" ng-disabled="submitForm.$invalid || loading">

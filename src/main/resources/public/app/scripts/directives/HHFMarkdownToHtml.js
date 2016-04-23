@@ -38,5 +38,5 @@
 		return afterRenderer;
 	}
 
-	angular.module(appName).directive('hhfMarkdownToHtml',['$sanitize','$sce',HHFMarkdownToHtml]);
+	angular.module(indexModule).directive('hhfMarkdownToHtml',['$sanitize','$sce',HHFMarkdownToHtml]);
 })();

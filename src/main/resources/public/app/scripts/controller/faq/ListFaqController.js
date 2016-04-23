@@ -114,6 +114,6 @@
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('ListFaqController',['$scope','connectApiService','constURI','sharedService','APP_CONF','URL_CONF',ListFaqCtrl]);
+	angular.module(indexModule).controller('ListFaqController',['$scope','connectApiService','constURI','sharedService','APP_CONF','URL_CONF',ListFaqCtrl]);
 })();
 

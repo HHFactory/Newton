@@ -134,5 +134,5 @@
 
 	}
 
-	angular.module(appName).controller('ImportFaqController',['$scope','$state','connectApiService','constURI','$timeout','sharedService','APP_CONF','URL_CONF',ImportFaqCtrl]);
+	angular.module(indexModule).controller('ImportFaqController',['$scope','$state','connectApiService','constURI','$timeout','sharedService','APP_CONF','URL_CONF',ImportFaqCtrl]);
 })();

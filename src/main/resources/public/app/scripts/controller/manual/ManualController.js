@@ -94,5 +94,5 @@
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('ManualController',['$scope','$state','$uibModal','connectApiService','constURI','sharedService','APP_CONF','URL_CONF',ManualCtrl]);
+	angular.module(indexModule).controller('ManualController',['$scope','$state','$uibModal','connectApiService','constURI','sharedService','APP_CONF','URL_CONF',ManualCtrl]);
 })();

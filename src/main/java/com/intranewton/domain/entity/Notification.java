@@ -32,19 +32,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Notification extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+	/** お知らせタイトル */
 	@Column(nullable=false)
 	private String title;
 	
+	/** お知らせ本文 */
 	@Column(nullable=true,columnDefinition="TEXT")
 	private String content;
 	
+	/** 添付ファイルパス(現在未使用) */
 	@Column(nullable=true)
 	private String filePath;
 	
+	/** お知らせ重要度 */
 	@Column(nullable=true)
 	private Integer importance;
-
+	
+	/** お知らせ対象ユーザリスト */
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "notification_id")
 	private List<NotificationTargetRole> notificationTargetRoles;

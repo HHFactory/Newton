@@ -35,16 +35,18 @@ public class NotificationService {
 	RoleRepository roleRepository;
 	@Autowired
 	UserService userService;
+	@Autowired
+	TeamService teamService;
 	
 	/** 1ページあたりのデータ数*/
-	private static final int limit = 10;
+	private static final int limit = 20;
 
 	/**
-	 * 渡されたパラメータのスキル名リストをユーザ名リストに変換し、お知らせとして登録する
+	 * 渡されたパラメータのチーム名リストからユーザ名リストを取得し、お知らせとして登録する
 	 * @param notificationParam
 	 */
 	public Notification createNotification(NotificationParam notificationParam) {
-		notificationParam.setTargetUserList(userService.getTargetUsersbySkills(notificationParam.getTargetUserList()));
+//		notificationParam.setTargetTeamList(userService.getTargetUsersByTeamName(notificationParam.getTargetTeamList()));
 		return notificationRepository.save(convertParamtoEntity(notificationParam));
 	}
 
@@ -63,17 +65,24 @@ public class NotificationService {
 		notification.setFilePath(notificationParam.getFilePath());
 		notification.setImportance(notificationParam.getImportance());
 		
-		//targetUserListからNotificationTargetRoleリストを生成
-		List<NotificationTargetRole> targetRoleList = 
-				   notificationParam.getTargetUserList().stream()
-														.map(targetUser -> {
-															NotificationTargetRole targetRole = new NotificationTargetRole();
-															targetRole.setNotification(notification);
-															targetRole.setTargetUser(targetUser);
-															return targetRole;
-														})
-														.collect(Collectors.toList());
-		notification.setNotificationTargetRoles(targetRoleList);
+		//チームリストから重複のないメンバーリストを作成
+		List<String> targetUserList = notificationParam.getTargetTeamList().stream()
+			.flatMap(teamName -> teamService.getMemberNameList(teamName).stream())
+			.distinct()
+			.collect(Collectors.toList());
+		
+		//メンバーリストからnotificationtargetRoleリストを作成
+		List<NotificationTargetRole> targetRoles = targetUserList
+															.stream()
+															.map(userName -> {
+																NotificationTargetRole targetRole = new NotificationTargetRole();
+																targetRole.setNotification(notification);
+																targetRole.setTargetUser(userName);
+																return targetRole;
+															})
+															.collect(Collectors.toList());
+		
+		notification.setNotificationTargetRoles(targetRoles);
 		return notification;
 	}
 

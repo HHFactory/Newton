@@ -25,6 +25,7 @@
 		buttonLabelClose: "閉じる",
 		buttonLabelCancel: "キャンセル",
 		buttonLabelIsRead: "既読にする",
+		buttonLabelLogin: "ログイン",
 		columnLabelPreview: "プレビュー",
 		iconLabelCreateNotification: "新規お知らせ",
 		iconLabelTag: "タグ追加",

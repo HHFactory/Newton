@@ -5,15 +5,15 @@
 (function(){
 'use strict';
 
-	function ListNotificationCtrl($scope,connectApiService,constURI,sharedService,$uibModal,APP_CONF,URL_CONF){
+	function ListNotificationCtrl($scope,connectApiService,constURI,sharedService,$uibModal,$localStorage,APP_CONF,URL_CONF){
 		/** カラムタイトル */
 		$scope.columnTitle = APP_CONF.columnTitleNotification;
 		/** ラベル */
 		$scope.labelImportant = APP_CONF.labelImportance;
 		$scope.buttonLabel = APP_CONF.buttonLabelCreateNotification;
 		/** ユーザ情報 */
-		var apiParams = {userName:"user1",page:0};
-		var sizeLimit = 10;
+		var apiParams = {userName:$localStorage.userinfo.userName,page:0};
+		var sizeLimit = 20;
 
 		/**
 		 * 閉じるアイコン押下処理
@@ -40,10 +40,12 @@
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
-		connectApiService.get(URL_CONF.urlBase + constURI.notifications,apiParams).then(function(apiResult){
-			sharedService.notificationList = apiResult.data;
-			setScope();
-		});
+		connectApiService
+			.get(URL_CONF.urlBase + constURI.notifications,apiParams)
+			.then(function(apiResult){
+				sharedService.notificationList = apiResult.data;
+				setScope();
+			});
 
 		/**
 		 * 次ページ読み込み処理
@@ -60,7 +62,6 @@
 					}).finally(function(){
 						setScope();
 					});
-
 			}
 		}
 
@@ -140,10 +141,9 @@
 			}
 			return filteredList; 
 		}
-
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('ListNotificationController',['$scope','connectApiService','constURI','sharedService','$uibModal','APP_CONF','URL_CONF',ListNotificationCtrl]);
+	angular.module(indexModule).controller('ListNotificationController',['$scope','connectApiService','constURI','sharedService','$uibModal','$localStorage','APP_CONF','URL_CONF',ListNotificationCtrl]);
 })();
 

@@ -6,7 +6,7 @@
 'use strict';
 	
 	//参照用モーダルコントローラ	
-	function DetailNotificadtionCtrl($scope,$state,detailNotification,connectApiService,constURI,$uibModalInstance,APP_CONF,URL_CONF,$timeout){
+	function DetailNotificadtionCtrl($scope,$state,detailNotification,connectApiService,constURI,$uibModalInstance,$localStorage,APP_CONF,URL_CONF,$timeout){
 		/** ラベル */
 		$scope.buttonLabelEdit = APP_CONF.buttonLabelEdit;
 		$scope.buttonLabelDelete = APP_CONF.buttonLabelDelete;
@@ -29,7 +29,7 @@
 		 * @return {Boolean} [description]
 		 */
 		$scope.isReaded = function(){
-			var userName = "user1";
+			var userName = $localStorage.userinfo.userName;
 			connectApiService.put(URL_CONF.urlBase + constURI.notification+detailNotification.id,userName).then(function(apiResult){
 				if(apiResult.status == 200){
 					$uibModalInstance.close();
@@ -77,5 +77,5 @@
 	}
 
 	//moduleへ登録
-	angular.module(appName).controller('DetailNotificationController',['$scope','$state','detailNotification','connectApiService','constURI','$uibModalInstance','APP_CONF','URL_CONF','$timeout',DetailNotificadtionCtrl]);
+	angular.module(indexModule).controller('DetailNotificationController',['$scope','$state','detailNotification','connectApiService','constURI','$uibModalInstance','$localStorage','APP_CONF','URL_CONF','$timeout',DetailNotificadtionCtrl]);
 })();

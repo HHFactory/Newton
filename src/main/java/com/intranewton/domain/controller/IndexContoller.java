@@ -24,5 +24,14 @@ public class IndexContoller {
 	String termURL(){
 		return "app/views/term/termbase.html";
 	}
+	
+	/**
+	 * ログイン画面を返す
+	 * @return
+	 */
+	@RequestMapping(value="/",method=RequestMethod.GET)
+	String loginURL(){
+		return "app/views/index.html";
+	}
 
 }

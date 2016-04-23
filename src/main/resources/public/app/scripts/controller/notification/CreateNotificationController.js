@@ -5,27 +5,27 @@
 (function(){
 'use strict';
 
-	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout,APP_CONF,URL_CONF){
+	function CreateNotificationCtrl($scope,$state,connectApiService,constURI,sharedService,$timeout,$localStorage,APP_CONF,URL_CONF){
 		/** ラベル */
 		$scope.createPanelHeader = APP_CONF.headerLabelCreateNotification;
 		$scope.sendButton = APP_CONF.buttonLabelSend;
-		
+
 		/**
 		 * 宛先リスト取得処理
-		 * @param  {obj} query 
-		 * @return {list} targetSkill      
+		 * @param  {[type]} query
+		 * @return {[type]}      
 		 */
-		$scope.loadSkills = function(query) {
-			return connectApiService.get(URL_CONF.urlBase + constURI.roles).then(function(apiResult){
-				var targetSkill = [];
-				var loadSkillList = apiResult.data;
-				for(var i = 0; i < loadSkillList.length; i = (i+1)) {
-					var skill = {};
-					skill["text"] = loadSkillList[i]["skillName"];
-					targetSkill.push(skill);
-				}
-				return targetSkill;
-			});
+		$scope.teamList = function(query) {
+			return connectApiService.get(URL_CONF.urlBase + constURI.teams)
+									.then(function(apiResult){
+										/** TeamEntityList -> nameList */
+										var teamNameList = [];
+										var loadTeamList = apiResult.data;
+										for(var i = 0; i < loadTeamList.length; i++){
+											teamNameList.push(loadTeamList[i]["name"]);
+										}
+										return teamNameList;
+									});
 		};
 
 		/**
@@ -35,17 +35,31 @@
 		 * TODO:websocket
 		 */
 		$scope.submit = function(notification) {
+			/** ボタン表示制御 */
 			$scope.loading = true;
 			$scope.sendButton = APP_CONF.buttonLabelSending;
-			notification.targetUserList = getSkillNameList($scope.selectSkillList);
+			
+			/** 選択したチーム */
+			notification.targetTeamList = getSkillNameList($scope.selectTeamList);
 			notification.filePath = "";
-			connectApiService.post(URL_CONF.urlBase + constURI.notification,notification).then(function(resultAPI){
-				$state.reload();
-				sharedService.isShowCreateNotificationPanel = false;
-			}).finally(function(){
-				$scope.loading = false;
-				$scope.sendButton = APP_CONF.buttonLabelSend;
-			});
+
+			/** 登録・更新者 */
+			notification.createUser = $localStorage.userinfo.userName;
+			notification.updateUser = $localStorage.userinfo.userName;
+
+			/** 登録処理 */
+			connectApiService
+				.post(URL_CONF.urlBase + constURI.notification,notification)
+				/** 画面をリロードし、お知らせ登録パネルを非表示 */
+				.then(function(resultAPI){
+					$state.reload();
+					sharedService.isShowCreateNotificationPanel = false;
+				})
+				/** ボタン表示を元に戻す（不要かも） */
+				.finally(function(){
+					$scope.loading = false;
+					$scope.sendButton = APP_CONF.buttonLabelSend;
+				});
 		};
 
 		/**
@@ -71,5 +85,5 @@
 	}
 
 	//moduleへ登録
-	angular.module(appName).controller('CreateNotificationController',['$scope','$state','connectApiService','constURI','sharedService','$timeout','APP_CONF','URL_CONF',CreateNotificationCtrl]);
+	angular.module(indexModule).controller('CreateNotificationController',['$scope','$state','connectApiService','constURI','sharedService','$timeout','$localStorage','APP_CONF','URL_CONF',CreateNotificationCtrl]);
 })();

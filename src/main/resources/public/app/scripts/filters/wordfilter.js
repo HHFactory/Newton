@@ -1,7 +1,7 @@
 //指定文字数を越えると...で表示させる
 (function(){
 'use strict';
-  angular.module(appName)
+  angular.module(indexModule)
   .filter('abbreviate',function () {
     return function (text, len, end) {
       if(!angular.isString(text)){

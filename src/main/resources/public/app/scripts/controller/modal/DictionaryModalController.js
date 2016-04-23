@@ -62,5 +62,5 @@
 	}
 
 	//moduleへの登録
-	angular.module(appName).controller('DictionaryModalController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF','URL_CONF',DictionaryCtrl]);
+	angular.module(indexModule).controller('DictionaryModalController',['$scope','$state','connectApiService','constURI','$timeout','APP_CONF','URL_CONF',DictionaryCtrl]);
 })();

@@ -37,6 +37,7 @@ public class AbstractEntity {
 	@Column(nullable=false,columnDefinition="char(8) DEFAULT 'valid'")
 	private String status;
 	
+	/** 更新時に更新日時を設定 */
 	@PreUpdate
 	private void preUpdate(){
 		setUpdateDatetime(new Timestamp(Calendar.getInstance().getTime().getTime()));

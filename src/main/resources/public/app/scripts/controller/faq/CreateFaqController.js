@@ -23,17 +23,17 @@
 			// ボタンラベルを変更
 			$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmitting;
 			connectApiService.post(URL_CONF.urlBase + constURI.faq,faq)
-			.success(function(apiResult){
-				$state.go('main');
-			})
-			.finally(function(){
-				$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmit;
-				$scope.loading = false;
-			});
+				.success(function(apiResult){
+					$state.go('main');
+				})
+				.finally(function(){
+					$scope.buttonLabelSubmit = APP_CONF.buttonLabelSubmit;
+					$scope.loading = false;
+				});
 			console.log('faq created');
 		};
 	}
 
 	//モジュールへの登録
-	angular.module(appName).controller('CreateFaqController',['$scope','$state','$controller','connectApiService','constURI','APP_CONF','URL_CONF',CreateFaqCtrl]);
+	angular.module(indexModule).controller('CreateFaqController',['$scope','$state','$controller','connectApiService','constURI','APP_CONF','URL_CONF',CreateFaqCtrl]);
 })();

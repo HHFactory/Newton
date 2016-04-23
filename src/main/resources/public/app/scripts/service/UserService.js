@@ -37,5 +37,5 @@
 	}
 
 	//moduleへの登録
-	angular.module(appName).factory('UserService',UserService);
+	angular.module(indexModule).factory('UserService',UserService);
 })();

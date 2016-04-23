@@ -28,9 +28,11 @@
 			'terms': "api/v1/terms/",
 			//elasticsearch
 			'searchAPI': "api/v1/elastic/querysearch/",
-			// 'searchALL': "api/v1/elastic/matchall/",
-			//upload&delete
-			'deleteFile': "delete/file"
+			//others
+			'deleteFile': "delete/file",
+			'login': "api/login",
+			'loginuser': "api/login/principal",
+			'teams': "api/v1/teams/"
 		}
 	);
 

@@ -121,5 +121,5 @@
 
 	}
 
-	angular.module(appName).controller('BaseFaqController',['$scope','$state','connectApiService','constURI','Upload','APP_CONF','URL_CONF',BaseFaqCtrl]);
+	angular.module(indexModule).controller('BaseFaqController',['$scope','$state','connectApiService','constURI','Upload','APP_CONF','URL_CONF',BaseFaqCtrl]);
 })();

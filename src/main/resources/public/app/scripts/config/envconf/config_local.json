@@ -3,6 +3,7 @@
     "urlBase": "http://localhost:8080/newton/",
 	"imageFolderPath": "http://localhost:8080/newton/app/images/",
 	"importFaqTemplateFilePath": "http://localhost:8080/newton/app/files/template.xlsx",
-	"termHtmlPath": "http://localhost:8080/newton/term#/"
+	"termHtmlPath": "http://localhost:8080/newton/term#/",
+	"indexHtmlPath": "http://localhost:8080/newton/index#/"
   }
 }

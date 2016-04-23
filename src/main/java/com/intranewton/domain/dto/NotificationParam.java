@@ -18,5 +18,5 @@ public class NotificationParam {
 	private String updateUser;
 	private Integer importance;
 	private String filePath;
-	private List<String> targetUserList;
+	private List<String> targetTeamList;
 }

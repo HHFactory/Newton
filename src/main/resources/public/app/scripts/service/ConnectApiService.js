@@ -19,7 +19,7 @@
 				var getData = $http.get(apiURI,{params:param}).success(function(data,status,headers,config){
 					// return data;
 				}).error(function(data,status,headers,config){
-					swal("データ取得に失敗しました");
+					// swal("データ取得に失敗しました");
 				});
 				return getData;
 			},
@@ -56,7 +56,7 @@
 						});
 					});
 				}).error(function(data,status,headers,config){
-					swal("登録に失敗しました");
+					// swal("登録に失敗しました");
 				});
 				return postData;
 			},

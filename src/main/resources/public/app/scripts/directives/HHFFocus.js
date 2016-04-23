@@ -13,5 +13,5 @@
 		}
 	}
 
-	angular.module(appName).directive('hhfFocus',['$timeout',hhfFocus]);
+	angular.module(indexModule).directive('hhfFocus',['$timeout',hhfFocus]);
 })();

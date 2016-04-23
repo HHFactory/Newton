@@ -6,7 +6,7 @@
 (function(){
 'use strict';
 	
-	function MenuCtrl($scope,$state,$uibModal,$window,sharedService,APP_CONF,URL_CONF){
+	function MenuCtrl($scope,$state,$uibModal,$window,sharedService,LoginUserService,APP_CONF,URL_CONF){
 		/** ラベル */
 		$scope.labelCreateNotification = APP_CONF.iconLabelCreateNotification;
 		$scope.labelNotification = APP_CONF.columnTitleNotification;
@@ -17,6 +17,15 @@
 
 		/** 別ウィンドウ */
 		$scope.$window = $window;
+
+		/**
+		 * 権限チェック(ボタン表示制御用)
+		 * @param  {[type]}  targetPermission 
+		 * @return {Boolean}                  
+		 */
+		$scope.hasPermission = function(targetPermission){
+			return LoginUserService.hasPermission(targetPermission);
+		}
 
 		/**
 		 * マニュアルアイコン押下処理
@@ -38,7 +47,6 @@
 			sharedService.isShowFaqImport = false;
 			sharedService.isShowCreateNotificationPanel = false;
 			sharedService.isShowNotification = !sharedService.isShowNotification;
-
 		}
 
 		/**
@@ -81,5 +89,5 @@
 
 	}
 
-	angular.module(appName).controller('MenuController', ['$scope','$state','$uibModal','$window','sharedService','APP_CONF','URL_CONF',MenuCtrl]);
+	angular.module(indexModule).controller('MenuController', ['$scope','$state','$uibModal','$window','sharedService','LoginUserService','APP_CONF','URL_CONF',MenuCtrl]);
 })();
